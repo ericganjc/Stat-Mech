@@ -1,0 +1,564 @@
+% =============================================================
+%  第 2 章 概率论（Probability）
+%  原文：Chapter 2, p.35--52   公式：2.1--2.74   图：2.1--2.8
+% =============================================================
+\bichapter{概率论}{Probability}
+
+% =============================================================
+\bisection{一般定义}{General definitions}
+% p.35
+
+热力学的定律建立在\emph{对宏观物体}的观测之上，并概括了它们的热学性质。另一方面，物质由原子与分子组成，它们的运动由更基本的定律（经典力学或量子力学）支配。原则上，我们应当能够从对其组分的了解出发导出宏观物体的行为。这正是下一章中动理论所要处理的问题。事实上，描述所涉及的数目巨大的粒子的完整动力学是一项相当艰巨的任务。正如我们将要论证的那样，在讨论一个宏观系统的平衡性质时，完全了解其组成粒子的行为并不是必需的。所需要的一切只是粒子处于某个特定微观态的\term{似然}{likelihood}{2.likelihood}。因此，统计力学本质上是对系统的一种\emph{概率性}的描述，熟悉概率的运算是一项重要的前提。本章的目的是复习概率论中一些重要的结果，并引入将在后面各章中使用的记号。
+
+所考察的对象是\term{随机变量}{random variable}{2.random-var} $x$，它有一组可能的\term{结果}{outcomes}{2.outcomes} $\mathscr{S}\equiv\{x_1,x_2,\cdots\}$。这些结果可以是\term{离散}{discrete}{2.discrete}的，例如抛一枚硬币，$\mathscr{S}_{\text{硬币}}=\{\text{正面},\text{反面}\}$；或者掷一颗骰子，$\mathscr{S}_{\text{骰子}}=\{1,2,3,4,5,6\}$；也可以是\term{连续}{continuous}{2.continuous}的，例如气体中一个粒子的速度 $\mathscr{S}_{\bm{v}}=\{-\infty<v_x,v_y,v_z<\infty\}$，或者零温下金属中一个电子的能量 $\mathscr{S}_{\epsilon}=\{0\le\epsilon\le\epsilon_F\}$。一个\term{事件}{event}{2.event}是结果的任意子集 $E\subset\mathscr{S}$，并被赋予一个\term{概率}{probability}{2.probability} $p(E)$，例如 $p_{\text{骰子}}(\{1\})=1/6$，或者 $p_{\text{骰子}}(\{1,3\})=1/3$。从公理化的观点看，概率必须满足以下条件：
+
+\begin{enumerate}[label=(\roman*),itemsep=0.25em,topsep=0.4em]
+  \item \term{正定性}{Positivity}{2.positivity}。$p(E)\ge0$，也就是说，所有概率都必须是实的且非负的。
+  \item \term{可加性}{Additivity}{2.additivity}。若 $A$ 与 $B$ 是不相交的事件，则 $p(A\ \text{或}\ B)=p(A)+p(B)$。
+  \item \term{归一化}{Normalization}{2.normalization}。$p(\mathscr{S})=1$，也就是说，随机变量必须在 $\mathscr{S}$ 中有某个结果。
+\end{enumerate}
+
+% p.36
+从实用的观点看，我们希望知道如何给各种结果赋予概率值。有两条可能的途径：
+
+\begin{enumerate}[itemsep=0.45em,topsep=0.4em]
+  \item \term{客观}{Objective}{2.objective}概率是\emph{由实验}从随机变量在许多次试验中某个结果出现的相对频率得到的。若随机过程重复 $N$ 次，而事件 $A$ 出现 $N_A$ 次，则
+  \begin{equation*}
+    p(A)=\lim_{N\to\infty}\frac{N_A}{N}.
+  \end{equation*}
+  例如，对 $N=100,\,200,\,300$ 的一系列掷骰子实验，数字 1 可能分别出现 $N_1=19,\,30,\,48$ 次。比值 $0.19$、$0.15$、$0.16$ 给出了对概率 $p_{\text{骰子}}(\{1\})$ 越来越可靠的估计。
+
+  \item \term{主观}{Subjective}{2.subjective}概率给出的是\emph{理论}估计，它基于由对结果的了解不够精确所造成的不确定性。例如，对 $p_{\text{骰子}}(\{1\})=1/6$ 的评定基于这样的事实：一次掷骰子有六种可能的结果，而在没有先验理由认为骰子有偏的情况下，六种结果都同样可能。统计力学中所有概率的赋予都是主观地作出的。这种主观概率赋予的后果必须由测量来检验，而且当关于结果的更多信息变得可用时，它们可能需要被修正。
+\end{enumerate}
+
+% =============================================================
+\bisection{一个随机变量}{One random variable}
+% p.36
+
+由于离散随机变量的性质相当为人熟知，这里我们集中讨论连续随机变量，它们与我们的目的更为相关。考虑一个随机变量 $x$，它的结果是实数，即 $\mathscr{S}_x=\{-\infty<x<\infty\}$。
+
+\begin{itemize}[itemsep=0.45em,topsep=0.4em]
+  \item \term{累积概率函数}{cumulative probability function}{2.cpf}（CPF）$P(x)$ 是结果取\emph{任意}小于 $x$ 的值的概率，即 $P(x)=\mathrm{prob}(E\subset[-\infty,x])$。$P(x)$ 必须是 $x$ 的单调增函数，且 $P(-\infty)=0$、$P(+\infty)=1$。
+\end{itemize}
+
+\cnfigure{fig2-1}{一条典型的累积概率函数。}
+
+% p.37
+\cnfigure{fig2-2}{一条典型的概率密度函数。}
+
+\begin{itemize}[itemsep=0.45em,topsep=0.4em]
+  \item \term{概率密度函数}{probability density function}{2.pdf}（PDF）由 $p(x)\equiv\mathrm{d}P(x)/\mathrm{d}x$ 定义。因此 $p(x)\mathrm{d}x=\mathrm{prob}(E\in[x,x+\mathrm{d}x])$。作为概率密度，它是正的，并按
+  \begin{equation}\label{eq:2.1}
+    \mathrm{prob}(\mathscr{S})=\int_{-\infty}^{\infty}\mathrm{d}x\,p(x)=1
+  \end{equation}
+  的方式归一化。注意，由于 $p(x)$ 是一种\emph{概率密度}，它具有量纲 $[x]^{-1}$，并且当测量 $x$ 的单位改变时其数值也会改变。与 $P(x)$ 不同，PDF 没有上界，也就是说 $0<p(x)<\infty$，并且只要可积就可以含有发散。
+
+  \item 任意函数 $F(x)$ 的\term{期望值}{expectation value}{2.expectation}为
+  \begin{equation}\label{eq:2.2}
+    \langle F(x)\rangle=\int_{-\infty}^{\infty}\mathrm{d}x\,p(x)F(x).
+  \end{equation}
+\end{itemize}
+
+\cnfigure{fig2-3}{得到函数 $F(x)$ 的 PDF。}
+
+函数 $F(x)$ 本身就是一个随机变量，与其相关联的 PDF 为 $p_F(f)\mathrm{d}f=\mathrm{prob}(F(x)\in[f,f+\mathrm{d}f])$。方程 $F(x)=f$ 可能有多个解 $x_i$，于是
+\begin{equation}\label{eq:2.3}
+  p_F(f)\mathrm{d}f=\sum_i p(x_i)\mathrm{d}x_i\,,\qquad\Longrightarrow\qquad p_F(f)=\sum_i p(x_i)\left|\frac{\mathrm{d}x}{\mathrm{d}F}\right|_{x=x_i}.
+\end{equation}
+因子 $|\mathrm{d}x/\mathrm{d}F|$ 是与变量从 $x$ 变换到 $F$ 相关联的\term{Jacobi 因子}{Jacobians}{2.jacobians}。例如，考虑 $p(x)=\lambda\exp(-\lambda|x|)/2$，以及函数
+
+% p.38
+$F(x)=x^2$。$F(x)=f$ 有两个解，位于 $x_{\pm}=\pm\sqrt{f}$，相应的 Jacobi 因子为 $|\pm f^{-1/2}/2|$。因此
+\begin{equation*}
+  p_F(f)=\frac{\lambda}{2}\exp\!\left(-\lambda\sqrt{f}\right)\left(\left|\frac{1}{2\sqrt{f}}\right|+\left|\frac{-1}{2\sqrt{f}}\right|\right)=\frac{\lambda\exp\!\left(-\lambda\sqrt{f}\right)}{2\sqrt{f}},
+\end{equation*}
+对 $f>0$ 成立，而当 $f<0$ 时 $p_F(f)=0$。注意 $p_F(f)$ 在 $f=0$ 处有一个（可积的）发散。
+
+\cnfigure{fig2-4}{$x$ 以及 $F=x^2$ 的概率密度函数。}
+
+\begin{itemize}[itemsep=0.45em,topsep=0.4em]
+  \item PDF 的\term{矩}{Moments}{2.moments}是随机变量各次幂的期望值。第 $n$ 阶矩为
+  \begin{equation}\label{eq:2.4}
+    m_n\equiv\langle x^n\rangle=\int\mathrm{d}x\,p(x)x^n.
+  \end{equation}
+
+  \item \term{特征函数}{characteristic function}{2.char-fn}是分布的矩的生成函数。它其实就是 PDF 的 Fourier 变换，定义为
+  \begin{equation}\label{eq:2.5}
+    \tilde p(k)=\left\langle \mathrm{e}^{-\mathrm{i}kx}\right\rangle=\int\mathrm{d}x\,p(x)\,\mathrm{e}^{-\mathrm{i}kx}.
+  \end{equation}
+  PDF 可以通过逆 Fourier 变换由特征函数复原，
+  \begin{equation}\label{eq:2.6}
+    p(x)=\frac{1}{2\pi}\int\mathrm{d}k\,\tilde p(k)\,\mathrm{e}^{\mathrm{i}kx}.
+  \end{equation}
+  分布的矩可以通过把 $\tilde p(k)$ 按 $k$ 的幂展开得到，
+  \begin{equation}\label{eq:2.7}
+    \tilde p(k)=\left\langle\sum_{n=0}^{\infty}\frac{(-\mathrm{i}k)^n}{n!}x^n\right\rangle=\sum_{n=0}^{\infty}\frac{(-\mathrm{i}k)^n}{n!}\left\langle x^n\right\rangle.
+  \end{equation}
+  PDF 在任意点 $x_0$ 附近的矩也可以通过展开得到，
+  \begin{equation}\label{eq:2.8}
+    \mathrm{e}^{\mathrm{i}kx_0}\tilde p(k)=\left\langle \mathrm{e}^{-\mathrm{i}k(x-x_0)}\right\rangle=\sum_{n=0}^{\infty}\frac{(-\mathrm{i}k)^n}{n!}\left\langle (x-x_0)^n\right\rangle.
+  \end{equation}
+
+% p.39
+  \item \term{累积量生成函数}{cumulant generating function}{2.cum-gen}是特征函数的对数。它的展开生成分布的\term{累积量}{cumulants}{2.cumulant}，后者通过
+  \begin{equation}\label{eq:2.9}
+    \ln\tilde p(k)=\sum_{n=1}^{\infty}\frac{(-\mathrm{i}k)^n}{n!}\left\langle x^n\right\rangle_c
+  \end{equation}
+  定义。矩与累积量之间的关系可以通过把式 \eqref{eq:2.7} 中 $\tilde p(k)$ 的对数展开，并利用
+  \begin{equation}\label{eq:2.10}
+    \ln(1+\epsilon)=\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\epsilon^n}{n}
+  \end{equation}
+  得到。前四个累积量分别称为该分布的\term{均值}{mean}{2.mean}、\term{方差}{variance}{2.variance}、\term{偏度}{skewness}{2.skewness}和\term{峰度}{curtosis}{2.curtosis}（或称 kurtosis），它们由各阶矩得到如下：
+  \begin{equation}\label{eq:2.11}
+    \begin{aligned}
+      \langle x\rangle_c&=\langle x\rangle,\\
+      \langle x^2\rangle_c&=\langle x^2\rangle-\langle x\rangle^2,\\
+      \langle x^3\rangle_c&=\langle x^3\rangle-3\langle x^2\rangle\langle x\rangle+2\langle x\rangle^3,\\
+      \langle x^4\rangle_c&=\langle x^4\rangle-4\langle x^3\rangle\langle x\rangle-3\langle x^2\rangle^2+12\langle x^2\rangle\langle x\rangle^2-6\langle x\rangle^4.
+    \end{aligned}
+  \end{equation}
+  累积量提供了一种有用而紧凑的描述 PDF 的方式。
+
+  一个重要定理使我们能够轻松地用累积量来计算各阶矩：把第 $n$ 阶累积量图解地表示为由 $n$ 个点构成的\term{连通集团}{connected cluster}{2.cluster}。第 $m$ 阶矩则通过把 $m$ 个点的全部可能剖分求和得到，这些剖分把点分成若干更小的（连通或不连通的）集团。每个剖分对求和的贡献，是它所代表的那些连通累积量的乘积。利用这一结果，前四阶矩可以用图形算出。
+\end{itemize}
+
+\cnfigure{fig2-5}{前四阶矩的图形计算。}
+
+相应的代数表达式为
+\begin{equation}\label{eq:2.12}
+  \begin{aligned}
+    \langle x\rangle&=\langle x\rangle_c,\\
+    \langle x^2\rangle&=\langle x^2\rangle_c+\langle x\rangle_c^2,\\
+    \langle x^3\rangle&=\langle x^3\rangle_c+3\langle x^2\rangle_c\langle x\rangle_c+\langle x\rangle_c^3,\\
+    \langle x^4\rangle&=\langle x^4\rangle_c+4\langle x^3\rangle_c\langle x\rangle_c+3\langle x^2\rangle_c^2+6\langle x^2\rangle_c\langle x\rangle_c^2+\langle x\rangle_c^4.
+  \end{aligned}
+\end{equation}
+
+% p.40
+这个定理是统计力学与场论中各种图形计算的出发点，它可以通过令式 \eqref{eq:2.7} 与式 \eqref{eq:2.9} 中 $\tilde p(k)$ 的表达式相等而轻易证明：
+\begin{equation}\label{eq:2.13}
+  \sum_{m=0}^{\infty}\frac{(-\mathrm{i}k)^m}{m!}\left\langle x^m\right\rangle=\exp\left[\sum_{n=1}^{\infty}\frac{(-\mathrm{i}k)^n}{n!}\left\langle x^n\right\rangle_c\right]=\prod_n\sum_{p_n}\left[\frac{(-\mathrm{i}k)^{np_n}}{p_n!}\left(\frac{\left\langle x^n\right\rangle_c}{n!}\right)^{p_n}\right].
+\end{equation}
+令上式两边 $(-\mathrm{i}k)^m$ 的幂次相等，得到
+\begin{equation}\label{eq:2.14}
+  \left\langle x^m\right\rangle=\sum_{\{p_n\}}'m!\prod_n\frac{1}{p_n!(n!)^{p_n}}\left\langle x^n\right\rangle_c^{p_n}.
+\end{equation}
+该求和受 $\sum n\,p_n=m$ 的限制，并导致上面给出的图解解释：其中的数值因子正是把 $m$ 个点分成 $\{p_n\}$ 个含 $n$ 个点的集团的方式数。
+
+% =============================================================
+\bisection{若干重要的概率分布}{Some important probability distributions}
+% p.40
+
+本节考察三种常遇到的概率分布的性质。
+
+（1）\term{正态（Gauss）分布}{normal (Gaussian) distribution}{2.normal}描述一个连续的实随机变量 $x$，其 PDF 为
+\begin{equation}\label{eq:2.15}
+  p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left[-\frac{(x-\lambda)^2}{2\sigma^2}\right].
+\end{equation}
+相应的特征函数也具有 Gauss 形式，
+\begin{equation}\label{eq:2.16}
+  \tilde p(k)=\int_{-\infty}^{\infty}\mathrm{d}x\,\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left[-\frac{(x-\lambda)^2}{2\sigma^2}-\mathrm{i}kx\right]=\exp\left[-\mathrm{i}k\lambda-\frac{k^2\sigma^2}{2}\right].
+\end{equation}
+由 $\ln\tilde p(k)=-\mathrm{i}k\lambda-k^2\sigma^2/2$，并利用式 \eqref{eq:2.9}，可以定出该分布的累积量：
+\begin{equation}\label{eq:2.17}
+  \langle x\rangle_c=\lambda,\qquad \langle x^2\rangle_c=\sigma^2,\qquad \langle x^3\rangle_c=\langle x^4\rangle_c=\cdots=0.
+\end{equation}
+因此正态分布完全由它的前两个累积量确定。这使得用集团展开（式 \eqref{eq:2.12}）计算各阶矩特别简单，
+\begin{equation}\label{eq:2.18}
+  \begin{aligned}
+    \langle x\rangle&=\lambda,\\
+    \langle x^2\rangle&=\sigma^2+\lambda^2,\\
+    \langle x^3\rangle&=3\sigma^2\lambda+\lambda^3,\\
+    \langle x^4\rangle&=3\sigma^4+6\sigma^2\lambda^2+\lambda^4,\\
+    &\ \ \cdots
+  \end{aligned}
+\end{equation}
+
+% p.41
+正态分布是场论中大多数微扰计算的出发点。更高阶累积量的消失意味着，所有的图形计算都只涉及一点集团与两点集团（称为传播子）的乘积。
+
+（2）\term{二项分布}{binomial distribution}{2.binomial}：考虑一个具有两个结果 $A$ 与 $B$ 的随机变量（例如抛硬币），相对概率为 $p_A$ 与 $p_B=1-p_A$。在 $N$ 次试验中事件 $A$ 恰好出现 $N_A$ 次（例如抛 12 次硬币出现 5 次正面）的概率由二项分布给出：
+\begin{equation}\label{eq:2.19}
+  p_N(N_A)=\binom{N}{N_A}p_A^{N_A}p_B^{N-N_A}.
+\end{equation}
+其中的前因子
+\begin{equation}\label{eq:2.20}
+  \binom{N}{N_A}=\frac{N!}{N_A!(N-N_A)!},
+\end{equation}
+正是 $(p_A+p_B)^N$ 的二项展开式中出现的系数，它给出 $N_A$ 个事件 $A$ 与 $N_B=N-N_A$ 个事件 $B$ 的可能排列数。这一离散分布的特征函数为
+\begin{equation}\label{eq:2.21}
+  \tilde p_N(k)=\left\langle \mathrm{e}^{-\mathrm{i}kN_A}\right\rangle=\sum_{N_A=0}^{N}\frac{N!}{N_A!(N-N_A)!}p_A^{N_A}p_B^{N-N_A}\mathrm{e}^{-\mathrm{i}kN_A}=\left(p_A\mathrm{e}^{-\mathrm{i}k}+p_B\right)^N.
+\end{equation}
+由此得到的累积量生成函数为
+\begin{equation}\label{eq:2.22}
+  \ln\tilde p_N(k)=N\ln\left(p_A\mathrm{e}^{-\mathrm{i}k}+p_B\right)=N\ln\tilde p_1(k),
+\end{equation}
+其中 $\ln\tilde p_1(k)$ 是单次试验的累积量生成函数。因此，$N$ 次试验后的累积量不过是单次试验中累积量的 $N$ 倍。在每次试验中，$N_A$ 的允许取值为 0 和 1，相应的概率分别为 $p_B$ 和 $p_A$，于是对一切 $\ell$ 都有 $\langle N_A^{\ell}\rangle_c=p_A$。$N$ 次试验之后，前两个累积量为
+\begin{equation}\label{eq:2.23}
+  \langle N_A\rangle_c=Np_A,\qquad \left\langle N_A^2\right\rangle_c=N\left(p_A-p_A^2\right)=Np_Ap_B.
+\end{equation}
+
+围绕均值的涨落由\term{标准偏差}{standard deviation}{2.std-dev}衡量，它是方差的平方根。二项分布的均值按 $N$ 标度，而它的标准偏差只按 $\sqrt{N}$ 增长。因此，当 $N$ 很大时，\emph{相对}不确定性变得更小。
+
+当多个结果 $\{A,B,\cdots,M\}$ 以概率 $\{p_A,p_B,\cdots,p_M\}$ 出现时，二项分布可以直接推广为\term{多项式分布}{multinomial distribution}{2.multinomial}。在总共 $N=N_A+N_B+\cdots+N_M$ 次试验中，得到结果 $\{N_A,N_B,\cdots,N_M\}$ 的概率为
+\begin{equation}\label{eq:2.24}
+  p_N\left(\{N_A,N_B,\cdots,N_M\}\right)=\frac{N!}{N_A!N_B!\cdots N_M!}\,p_A^{N_A}p_B^{N_B}\cdots p_M^{N_M}.
+\end{equation}
+
+% p.42
+（3）\term{Poisson 分布}{Poisson distribution}{2.poisson}：Poisson 过程的经典例子是放射性衰变。对一块放射性物质在一个时间间隔 $T$ 上作观测，可以看出：
+
+\begin{enumerate}[label=(\alph*),itemsep=0.25em,topsep=0.4em]
+  \item 在间隔 $[t,t+\mathrm{d}t]$ 中发生一次且仅一次事件（衰变）的概率，在 $\mathrm{d}t\to0$ 时正比于 $\mathrm{d}t$。
+  \item 不同间隔中事件的概率彼此独立。
+\end{enumerate}
+
+\cnfigure{fig2-6}{把时间间隔细分为大小为 $\mathrm{d}t$ 的小段。}
+
+在间隔 $T$ 中恰好观测到 $M$ 次衰变的概率由 Poisson 分布给出。它可以通过把该间隔细分为 $N=T/\mathrm{d}t\gg1$ 个大小为 $\mathrm{d}t$ 的小段，作为二项分布的极限得到。在每一小段中，发生事件的概率为 $p=\alpha\,\mathrm{d}t$，不发生事件的概率为 $q=1-\alpha\,\mathrm{d}t$。由于 $\mathrm{d}t$ 内发生多于一次事件的概率小到可以忽略，该过程等价于一个二项过程。利用式 \eqref{eq:2.21}，特征函数为
+\begin{equation}\label{eq:2.25}
+  \tilde p(k)=\left(p\mathrm{e}^{-\mathrm{i}k}+q\right)^N=\lim_{\mathrm{d}t\to0}\left[1+\alpha\,\mathrm{d}t\left(\mathrm{e}^{-\mathrm{i}k}-1\right)\right]^{T/\mathrm{d}t}=\exp\left[\alpha\left(\mathrm{e}^{-\mathrm{i}k}-1\right)T\right].
+\end{equation}
+Poisson PDF 由式 \eqref{eq:2.6} 中的逆 Fourier 变换得到，
+\begin{equation}\label{eq:2.26}
+  p(x)=\int_{-\infty}^{\infty}\frac{\mathrm{d}k}{2\pi}\exp\left[\alpha\left(\mathrm{e}^{-\mathrm{i}k}-1\right)T+\mathrm{i}kx\right]=\mathrm{e}^{-\alpha T}\int_{-\infty}^{\infty}\frac{\mathrm{d}k}{2\pi}\mathrm{e}^{\mathrm{i}kx}\sum_{M=0}^{\infty}\frac{(\alpha T)^M}{M!}\mathrm{e}^{-\mathrm{i}kM},
+\end{equation}
+这里用到了指数函数的幂级数。对 $k$ 的积分为
+\begin{equation}\label{eq:2.27}
+  \int_{-\infty}^{\infty}\frac{\mathrm{d}k}{2\pi}\,\mathrm{e}^{\mathrm{i}k(x-M)}=\delta(x-M),
+\end{equation}
+于是得到
+\begin{equation}\label{eq:2.28}
+  p_{\alpha T}(x)=\sum_{M=0}^{\infty}\mathrm{e}^{-\alpha T}\frac{(\alpha T)^M}{M!}\,\delta(x-M).
+\end{equation}
+这一结果清楚地表明，$x$ 的唯一可能取值是整数 $M$。于是发生 $M$ 次事件的概率为 $p_{\alpha T}(M)=\mathrm{e}^{-\alpha T}(\alpha T)^M/M!$。该分布的累积量由展开式
+\begin{equation}\label{eq:2.29}
+  \ln\tilde p_{\alpha T}(k)=\alpha T\left(\mathrm{e}^{-\mathrm{i}k}-1\right)=\alpha T\sum_{n=1}^{\infty}\frac{(-\mathrm{i}k)^n}{n!},\qquad\Longrightarrow\qquad \left\langle M^n\right\rangle_c=\alpha T
+\end{equation}
+得到。
+
+% p.43
+所有累积量都有相同的值，而各阶矩由式 \eqref{eq:2.12} 得到：
+\begin{equation}\label{eq:2.30}
+  \langle M\rangle=(\alpha T),\quad \left\langle M^2\right\rangle=(\alpha T)^2+(\alpha T),\quad \left\langle M^3\right\rangle=(\alpha T)^3+3(\alpha T)^2+(\alpha T).
+\end{equation}
+
+\textbf{例子。}假设恒星在银河系中随机分布（这显然没有正当理由），数密度为 $n$，那么最近的恒星位于距离 $R$ 处的概率是多少？由于在体积元 $\mathrm{d}V$ 中找到一颗恒星的概率为 $n\,\mathrm{d}V$，并且假设它们彼此独立，体积 $V$ 中的恒星数目由式 \eqref{eq:2.28} 那样的 Poisson 过程描述，其中 $\alpha=n$。在距离 $R$ 处遇到第一颗恒星的概率 $p(R)$，等于在原点周围体积 $V=4\pi R^3/3$ 中没有找到任何恒星的\emph{概率} $p_{nV}(0)$ 与在距离 $R$ 处体积为 $\mathrm{d}V=4\pi R^2\mathrm{d}R$ 的球壳中找到一颗恒星的概率 $p_{n\mathrm{d}V}(1)$ 之积。$p_{nV}(0)$ 与 $p_{n\mathrm{d}V}(1)$ 都可以由式 \eqref{eq:2.28} 算出，于是
+\begin{equation}\label{eq:2.31}
+  \begin{aligned}
+    p(R)\mathrm{d}R&=p_{nV}(0)\,p_{n\mathrm{d}V}(1)=\mathrm{e}^{-4\pi R^3n/3}\,\mathrm{e}^{-4\pi R^2n\mathrm{d}R}\,4\pi R^2n\,\mathrm{d}R,\\[2pt]
+    \Longrightarrow\qquad p(R)&=4\pi R^2n\exp\left(-\frac{4\pi}{3}R^3n\right).
+  \end{aligned}
+\end{equation}
+
+% =============================================================
+\bisection{多个随机变量}{Many random variables}
+% p.43
+
+当随机变量多于一个时，结果的集合是一个 $N$ 维空间，$\mathscr{S}_{\bm{x}}=\{-\infty<x_1,x_2,\cdots,x_N<\infty\}$。例如，描述一个气体粒子的位置与速度需要六个坐标。
+
+\begin{itemize}[itemsep=0.45em,topsep=0.4em]
+  \item \term{联合 PDF}{joint PDF}{2.joint-pdf} $p(\bm{x})$ 是在点 $\bm{x}=\{x_1,x_2,\cdots,x_N\}$ 周围体积元 $\mathrm{d}^N\bm{x}=\prod_{i=1}^{N}\mathrm{d}x_i$ 中取得某个结果的概率密度。联合 PDF 按下式归一化
+  \begin{equation}\label{eq:2.32}
+    p_{\bm{x}}(\mathscr{S})=\int\mathrm{d}^N\bm{x}\,p(\bm{x})=1.
+  \end{equation}
+  当且仅当这 $N$ 个随机变量\emph{相互独立}时，联合 PDF 等于各单个 PDF 的乘积，
+  \begin{equation}\label{eq:2.33}
+    p(\bm{x})=\prod_{i=1}^{N}p_i(x_i).
+  \end{equation}
+
+  \item \term{无条件 PDF}{unconditional PDF}{2.uncond-pdf}描述随机变量中某一部分的行为，与其余变量的取值无关。例如，若我们只关心一个气体粒子的位置，则可以通过对给定位置处的所有速度积分来构造一个无条件 PDF，$p(\tilde x)=\int\mathrm{d}^3\tilde v\,p(\tilde x,\tilde v)$；更一般地，
+  \begin{equation}\label{eq:2.34}
+    p(x_1,\cdots,x_m)=\int\prod_{i=m+1}^{N}\mathrm{d}x_i\,p(x_1,\cdots,x_N).
+  \end{equation}
+
+% p.44
+  \item \term{条件 PDF}{conditional PDF}{2.cond-pdf}描述随机变量中某一部分在其余变量取定值时的行为。例如，位于特定位置 $\tilde x$ 处的一个粒子的速度的 PDF 记作 $p(\tilde v|\tilde x)$，它正比于联合 PDF：$p(\tilde v|\tilde x)=p(\tilde x,\tilde v)/\mathcal{N}$。由 $p(\tilde v|\tilde x)$ 的归一化定出的比例常数为
+  \begin{equation}\label{eq:2.35}
+    \mathcal{N}=\int\mathrm{d}^3\tilde v\,p(\tilde x,\tilde v)=p(\tilde x),
+  \end{equation}
+  即位于 $\tilde x$ 处一个粒子的无条件 PDF。一般地，无条件 PDF 由\term{Bayes 定理}{Bayes' theorem}{2.bayes}得到：
+  \begin{equation}\label{eq:2.36}
+    p(x_1,\cdots,x_m|x_{m+1},\cdots,x_N)=\frac{p(x_1,\cdots,x_N)}{p(x_{m+1},\cdots,x_N)}.
+  \end{equation}
+  注意，若随机变量相互独立，则无条件 PDF 等于条件 PDF。
+
+  \item 函数 $F(\bm{x})$ 的期望值与前面一样由
+  \begin{equation}\label{eq:2.37}
+    \langle F(\bm{x})\rangle=\int\mathrm{d}^N\bm{x}\,p(\bm{x})F(\bm{x})
+  \end{equation}
+  得到。
+
+  \item \term{联合特征函数}{joint characteristic function}{2.joint-char}由联合 PDF 的 $N$ 维 Fourier 变换得到，
+  \begin{equation}\label{eq:2.38}
+    \tilde p(\bm{k})=\left\langle\exp\left(-\mathrm{i}\sum_{j=1}^{N}k_jx_j\right)\right\rangle.
+  \end{equation}
+  \term{联合矩}{joint moments}{2.joint-moments}与\term{联合累积量}{joint cumulants}{2.joint-cumulants}分别由 $\tilde p(\bm{k})$ 与 $\ln\tilde p(\bm{k})$ 生成：
+  \begin{equation}\label{eq:2.39}
+    \begin{aligned}
+      \left\langle x_1^{n_1}x_2^{n_2}\cdots x_N^{n_N}\right\rangle&=\left[\frac{\partial}{\partial(-\mathrm{i}k_1)}\right]^{n_1}\left[\frac{\partial}{\partial(-\mathrm{i}k_2)}\right]^{n_2}\cdots\left[\frac{\partial}{\partial(-\mathrm{i}k_N)}\right]^{n_N}\tilde p(\bm{k}=\bm{0}),\\[4pt]
+      \left\langle x_1^{n_1}*x_2^{n_2}*\cdots*x_N^{n_N}\right\rangle_c&=\left[\frac{\partial}{\partial(-\mathrm{i}k_1)}\right]^{n_1}\left[\frac{\partial}{\partial(-\mathrm{i}k_2)}\right]^{n_2}\cdots\left[\frac{\partial}{\partial(-\mathrm{i}k_N)}\right]^{n_N}\ln\tilde p(\bm{k}=\bm{0}).
+    \end{aligned}
+  \end{equation}
+  前面描述过的联合矩（全部带标记点的集团）与联合累积量（连通集团）之间的图解关系仍然适用。例如，由
+
+  \begin{center}
+    \fbox{\parbox{0.85\textwidth}{\centering\small [ 图片占位：原文 p.44 中的无编号插图 ]\\ $\langle x_1x_2\rangle$ 与 $\langle x_1^2x_2\rangle$ 的图形表示}}
+  \end{center}
+
+  我们得到
+  \begin{equation}\label{eq:2.40}
+    \begin{aligned}
+      \langle x_1x_2\rangle&=\langle x_1\rangle_c\langle x_2\rangle_c+\langle x_1*x_2\rangle_c,\qquad\text{以及}\\
+      \left\langle x_1^2x_2\right\rangle&=\langle x_1\rangle_c^2\langle x_2\rangle_c+\left\langle x_1^2\right\rangle_c\langle x_2\rangle_c+2\langle x_1*x_2\rangle_c\langle x_1\rangle_c+\left\langle x_1^2*x_2\right\rangle_c.
+    \end{aligned}
+  \end{equation}
+
+% p.45
+若 $x_\alpha$ 与 $x_\beta$ 是相互独立的随机变量，则\term{连通关联}{connected correlation}{2.conn-corr} $\langle x_\alpha*x_\beta\rangle_c$ 为零。
+
+  \item \term{联合 Gauss 分布}{joint Gaussian distribution}{2.joint-gauss}是式 \eqref{eq:2.15} 向 $N$ 个随机变量的推广：
+  \begin{equation}\label{eq:2.41}
+    p(\bm{x})=\frac{1}{\sqrt{(2\pi)^N\det[C]}}\exp\left[-\frac{1}{2}\sum_{mn}\left(C^{-1}\right)_{mn}(x_m-\lambda_m)(x_n-\lambda_n)\right],
+  \end{equation}
+  其中 $C$ 是一个对称矩阵，$C^{-1}$ 是它的逆。得到归一化因子最简单的方法是作变量代换 $y_j=x_j-\lambda_j$，并使用使 $C$ 对角化的酉矩阵。这便把归一化化归为 $N$ 个 Gauss 函数之积的归一化，这些 Gauss 函数的方差由 $C$ 的本征值确定。本征值的乘积就是行列式 $\det[C]$。（这也表明矩阵 $C$ 必须是正定的。）相应的联合特征函数由类似的操作得到，为
+  \begin{equation}\label{eq:2.42}
+    \tilde p(\bm{k})=\exp\left[-\mathrm{i}k_m\lambda_m-\frac{1}{2}C_{mn}k_mk_n\right],
+  \end{equation}
+  其中使用了求和约定（对重复指标隐式求和）。Gauss 分布的联合累积量于是由 $\ln\tilde p(\bm{k})$ 得到：
+  \begin{equation}\label{eq:2.43}
+    \langle x_m\rangle_c=\lambda_m,\qquad \langle x_m*x_n\rangle_c=C_{mn},
+  \end{equation}
+  而所有更高阶的累积量都等于零。在 $\{\lambda_m\}=0$ 这一特殊情形下，该分布的所有奇数阶\emph{矩}都为零，而联系矩与累积量的一般规则表明，任何偶数阶矩都可以通过把所涉及的随机变量分成对的方式求和得到，例如
+  \begin{equation}\label{eq:2.44}
+    \langle x_ax_bx_cx_d\rangle=C_{ab}C_{cd}+C_{ac}C_{bd}+C_{ad}C_{bc}.
+  \end{equation}
+  在场论的语境中，这一结果被称为\term{Wick 定理}{Wick's theorem}{2.wick}。
+\end{itemize}
+
+% =============================================================
+\bisection{随机变量之和与中心极限定理}{Sums of random variables and the central limit theorem}
+% p.45
+
+考虑和 $X=\sum_{i=1}^{N}x_i$，其中 $x_i$ 是联合 PDF 为 $p(\bm{x})$ 的随机变量。$X$ 的 PDF 为
+\begin{equation}\label{eq:2.45}
+  p_X(x)=\int\mathrm{d}^N\bm{x}\,p(\bm{x})\,\delta\!\left(x-\sum x_i\right)=\int\prod_{i=1}^{N-1}\mathrm{d}x_i\,p\left(x_1,\cdots,x_{N-1},x-x_1\cdots-x_{N-1}\right),
+\end{equation}
+相应的特征函数（利用式 \eqref{eq:2.38}）为
+\begin{equation}\label{eq:2.46}
+  \tilde p_X(k)=\left\langle\exp\left(-\mathrm{i}k\sum_{j=1}^{N}x_j\right)\right\rangle=\tilde p\left(k_1=k_2=\cdots=k_N=k\right).
+\end{equation}
+
+% p.46
+和的累积量可以通过展开 $\ln\tilde p_X(k)$ 得到，
+\begin{equation}\label{eq:2.47}
+  \ln\tilde p\left(k_1=k_2=\cdots=k_N=k\right)=-\mathrm{i}k\sum_{i_1=1}^{N}\left\langle x_{i_1}\right\rangle_c+\frac{(-\mathrm{i}k)^2}{2}\sum_{i_1,i_2}^{N}\left\langle x_{i_1}x_{i_2}\right\rangle_c+\cdots,
+\end{equation}
+即
+\begin{equation}\label{eq:2.48}
+  \langle X\rangle_c=\sum_{i=1}^{N}\left\langle x_i\right\rangle_c,\qquad \left\langle X^2\right\rangle_c=\sum_{i,j=1}^{N}\left\langle x_ix_j\right\rangle_c,\ \cdots.
+\end{equation}
+若各随机变量相互独立，$p(\bm{x})=\prod p_i(x_i)$ 且 $\tilde p_{\bm{x}}(\bm{k})=\prod\tilde p_i(k)$，则式 \eqref{eq:2.48} 中的交叉累积量消失，而 $X$ 的第 $n$ 阶累积量就是各单个累积量之和，$\langle X^n\rangle_c=\sum_{i=1}^{N}\langle x_i^n\rangle_c$。当这 $N$ 个随机变量都独立地取自同一分布 $p(x)$ 时，这意味着 $\langle X^n\rangle_c=N\langle x^n\rangle_c$，这是对前面就二项分布所得结果的推广。对大的 $N$ 值，和的平均值正比于 $N$，而围绕均值的涨落——由标准偏差衡量——只按 $\sqrt{N}$ 增长。随机变量 $y=(X-N\langle x\rangle_c)/\sqrt{N}$ 具有零均值，其累积量按 $\langle y^n\rangle_c\propto N^{1-n/2}$ 标度。当 $N\to\infty$ 时，只有第二个累积量留存下来，$y$ 的 PDF 收敛到正态分布，
+\begin{equation}\label{eq:2.49}
+  \lim_{N\to\infty}p\left(y=\frac{\sum_{i=1}^{N}x_i-N\langle x\rangle_c}{\sqrt{N}}\right)=\frac{1}{\sqrt{2\pi\langle x^2\rangle_c}}\exp\left(-\frac{y^2}{2\langle x^2\rangle_c}\right).
+\end{equation}
+（注意，Gauss 分布是唯一只具有一阶与二阶累积量的分布。）
+
+大量随机变量之和的 PDF 收敛到正态分布，这在统计力学的语境中是一个基本结果，因为那里经常遇到这样的求和。\term{中心极限定理}{central limit theorem}{2.clt}给出了这一结果更一般的形式：各随机变量不必相互独立，因为条件 $\sum_{i_1,\cdots,i_m}^{N}\langle x_{i_1}\cdots x_{i_m}\rangle_c\ll\mathcal{O}(N^{m/2})$ 就足以保证式 \eqref{eq:2.49} 成立。
+
+注意，上述讨论隐含地假定了各单个随机变量（出现在式 \eqref{eq:2.48} 中）的累积量是有限的。如果情形并非如此，也就是说，当变量取自一个非常宽的 PDF 时会怎样？此时求和仍可能收敛到一个所谓的\term{Lévy 分布}{Levy distribution}{2.levy}。考虑 $N$ 个\emph{独立同分布}随机变量之和，为方便起见把均值取为零。如果单个 PDF 在大值处衰减得很慢，$p_i(x)=p_1(x)\propto1/|x|^{1+\alpha}$，其中 $0<\alpha\le2$，则方差不存在。（$\alpha>0$ 是保证该分布可归一化所必需的；而当 $\alpha>2$ 时方差有限。）$p_1(x)$ 在大 $x$ 处的行为决定了 $\tilde p_1(k)$ 在小 $k$ 处的行为，而简单的量纲分析表明 $\tilde p_1(k)$ 的展开是奇异的，它以 $|k|^\alpha$ 为起点。基于这一论证我们得出结论：
+\begin{equation}\label{eq:2.50}
+  \ln\tilde p_X(k)=N\ln\tilde p_1(k)=N\left[-a|k|^{\alpha}+\text{更高阶项}\right].
+\end{equation}
+
+% p.47
+与前面一样，我们可以定义一个重新标度的变量 $y=X/N^{1/\alpha}$，以消去上式主项对 $N$ 的依赖，从而得到
+\begin{equation}\label{eq:2.51}
+  \lim_{N\to\infty}\tilde p_y(k)=-a|k|^{\alpha}.
+\end{equation}
+式 \eqref{eq:2.50} 中出现的更高阶项按 $N$ 的负幂标度，在 $N\to\infty$ 时消失。Levy 分布最简单的例子在 $\alpha=1$ 时得到，对应 $p_y=a/[\pi(y^2+a^2)]$。（这就是在习题部分讨论的 Cauchy 分布。）对其它 $\alpha$ 值，该分布没有简单的封闭形式，但可以写成渐近级数
+\begin{equation}\label{eq:2.52}
+  p_{\alpha}(y)=\frac{1}{\pi}\sum_{n=1}^{\infty}(-1)^{n+1}\sin\left(\frac{n\pi}{2}\alpha\right)\frac{\Gamma(1+n\alpha)}{n!}\,\frac{a^n}{y^{1+n\alpha}}.
+\end{equation}
+这类分布描述具有大的稀有事件的现象，这里的特征就是尾部衰减很慢，$p_{\alpha}(y\to\infty)\sim y^{-1-\alpha}$。
+
+% =============================================================
+\bisection{大数法则}{Rules for large numbers}
+% p.47
+
+为了描述宏观物体的平衡性质，统计力学必须处理数目极多的 $N$ 个微观自由度。事实上，取 $N\to\infty$ 的\term{热力学极限}{thermodynamic limit}{2.thermo-limit}会带来若干简化，本节描述其中的一些。
+
+在热力学极限中通常会遇到三种类型的 $N$ 依赖关系：
+
+\begin{enumerate}[label=(\alph*),itemsep=0.3em,topsep=0.4em]
+  \item 强度量（\textit{Intensive}），例如温度 $T$ 以及广义力，例如压强 $P$ 与磁场 $\bar B$，与 $N$ 无关，即 $\mathcal{O}(N^0)$。
+  \item 广延量（\textit{Extensive}），例如能量 $E$、熵 $S$ 以及广义位移，例如体积 $V$ 与磁化强度 $\bar M$，正比于 $N$，即 $\mathcal{O}(N^1)$。
+  \item \term{指数}{Exponential}{2.exponential}依赖，即 $\mathcal{O}(\exp(N\phi))$，出现在对离散微观态作计数、或计算相空间中的可及体积时。
+\end{enumerate}
+
+其它渐近依赖关系当然并非先验地被排除。例如，固定密度下 $N$ 个离子的 Coulomb 能量按 $Q^2/R\sim N^{5/3}$ 标度。这样的依赖关系在日常物理中很少遇到。离子间的 Coulomb 相互作用很快被反离子屏蔽掉，结果是总能量仍是广延的。（在天体物理问题中情况并非如此，因为引力能不会被屏蔽。例如，黑洞的熵正比于其质量的平方。）
+
+% p.48
+在统计力学中我们经常遇到指数型变量的求和或积分。在热力学极限中作这样的求和会大大简化，这得益于以下结果。
+
+（1）\term{指数型量的求和}{Summation of exponential quantities}{2.sum-exp}：考虑求和
+\begin{equation}\label{eq:2.53}
+  \mathscr{S}=\sum_{i=1}^{\mathscr{N}}\mathscr{E}_i,
+\end{equation}
+其中每一项都是正的，并且对 $N$ 有指数依赖，即
+\begin{equation}\label{eq:2.54}
+  0\le\mathscr{E}_i\sim\mathcal{O}\left(\exp\left(N\phi_i\right)\right),
+\end{equation}
+而项数 $\mathscr{N}$ 正比于 $N$ 的某一幂次。
+
+\cnfigure{fig2-7}{$\mathscr{N}$ 个指数型大量的求和由最大的那一项主导。}
+
+这样的求和可以按下述意义用它的最大项 $\mathscr{E}_{\max}$ 来近似。由于求和中的每一项都满足 $0\le\mathscr{E}_i\le\mathscr{E}_{\max}$，
+\begin{equation}\label{eq:2.55}
+  \mathscr{E}_{\max}\le\mathscr{S}\le\mathscr{N}\mathscr{E}_{\max}.
+\end{equation}
+由 $\ln\mathscr{S}/N$ 可以构造出一个强度量，它受如下两式夹逼：
+\begin{equation}\label{eq:2.56}
+  \frac{\ln\mathscr{E}_{\max}}{N}\le\frac{\ln\mathscr{S}}{N}\le\frac{\ln\mathscr{E}_{\max}}{N}+\frac{\ln\mathscr{N}}{N}.
+\end{equation}
+对于 $\mathscr{N}\propto N^p$，比值 $\ln\mathscr{N}/N$ 在 $N$ 很大时消失，于是
+\begin{equation}\label{eq:2.57}
+  \lim_{N\to\infty}\frac{\ln\mathscr{S}}{N}=\frac{\ln\mathscr{E}_{\max}}{N}=\phi_{\max}.
+\end{equation}
+
+（2）\term{鞍点积分}{Saddle point integration}{2.saddle-int}：类似地，形如
+\begin{equation}\label{eq:2.58}
+  \mathscr{J}=\int\mathrm{d}x\,\exp\left(N\phi(x)\right)
+\end{equation}
+的积分可以用被积函数的最大值来近似，该最大值在使指数 $\phi(x)$ 取极大的点 $x_{\max}$ 处取得。把指数在这个点附近展开，得到
+\begin{equation}\label{eq:2.59}
+  \mathscr{J}=\int\mathrm{d}x\exp\left\{N\left[\phi(x_{\max})-\frac{1}{2}\phi''(x_{\max})(x-x_{\max})^2+\cdots\right]\right\}.
+\end{equation}
+
+% p.49
+注意，在极大值处一阶导数 $\phi'(x_{\max})$ 为零，而二阶导数 $\phi''(x_{\max})$ 为负。把级数截断到二阶，得到
+\begin{equation}\label{eq:2.60}
+  \mathscr{J}\approx\mathrm{e}^{N\phi(x_{\max})}\int\mathrm{d}x\exp\left[-\frac{N}{2}\left|\phi''(x_{\max})\right|(x-x_{\max})^2\right]\approx\sqrt{\frac{2\pi}{N\left|\phi''(x_{\max})\right|}}\,\mathrm{e}^{N\phi(x_{\max})},
+\end{equation}
+其中积分范围已被延拓到 $[-\infty,\infty]$。后一步是合理的，因为在 $x_{\max}$ 的邻域之外，被积函数小到可以忽略。
+
+\cnfigure{fig2-8}{「指数型」积分的鞍点计算。}
+
+对上述结果有两类修正。首先，$\phi(x)$ 在 $x_{\max}$ 附近的展开中含有更高阶项。这些修正可以用微扰的方式处理，并导致一个按 $1/N$ 的幂次展开的级数。其次，该函数可能还有其它局部极大值。位于 $x'_{\max}$ 的一个极大值会导致一个类似的 Gauss 积分，它可以加到式 \eqref{eq:2.60} 上。显然这类贡献要小 $\mathcal{O}(\exp\{-N[\phi(x_{\max})-\phi(x'_{\max})]\})$ 的量级。由于所有这些修正都在热力学极限中消失，
+\begin{equation}\label{eq:2.61}
+  \lim_{N\to\infty}\frac{\ln\mathscr{J}}{N}=\lim_{N\to\infty}\left[\phi(x_{\max})-\frac{1}{2N}\ln\left(\frac{N\left|\phi''(x_{\max})\right|}{2\pi}\right)+\mathcal{O}\left(\frac{1}{N^2}\right)\right]=\phi(x_{\max}).
+\end{equation}
+用于计算积分的\term{鞍点}{saddle point}{2.saddle}方法是上述结果向更一般的被积函数以及复平面上的积分路径的推广。（复平面中合适的极值点就是鞍点。）上面给出的简化版本已足以满足我们的需要。
+
+大 $N$ 时 $N!$ 的\term{Stirling 近似}{Stirling's approximation}{2.stirling}可以通过鞍点积分得到。为了得到 $N!$ 的积分表示，从结果
+\begin{equation}\label{eq:2.62}
+  \int_0^{\infty}\mathrm{d}x\,\mathrm{e}^{-\alpha x}=\frac{1}{\alpha}
+\end{equation}
+出发。把上式两边对 $\alpha$ 反复求导，得到
+\begin{equation}\label{eq:2.63}
+  \int_0^{\infty}\mathrm{d}x\,x^N\mathrm{e}^{-\alpha x}=\frac{N!}{\alpha^{N+1}}.
+\end{equation}
+
+% p.50
+尽管上述推导只适用于整数 $N$，但可以通过解析延拓定义一个对一切 $N$ 都成立的函数
+\begin{equation}\label{eq:2.64}
+  \Gamma(N+1)\equiv N!=\int_0^{\infty}\mathrm{d}x\,x^N\mathrm{e}^{-x},
+\end{equation}
+虽然式 \eqref{eq:2.64} 中的积分并不完全是式 \eqref{eq:2.58} 的形式，它仍然可以用类似的方法计算。被积函数可以写成 $\exp(N\phi(x))$，其中 $\phi(x)=\ln x-x/N$。该指数在 $x_{\max}=N$ 处取极大，此时 $\phi(x_{\max})=\ln N-1$，而 $\phi''(x_{\max})=-1/N^2$。把式 \eqref{eq:2.64} 中的被积函数在该点附近展开，得到
+\begin{equation}\label{eq:2.65}
+  N!\approx\int\mathrm{d}x\exp\left[N\ln N-N-\frac{1}{2N}(x-N)^2\right]\approx N^N\mathrm{e}^{-N}\sqrt{2\pi N},
+\end{equation}
+其中积分通过把积分限延拓到 $[-\infty,\infty]$ 来计算。对式 \eqref{eq:2.65} 取对数即得 Stirling 公式，
+\begin{equation}\label{eq:2.66}
+  \ln N!=N\ln N-N+\frac{1}{2}\ln(2\pi N)+\mathcal{O}\left(\frac{1}{N}\right).
+\end{equation}
+
+% =============================================================
+\bisection{信息、熵与估计}{Information, entropy, and estimation}
+% p.50
+
+\emph{信息}：考虑一个具有离散结果集合 $\mathscr{S}=\{x_i\}$ 的随机变量，各结果以概率 $\{p(i)\}$ 出现，$i=1,\cdots,M$。在信息论的语境中，一个概率分布的\term{信息量}{information content}{2.info}有确切的含义。让我们用该随机变量的 $N$ 个独立结果来构造一条消息。由于这条消息中的每个字符都有 $M$ 种可能，它显然具有 $N\ln_2M$ 比特的信息量；也就是说，必须传输这么多二进制位的信息才能精确地传达这条消息。另一方面，概率 $\{p(i)\}$ 限制了哪些类型的消息是可能出现的。例如，若 $p_2\gg p_1$，那么构造出一条 $x_1$ 出现次数多于 $x_2$ 的消息是非常不可能的。特别地，在 $N$ 很大的极限下，我们预期消息中「大致」含有 $\{N_i=Np_i\}$ 个每个符号。\footnote{更精确地说，随着 $N\to\infty$，出现任何一个与 $Np_i$ 相差超过 $\mathcal{O}(\sqrt{N})$ 的 $N_i$ 的概率在 $N$ 中变成指数小。}于是典型消息的数目对应于把 $\{x_i\}$ 的 $\{N_i\}$ 次出现重新排列的方式数，由多项式系数给出：
+\begin{equation}\label{eq:2.67}
+  g=\frac{N!}{\prod_{i=1}^{M}N_i!}.
+\end{equation}
+这比消息的总数 $M^N$ 小得多。要指定 $g$ 个可能序列中的一个，需要
+\begin{equation}\label{eq:2.68}
+  \ln_2g\approx-N\sum_{i=1}^{M}p_i\ln_2p_i\qquad(\text{对}\ N\to\infty)
+\end{equation}
+
+% p.51
+比特的信息。最后一个结果是利用 $N!$ 的 Stirling 近似得到的。它也可以通过注意到
+\begin{equation}\label{eq:2.69}
+  1=\left(\sum_i p_i\right)^N=\sum_{\{N_i\}}N!\prod_{i=1}^{M}\frac{p_i^{N_i}}{N_i!}\approx g\prod_{i=1}^{M}p_i^{Np_i}
+\end{equation}
+而得到，其中求和已被它的最大项取代，这一点在前一节中已论证过。
+
+\term{Shannon 定理}{Shannon's theorem}{2.shannon}更严格地证明了：要保证 $N$ 次试验中错误所占的百分比在 $N\to\infty$ 极限下趋于零，所需的最少比特数就是 $\ln_2g$。对任何非均匀分布，这都比在没有任何关于相对概率的信息时所需要的那 $N\ln_2M$ 个比特要少。每一次试验的这个差值于是被归因于该概率分布的信息量，它由
+\begin{equation}\label{eq:2.70}
+  I\left[\{p_i\}\right]=\ln_2M+\sum_{i=1}^{M}p_i\ln_2p_i
+\end{equation}
+给出。
+
+\emph{熵}：式 \eqref{eq:2.67} 在统计力学中经常出现在混合 $M$ 种不同组分的语境里；它的自然对数与\term{混合熵}{entropy of mixing}{2.mix-entropy}有关。更一般地，我们可以对\emph{任意}概率分布定义一个熵，即
+\begin{equation}\label{eq:2.71}
+  S=-\sum_{i=1}^{M}p(i)\ln p(i)=-\left\langle\ln p(i)\right\rangle.
+\end{equation}
+上述熵对 delta 函数分布 $p(i)=\delta_{i,j}$ 取最小值零，对均匀分布 $p(i)=1/M$ 取最大值 $\ln M$。因此 $S$ 是该分布弥散性（无序程度）的一种度量，与随机变量 $\{x_i\}$ 的取值无关。到 $f_i=F(x_i)$ 的一一映射使熵保持不变，而多对一映射使分布更为有序、使 $S$ 减小。例如，若把 $x_1$ 与 $x_2$ 这两个值映射到同一个 $f$ 上，熵的变化为
+\begin{equation}\label{eq:2.72}
+  \Delta S(x_1,x_2\to f)=\left[p_1\ln\frac{p_1}{p_1+p_2}+p_2\ln\frac{p_2}{p_1+p_2}\right]<0.
+\end{equation}
+
+\emph{估计}：熵 $S$ 也可以用来定量地表达对概率的主观估计。在没有任何信息的情况下，最好的\term{无偏估计}{unbiased estimate}{2.unbiased}就是全部 $M$ 个结果都同样可能。这就是最大熵的分布。若还有额外的信息可用，则无偏估计通过在该信息所施加的约束下使熵最大而得到。例如，若已知 $\langle F(x)\rangle=f$，我们可以最大化
+\begin{equation}\label{eq:2.73}
+  S\left(\alpha,\beta,\{p_i\}\right)=-\sum_i p(i)\ln p(i)-\alpha\left(\sum_i p(i)-1\right)-\beta\left(\sum_i p(i)F(x_i)-f\right),
+\end{equation}
+
+% p.52
+其中引入了 Lagrange 乘子 $\alpha$ 与 $\beta$，分别用来施加归一化约束与 $\langle F(x)\rangle=f$ 的约束。优化的结果是分布 $p_i\propto\exp(-\beta F(x_i))$，其中 $\beta$ 的取值由约束定出。这一过程可以推广到任意数目的条件。容易看出，若给定了一个分布的前 $n=2k$ 阶矩（从而给定前 $n$ 阶累积量），则无偏估计是一个 $n$ 阶多项式的指数。
+
+与式 \eqref{eq:2.71} 类似，我们可以对连续随机变量（$\mathscr{S}_x=\{-\infty<x<\infty\}$）定义一个熵，即
+\begin{equation}\label{eq:2.74}
+  S=-\int\mathrm{d}x\,p(x)\ln p(x)=-\left\langle\ln p(x)\right\rangle.
+\end{equation}
+然而，这个定义存在一些问题，例如 $S$ 在一一映射下并不是不变的。（在作变量代换 $f=F(x)$ 之后，熵会改变 $\langle|F'(x)|\rangle$。）正如下一章将要讨论的，在经典统计力学中，正则共轭对提供了一种合适的坐标选择，因为正则变换的 Jacobi 因子为 1。若把连续变量离散化，这些含糊之处也会消失。这在量子统计力学中会很自然地发生，因为那里通常可以借助离散的态阶梯来工作。用于相空间离散化的合适体积则由此 Planck 常数 $\hbar$ 设定。
+
+% =============================================================
+% 【供用户圈定附录 B 收录范围】第 2 章原文中的意大利斜体（按首次出现页码排序）
+% —— 已在正文中以 \term{中文}{English}{key} 形式标记的术语（附录 B 候选）：
+% p.35 random variable, outcomes, discrete, continuous, event, probability,
+%      Positivity, Additivity, Normalization
+% p.36 cumulative probability function (CPF), Objective, Subjective
+% p.37 probability density function (PDF)
+% p.38 probability density, expectation value, Jacobians
+% p.39 cumulant generating function, cumulants, mean, variance, skewness, curtosis
+% p.39 connected cluster
+% p.40 normal (Gaussian) distribution
+% p.41 binomial distribution, standard deviation, multinomial distribution
+% p.42 Poisson distribution
+% p.43 joint PDF, unconditional PDF
+% p.44 conditional PDF, Bayes' theorem, joint characteristic function,
+%      joint moments, joint cumulants
+% p.45 connected correlation, joint Gaussian distribution, Wick's theorem
+% p.46 central limit theorem, Levy distribution
+% p.47 thermodynamic limit, Intensive, Extensive, Exponential
+% p.48 Summation of exponential quantities, Saddle point integration
+% p.49 saddle point, Stirling's approximation
+% p.50 Information, information content
+% p.51 Shannon's theorem, entropy of mixing, entropy, unbiased estimate
+% —— 以下术语在第 1 章已首次标记，本章不再重复埋锚点（附录 B 只收首次出现处），
+%    正文中仍照原文保留其意大利斜体英文：
+%    p.47 Intensive（第 1 章 p.5）、Extensive（第 1 章 p.5）
+%    p.51 entropy（第 1 章 p.13）
+%    p.44 expectation value（本章 p.37 已标记，p.44 处不重复）
+% —— 原文中属于「强调」而非术语的斜体（讲义中以 \emph{} 呈现，不收入附录 B）：
+%     p.35 对宏观物体（macroscopic bodies）、概率性（probabilistic）；
+%     p.36 由实验（experimentally）、理论（theoretical）、任意（any value）；
+%     p.37 概率密度（probability density）；
+%     p.42--43 例子（Example）、概率（probability）；
+%     p.46 矩（moments）、独立同分布（independent, identically distributed）；
+%     p.48--50 信息、熵、估计（Information/Entropy/Estimation）、
+%     自由（free）、任意概率分布（any probability distribution）；
+%     p.51 混合熵的「混合」以外的强调、无序（disorder）；
+%     p.52 无偏（unbiased）。
+% —— 用户已拍板（第 2 章交付后）：p.35 的 likelihood 作为术语收录（正文已用 \term）；
+%    p.43 的「例子」（Example 斜体）属于强调，不收入附录 B。

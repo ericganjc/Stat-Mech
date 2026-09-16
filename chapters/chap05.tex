@@ -1,0 +1,761 @@
+% =============================================================
+%  第 5 章 相互作用粒子（Interacting particles）
+%  原文：Chapter 5, p.126--147   公式：5.1--5.90   图：5.1--5.6
+% =============================================================
+\bichapter{相互作用粒子}{Interacting Particles}
+
+% =============================================================
+\bisection{累积量展开}{The cumulant expansion}
+% p.126
+
+前一章所研究的例子涉及的都是无相互作用的粒子。正是由于缺乏相互作用，这些问题才得以精确求解。然而，相互作用才是自然界中大量有趣的材料与相的根源。因此，我们想理解粒子之间相互作用所起的作用，并学习如何在统计力学中处理它们。对于一个一般的 Hamilton 量，
+\begin{equation}\label{eq:5.1}
+\mathscr H_N=\sum_{i=1}^N\frac{\vec p_i^{\,2}}{2m}+\mathcal U(\vec q_1,\cdots,\vec q_N),
+\end{equation}
+配分函数可以写成
+\begin{equation}\label{eq:5.2}
+\begin{aligned}
+Z(T,V,N)&=\frac{1}{N!}\int\prod_{i=1}^N\left(\frac{\mathrm{d}^3\vec p_i\,\mathrm{d}^3\vec q_i}{h^3}\right)\exp\left[-\beta\sum_i\frac{\vec p_i^{\,2}}{2m}\right]\exp\left[-\beta\mathcal U(\vec q_1,\cdots,\vec q_N)\right]\\
+&=Z_0(T,V,N)\big\langle\exp\left[-\beta\mathcal U(\vec q_1,\cdots,\vec q_N)\right]\big\rangle^0,
+\end{aligned}
+\end{equation}
+其中 $Z_0(T,V,N)=(V/\lambda^3)^N/N!$ 是\emph{理想气体}的配分函数（式 \eqref{eq:4.73}），而 $\langle\mathcal O\rangle^0$ 表示用无相互作用系统的概率分布计算出的量 $\mathcal O$ 的期望值。用随机变量 $\mathcal U$ 的累积量来表示，式 \eqref{eq:5.2} 可以重新写成
+\begin{equation}\label{eq:5.3}
+\ln Z=\ln Z_0+\sum_{\ell=1}^\infty\frac{(-\beta)^\ell}{\ell!}\big\langle\mathcal U^\ell\big\rangle_c^0.
+\end{equation}
+累积量通过 2.2 节中的那些关系与矩相联系。由于 $\mathcal U$ 只依赖于 $\{\vec q_i\}$，而后者在体积 $V$ 的盒子里是均匀地\emph{且独立}地分布的，所以矩由下式给出
+\begin{equation}\label{eq:5.4}
+\big\langle\mathcal U^\ell\big\rangle^0=\int\left(\prod_{i=1}^N\frac{\mathrm{d}^3\vec q_i}{V}\right)\mathcal U(\vec q_1,\cdots,\vec q_N)^\ell.
+\end{equation}
+
+% p.127
+
+各种期望值也可以用微扰方法算出来，由
+\begin{equation}\label{eq:5.5}
+\begin{aligned}
+\langle\mathcal O\rangle&=\frac1Z\frac{1}{N!}\int\prod_{i=1}^N\left(\frac{\mathrm{d}^3\vec p_i\,\mathrm{d}^3\vec q_i}{h^3}\right)\exp\left[-\beta\sum_i\frac{\vec p_i^{\,2}}{2m}\right]\exp\left[-\beta\mathcal U(\vec q_1,\cdots,\vec q_N)\right]\times\mathcal O\\
+&=\frac{\big\langle\mathcal O\exp[-\beta\mathcal U]\big\rangle^0}{\big\langle\exp[-\beta\mathcal U]\big\rangle^0}=\mathrm{i}\left.\frac{\partial}{\partial k}\ln\big\langle\exp[-\mathrm{i}k\mathcal O-\beta\mathcal U]\big\rangle^0\right|_{k=0}.
+\end{aligned}
+\end{equation}
+最终的期望值生成随机变量 $\mathcal O$ 与 $\mathcal U$ 的联合累积量，即
+\begin{equation}\label{eq:5.6}
+\ln\big\langle\exp[-\mathrm{i}k\mathcal O-\beta\mathcal U]\big\rangle^0=\sum_{\ell,\ell'=1}^\infty\frac{(-\mathrm{i}k)^\ell}{\ell!}\frac{(-\beta)^{\ell'}}{\ell'!}\big\langle\mathcal O^\ell\ast\mathcal U^{\ell'}\big\rangle_c^0,
+\end{equation}
+用它们可以把期望值写成\footnote{这种紧凑记法虽然方便，却可能造成混淆。联合累积量是由式 \eqref{eq:5.6} 定义的，例如 $\langle 1\ast\mathcal U^\ell\rangle_c=0$（$\neq\langle\mathcal U^\ell\rangle_c$），而 $\langle 1\ast\mathcal U^0\rangle_c=1$！}
+\begin{equation}\label{eq:5.7}
+\langle\mathcal O\rangle=\sum_{\ell=0}^\infty\frac{(-\beta)^\ell}{\ell!}\big\langle\mathcal O\ast\mathcal U^\ell\big\rangle_c^0.
+\end{equation}
+
+处理相互作用的最简单系统仍然是稀薄气体。正如第 3 章所讨论过的，对于弱相互作用气体，我们可以专门取
+\begin{equation}\label{eq:5.8}
+\mathcal U(\vec q_1,\cdots,\vec q_N)=\sum_{i<j}\mathscr V(\vec q_i-\vec q_j),
+\end{equation}
+其中 $\mathscr V(\vec q_i-\vec q_j)$ 是粒子之间的\term{成对相互作用}{pairwise interaction}{5.pairwise}。式 \eqref{eq:5.3} 中的一阶修正是
+\begin{equation}\label{eq:5.9}
+\begin{aligned}
+\langle\mathcal U\rangle_c^0&=\sum_{i<j}\int\frac{\mathrm{d}^3\vec q_i}{V}\frac{\mathrm{d}^3\vec q_j}{V}\mathscr V(\vec q_i-\vec q_j)\\
+&=\frac{N(N-1)}{2V}\int\mathrm{d}^3\vec q\,\mathscr V(\vec q).
+\end{aligned}
+\end{equation}
+最终结果是通过分别对 $\vec q_i$ 与 $\vec q_j$ 的相对坐标和质心坐标做积分得到的。（$N(N-1)/2$ 对中的每一对都给出全同的贡献。）
+
+二阶修正
+\begin{equation}\label{eq:5.10}
+\big\langle\mathcal U^2\big\rangle_c^0=\sum_{i<j,k<l}\Big[\big\langle\mathscr V(\vec q_i-\vec q_j)\mathscr V(\vec q_k-\vec q_l)\big\rangle^0-\big\langle\mathscr V(\vec q_i-\vec q_j)\big\rangle^0\big\langle\mathscr V(\vec q_k-\vec q_l)\big\rangle^0\Big],
+\end{equation}
+是 $[N(N-1)/2]^2$ 项之和，这些项可以按如下方式分组：
+
+\begin{enumerate}[label=(\roman*)]
+\item 四个下标 $\{i,j,k,l\}$ 互不相同的那些项没有贡献。这是因为不同的 $\{\vec q_i\}$ 是独立分布的，而 $\langle\mathscr V(\vec q_i-\vec q_j)\mathscr V(\vec q_k-\vec q_l)\rangle^0$ 等于 $\langle\mathscr V(\vec q_i-\vec q_j)\rangle^0\langle\mathscr V(\vec q_k-\vec q_l)\rangle^0$。
+
+\item 两对之间存在一个公共下标，例如 $\{(i,j),(i,l)\}$。通过把坐标变换到 $\vec q_{ij}=\vec q_i-\vec q_j$ 与 $\vec q_{il}=\vec q_i-\vec q_l$，同样得到 $\langle\mathscr V(\vec q_i-\vec q_j)\mathscr V(\vec q_i-\vec q_l)\rangle^0$ 等于 $\langle\mathscr V(\vec q_{ij})\rangle^0\langle\mathscr V(\vec q_{il})\rangle^0$。这些项之所以为零，
+
+% p.128
+
+是问题在无外势时具有\term{平移对称性}{translational symmetry}{5.translational}的结果。
+
+\item 在剩下的 $N(N-1)/2$ 项中两对是全同的，得到
+\begin{equation}\label{eq:5.11}
+\big\langle\mathcal U^2\big\rangle_c^0=\frac{N(N-1)}{2}\left[\int\frac{\mathrm{d}^3\vec q}{V}\mathscr V(\vec q)^2-\left(\int\frac{\mathrm{d}^3\vec q}{V}\mathscr V(\vec q)\right)^2\right].
+\end{equation}
+\end{enumerate}
+
+上式中的第二项比第一项小一个因子 $d^3/V$，其中 $d$ 是势 $\mathscr V$ 的特征力程。对于任何随距离衰减的合理势，这一项在热力学极限下都消失。
+
+对于这一\term{累积量展开}{cumulant expansion}{5.cumulant-expansion}中的更高阶项，会出现类似的分组。把展开中的各项按如下方式图形化是很有帮助的：
+
+\begin{enumerate}[label=(\alph*)]
+\item 对于 $p$ 阶的一项，画 $p$ 个点（代表 $\vec q_i$ 与 $\vec q_j$），用键把它们连接起来，键代表相互作用 $\mathscr V_{ij}\equiv\mathscr V(\vec q_i-\vec q_j)$。这样的图整体伴随一个因子 $1/p!$。在三阶时，我们有
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small [ 图片占位：原文 p.128 中的三阶配对图 ]\\ $\displaystyle\frac{1}{3!}\sum_{i<j,\,k<l,\,m<n}$ 后面是三对由键相连的点，分别标号为 $i\!-\!j$、$k\!-\!l$、$m\!-\!n$。}}
+\end{center}
+
+\item 通过对同一个下标 $i$ 作多重选择，两条或更多条键可以接到一起，形成一个由相互连通的点组成的图。存在一个因子 $S_p$，它与把标号 $1$ 到 $N$ 分配给图中不同点的方式数有关。忽略 $N$、$N-1$ 等等之间的差别，一个带 $s$ 个点的图对贡献的贡献正比于 $N^s$。通常还要除以一个\term{对称因子}{symmetry factor}{5.symmetry-factor}，以计入等价分配方式的数目。例如，式 \eqref{eq:5.9} 与 \eqref{eq:5.11} 中算出的涉及一对点的图，对称因子为 $1/2$。三阶的一个可能的配对为
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small [ 图片占位：原文 p.128 中的三阶相连图 ]\\ $\displaystyle\frac{1}{3!}\frac{N^5}{2\times2}$ 后面是两个图：一个由点 $1$、$2$ 及连接它们的键组成的图，以及一个由点 $3$、$4$、$5$ 及连接它们的键组成的图。}}
+\end{center}
+
+\item 除了这些数值前因子之外，一个图的贡献是对全部 $s$ 个坐标 $\vec q_i$ 的积分，被积函数是相应的 $-\beta\mathscr V_{ij}$ 的乘积。如果该图有 $n_c$ 个\term{不相交集团}{disjoint clusters}{5.disjoint}，则对集团质心坐标的积分给出一个因子 $V^{n_c}$。因此，上图的贡献为
+\begin{equation*}
+\frac{(-\beta)^3}{3!}\frac{N^5}{4V^5}\,V^2\left(\int\mathrm{d}^3\vec q_{12}\mathscr V(\vec q_{12})\right)\left(\int\mathrm{d}^3\vec q_{34}\mathrm{d}^3\vec q_{45}\mathscr V(\vec q_{34})\mathscr V(\vec q_{45})\right).
+\end{equation*}
+\end{enumerate}
+
+幸运的是，在计算累积量时会发生许多抵消。特别地：
+
+\begin{itemize}
+\item 在计算矩 $\langle\mathcal U^p\rangle^0$ 时，一个\term{非连通图}{disconnected diagram}{5.disconnected}的贡献正好是它的各个不相交集团的贡献之积。这些集团的坐标是独立的随机变量，对联合累积量 $\langle\mathcal U^p\rangle_c^0$ 没有贡献。这个结果也保证了 $\ln Z$ 的广延性，因为存活下来的连通图由它们的质心积分给出一个 $V$ 的因子。（非连通集团带有更多的 $V$ 因子，因而是非广延的。）
+
+% p.129
+
+\item 也还存在\term{单粒子可约}{one-particle reducible}{5.one-particle-reducible}集团，它们是全连通的，但只要移去\emph{单个}坐标点就会分裂成不相连的碎片。通过把其它所有坐标都相对于这个特殊点来测量，我们观察到（在一个平移不变系统中）这样一个图的值是它的各个不相连碎片之积。可以证明，这样的图在计算累积量时也被抵消掉。因此，在这一累积量展开中存活下来的只有\term{单粒子不可约}{one-particle irreducible}{5.one-particle-irreducible}集团。一个带 $s$ 个点和 $p$ 条键的集团对 $\ln Z$ 的贡献具有 $V(N/V)^s(\beta\mathscr V)^p$ 的量级。这些结果汇总在展开式
+\begin{equation}\label{eq:5.12}
+\ln Z=\ln Z_0+V\sum_{p,s}\frac{(-\beta)^p}{p!}\frac{(N/V)^s}{s!}D(p,s),
+\end{equation}
+中，其中 $D(p,s)$ 表示对\emph{全部}单粒子不可约的、带 $s$ 个点和 $p$ 条键的集团的贡献求和。（因子 $1/s!$ 反映了对集团的顶点作置换的对称性，引入它是为了便于后文与集团展开相比较。）
+\end{itemize}
+
+在 $(\beta\mathscr V)$ 的二阶，自由能的微扰级数为
+\begin{equation}\label{eq:5.13}
+\begin{aligned}
+F(T,V,N)=&\,F_0(T,V,N)+\frac{N^2}{2V}\left(\int\mathrm{d}^3\vec q\,\mathscr V(\vec q)-\frac{\beta}{2}\int\mathrm{d}^3\vec q\,\mathscr V(\vec q)^2+\mathcal O(\beta^2\mathscr V^3)\right)\\
+&+\mathcal O\left(\frac{N^3\beta^2\mathscr V^3}{V^2}\right).
+\end{aligned}
+\end{equation}
+
+由这个表达式我们可以继续计算其它变形后的状态函数，例如 $P=-\partial F/\partial V|_{T,N}$。不幸的是，按 $\beta\mathscr V$ 的幂作的展开并不特别有用。对大多数粒子而言，原子间势 $\mathscr V(\vec r)$ 都具有一个由 van der Waals 相互作用引起的吸引尾，它在大的分离 $r=|\vec r|$ 处按 $-1/r^6$ 衰减。在短距离上，电子云的重叠使势变得强烈排斥。典型情况下，势在几埃的距离处有一个深度为几百开尔文的极小值。$\mathscr V(\vec r)$ 在短距离处由于\term{硬核}{hard core}{5.hard-core}而发散，这使它成为一个不合适的展开参数。这个问题可以通过对图作部分重求和来缓解。例如，为了得到 $N^2/V$ 阶的修正，我们需要对全部两点集团求和，而与键的数目无关。所得的和其实相当简单，它给出
+\begin{equation}\label{eq:5.14}
+\begin{aligned}
+\ln Z&=\ln Z_0+\sum_{p=1}^\infty\frac{(-\beta)^p}{p!}\frac{N(N-1)}{2}\int\frac{\mathrm{d}^3\vec q}{V}\mathscr V(\vec q)^p+\mathcal O\left(\frac{N^3}{V^2}\right)\\
+&=\ln Z_0+\frac{N(N-1)}{2V}\int\mathrm{d}^3\vec q\left[\exp(-\beta\mathscr V(\vec q))-1\right]+\mathcal O\left(\frac{N^3}{V^2}\right).
+\end{aligned}
+\end{equation}
+这个重求和可以通过引入一种新键用图形的方式表示出来
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small [ 图片占位：原文 p.129 中的键重求和图式 ]\\ $\bullet\!-\!\bullet\;\equiv\;\bullet\!\cdots\!\bullet+\dfrac{1}{2!}\;\bullet\!\cdots\!\bullet+\dfrac{1}{3!}\;\bullet\!\cdots\!\bullet+\cdots$（自左至右表示两条点之间由 1 条键、2 条键、3 条键……相连）。}}
+\end{center}
+
+% p.130
+
+量 $f(\vec q)=\exp(-\beta\mathscr V(\vec q))-1$ 是一个方便得多的展开参数，它在短距离处趋于 $-1$，而在大的分离处迅速消失。显然，对连接任意一对顶点的键都可以作这样的部分重求和，这使我们能够去掉式 \eqref{eq:5.12} 中对 $p$ 的求和，把它改写成按密度 $N/V$ 的幂展开的级数。所得级数的确切形式将在下一节讨论。
+
+\cnfigure{fig5-1}{一个典型的两体势 $\mathscr V(q)$（虚线），以及相应的重求和函数 $f(q)$（实线）。}
+
+\bisection{集团展开}{The cluster expansion}
+% p.130
+
+对于短程相互作用，尤其是带有硬核的相互作用，用 $f(\vec q)=\exp(-\beta\mathscr V(\vec q))-1$ 来代替展开参数 $\mathscr V(\vec q)$ 要好得多，前者是通过对累积量图上两点之间各种可能的键数求和得到的。所得的级数按密度 $N/V$ 的幂组织，最适合用来得到\term{维里展开}{virial expansion}{5.virial-expansion}，后者把与理想气体状态方程的偏差表示成幂级数
+\begin{equation}\label{eq:5.15}
+\frac{P}{k_BT}=\frac NV\left[1+B_2(T)\frac NV+B_3(T)\left(\frac NV\right)^2+\cdots\right].
+\end{equation}
+这些依赖于温度的参量 $B_i(T)$，称为\term{维里系数}{virial coefficients}{5.virial-coefficients}，它们来源于粒子间的相互作用。我们最初的目标是从第一性原理计算这些系数。
+
+为了说明另一种展开方法，我们将在巨正则系综中进行计算。对于宏观态 $M\equiv(T,\mu,V)$，巨配分函数由下式给出
+\begin{equation}\label{eq:5.16}
+Q(\mu,T,V)=\sum_{N=0}^\infty e^{\beta\mu N}Z(N,T,V)=\sum_{N=0}^\infty\frac{1}{N!}\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^N\mathscr S_N,
+\end{equation}
+
+% p.131
+
+其中
+\begin{equation}\label{eq:5.17}
+\mathscr S_N=\int\prod_{i=1}^N\mathrm{d}^3\vec q_i\prod_{i<j}(1+f_{ij}),
+\end{equation}
+而 $f_{ij}=f(\vec q_i-\vec q_j)$。
+
+$\mathscr S_N$ 中的 $2^{N(N-1)/2}$ 项现在可以按 $f_{ij}$ 的幂来整理，写成
+\begin{equation}\label{eq:5.18}
+\mathscr S_N=\int\prod_{i=1}^N\mathrm{d}^3\vec q_i\left(1+\sum_{i<j}f_{ij}+\sum_{i<j,k<l}f_{ij}f_{kl}+\cdots\right).
+\end{equation}
+整理微扰级数的一种有效方法是把各种贡献用图形表示出来。特别地，我们将采用以下约定：
+
+\begin{enumerate}[label=(\alph*)]
+\item 画 $N$ 个点，用 $i=1,\cdots,N$ 来标号，以代表坐标 $\vec q_1$ 到 $\vec q_N$。
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small [ 图片占位：原文 p.131 中的 $N$ 个标号点 ]\\ 依次为标号 $1,2,\cdots,N$ 的点。}}
+\end{center}
+
+\item 式 \eqref{eq:5.18} 中的每一项都对应一个 $f_{ij}$ 的乘积，它的图形表示是对每个 $f_{ij}$ 画一条连接 $i$ 与 $j$ 的线。例如，图
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small [ 图片占位：原文 p.131 中的示例图 ]\\ 点为 $1,2,3,4,5,6,\cdots,N$，其中 $2$ 与 $3$ 由键相连，$4$、$5$、$6$ 依次由键相连。}}
+\end{center}
+
+代表的积分为
+\begin{equation*}
+\left(\int\mathrm{d}^3\vec q_1\right)\left(\int\mathrm{d}^3\vec q_2\mathrm{d}^3\vec q_3f_{23}\right)\left(\int\mathrm{d}^3\vec q_4\mathrm{d}^3\vec q_5\mathrm{d}^3\vec q_6f_{45}f_{56}\right)\cdots\left(\int\mathrm{d}^3\vec q_N\right).
+\end{equation*}
+\end{enumerate}
+
+正如上面的例子所表明的，每个图的值是它的各个\term{连接集团}{linked clusters}{5.linked-cluster}的贡献之积。由于这些集团更为基本，我们通过定义一个量 $b_\ell$ 来把求和改写成用它们表示的式子，$b_\ell$ 等于\emph{对全部 $\ell$ 粒子连接集团求和}（不管是否单粒子不可约）。例如，
+\begin{equation}\label{eq:5.19}
+b_1=\bullet=\int\mathrm{d}^3\vec q=V,
+\end{equation}
+以及
+\begin{equation}\label{eq:5.20}
+b_2=\bullet\!-\!\bullet=\int\mathrm{d}^3\vec q_1\mathrm{d}^3\vec q_2f(\vec q_1-\vec q_2).
+\end{equation}
+有四个图对 $b_3$ 有贡献，它们给出
+\begin{equation}\label{eq:5.21}
+\begin{aligned}
+b_3&=\Big[\text{原文 p.131 中的四个三粒子图（图片占位）}\Big]\\
+&=\int\mathrm{d}^3\vec q_1\mathrm{d}^3\vec q_2\mathrm{d}^3\vec q_3\Big[f(\vec q_1-\vec q_2)f(\vec q_2-\vec q_3)+f(\vec q_2-\vec q_3)f(\vec q_3-\vec q_1)+f(\vec q_3-\vec q_1)f(\vec q_1-\vec q_2)\\
+&\qquad+f(\vec q_1-\vec q_2)f(\vec q_2-\vec q_3)f(\vec q_3-\vec q_1)\Big].
+\end{aligned}
+\end{equation}
+
+% p.132
+
+一个给定的 $N$ 粒子图可以分解为 $n_1$ 个 1-集团、$n_2$ 个 2-集团、$\cdots$、$n_\ell$ 个 $\ell$-集团等等。因此，
+\begin{equation}\label{eq:5.22}
+\mathscr S_N=\sum_{\{n_\ell\}}\prod_\ell b_\ell^{n_\ell}W(\{n_\ell\}),
+\end{equation}
+其中这个受限求和是对把 $N$ 个点分成一系列集团 $\{n_\ell\}$ 的\emph{不同划分}进行的，且满足 $\sum_\ell \ell n_\ell=N$。系数 $W(\{n_\ell\})$ 是把 $N$ 个粒子标号分配给若干组 $n_\ell$ 个 $\ell$-集团的方式数。例如，把三个粒子分成一个 1-集团和一个 2-集团的分法为
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small [ 图片占位：原文 p.132 中的三种二粒子配对图 ]\\ 在点 $1,2,3$ 中，分别把 $(1,2)$、$(1,3)$、$(2,3)$ 连成一对，其余一个点单独留在一边。}}
+\end{center}
+
+以上各图都有 $n_1=1$ 与 $n_2=1$，并且对 $\mathscr S_3$ 贡献一个因子 $b_1b_2$；因此 $W(1,1)=3$。三粒子系统还有其它可能的分法，即分成三个 1 点集团，或者分成一个 3 点集团，它们给出
+\begin{equation*}
+\begin{aligned}
+\mathscr S_3&=\Big[\text{原文 p.132 中的图（图片占位）}\Big]\\
+&=b_1^3+3b_1b_2+b_3.
+\end{aligned}
+\end{equation*}
+
+一般来说，$W(\{n_\ell\})$ 是把标号 $1,\cdots,N$ 分装到 $n_\ell$ 个 $\ell$-集团的箱子里去的不同方式数。它可以由总的排列数 $N!$ 除以等价分配的数目得到。在每一箱 $\ell n_\ell$ 个粒子内部，等价分配是通过以下方式得到的：(i) 把每个子组中的 $\ell$ 个标号作置换，有 $\ell!$ 种方式，总共有 $(\ell!)^{n_\ell}$ 种排列；(ii) 并且 $n_\ell$ 个子组有 $n_\ell!$ 种重新排列。因此，
+\begin{equation}\label{eq:5.23}
+W(\{n_\ell\})=\frac{N!}{\prod_\ell n_\ell!(\ell!)^{n_\ell}}.
+\end{equation}
+（我们确实可以验证 $W(1,1)=3!/(1!)(2!)=3$，与上面得到的结果一致。）
+
+利用上面的 $W$ 值，式 \eqref{eq:5.22} 中 $\mathscr S_N$ 的表达式就可以计算了。然而，把求和限制在满足 $\sum_\ell\ell n_\ell=N$ 的位形上会使计算变得复杂。幸运的是，在式 \eqref{eq:5.16} 中巨配分函数的表达式里，这一限制消失了，
+\begin{equation}\label{eq:5.24}
+Q=\sum_{N=0}^\infty\frac{1}{N!}\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^N\sum_{\{n_\ell\}}\frac{N!}{\prod_\ell n_\ell!(\ell!)^{n_\ell}}\prod_\ell b_\ell^{n_\ell}.
+\end{equation}
+现在，注意到 $\sum_{N=0}^\infty\sum_{\{n_\ell\}}\delta_{\sum_\ell\ell n_\ell,N}=\sum_{\{n_\ell\}}$，第二个求和中的限制就去掉了。因此，
+\begin{equation}\label{eq:5.25}
+\begin{aligned}
+Q&=\sum_{\{n_\ell\}}\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^{\sum_\ell\ell n_\ell}\prod_\ell\frac{b_\ell^{n_\ell}}{n_\ell!(\ell!)^{n_\ell}}\\
+&=\sum_{n_\ell}\prod_\ell\frac{1}{n_\ell!}\left[\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{b_\ell}{\ell!}\right]^{n_\ell}=\prod_\ell\sum_{n_\ell=0}^\infty\frac{1}{n_\ell!}\left[\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{b_\ell}{\ell!}\right]^{n_\ell}=\prod_\ell\exp\left[\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{b_\ell}{\ell!}\right]\\
+&=\exp\left[\sum_{\ell=1}^\infty\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{b_\ell}{\ell!}\right].
+\end{aligned}
+\end{equation}
+
+% p.133
+
+上面的结果有一个简单的几何解释：对所有图（连通或非连通）求和，等于对\emph{连通}集团求和取指数。这是一个相当普遍的结果，它也与 2.1 节所讨论的矩与累积量之间的图形联系有关。
+
+巨势现在由下式得到
+\begin{equation}\label{eq:5.26}
+\ln Q=-\beta\mathcal{G}=\frac{PV}{k_BT}=\sum_{\ell=1}^\infty\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{b_\ell}{\ell!}.
+\end{equation}
+在式 \eqref{eq:5.26} 中，用到了广延性条件 $\mathcal G=E-TS-\mu N=-PV$。因此，上式右端的各项也必须正比于体积 $V$。这一点可以显式地验证：在计算每个 $b_\ell$ 时都有一个对质心坐标的积分，它遍历整个体积。例如，$b_2=\int\mathrm{d}^3\vec q_1\mathrm{d}^3\vec q_2f(\vec q_1-\vec q_2)=V\int\mathrm{d}^3\vec q_{12}f(\vec q_{12})$。相当一般地，我们可以取
+\begin{equation}\label{eq:5.27}
+\lim_{V\to\infty}b_\ell=V\bar b_\ell,
+\end{equation}
+而压强现在由下式得到
+\begin{equation}\label{eq:5.28}
+\frac{P}{k_BT}=\sum_{\ell=1}^\infty\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{\bar b_\ell}{\ell!}.
+\end{equation}
+连接集团定理保证 $\mathcal G\propto V$，因为如果 $\ln Q$ 中出现了任何非连接集团，它就会贡献更高的 $V$ 幂次。
+
+虽然式 \eqref{eq:5.28} 是关于气体压强的展开式，它与式 \eqref{eq:5.15} 的差别却相当大：它涉及的是 $e^{\beta\mu}$ 的幂，而不是密度 $n=N/V$。这一差别可以这样消除：用化学势把密度解出来，即
+\begin{equation}\label{eq:5.29}
+N=\frac{\partial\ln Q}{\partial(\beta\mu)}=\sum_{\ell=1}^\infty\ell\left(\frac{e^{\beta\mu}}{\lambda^3}\right)^\ell\frac{V\bar b_\ell}{\ell!}.
+\end{equation}
+状态方程可以通过在下面两个方程之间消去\term{逸度}{fugacity}{5.fugacity} $x=e^{\beta\mu}/\lambda^3$ 而得到
+\begin{equation}\label{eq:5.30}
+n=\sum_{\ell=1}^\infty\frac{x^\ell}{(\ell-1)!}\bar b_\ell,\qquad\text{以及}\qquad\frac{P}{k_BT}=\sum_{\ell=1}^\infty\frac{x^\ell}{\ell!}\bar b_\ell,
+\end{equation}
+所使用的步骤如下：
+
+\begin{enumerate}[label=(\alph*)]
+\item 由（$\bar b_1=\int\mathrm{d}^3\vec q/V=1$）解出 $x(n)$
+\begin{equation}\label{eq:5.31}
+x=n-\bar b_2x^2-\frac{\bar b_3}{2}x^3-\cdots.
+\end{equation}
+每一阶的微扰解通过把前一阶的解代入式 \eqref{eq:5.31} 得到，
+\begin{equation}\label{eq:5.32}
+\begin{aligned}
+x_1&=n+\mathcal O(n^2),\\
+x_2&=n-\bar b_2n^2+\mathcal O(n^3),\\
+x_3&=n-\bar b_2(n-\bar b_2n^2)^2-\frac{\bar b_3}{2}n^3+\mathcal O(n^4)=n-\bar b_2n^2+\left(2\bar b_2^{\,2}-\frac{\bar b_3}{2}\right)n^3+\mathcal O(n^4).
+\end{aligned}
+\end{equation}
+
+% p.134
+
+\item 把 $x(n)$ 的微扰结果代入式 \eqref{eq:5.30}，得到
+\begin{equation}\label{eq:5.33}
+\begin{aligned}
+\beta P&=x+\frac{\bar b_2}{2}x^2+\frac{\bar b_3}{6}x^3+\cdots\\
+&=n-\bar b_2n^2+\left(2\bar b_2^{\,2}-\frac{\bar b_3}{2}\right)n^3+\frac{\bar b_2}{2}n^2-\bar b_2^{\,2}n^3+\frac{\bar b_3}{6}n^3+\cdots\\
+&=n-\frac{\bar b_2}{2}n^2+\left(\bar b_2^{\,2}-\frac{\bar b_3}{3}\right)n^3+\mathcal O(n^4).
+\end{aligned}
+\end{equation}
+\end{enumerate}
+
+最终结果就具有式 \eqref{eq:5.15} 的维里展开形式
+\begin{equation*}
+\beta P=n+\sum_{\ell=2}^\infty B_\ell(T)n^\ell.
+\end{equation*}
+级数的第一项重现了理想气体的结果。接下来的两个修正为
+\begin{equation}\label{eq:5.34}
+B_2=-\frac{\bar b_2}{2}=-\frac12\int\mathrm{d}^3\vec q\left(e^{-\beta\mathscr V(\vec q)}-1\right),
+\end{equation}
+以及
+\begin{equation}\label{eq:5.35}
+\begin{aligned}
+B_3&=\bar b_2^{\,2}-\frac{\bar b_3}{3}\\
+&=\left[\int\mathrm{d}^3\vec q\left(e^{-\beta\mathscr V(\vec q)}-1\right)\right]^2\\
+&\quad-\frac13\left[3\int\mathrm{d}^3\vec q_{12}\mathrm{d}^3\vec q_{13}f(\vec q_{12})f(\vec q_{13})+\int\mathrm{d}^3\vec q_{12}\mathrm{d}^3\vec q_{13}f(\vec q_{12})f(\vec q_{13})f(\vec q_{12}-\vec q_{13})\right]\\
+&=-\frac13\int\mathrm{d}^3\vec q_{12}\mathrm{d}^3\vec q_{13}f(\vec q_{12})f(\vec q_{13})f(\vec q_{12}-\vec q_{13}).
+\end{aligned}
+\end{equation}
+
+上面的例子展示了 $b_3$ 中出现的单粒子可约集团的抵消。正如上一节所论证的，所有集团（可约的与不可约的）都出现在 $b_\ell$ 的求和中，而只有\emph{单粒子不可约}的那些才能出现在按密度幂次展开的级数中。第 $\ell$ 个维里系数的最终表达式于是为
+\begin{equation}\label{eq:5.36}
+B_\ell(T)=-\frac{(\ell-1)}{\ell!}\bar d_\ell,
+\end{equation}
+其中 $\bar d_\ell$ 定义为对全部由 $\ell$ 个点组成的单粒子不可约集团求和。
+
+这一结果也可以从式 \eqref{eq:5.12} 中配分函数的展开得到。关键的观察是：在上一节所考虑的图中，对 $\beta\mathscr V$ 各次幂的求和（导致格点对之间的多重连接）所得到的，正是本节引入的那些集团（其中格点对之间由 $f$ 相连）。因此 $\sum_p((-\beta)^p/(p!))D(p,\ell)=\bar d_\ell$，从而
+\begin{equation}\label{eq:5.37}
+\ln Z=\ln Z_0+V\sum_{\ell=2}^\infty\frac{n^\ell}{\ell!}\bar d_\ell,
+\end{equation}
+这就由 $\beta P=\partial\ln Z/\partial V$ 重现了上面的维里展开。
+
+\bisection{第二维里系数与 van der Waals 方程}{The second virial coefficient and van der Waals equation}
+% p.135
+
+让我们用式 \eqref{eq:5.34} 来研究一个典型气体的第二维里系数 $B_2$。正如前面所讨论的，两体势的特征是短距离处的硬核排斥和远距离处的 van der Waals 吸引。为了使计算更容易，我们将对势采用下面的近似：
+\begin{equation}\label{eq:5.38}
+\mathscr V(r)=\begin{cases}
++\infty & \text{当 } r<r_0,\\
+-u_0(r_0/r)^6 & \text{当 } r>r_0,
+\end{cases}
+\end{equation}
+它把这两个特征结合了起来。于是两部分的贡献可以分别计算，即
+\begin{equation}\label{eq:5.39}
+\begin{aligned}
+\bar b_2&=\int_0^\infty\mathrm{d}^3\vec r\left(e^{-\beta\mathscr V(r)}-1\right)\\
+&=\int_0^{r_0}4\pi r^2\mathrm{d}r(-1)+\int_{r_0}^\infty4\pi r^2\mathrm{d}r\left[e^{+\beta u_0(r_0/r)^6}-1\right].
+\end{aligned}
+\end{equation}
+
+\cnfigure{fig5-2}{连续的两体势（实线）被一个硬核加一条吸引尾（虚线）所代替。}
+
+在高温极限 $\beta u_0\gg1$ 下，第二个被积函数可以近似为 $\beta u_0(r_0/r)^6$，由此得到
+\begin{equation}\label{eq:5.40}
+B_2=-\frac12\left[-\frac{4\pi r_0^3}{3}+4\pi\beta u_0r_0^6\left.\left(-\frac{r^{-3}}{3}\right)\right|_{r_0}^\infty\right]=\frac{2\pi r_0^3}{3}(1-\beta u_0).
+\end{equation}
+我们可以定义一个\term{排除体积}{excluded volume}{5.excluded-volume} $\Omega=4\pi r_0^3/3$，它是原子体积的 8 倍（因为最小接近距离 $r_0$ 是原子半径的两倍），从而得到
+\begin{equation}\label{eq:5.41}
+B_2(T)=\frac{\Omega}{2}\left(1-\frac{u_0}{k_BT}\right).
+\end{equation}
+
+% p.136
+
+评注与观察：
+
+（1）van der Waals 吸引相互作用的尾巴（$\propto r^{-6}$）延伸到非常长的间距。然而，它在式 \eqref{eq:5.40} 中的积分却由来自短尺度 $r_0$ 的贡献主导。在这个有限的语境中，van der Waals 势是\emph{短程}的，其结果是理想气体行为的修正对密度 $n$ 是\emph{解析}的，从而给出维里级数。
+
+（2）与此相对，按 $1/r^3$ 或更慢的速度随间距衰减的势是\emph{长程}的。此时出现在第二维里系数计算中的积分由长距离主导，并且是发散的。因此，对理想气体行为的修正不能写成维里级数的形式，事实上是\emph{非解析}的。习题部分所讨论的 Coulomb 等离子体就是一个很好的例子。非解析修正可以通过对累积量（或集团）展开中所有\term{环形图}{ring diagrams}{5.ring-diagrams}求和来得到。\footnote{考虑一个典型强度为 $u$、力程为 $\lambda$ 的势。累积量展开中的每一条键贡献一个因子 $\beta\mathscr V$，而每一个节点贡献 $N\int\mathrm{d}^3\vec q/V$。量纲论证于是表明，一个带 $b$ 条键和 $s$ 个节点的图正比于 $(\beta u)^b(N\lambda^3/V)^s$。在给定的 $\beta u$ 阶，因子 $n\lambda^3$ 因而区分了弱相互作用与强相互作用系统。对于 $n\lambda^3\ll1$（\emph{稀薄}气体，或短程相互作用），应当把节点最少的那些图包括进来。对于 $n\lambda^3\gg1$（\term{稠密气体}{dense gas}{5.dense-gas}，或长程相互作用），拥有最多节点的环形图占主导。}
+
+（3）第二维里系数具有体积的量纲，并且（对短程势而言）正比于原子体积 $\Omega$。在高温极限下，理想气体行为修正的重要性可以通过比较式 \eqref{eq:5.15} 的前两项来估计，
+\begin{equation}\label{eq:5.42}
+\frac{B_2n^2}{n}=\frac{B_2}{n^{-1}}\sim\frac{\text{原子体积}}{\text{气体中每个粒子的体积}}\sim\frac{\text{气体密度}}{\text{液体密度}}.
+\end{equation}
+对处在室温与常压下的空气，这个比值大约是 $10^{-3}$。因此理想气体行为的修正在低密度下很小。按量纲上的理由，维里级数中高阶项 $B_\ell n^\ell/B_{\ell-1}n^{\ell-1}$ 也应期望有类似的比值。因此，在高密度（气体可能液化时）下我们应当警惕该级数的收敛性。
+
+（4）维里展开不仅在低密度下失效，在低温下也会失效。这由式 \eqref{eq:5.41} 与 \eqref{eq:5.39} 在 $T\to0$ 时的发散所提示，并反映了这样一个事实：在存在吸引相互作用时，粒子可以在低温下通过凝聚成液态来降低它们的能量。
+
+（5）截断的维里展开
+\begin{equation}\label{eq:5.43}
+\frac{P}{k_BT}=n+\frac{\Omega}{2}\left(1-\frac{u_0}{k_BT}\right)n^2+\cdots,
+\end{equation}
+可以重排为
+\begin{equation}\label{eq:5.44}
+\frac{1}{k_BT}\left(P+\frac{u_0\Omega}{2}n^2\right)=n\left(1+\frac{n\Omega}{2}+\cdots\right)\approx\frac{n}{1-n\Omega/2}=\frac{N}{V-N\Omega/2}.
+\end{equation}
+
+% p.137
+
+这恰好具有范德瓦耳斯方程（\textit{van der Waals equation}）的形式
+\begin{equation}\label{eq:5.45}
+\left[P+\frac{u_0\Omega}{2}\left(\frac{N}{V}\right)^2\right]\left[V-\frac{N\Omega}{2}\right]=Nk_BT,
+\end{equation}
+并且我们可以辨认出\term{范德瓦耳斯参数}{van der Waals parameters}{5.van-der-waals-params}，$a=u_0\Omega/2$ 与 $b=\Omega/2$。
+
+\emph{van der Waals 方程的物理诠释}：历史上，van der Waals 是在 19 世纪末根据各种气体的状态方程实验结果提出式 \eqref{eq:5.45} 的。当时气体粒子之间的微观相互作用尚不清楚，van der Waals 根据所观测到的压强降低，假定了气体原子之间存在吸引相互作用的必要性。只是到了后来，这样的相互作用才被直接观测到，随后被归于 London 的感生偶极--偶极力。修正项的物理根据如下。
+
+（a）气体体积 $V$ 有一个由于排除而产生的修正。乍看起来，式 \eqref{eq:5.45} 中的排除体积（\textit{excluded volume}）$b$ 是每个粒子周围被排除体积的一半，这似乎令人惊讶。这是因为该因子度量的是一个在相空间中涉及所有粒子的\emph{联合}排除体积。事实上，硬核气体的坐标对配分函数的贡献可以在低密度下由下式估计
+\begin{equation}\label{eq:5.46}
+\mathscr S_N=\int\frac{\prod_i\mathrm{d}^3\vec q_i}{N!}=\frac{1}{N!}V(V-\Omega)(V-2\Omega)\cdots(V-(N-1)\Omega)\approx\frac{1}{N!}\left(V-\frac{N\Omega}{2}\right)^N.
+\end{equation}
+上面的结果是通过逐个添加粒子得到的，并注意到第 $(m+1)$ 个粒子的可用体积是 $(V-m\Omega)$。在低密度下，总体效果是把每个粒子可用的体积减少大约 $\Omega/2$。当然，上述结果只是近似的，因为涉及两个以上粒子的排除体积效应没有被正确地考虑进去。式 \eqref{eq:5.46} 相对简单的形式只对空间维度 $d=1$ 以及在无穷远处才是精确的。正如习题中所证明的，$d=1$ 时精确的排除体积事实上就是 $\Omega$。
+
+（b）由吸引相互作用引起的 $P$ 的减小则较难定量。在 3.6 节中，气体压强通过与粒子对壁面的撞击相联系，即
+\begin{equation}\label{eq:5.47}
+P=\left.(nv_x)(2mv_x)\right|_{v_x<0}=nm\overline{v_x^2},
+\end{equation}
+其中第一项是单位时间单位面积上的碰撞数，而第二项是每个粒子所传递的动量。对理想气体，注意到平均动能是 $m\overline{v_x^2}/2=k_BT/2$，就可以重现通常的状态方程。吸引相互作用导致压强的减小，由下式给出
+\begin{equation}\label{eq:5.48}
+\delta P=\delta n\left(m\overline{v_x^2}\right)+n\,\delta\left(m\overline{v_x^2}\right).
+\end{equation}
+
+% p.138
+
+虽然气体的压强是一个体相平衡性质，但在式 \eqref{eq:5.48} 中它与靠近表面的粒子的行为有关。下面关于结果的诠释取决于对表面处粒子弛豫所作的不同假定。
+
+在正则系综中，气体密度在壁面处是\emph{减小}的。这是因为盒子中部的粒子从所有方向受到吸引势 $U$，而在边缘处从半个空间只能获得 $U/2$ 的吸引能。由此得到的密度变化近似为
+\begin{equation}\label{eq:5.49}
+\delta n\approx n\left(\mathrm{e}^{-\beta U/2}-\mathrm{e}^{-\beta U}\right)\approx\beta nU/2.
+\end{equation}
+把体相中一个粒子与其余粒子的相互作用积分起来，给出
+\begin{equation}\label{eq:5.50}
+U=\int\mathrm{d}^3\vec r\,\mathscr V_{\text{attr}}(r)n=-n\Omega u_0.
+\end{equation}
+密度的变化因而给出式 \eqref{eq:5.45} 中所算出的压强修正 $\delta P=-n^2\Omega u_0/2$。撞击壁面的粒子在动能上没有修正，因为在正则表述中，粒子的动量与位置的概率是彼此独立的变量。动量的概率分布在空间中是\emph{均匀}的，对每个运动方向给出平均动能 $k_BT/2$。
+
+在上述描述中，壁面附近密度降低的范围可能相当小，其量级为粒子之间相互作用的力程。如果这个长度小于碰撞之间的平均自由程，我们就完全可以质疑表面粒子能被平衡系综描述这一假定。于是可以给出另一种解释：表面附近的粒子只是在有效势中遵循确定性的 Hamilton 方程，而不发生任何碰撞。在这种表述中，撞击壁面的粒子在接近壁面时损失动能，因为它们必须爬出由体相粒子的吸引所建立的势阱。动能的减少由下式给出
+\begin{equation}\label{eq:5.51}
+\delta\frac{mv_x^2}{2}=\frac{1}{2}\int\mathrm{d}^3\vec r\,\mathscr V_{\text{attr}}(r)n=-\frac{1}{2}n\Omega u_0.
+\end{equation}
+在这种情形下，减小的速度导致表面密度\emph{增加}，因为较慢的粒子在壁面附近停留的时间 $\tau$ 更长！相对密度变化由下式给出
+\begin{equation}\label{eq:5.52}
+\frac{\delta n}{n}=\frac{\delta\tau}{\tau}=-\frac{\delta v_x}{v_x}=-\frac{1}{2}\frac{\delta v_x^2}{v_x^2},\qquad\Longrightarrow\qquad\delta n=-\beta nU/2.
+\end{equation}
+密度的增加恰好与平衡表述中式 \eqref{eq:5.49} 的结果相反。然而，结合式 \eqref{eq:5.51} 所算出的动能减少，它仍然给出正确的压强降低。
+
+% =============================================================
+\bisection{范德瓦耳斯方程的失效}{Breakdown of the van der Waals equation}
+% p.139
+
+正如 1.9 节所讨论的，气体的力学稳定性要求等温压缩率（\textit{isothermal compressibility}）$\kappa_T=-V^{-1}\left.\partial V/\partial P\right|_T$ 具有正性。这个条件可以通过考察巨正则系综中的密度涨落来得到。在体积 $V$ 中找到 $N$ 个粒子的概率由下式给出
+\begin{equation}\label{eq:5.53}
+p(N,V)=\frac{\mathrm{e}^{\beta\mu N}Z(T,N,V)}{\mathcal{Q}}.
+\end{equation}
+由于对气体有 $\ln\mathcal{Q}=-\beta\mathcal{G}=PV/k_BT$，$N$ 的均值与方差简化为
+\begin{equation}\label{eq:5.54}
+\left\{
+\begin{aligned}
+\langle N\rangle_c=N&=\frac{\partial(\ln\mathcal{Q})}{\partial(\beta\mu)}=V\left.\frac{\partial P}{\partial\mu}\right|_{T,V},\\
+\langle N^2\rangle_c&=\frac{\partial^2(\ln\mathcal{Q})}{\partial(\beta\mu)^2}=\frac{\partial\langle N\rangle_c}{\partial(\beta\mu)}=k_BT\left.\frac{\partial N}{\partial\mu}\right|_{T,V}.
+\end{aligned}
+\right.
+\end{equation}
+把这两个等式相除，并利用链式法则，得到
+\begin{equation}\label{eq:5.55}
+\frac{\langle N^2\rangle_c}{N}=\frac{k_BT}{V}\left.\frac{\partial N}{\partial P}\right|_{T,V}=-\frac{k_BT}{V}\left.\frac{\partial N}{\partial V}\right|_{P,T}\left.\frac{\partial V}{\partial P}\right|_{N,T}=nk_BT\kappa_T.
+\end{equation}
+$\kappa_T$ 的正性因而与 $N$ 的方差的正性联系在一起。$N$ 的一个稳定值对应于概率 $p(N,V)$ 的\emph{极大值}，即正的压缩率。负的 $\kappa_T$ 实际上对应于 $p(N,V)$ 的\emph{极小值}，意味着系统最不可能被发现处于这样的密度。密度的涨落于是会自发发生，并把密度改变到一个稳定的值。
+
+任何近似的状态方程，例如 van der Waals 方程，至少必须满足稳定性要求。然而，在低于临界值 $T_c$ 的温度下，van der Waals 等温线含有 $\left.-\partial P/\partial V\right|_T<0$ 的部分。负的压缩率意味着倾向于形成密度较低与较高的畴，也就是相分离。真实气体中的吸引相互作用在低温下确实导致液--气相分离。等温线于是包含一段平坦部分 $\left.\partial P/\partial V\right|_T=0$，位于两相共存处。（不稳定的）van der Waals 等温线能被用来构造真实气体的相图吗？
+
+一种做法是下面的\term{Maxwell 构造}{Maxwell construction}{5.maxwell-construction}：化学势 $\mu(T,P)$ 沿一条等温线的变化由积分式 \eqref{eq:5.54} 得到，即
+\begin{equation}\label{eq:5.56}
+\mathrm{d}\mu=\frac{V}{N}\mathrm{d}P\qquad\Longrightarrow\qquad\mu(T,P)=\mu(T,P_A)+\int_{P_A}^{P}\mathrm{d}P'\frac{V(T,P')}{N}.
+\end{equation}
+由于 $T<T_c$ 时的 van der Waals 等温线是非单调的，存在一段压强范围对应于化学势的三个不同值 $\{\mu_\alpha\}$。在给定的温度与压强下 $\mu$ 可以有多个值，这表明了相共存。在平衡时，每一相的粒子数 $N_\alpha$ 被调整到使 Gibbs 自由能（\textit{Gibbs free energy}）$G=\sum_\alpha\mu_\alpha N_\alpha$ 极小。
+
+% p.140
+
+显然，具有最低 $\mu_\alpha$ 的那个相将获得全部粒子。当允许的化学势的两个分支相交时，就发生一次相变。由式 \eqref{eq:5.56}，这一相交的临界压强 $P_c$ 由条件
+\begin{equation}\label{eq:5.57}
+\oint_{P_c}^{P_c}\mathrm{d}P'\,V(T,P')=0.
+\end{equation}
+得到。对上述结果的一个几何诠释是：$P_c$ 对应于在非单调等温线的两侧围出相等面积的那个压强。用 Maxwell 构造处理相分离有些不能令人满意，因为它依赖于对 van der Waals 等温线上一段明显非物理的部分作积分。下一节将给出一个更好的方法，它使所涉及的近似更加显明。
+
+\cnfigure{fig5-3}{van der Waals 方程的等温线在低温下有一段非物理的部分。相比之下，真实气体（插图）具有一个共存区（以灰色标示），其中的等温线是平的。}
+
+\cnfigure{fig5-4}{使用 Maxwell 等面积构造，等温线上从 C 到 D 的不稳定部分被「系线」BE 取代。区域 BCO 与 EDO 面积相等。等温线的 BC 段与 DE 段是亚稳的。}
+
+% =============================================================
+\bisection{凝聚的平均场理论}{Mean-field theory of condensation}
+% p.141
+
+原则上，相互作用系统的所有性质——包括相分离——都包含在可以通过计算 $Z(T,N)$ 或 $\mathcal{Q}(T,\mu)$ 得到的热力学势之中。然而，相变的特征在于各种态函数的不连续，它必然对应于配分函数中出现奇异性。乍看起来有些令人惊讶的是：任何奇异行为竟然会从对像下式这样性质良好的积分（对短程相互作用）作计算中涌现出来，
+\begin{equation}\label{eq:5.58}
+Z(T,N,V)=\int\prod_{i=1}^N\frac{\mathrm{d}^3\vec p_i\mathrm{d}^3\vec q_i}{N!h^{3N}}\exp\left[-\beta\sum_{i=1}^N\frac{p_i^2}{2m}-\beta\sum_{i<j}\mathscr V(\vec q_i-\vec q_j)\right].
+\end{equation}
+我们现在不再以微扰方式计算这些积分，而是建立一套合理的近似方案。势的硬核部分与吸引部分的贡献再次被分别处理，配分函数被近似为
+\begin{equation}\label{eq:5.59}
+Z(T,N,V)\approx\frac{1}{N!}\frac{1}{\lambda^{3N}}\underbrace{V(V-\Omega)\cdots(V-(N-1)\Omega)}_{\text{排除体积效应}}\exp(-\beta\bar U).
+\end{equation}
+这里 $\bar U$ 代表一个平均吸引能，它是通过假定\term{均匀密度}{uniform density}{5.uniform-density} $n=N/V$ 得到的，即
+\begin{equation}\label{eq:5.60}
+\begin{aligned}
+\bar U&=\frac{1}{2}\sum_{i,j}\mathscr V_{\text{attr}}(\vec q_i-\vec q_j)=\frac{1}{2}\int\mathrm{d}^3\vec r_1\mathrm{d}^3\vec r_2\,n(\vec r_1)n(\vec r_2)\mathscr V_{\text{attr}}(\vec r_1-\vec r_2)\\
+&\approx\frac{n^2}{2}V\int\mathrm{d}^3\vec r\,\mathscr V_{\text{attr}}(\vec r)\equiv-\frac{N^2}{2V}u.
+\end{aligned}
+\end{equation}
+关键的近似是把可变的局域密度 $n(\vec r)$ 替换为均匀密度 $n$。参数 $u$ 描述了吸引相互作用的净效果。代入式 \eqref{eq:5.59} 后得到配分函数的如下近似：
+\begin{equation}\label{eq:5.61}
+Z(T,N,V)\approx\frac{(V-N\Omega/2)^N}{N!\lambda^{3N}}\exp\left[\frac{\beta uN^2}{2V}\right].
+\end{equation}
+由所得的自由能
+\begin{equation}\label{eq:5.62}
+F=-k_BT\ln Z=-Nk_BT\ln(V-N\Omega/2)+Nk_BT\ln(N/\mathrm{e})+3Nk_BT\ln\lambda-\frac{uN^2}{2V},
+\end{equation}
+我们得到正则系综中压强的表达式
+\begin{equation}\label{eq:5.63}
+P_{\text{can}}=-\left.\frac{\partial F}{\partial V}\right|_{T,N}=\frac{Nk_BT}{V-N\Omega/2}-\frac{uN^2}{2V^2}.
+\end{equation}
+值得注意的是，均匀密度近似重现了 van der Waals 状态方程。然而，现在可以检验这一近似是否自洽。只要 $\kappa_T$ 为正，式 \eqref{eq:5.55} 就意味着，密度的方差随体积的增大而消失，为 $\langle n^2\rangle_c=k_BTn^2\kappa_T/V$。但 $\kappa_T$ 在 $T_c$ 处发散，而在更低的温度下它的负值意味着一个朝向密度涨落的不稳定性，如上一节所讨论的。当发生凝聚时，系统相分离为高（液体）密度与低（气体）密度状态，均匀密度的假定就变得明显不正确。这个困难在巨正则系综（\textit{grand canonical ensemble}）中被规避。一旦化学势固定，该系综中的粒子数（因而密度）就自动调整到适当相的值。
+
+% p.142
+
+由于均匀密度的假定对液相与气相都是正确的，我们可以用式 \eqref{eq:5.60} 与 \eqref{eq:5.61} 的近似来估计巨配分函数
+\begin{equation}\label{eq:5.64}
+\mathcal{Q}(T,\mu,V)=\sum_{N=0}^\infty\mathrm{e}^{\beta\mu N}Z(T,N,V)\approx\sum_{N=0}^\infty\exp\left[N\ln\left(\frac{V}{N}-\frac{\Omega}{2}\right)+\frac{\beta uN^2}{2V}+\Delta N\right],
+\end{equation}
+其中 $\Delta=1+\beta\mu-\ln(\lambda^3)$。与任何关于指数的求和一样，上式由某个特定的粒子数（因而密度）值主导，并由下式给出
+\begin{equation}\label{eq:5.65}
+\mathcal{Q}(T,\mu,V)\approx\exp\left\{\max_N\left[N\Delta+N\ln\left(\frac{V}{N}-\frac{\Omega}{2}\right)+\frac{\beta uN^2}{2V}\right]\right\}.
+\end{equation}
+因此，气体压强的巨正则表达式由
+\begin{equation}\label{eq:5.66}
+\beta P_{\text{g.c.}}=\frac{\ln\mathcal{Q}}{V}=\max_n[\Psi(n)],
+\end{equation}
+得到，其中
+\begin{equation}\label{eq:5.67}
+\Psi(n)=n\Delta+n\ln\left(n^{-1}-\frac{\Omega}{2}\right)+\frac{\beta u}{2}n^2.
+\end{equation}
+密度的可能值由 $\mathrm{d}\Psi/\mathrm{d}n|_{n_\alpha}=0$ 得到，并满足
+\begin{equation}\label{eq:5.68}
+\Delta=-\ln\left(n_\alpha^{-1}-\frac{\Omega}{2}\right)+\frac{1}{1-n_\alpha\Omega/2}-\beta un_\alpha.
+\end{equation}
+上式事实上允许密度有多个解 $n_\alpha$。把所得的 $\Delta$ 代入式 \eqref{eq:5.66}，经过一些运算后得到
+\begin{equation}\label{eq:5.69}
+P_{\text{g.c.}}=\max_\alpha\left[\frac{n_\alpha k_BT}{1-n_\alpha\Omega/2}-\frac{u}{2}n_\alpha^2\right]=\max_\alpha[P_{\text{can}}(n_\alpha)],
+\end{equation}
+也就是说，在某个特定的密度下，巨正则与正则的压强值是相同的。然而，如果式 \eqref{eq:5.68} 在某个特定的化学势下允许密度有多个解，那么正确的密度就唯一地由使压强的正则表达式（或 $\Psi(n)$）取极大的那个解确定。
+
+因此，液--气相变的机制如下。式 \eqref{eq:5.64} 中的求和由液相密度与气相密度处的两个大项主导。在某个特定的化学势下，稳定相由这两项中较大的那一项决定。
+
+% p.143
+
+\cnfigure{fig5-5}{适当的均匀密度由 $\Psi(n)$ 的极大值得到。}
+
+相变发生在主导项随温度改变而变化时。写成数学形式，
+\begin{equation}\label{eq:5.70}
+\ln\mathcal{Q}=\lim_{V\to\infty}\ln\left[\mathrm{e}^{\beta VP_{\text{liquid}}}+\mathrm{e}^{\beta VP_{\text{gas}}}\right]=\begin{cases}\beta VP_{\text{gas}} & \text{当 }T>T^*\\ \beta VP_{\text{liquid}} & \text{当 }T<T^*\end{cases}.
+\end{equation}
+密度中奇异性的起源因而可以追溯到 $V\to\infty$ 的热力学极限。有限系统中没有相变！
+
+% =============================================================
+\bisection{变分方法}{Variational methods}
+
+微扰方法提供了系统地纳入相互作用效应的途径，但对研究强相互作用系统来说并不实用。虽然维里级数的前几项只是轻微地改变气体的行为，但必须对无穷多项求和才能得到凝聚相变。处理强相互作用系统的另一种（但为\emph{近似的}）方法是使用变分方法。
+
+假定在适当的系综中我们需要计算 $Z=\operatorname{tr}\left(\mathrm{e}^{-\beta\mathscr H}\right)$。在正则表述中，$Z$ 是温度为 $k_BT=1/\beta$ 的 Hamilton 量 $\mathscr H$ 所对应的配分函数，并且对经典系统而言，「tr」指对 $N$ 个粒子的相空间作积分。然而，该方法更为一般，经过对指数因子作适当的修改，它也可以应用于 Gibbs 配分函数或巨配分函数；在量子系统的语境中，「tr」是对所有允许的量子微观态求和。让我们假定，对（相互作用的）Hamilton 量 $\mathscr H$ 而言计算 $Z$ 非常困难，但存在另一个 Hamilton 量 $\mathscr H_0$，它作用在\emph{同一组自由度}上，而相应的计算较为容易。
+
+% p.144
+
+于是我们引入一个 Hamilton 量 $\mathscr H(\lambda)=\mathscr H_0+\lambda(\mathscr H-\mathscr H_0)$，以及相应的配分函数
+\begin{equation}\label{eq:5.71}
+Z(\lambda)=\operatorname{tr}\{\exp[-\beta\mathscr H_0-\lambda\beta(\mathscr H-\mathscr H_0)]\},
+\end{equation}
+它在 $\lambda$ 从零变到一的过程中在两个端点之间插值。于是容易证明凸性条件
+\begin{equation}\label{eq:5.72}
+\frac{\mathrm{d}^2\ln Z(\lambda)}{\mathrm{d}\lambda^2}=\beta^2\left\langle(\mathscr H-\mathscr H_0)^2\right\rangle_c\ge0,
+\end{equation}
+其中 $\langle\ \rangle$ 是关于适当归一化的概率的期望值。
+
+\cnfigure{fig5-6}{凸曲线总是位于该曲线任意一点处切线的上方。}
+
+由该函数的凸性立刻可知
+\begin{equation}\label{eq:5.73}
+\ln Z(\lambda)\ge\ln Z(0)+\lambda\left.\frac{\mathrm{d}\ln Z}{\mathrm{d}\lambda}\right|_{\lambda=0}.
+\end{equation}
+但容易看出 $\mathrm{d}\ln Z/\mathrm{d}\lambda|_{\lambda=0}=\beta\langle\mathscr H_0-\mathscr H\rangle^0$，其中上标表示关于 $\mathscr H_0$ 的期望值。取 $\lambda=1$，我们得到
+\begin{equation}\label{eq:5.74}
+\ln Z\ge\ln Z(0)+\beta\langle\mathscr H_0\rangle^0-\beta\langle\mathscr H\rangle^0.
+\end{equation}
+式 \eqref{eq:5.74} 称为\term{Gibbs 不等式}{Gibbs inequality}{5.gibbs-inequality}，它是大多数变分估计的基础。典型地，「较简单的」Hamilton 量 $\mathscr H_0$（从而式 \eqref{eq:5.74} 的右端）包含若干参数 $\{n_\alpha\}$。对 $\ln Z$ 的最好估计是通过使右端关于这些参数取极大值来得到的。现在可以验证，上一节中对巨配分函数 $\mathcal{Q}$ 的近似估计等价于一种变分处理，其 $\mathscr H_0$ 对应于密度为 $n$ 的硬核粒子气体，对它（在把求和换为其主导项之后）有
+\begin{equation}\label{eq:5.75}
+\ln\mathcal{Q}_0=\beta\mu N+\ln Z=V\left[n(1+\beta\mu-\ln(\lambda^3))+n\ln\left(n^{-1}-\frac{\Omega}{2}\right)\right].
+\end{equation}
+
+% p.145
+
+差 $\mathscr H-\mathscr H_0$ 包含两体相互作用的吸引部分。在相空间中未被硬核相互作用排除的区域里，$\mathscr H_0$ 中的气体由均匀密度 $n$ 描述。因此，
+\begin{equation}\label{eq:5.76}
+\beta\langle\mathscr H_0-\mathscr H\rangle^0=\beta V\frac{n^2}{2}u,
+\end{equation}
+并且
+\begin{equation}\label{eq:5.77}
+\beta P=\frac{\ln\mathcal{Q}}{V}\ge\left[n(1+\beta\mu-\ln(\lambda^3))+n\ln\left(n^{-1}-\frac{\Omega}{2}\right)\right]+\frac{1}{2}\beta un^2,
+\end{equation}
+它与式 \eqref{eq:5.67} 相同。密度 $n$ 现在是式 \eqref{eq:5.77} 右端的一个参数。通过关于 $n$ 取极大值而得到的最好变分估计，于是等价于式 \eqref{eq:5.66}。
+
+% =============================================================
+\bisection{对应态}{Corresponding states}
+
+我们现在对稀薄相互作用气体在高温下的行为有了良好的微扰理解。在较低的温度下，吸引相互作用导致凝聚成液态。对大多数简单气体而言，相图的定性行为是相同的。在坐标 $(P,T)$ 中存在一条相变线（对应于 $(V,T)$ 平面中液相与气相的共存），它终止于一个所谓的临界点（\textit{critical point}）。因此可以在不遇到任何奇异性的情况下把液体转变为气体。由于理想气体定律是普适的，即与材料无关，我们也许希望也存在一个描述相互作用气体（包括液/气凝聚现象）的广义普适状态方程（想必更为复杂）。这一希望促成了对\term{对应态定律}{law of corresponding states}{5.corresponding-states}的寻求，它是通过对态函数作适当的重新标度而得到的。压强、体积与温度最自然的标度选择是临界点的那些值 $(P_c,V_c,T_c)$。
+
+van der Waals 方程是广义状态方程的一个例子。它的临界点可以通过令 $\left.\partial P/\partial V\right|_T$ 与 $\left.\partial^2P/\partial V^2\right|_T$ 为零来求得。前者是液/气等温线平坦共存段的极限；后者由稳定性要求 $\kappa_T>0$ 得出（见 1.9 节的讨论）。临界点的坐标因而由求解下面的联立方程得到：
+\begin{equation}\label{eq:5.78}
+\left\{
+\begin{aligned}
+P&=\frac{k_BT}{v-b}-\frac{a}{v^2}\\
+\left.\frac{\partial P}{\partial v}\right|_T&=-\frac{k_BT}{(v-b)^2}+\frac{2a}{v^3}=0\\
+\left.\frac{\partial^2P}{\partial v^2}\right|_T&=\frac{2k_BT}{(v-b)^3}-\frac{6a}{v^4}=0
+\end{aligned}
+\right.\ ,
+\end{equation}
+
+% p.146
+
+其中 $v=V/N$ 是每个粒子的体积。这些方程的解是
+\begin{equation}\label{eq:5.79}
+\left\{
+\begin{aligned}
+P_c&=\frac{a}{27b^2}\\
+v_c&=3b\\
+k_BT_c&=\frac{8a}{27b}
+\end{aligned}
+\right.\ .
+\end{equation}
+自然，临界点通过参数 $a$ 与 $b$ 依赖于微观 Hamilton 量（例如依赖于两体相互作用）。然而，我们可以通过以 $P_c$、$T_c$ 与 $v_c$ 为单位来度量 $P$、$T$ 与 $v$，从而把这些依赖关系标度掉。令 $P_r=P/P_c$、$v_r=v/v_c$ 与 $T_r=T/T_c$，就得到 van der Waals 方程的一个约化版本
+\begin{equation}\label{eq:5.80}
+P_r=\frac{8}{3}\frac{T_r}{v_r-1/3}-\frac{3}{v_r^2}.
+\end{equation}
+我们由此构造出了一个\emph{普适的}（与材料无关的）状态方程。由于原来的 van der Waals 方程只依赖于\emph{两个}参数，式 \eqref{eq:5.79} 预言了一个普适的无量纲比值
+\begin{equation}\label{eq:5.81}
+\frac{P_cv_c}{k_BT_c}=\frac{3}{8}=0.375.
+\end{equation}
+实验上发现这个比值处于 0.28 到 0.33 的范围之内。因此 van der Waals 方程并不是那个设想中的普适状态方程的好候选者。
+
+我们可以尝试\emph{凭经验}构造一个广义方程，即使用\emph{三个}独立的临界坐标，并从实验数据的坍缩中找出 $P_r\equiv p_r(v_r,T_r)$。这种方法在描述相似气体（例如惰性气体序列 Ne、Xe、Kr 等）时取得了有限的成功。然而，不同类型的气体（例如双原子、离子气体等）表现出相当不同的行为。考虑到它们底层 Hamilton 量的差异，这并不特别令人惊讶。我们从维里展开严格地知道，对相互作用气体的微扰处理确实依赖于微观势的细节。因此，希望为所有液体与气体找到一个普适状态方程既没有理论根据也没有实验根据；每一种情形都必须从其微观 Hamilton 量出发分别研究。因此相当令人惊讶的是：实验数据的坍缩在临界点附近确实工作得很好，如下一节所述。
+
+% =============================================================
+\bisection{临界点行为}{Critical point behavior}
+
+为了说明气体在其临界点附近的普适行为，让我们考察 $(P_c,v_c,T_c)$ 附近的等温线。对于 $T\ge T_c$，把 $P(T,v)$ 在 $v_c$ 附近作 Taylor 展开，对任何 $T$ 都给出
+
+% p.147
+
+\begin{equation}\label{eq:5.82}
+P(T,v)=P(T,v_c)+\left.\frac{\partial P}{\partial v}\right|_T(v-v_c)+\frac{1}{2}\left.\frac{\partial^2P}{\partial v^2}\right|_T(v-v_c)^2+\frac{1}{6}\left.\frac{\partial^3P}{\partial v^3}\right|_T(v-v_c)^3+\cdots
+\end{equation}
+由于 $\left.\partial P/\partial v\right|_T$ 与 $\left.\partial^2P/\partial v^2\right|_T$ 在 $T_c$ 处都为零，把导数在临界点附近展开就给出
+\begin{equation}\label{eq:5.83}
+\begin{aligned}
+P(T,v_c)&=P_c+\alpha(T-T_c)+\mathcal{O}\left[(T-T_c)^2\right],\\
+\left.\frac{\partial P}{\partial v}\right|_{T,v_c}&=-a(T-T_c)+\mathcal{O}\left[(T-T_c)^2\right],\\
+\left.\frac{\partial^2P}{\partial v^2}\right|_{T,v_c}&=b(T-T_c)+\mathcal{O}\left[(T-T_c)^2\right],\\
+\left.\frac{\partial^3P}{\partial v^3}\right|_{T_c,v_c}&=-c+\mathcal{O}\left[(T-T_c)\right],
+\end{aligned}
+\end{equation}
+其中 $a$、$b$ 与 $c$ 是与材料有关的常数。稳定性条件 $\delta P\delta v\le0$ 要求 $a>0$（对 $T>T_c$）与 $c>0$（对 $T=T_c$），但对 $b$ 的符号没有提供任何信息。如果解析展开是可能的，那么任何气体在其临界点附近的等温线都必须具有一般形式
+\begin{equation}\label{eq:5.84}
+P(T,v)=P_c+\alpha(T-T_c)-a(T-T_c)(v-v_c)+\frac{b}{2}(T-T_c)(v-v_c)^2-\frac{c}{6}(v-v_c)^3+\cdots
+\end{equation}
+注意，当 $(T-T_c)\sim(v-v_c)^2$ 时，第三项与第五项的量级相当。在这个条件满足时，第四项（以及更高阶的项）就可以被忽略。
+
+式 \eqref{eq:5.84} 的解析展开给出关于临界点附近行为的如下预言：
+
+（a）当从高温一侧沿\term{临界等容线}{critical isochore}{5.critical-isochore}（$v=v_c$）趋近临界点时，气体的压缩率发散，为
+\begin{equation}\label{eq:5.85}
+\lim_{T\to T_c^+}\kappa(T,v_c)=-\frac{1}{v_c}\left.\frac{\partial P}{\partial v}\right|_T^{-1}=\frac{1}{v_ca(T-T_c)}.
+\end{equation}
+
+（b）临界等温线（\textit{critical isotherm}，$T=T_c$）的行为是
+\begin{equation}\label{eq:5.86}
+P=P_c-\frac{c}{6}(v-v_c)^3+\cdots
+\end{equation}
+
+（c）式 \eqref{eq:5.84} 明显不适用于 $T<T_c$。然而，我们可以尝试通过对不稳定的等温线应用 Maxwell 构造来提取低温一侧的信息（见习题部分）。事实上，量纲上的考虑就足以表明，当从低温一侧趋近 $T_c$ 时，共存的液相与气相的比容按
+\begin{equation}\label{eq:5.87}
+\lim_{T\to T_c^-}(v_{\text{gas}}-v_{\text{liquid}})\propto(T_c-T)^{1/2}.
+\end{equation}
+的方式彼此接近。
+
+% p.148
+
+$T<T_c$ 时的液--气相变伴随着密度的不连续，以及潜热（\textit{latent heat}）$L$ 的释放。这种相变通常被称为\term{一级相变}{first order}{5.first-order}或不连续相变。随着一级相变序列在临界点处终止，两相之间的差别消失。该点处的奇异行为被归因于一个\term{二级相变}{second-order}{5.second-order}或连续相变。式 \eqref{eq:5.84} 只是从力学稳定性的约束以及等温线解析性的假定推出来的。虽然其中有一些未知的系数，式 \eqref{eq:5.86}--\eqref{eq:5.87} 预言了临界点附近奇异性的普适形式，并且可以与实验数据相比较。实验结果确实证实了关于奇异行为的一般预期，而且不同气体的结果具有普适性，可以总结为：
+
+（a）压缩率在趋近临界点时按
+\begin{equation}\label{eq:5.88}
+\lim_{T\to T_c^+}\kappa(T,v_c)\propto(T-T_c)^{-\gamma},\qquad\text{其中 }\gamma\approx1.3.
+\end{equation}
+发散。
+
+（b）临界等温线的行为是
+\begin{equation}\label{eq:5.89}
+(P-P_c)\propto(v-v_c)^\delta,\qquad\text{其中 }\delta\approx5.0.
+\end{equation}
+
+（c）液相与气相的密度之差在临界点附近按
+\begin{equation}\label{eq:5.90}
+\lim_{T\to T_c^-}(\rho_{\text{liquid}}-\rho_{\text{gas}})\propto\lim_{T\to T_c^-}(v_{\text{gas}}-v_{\text{liquid}})\propto(T_c-T)^\beta,\qquad\text{其中 }\beta\approx0.3.
+\end{equation}
+消失。
+
+这些结果清楚地表明，导致式 \eqref{eq:5.84} 的等温线解析性假定是不正确的。出现在式 \eqref{eq:5.89}--\eqref{eq:5.90} 中的指数 $\delta$、$\gamma$ 与 $\beta$ 被称为\term{临界指数}{critical exponents}{5.critical-exponents}。理解这些指数的起源、普适性与数值，是一个引人入胜的课题，由现代临界现象理论所涵盖，并在一部配套卷册中作了探讨。
+
+% =============================================================
+% 本章斜体术语清单（交付用）
+% 用户拍板（第 3 章交付后）：凡原文中第一次出现的术语一律收入附录 B；
+% 强调性斜体（\emph{}）不收录。附录 B 的页码由 \term 埋下的锚点自动取，此处列原文印刷页。
+% —— 已在正文中以 \term{中文}{English}{key} 形式埋锚点的术语（附录 B 候选，共 25 处）：
+%    p.127 成对相互作用（pairwise interaction）—— 5.pairwise
+%    p.128 平移对称性（translational symmetry）—— 5.translational
+%    p.128 累积量展开（cumulant expansion）—— 5.cumulant-expansion
+%    p.128 对称因子（symmetry factor）—— 5.symmetry-factor
+%    p.128 不相交集团（disjoint clusters）—— 5.disjoint
+%    p.128 非连通图（disconnected diagram）—— 5.disconnected
+%    p.129 单粒子可约（one-particle reducible）—— 5.one-particle-reducible
+%    p.129 单粒子不可约（one-particle irreducible）—— 5.one-particle-irreducible
+%    p.129 硬核（hard core）—— 5.hard-core
+%    p.130 维里展开（virial expansion）—— 5.virial-expansion
+%    p.130 维里系数（virial coefficients）—— 5.virial-coefficients
+%    p.131 连接集团（linked clusters）—— 5.linked-cluster
+%    p.133 逸度（fugacity）—— 5.fugacity
+%    p.135 排除体积（excluded volume）—— 5.excluded-volume
+%    p.136 环形图（ring diagrams）—— 5.ring-diagrams
+%    p.136 稠密气体（dense gas）—— 5.dense-gas
+%    p.137 范德瓦耳斯参数（van der Waals parameters）—— 5.van-der-waals-params
+%    p.139 Maxwell 构造（Maxwell construction）—— 5.maxwell-construction
+%    p.141 均匀密度（uniform density）—— 5.uniform-density
+%    p.144 Gibbs 不等式（Gibbs inequality）—— 5.gibbs-inequality
+%    p.145 对应态定律（law of corresponding states）—— 5.corresponding-states
+%    p.147 临界等容线（critical isochore）—— 5.critical-isochore
+%    p.148 一级相变（first order）—— 5.first-order
+%    p.148 二级相变（second-order）—— 5.second-order
+%    p.148 临界指数（critical exponents）—— 5.critical-exponents
+% —— 以下术语已在第 1--4 章首次标记，本章不再重复埋锚点（附录 B 只收首次出现处），
+%    正文中仍照原文保留其意大利斜体英文：
+%    p.137 van der Waals equation（第 1 章 p.26）
+%    p.137 excluded volume（本章 p.135 已埋锚点，此处为同章重复出现）
+%    p.139 Gibbs free energy（第 1 章 p.18）
+%    p.139 isothermal compressibility（第 1 章 p.8）
+%    p.141 The grand canonical ensemble（第 4 章 p.118，4.9 节标题）
+%    p.145 critical point（第 1 章 p.26）
+%    p.148 latent heat（第 1 章 p.26）
+% —— 原文中属于「强调」而非术语的斜体（讲义中以 \emph{} 呈现，不收入附录 B）：
+%    p.126 理想气体（The ideal gas，小节标题）、且独立（and independent）；
+%    p.129 单个（a single）、全部（all）；p.131 对全部 $\ell$ 粒子连接集团求和；
+%    p.132 不同划分（different partitions）；p.133 连通（connected）；
+%    p.134 单粒子不可约（one-particle irreducible，同词重复强调于 p.134 措辞处）；
+%    p.136 短程（short-ranged）、长程（long-ranged）、解析（analytical）、非解析（non-analytic）、
+%          稀薄（rarefied）；
+%    p.137 van der Waals 方程的物理诠释（小节标题）、联合（joint）；
+%    p.138 减小（decrease）、均匀（uniform）、增加（increase）；
+%    p.139 极大值（maximum）、极小值（minimum）；
+%    p.143 近似的（but approximate）、同一组自由度（acting on the same set of degrees of freedom）；
+%    p.146 普适的（universal）、两个（two）、三个（three）、凭经验（empirically）。
+% —— 用户核原文后的更正（第 5 章交付后）：原书小节标题一律为**粗体**（与前面各章相同），
+%    并非斜体，故小节标题里的词（如 The cluster expansion「集团展开」、Mean-field theory of
+%    condensation「平均场理论」、Variational methods「变分方法」）不属于「原文中的斜体术语」，
+%    不收录、也不埋锚点。讲义中以 \emph{} 呈现的只是行内小标题（如「理想气体：」），原文亦为
+%    粗体行内标题，同样不收录。
+% —— 习题部分（p.148 下半页起至 p.155）不译。

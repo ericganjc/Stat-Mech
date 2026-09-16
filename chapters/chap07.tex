@@ -1,0 +1,670 @@
+% =============================================================
+%  第 7 章 理想量子气体（Ideal quantum gases）
+%  原文：Chapter 7, p.181--202（正文止于 p.202 上半页）  公式：7.1--7.68   图：7.1--7.16
+% =============================================================
+\bichapter{理想量子气体}{Ideal Quantum Gases}
+
+% p.181
+
+\bisection{全同粒子的 Hilbert 空间}{Hilbert space of identical particles}
+
+在第 4 章中，我们讨论了全同粒子气体混合熵的 Gibbs 佯谬。这一困难是通过假设 $N$ 个全同粒子的相空间必须除以 $N!$（即置换的数目）而克服的。这并不十分令人满意，因为经典的运动方程隐含地把粒子当作可区分的。与此相对，在量子力学中，粒子的全同性出现在 Hilbert 空间中允许态的层面上。例如，由位置算符的期望值得到的、在两个全同粒子分别处于位置 $\vec x_1$ 与 $\vec x_2$ 处时的概率，由 $|\Psi(\vec x_1,\vec x_2)|^2$ 给出，其中 $\Psi(\vec x_1,\vec x_2)$ 是坐标表象中的态向量（即波函数）。由于交换粒子 1 与 2 会得到相同的构型，我们必须有 $|\Psi(\vec x_1,\vec x_2)|^2=|\Psi(\vec x_2,\vec x_1)|^2$。对单值函数而言，这导致两种可能\footnote{复数相位被排除，理由是考虑交换标号 1 与 2 的算符 $E_{12}$ 的作用。由于 $E_{12}^2=I$，即恒等算符，其本征值的平方必须为 1，从而排除了 $\mathrm e^{\mathrm i\phi}$，除非 $\phi=0$ 或 $\pi$。这一限制被\term{任意子}{anyons}{7.anyons}所规避，它们由具有所谓分数量子统计的多值波函数描述。}：
+\begin{equation}\label{eq:7.1}
+|\psi(1,2)\rangle=+|\psi(2,1)\rangle,\qquad\text{或}\qquad|\psi(1,2)\rangle=-|\psi(2,1)\rangle.
+\end{equation}
+因此，用来描述全同粒子的 Hilbert 空间被限制为满足某些对称性。
+
+对 $N$ 个全同粒子的系统，有 $N!$ 个置换 $P$，它们构成群 $S_N$。表示一个置换的方式有多种；例如，$N=4$ 时的 $P(1\,2\,3\,4)=(3\,2\,4\,1)$ 也可以表示为
+\begin{equation*}
+P=\begin{pmatrix}1&2&3&4\\3&2&4&1\end{pmatrix}.
+\end{equation*}
+
+% p.182
+
+任何置换都可以由一系列两粒子交换得到。例如，上面的置换是通过先后施行交换 $(1,3)$ 与 $(1,4)$ 得到的。置换的\term{奇偶性}{parity}{7.parity}定义为
+\begin{equation*}
+(-1)^P\equiv\begin{cases}+1&\text{若 }P\text{ 包含}\textit{偶数}\text{次交换，例如 }(1\,2\,3)\to(2\,3\,1)\\[2pt] -1&\text{若 }P\text{ 包含}\textit{奇数}\text{次交换，例如 }(1\,2\,3)\to(2\,1\,3)\end{cases}.
+\end{equation*}
+（注意，若在上述 $P$ 的表示中把每个整数的初始位置与最终位置用线连起来，则奇偶性是 $(-1)$ 的「连线交点数目」次幂；在上面的例子里是四个交点。）
+
+置换对 $N$ 粒子量子态的作用导致 Hilbert 空间中置换群的一个\term{表示}{representation}{7.representation}。要求波函数单值，并且在粒子交换下给出相等的概率，就把该表示限制为要么完全对称、要么完全反对称。这容许自然界中存在两种类型的全同粒子：
+
+（1）\textbf{玻色子}对应完全对称的表示，即
+\begin{equation*}
+P|\psi(1,\cdots,N)\rangle=+|\psi(1,\cdots,N)\rangle.
+\end{equation*}
+
+（2）\textbf{费米子}对应完全反对称的表示，即
+\begin{equation*}
+P|\psi(1,\cdots,N)\rangle=(-1)^P|\psi(1,\cdots,N)\rangle.
+\end{equation*}
+
+当然，全同粒子的 Hamilton 量本身必须是对称的，即 $P\mathscr H=\mathscr H$。然而，对给定的 $\mathscr H$，存在许多在置换下具有不同对称性的本征态。要选出正确的本征态集合，在量子力学中粒子的统计（玻色子或费米子）是独立指定的。例如，考虑体积为 $V$ 的盒子中 $N$ 个无相互作用粒子，其 Hamilton 量为
+\begin{equation}\label{eq:7.2}
+\mathscr H=\sum_{\alpha=1}^N\mathscr H_\alpha=\sum_{\alpha=1}^N\left(-\frac{\hbar^2}{2m}\nabla_\alpha^2\right).
+\end{equation}
+每个 $\mathscr H_\alpha$ 都可以单独对角化，其平面波态为 $\{|\vec k\rangle\}$，相应的能量为 $\mathcal E(\vec k)=\hbar^2k^2/2m$。利用这些单粒子态的和与积，我们可以构造出下列 $N$ 粒子态：
+
+（1）\emph{积} Hilbert 空间由单粒子态简单相乘得到，即
+\begin{equation}\label{eq:7.3}
+|\vec k_1,\cdots,\vec k_N\rangle_\otimes\equiv|\vec k_1\rangle\cdots|\vec k_N\rangle.
+\end{equation}
+
+% p.183
+
+在坐标表象中，
+\begin{equation}\label{eq:7.4}
+\langle\vec x_1,\cdots,\vec x_N|\vec k_1,\cdots,\vec k_N\rangle_\otimes=\frac1{V^{N/2}}\exp\left(\mathrm i\sum_{\alpha=1}^N\vec k_\alpha\cdot\vec x_\alpha\right),
+\end{equation}
+以及
+\begin{equation}\label{eq:7.5}
+\mathscr H|\vec k_1,\cdots,\vec k_N\rangle_\otimes=\left(\sum_{\alpha=1}^N\frac{\hbar^2k_\alpha^2}{2m}\right)|\vec k_1,\cdots,\vec k_N\rangle_\otimes.
+\end{equation}
+但积态并不满足全同粒子所要求的对称性条件，我们必须找出具有正确对称性的适当的\emph{子空间}。
+
+（2）\emph{费米}子空间构造为
+\begin{equation}\label{eq:7.6}
+|\vec k_1,\cdots,\vec k_N\rangle_-=\frac1{\sqrt{N_-}}\sum_P(-1)^PP|\vec k_1,\cdots,\vec k_N\rangle_\otimes,
+\end{equation}
+其中求和遍及全部 $N!$ 个置换。如果上面列表中任何一个单粒子标号 $\vec k$ 出现多于一次，结果为零，不存在反对称化的态。只有当 $N$ 个 $\vec k_\alpha$ 的取值全都不同时，反对称化才有可能。此时上式求和中有 $N!$ 项，为保证归一化必须有 $N_-=N!$。例如，两粒子反对称态是
+\begin{equation*}
+|\vec k_1,\vec k_2\rangle_-=\frac{(|\vec k_1,\vec k_2\rangle_\otimes-|\vec k_2,\vec k_1\rangle_\otimes)}{\sqrt2}.
+\end{equation*}
+（如果没有另外说明，$|\vec k_1,\cdots,\vec k_N\rangle$ 指的是积态。）
+
+（3）类似地，\emph{玻色}子空间构造为
+\begin{equation}\label{eq:7.7}
+|\vec k_1,\cdots,\vec k_N\rangle_+=\frac1{\sqrt{N_+}}\sum_PP|\vec k_1,\cdots,\vec k_N\rangle_\otimes.
+\end{equation}
+在这种情况下，对 $\vec k$ 的允许取值没有限制。某个特定的单粒子态可以在列表中出现 $n_{\vec k}$ 次，且 $\sum_{\vec k}n_{\vec k}=N$。我们将在稍后证明，正确的归一化要求 $N_+=N!\prod_{\vec k}n_{\vec k}!$。例如，一个正确归一化的三粒子玻色态由两个单粒子态 $|\alpha\rangle$ 和一个单粒子态 $|\beta\rangle$（$n_\alpha=2$、$n_\beta=1$、$N_+=3!2!1!=12$）构造为
+\begin{align*}
+|\alpha\alpha\beta\rangle_+&=\frac{|\alpha\rangle|\alpha\rangle|\beta\rangle+|\alpha\rangle|\beta\rangle|\alpha\rangle+|\beta\rangle|\alpha\rangle|\alpha\rangle+|\alpha\rangle|\alpha\rangle|\beta\rangle+|\beta\rangle|\alpha\rangle|\alpha\rangle+|\alpha\rangle|\beta\rangle|\alpha\rangle}{\sqrt{12}}\\
+&=\frac1{\sqrt3}\left(|\alpha\rangle|\alpha\rangle|\beta\rangle+|\alpha\rangle|\beta\rangle|\alpha\rangle+|\beta\rangle|\alpha\rangle|\alpha\rangle\right).
+\end{align*}
+
+用下述定义来同时讨论玻色子与费米子是方便的：
+\begin{equation}\label{eq:7.8}
+|\{\vec k\}\rangle_\eta=\frac1{\sqrt{N_\eta}}\sum_P\eta^PP|\{\vec k\}\rangle,\qquad\text{其中}\quad\eta=\begin{cases}+1&\text{对玻色子}\\ -1&\text{对费米子}\end{cases},
+\end{equation}
+并有 $(+1)^P\equiv1$，而 $(-1)^P$ 如前面那样用来表示 $P$ 的奇偶性。每个态都由一组\emph{占有数} $\{n_{\vec k}\}$ 唯一地确定，满足 $\sum_{\vec k}n_{\vec k}=N$，并且
+
+% p.184
+
+（1）对费米子，$|\{\vec k\}\rangle_-=0$，除非 $n_{\vec k}=0$ 或 1，且 $N_-=N!\prod_{\vec k}n_{\vec k}!=N!$。
+
+（2）对玻色子，任何 $\vec k$ 都可以重复 $n_{\vec k}$ 次，归一化由下式计算
+\begin{equation}\label{eq:7.9}
+\begin{aligned}
+{}_+\langle\{\vec k\}|\{\vec k\}\rangle_+&=\frac1{N_+}\sum_{P,P'}\langle P\{\vec k\}|P'\{\vec k\}\rangle=\frac{N!}{N_+}\sum_P\langle\{\vec k\}|P\{\vec k\}\rangle\\
+&=\frac{N!\prod_{\vec k}n_{\vec k}!}{N_+}=1,\qquad\Longrightarrow\qquad N_+=N!\prod_{\vec k}n_{\vec k}!.
+\end{aligned}
+\end{equation}
+（项 $\langle\{\vec k\}|P\{\vec k\}\rangle$ 为零，除非置换后的 $\vec k$ 与原集合相同——这发生 $\prod_{\vec k}n_{\vec k}!$ 次。）
+
+\bisection{正则表述}{Canonical formulation}
+
+利用上一节中构造出的态，我们可以计算无相互作用全同粒子的正则密度矩阵。在坐标表象中我们有
+\begin{equation}\label{eq:7.10}
+\langle\{\vec x'\}|\rho|\{\vec x\}\rangle_\eta=\mathop{{\sum}'}_{\{\vec k\}}\sum_{P,P'}\eta^P\eta^{P'}\langle\{\vec x'\}|P'\{\vec k\}\rangle\rho(\{\vec k\})\langle P\{\vec k\}|\{\vec x\}\rangle\frac1{N_\eta},
+\end{equation}
+其中 $\rho(\{\vec k\})=\exp[-\beta(\sum_{\alpha=1}^N\hbar^2k_\alpha^2/2m)]/Z_N$。求和 $\sum'_{\{\vec k_1,\vec k_2,\cdots,\vec k_N\}}$ 受到限制，以确保每个全同粒子态出现且只出现一次。在玻色子空间与费米子空间中，占有数集合 $\{n_{\vec k}\}$ 都唯一地标识一个态。然而，如果我们除以由此产生的重复计数因子（对玻色子）$N!/(\prod_{\vec k}n_{\vec k}!)$，就可以从式 \eqref{eq:7.10} 中除去这一限制，即
+\begin{equation*}
+\mathop{{\sum}'}_{\{\vec k\}}=\sum_{\{\vec k\}}\frac{\prod_{\vec k}n_{\vec k}!}{N!}.
+\end{equation*}
+（注意，对费米子，$(-1)^P$ 因子会抵消掉任何 $n_{\vec k}$ 大于 1 的情形所带来的贡献。）因此，
+\begin{equation}\label{eq:7.11}
+\begin{aligned}
+\langle\{\vec x'\}|\rho|\{\vec x\}\rangle&=\sum_{\{\vec k\}}\frac{\prod_{\vec k}n_{\vec k}!}{N!}\cdot\frac1{N!\prod_{\vec k}n_{\vec k}!}\\
+&\quad\times\sum_{P,P'}\frac{\eta^P\eta^{P'}}{Z_N}\exp\left(-\beta\sum_{\alpha=1}^N\frac{\hbar^2k_\alpha^2}{2m}\right)\langle\{\vec x'\}|P'\{\vec k\}\rangle\langle P\{\vec k\}|\{\vec x\}\rangle.
+\end{aligned}
+\end{equation}
+在体积很大的极限下，对 $\{\vec k\}$ 的求和可以用积分代替，再利用波函数的平面波表示，我们有
+\begin{equation}\label{eq:7.12}
+\begin{aligned}
+\langle\{\vec x'\}|\rho|\{\vec x\}\rangle&=\frac1{Z_N(N!)^2}\sum_{P,P'}\eta^P\eta^{P'}\prod_{\alpha=1}^N\int\frac{V\,\mathrm d^3\vec k_\alpha}{(2\pi)^3}\exp\left(-\frac{\beta\hbar^2k_\alpha^2}{2m}\right)\\
+&\quad\times\left\{\frac{\exp\left[-\mathrm i\sum_{\alpha=1}^N\left(\vec k_{P\alpha}\cdot\vec x_\alpha-\vec k_{P'\alpha}\cdot\vec x'_\alpha\right)\right]}{V^N}\right\}.
+\end{aligned}
+\end{equation}
+
+% p.185
+
+{\emergencystretch=2em\relax
+我们可以通过聚焦于某个特定的 $\vec k$ 向量来整理指数中的求和。由于 $\sum_\alpha f(P\alpha)g(\alpha)=\sum_\beta f(\beta)g(P^{-1}\beta)$，其中 $\beta=P\alpha$ 而 $\alpha=P^{-1}\beta$，我们得到\par}
+\begin{equation}\label{eq:7.13}
+\langle\{\vec x'\}|\rho|\{\vec x\}\rangle=\frac1{Z_N(N!)^2}\sum_{P,P'}\eta^P\eta^{P'}\prod_{\alpha=1}^N\left[\int\frac{\mathrm d^3\vec k_\alpha}{(2\pi)^3}\mathrm e^{-\mathrm i\vec k_\alpha\cdot(\vec x_{P^{-1}\alpha}-\vec x'_{P'^{-1}\alpha})-\beta\hbar^2k_\alpha^2/2m}\right].
+\end{equation}
+方括号中的 Gauss 积分等于
+\begin{equation*}
+\frac1{\lambda^3}\exp\left[-\frac\pi{\lambda^2}\left(\vec x_{P^{-1}\alpha}-\vec x'_{P'^{-1}\alpha}\right)^2\right].
+\end{equation*}
+在式 \eqref{eq:7.13} 中令 $\beta=P^{-1}\alpha$，得到
+\begin{equation}\label{eq:7.14}
+\langle\{\vec x'\}|\rho|\{\vec x\}\rangle=\frac1{Z_N\lambda^{3N}(N!)^2}\sum_{P,P'}\eta^P\eta^{P'}\exp\left[-\frac\pi{\lambda^2}\sum_{\beta=1}^N\left(\vec x_\beta-\vec x'_{P'^{-1}P\beta}\right)^2\right].
+\end{equation}
+最后，我们令 $Q=P'^{-1}P$，并利用结果 $\eta^P=\eta^{P'^{-1}}$ 以及 $\eta^Q=\eta^{P'^{-1}P}=\eta^{P'}\eta^P$，得到（在施行 $\sum_P=N!$ 之后）
+\begin{equation}\label{eq:7.15}
+\langle\{\vec x'\}|\rho|\{\vec x\}\rangle=\frac1{Z_N\lambda^{3N}N!}\sum_Q\eta^Q\exp\left[-\frac\pi{\lambda^2}\sum_{\beta=1}^N\left(\vec x_\beta-\vec x'_{Q\beta}\right)^2\right].
+\end{equation}
+正则配分函数 $Z_N$ 由归一化条件
+\begin{equation*}
+\operatorname{tr}(\rho)=1,\qquad\Longrightarrow\qquad\int\prod_{\alpha=1}^N\mathrm d^3\vec x_\alpha\langle\{\vec x\}|\rho|\{\vec x\}\rangle=1
+\end{equation*}
+得到，即为
+\begin{equation}\label{eq:7.16}
+Z_N=\frac1{N!\lambda^{3N}}\int\prod_{\alpha=1}^N\mathrm d^3\vec x_\alpha\sum_Q\eta^Q\exp\left[-\frac\pi{\lambda^2}\sum_{\beta=1}^N\left(\vec x_\beta-\vec x_{Q\beta}\right)^2\right].
+\end{equation}
+因此，量子配分函数包含一个对 $N!$ 个可能置换的求和。经典结果 $Z_N=(V/\lambda^3)^N/N!$ 来自对应于无粒子交换、即 $Q\equiv1$ 的那一项。除以 $N!$ 最终为经典统计力学中为处理全同粒子的相空间而（多少有些人为地）引入的因子提供了依据。然而，这一经典结果只在非常高的温度下成立，并且会被来自其余置换的量子修正所修改。由于任何置换都涉及形如 $\exp[-\pi(\vec x_1-\vec x_2)^2/\lambda^2]$ 的因子的乘积，其贡献在 $T\to\infty$ 即 $\lambda\to0$ 时消失。
+
+最低阶的修正来自最简单的置换，也就是两个粒子的交换。粒子 1 与 2 的交换附带一个因子 $\eta\exp[-2\pi(\vec x_1-\vec x_2)^2/\lambda^2]$。由于 $N(N-1)/2$ 个可能的成对交换各自对 $Z_N$ 给出相同的贡献，我们得到
+\begin{equation}\label{eq:7.17}
+Z_N=\frac1{N!\lambda^{3N}}\int\prod_{\alpha=1}^N\mathrm d^3\vec x_\alpha\left\{1+\frac{N(N-1)}2\eta\exp\left[-\frac{2\pi}{\lambda^2}(\vec x_1-\vec x_2)^2\right]+\cdots\right\}.
+\end{equation}
+
+% p.186
+
+对任意 $\alpha\ge3$，$\int\mathrm d^3\vec x_\alpha=V$；在剩下的两个积分中，我们可以利用相对坐标 $\vec r_{12}=\vec x_2-\vec x_1$ 与质心坐标，得到
+\begin{equation}\label{eq:7.18}
+\begin{aligned}
+Z_N&=\frac1{N!\lambda^{3N}}V^N\left[1+\frac{N(N-1)}{2V}\eta\int\mathrm d^3\vec r_{12}\mathrm e^{-2\pi r_{12}^2/\lambda^2}+\cdots\right]\\
+&=\frac1{N!}\left(\frac V{\lambda^3}\right)^N\left[1+\frac{N(N-1)}{2V}\cdot\left(\frac{2\pi\lambda^2}{4\pi}\right)^{3/2}\eta+\cdots\right].
+\end{aligned}
+\end{equation}
+由相应的自由能
+\begin{equation}\label{eq:7.19}
+F=-k_BT\ln Z_N=-Nk_BT\ln\left[\frac{\mathrm e}{\lambda^3}\frac VN\right]-\frac{k_BTN^2}{2V}\cdot\frac{\lambda^3}{2^{3/2}}\eta+\cdots,
+\end{equation}
+气体压强由下式计算
+\begin{equation}\label{eq:7.20}
+P=-\left.\frac{\partial F}{\partial V}\right|_T=\frac{Nk_BT}V-\frac{N^2k_BT}{V^2}\cdot\frac{\lambda^3}{2^{5/2}}\eta+\cdots=nk_BT\left[1-\frac{\eta\lambda^3}{2^{5/2}}n+\cdots\right].
+\end{equation}
+注意，第一项量子修正等价于一个二阶维里系数
+\begin{equation}\label{eq:7.21}
+B_2=-\frac{\eta\lambda^3}{2^{5/2}}.
+\end{equation}
+由此得到的压强修正对玻色子是负的，对费米子是正的。在经典表述中，二阶维里系数是由两体相互作用得到的。使得配分函数具有如式 \eqref{eq:7.17} 那样的维里级数的经典势 $\mathcal V(\vec r)$ 由下式给出
+\begin{equation}\label{eq:7.22}
+\begin{aligned}
+f(\vec r)&=\mathrm e^{-\beta\mathcal V(\vec r)}-1=\eta\mathrm e^{-2\pi r^2/\lambda^2},\qquad\Longrightarrow\\
+\mathcal V(\vec r)&=-k_BT\ln\left[1+\eta\mathrm e^{-2\pi r^2/\lambda^2}\right]\approx-k_BT\eta\mathrm e^{-2\pi r^2/\lambda^2}.
+\end{aligned}
+\end{equation}
+（最后的近似对应于高温，此时只有第一项修正重要。）因此，高温下量子统计的效应近似等价于在粒子之间引入一种相互作用。该相互作用对玻色子是吸引的，对费米子是排斥的，其作用范围是热波长 $\lambda$ 的量级。
+
+\cnfigure{fig7-1}{在高温下模拟量子关联的有效经典势对玻色子是吸引的，对费米子是排斥的。}
+
+% p.187
+
+\bisection{巨正则表述}{Grand canonical formulation}
+
+通过完成式 \eqref{eq:7.16} 中的所有求和来计算配分函数是一项艰巨的任务。作为替代，我们可以在能量表象中计算 $Z_N$，即
+\begin{equation}\label{eq:7.23}
+Z_N=\operatorname{tr}\left(\mathrm e^{-\beta\mathscr H}\right)=\mathop{{\sum}'}_{\{k_\alpha\}}\exp\left[-\beta\sum_{\alpha=1}^N\mathcal E(\vec k_\alpha)\right]=\mathop{{\sum}'}_{\{n_{\vec k}\}}\exp\left[-\beta\sum_{\vec k}\mathcal E(\vec k)n(\vec k)\right].
+\end{equation}
+这些求和仍然难以进行，因为在 $\vec k$ 或 $\{n_{\vec k}\}$ 的允许取值上存在对称性限制：占有数 $\{n_{\vec k}\}$ 被限制为 $\sum_{\vec k}n_{\vec k}=N$，且对玻色子 $n_{\vec k}=0,1,2,\cdots$，而对费米子 $n_{\vec k}=0$ 或 1。与前面一样，可以通过考察巨配分函数来去除第一个限制，
+\begin{equation}\label{eq:7.24}
+\begin{aligned}
+\mathcal Q_\eta(T,\mu)&=\sum_{N=0}^\infty\mathrm e^{\beta\mu N}\mathop{{\sum}'}_{\{n_{\vec k}\}}\exp\left[-\beta\sum_{\vec k}\mathcal E(\vec k)n_{\vec k}\right]\\
+&=\sum_{\{n_{\vec k}\}}^\eta\prod_{\vec k}\exp\left[-\beta\left(\mathcal E(\vec k)-\mu\right)n_{\vec k}\right].
+\end{aligned}
+\end{equation}
+现在即可对每个 $\vec k$ 独立地完成对 $\{n_{\vec k}\}$ 的求和，只需服从粒子对称性所施加的对占有数的限制。
+
+\begin{itemize}
+\item 对\emph{费米子}，$n_{\vec k}=0$ 或 1，于是
+\begin{equation}\label{eq:7.25}
+\mathcal Q_-=\prod_{\vec k}\left[1+\exp\left(\beta\mu-\beta\mathcal E(\vec k)\right)\right].
+\end{equation}
+\item 对\emph{玻色子}，$n_{\vec k}=0,1,2,\cdots$，对几何级数求和给出
+\begin{equation}\label{eq:7.26}
+\mathcal Q_+=\prod_{\vec k}\left[1-\exp\left(\beta\mu-\beta\mathcal E(\vec k)\right)\right]^{-1}.
+\end{equation}
+\end{itemize}
+
+两种情形的结果可以同时写为
+\begin{equation}\label{eq:7.27}
+\ln\mathcal Q_\eta=-\eta\sum_{\vec k}\ln\left[1-\eta\exp\left(\beta\mu-\beta\mathcal E(\vec k)\right)\right],
+\end{equation}
+其中对费米子 $\eta=-1$，对玻色子 $\eta=+1$。
+
+在巨正则表述中，不同的单粒子态被独立地占据，其联合概率为
+\begin{equation}\label{eq:7.28}
+p_\eta\left(\left\{n(\vec k)\right\}\right)=\frac1{\mathcal Q_\eta}\prod_{\vec k}\exp\left[-\beta\left(\mathcal E(\vec k)-\mu\right)n_{\vec k}\right].
+\end{equation}
+能量为 $\mathcal E(\vec k)$ 的态的\term{平均占有数}{average occupation number}{7.avg-occ-number}由下式给出
+\begin{equation}\label{eq:7.29}
+\langle n_{\vec k}\rangle_\eta=-\frac{\partial\ln\mathcal Q_\eta}{\partial\left(\beta\mathcal E(\vec k)\right)}=\frac1{z^{-1}\mathrm e^{\beta\mathcal E(\vec k)}-\eta},
+\end{equation}
+
+% p.188
+
+其中 $z=\exp(\beta\mu)$。粒子数与内能的平均值于是由下式给出
+\begin{equation}\label{eq:7.30}
+\left\{\begin{aligned}
+N_\eta&=\sum_{\vec k}\langle n_{\vec k}\rangle_\eta=\sum_{\vec k}\frac1{z^{-1}\mathrm e^{\beta\mathcal E(\vec k)}-\eta}\\[1ex]
+E_\eta&=\sum_{\vec k}\mathcal E(\vec k)\langle n_{\vec k}\rangle_\eta=\sum_{\vec k}\frac{\mathcal E(\vec k)}{z^{-1}\mathrm e^{\beta\mathcal E(\vec k)}-\eta}
+\end{aligned}\right..
+\end{equation}
+
+\bisection{非相对论气体}{Non-relativistic gas}
+
+量子粒子还由\term{自旋}{spin}{7.spin} $s$ 进一步刻画。在没有磁场时，不同的自旋态具有相同的能量，而一个\term{自旋简并度}{spin degeneracy}{7.spin-degeneracy}因子 $g=2s+1$ 乘在式 \eqref{eq:7.27}--\eqref{eq:7.30} 上。特别地，对于三维非相对论气体（$\mathcal E(\vec k)=\hbar^2k^2/2m$，且 $\sum_{\vec k}\to V\int\mathrm d^3\vec k/(2\pi)^3$），这些方程化为
+\begin{equation}\label{eq:7.31}
+\left\{\begin{aligned}
+\beta P_\eta&=\frac{\ln\mathcal Q_\eta}V=-\eta g\int\frac{\mathrm d^3\vec k}{(2\pi)^3}\ln\left[1-\eta z\exp\left(-\frac{\beta\hbar^2k^2}{2m}\right)\right],\\[1ex]
+n_\eta&\equiv\frac{N_\eta}V=g\int\frac{\mathrm d^3\vec k}{(2\pi)^3}\frac1{z^{-1}\exp\left(\dfrac{\beta\hbar^2k^2}{2m}\right)-\eta},\\[1ex]
+\varepsilon_\eta&\equiv\frac{E_\eta}V=g\int\frac{\mathrm d^3\vec k}{(2\pi)^3}\frac{\hbar^2k^2}{2m}\frac1{z^{-1}\exp\left(\dfrac{\beta\hbar^2k^2}{2m}\right)-\eta}.
+\end{aligned}\right.
+\end{equation}
+为简化这些方程，我们把变量换为 $x=\beta\hbar^2k^2/(2m)$，于是
+\begin{equation*}
+k=\frac{\sqrt{2mk_BT}}{\hbar}x^{1/2}=\frac{2\pi^{1/2}}{\lambda}x^{1/2},\qquad\Longrightarrow\qquad\mathrm dk=\frac{\pi^{1/2}}{\lambda}x^{-1/2}\mathrm dx.
+\end{equation*}
+代入式 \eqref{eq:7.31} 得到
+\begin{equation}\label{eq:7.32}
+\left\{\begin{aligned}
+\beta P_\eta&=-\eta\frac{g}{2\pi^2}\frac{4\pi^{3/2}}{\lambda^3}\int_0^\infty\mathrm dx\,x^{1/2}\ln\left(1-\eta z\mathrm e^{-x}\right)\\
+&=\frac{g}{\lambda^3}\frac4{3\sqrt\pi}\int_0^\infty\frac{\mathrm dx\,x^{3/2}}{z^{-1}\mathrm e^x-\eta}\qquad\text{（分部积分）},\\[1ex]
+n_\eta&=\frac{g}{\lambda^3}\frac2{\sqrt\pi}\int_0^\infty\frac{\mathrm dx\,x^{1/2}}{z^{-1}\mathrm e^x-\eta},\\[1ex]
+\beta\varepsilon_\eta&=\frac{g}{\lambda^3}\frac2{\sqrt\pi}\int_0^\infty\frac{\mathrm dx\,x^{3/2}}{z^{-1}\mathrm e^x-\eta}.
+\end{aligned}\right.
+\end{equation}
+
+% p.189
+
+我们现在用下式定义两组函数
+\begin{equation}\label{eq:7.33}
+f_m^\eta(z)=\frac1{(m-1)!}\int_0^\infty\frac{\mathrm dx\,x^{m-1}}{z^{-1}\mathrm e^x-\eta}.
+\end{equation}
+对非整数宗量，函数 $m!\equiv\Gamma(m+1)$ 由积分 $\int_0^\infty\mathrm dx\,x^m\mathrm e^{-x}$ 定义。特别地，由这一定义可得 $(1/2)!=\sqrt\pi/2$ 以及 $(3/2)!=(3/2)\sqrt\pi/2$。式 \eqref{eq:7.32} 现在取如下简单形式
+\begin{equation}\label{eq:7.34}
+\left\{\begin{aligned}
+\beta P_\eta&=\frac g{\lambda^3}f_{5/2}^\eta(z),\\[1ex]
+n_\eta&=\frac g{\lambda^3}f_{3/2}^\eta(z),\\[1ex]
+\varepsilon_\eta&=\frac32P_\eta.
+\end{aligned}\right.
+\end{equation}
+这些结果以 $z$ 为变量完整地描述了理想量子气体的热力学。要明确地求出形式为 $P_\eta(n_\eta,T)$ 的物态方程，需要把 $z$ 用密度解出。为此，我们需要了解函数 $f_m^\eta(z)$ 的行为。
+
+将首先考察高温、低密度（非简并）极限。在该极限下 $z$ 很小，于是
+\begin{equation}\label{eq:7.35}
+\begin{aligned}
+f_m^\eta(z)&=\frac1{(m-1)!}\int_0^\infty\frac{\mathrm dx\,x^{m-1}}{z^{-1}\mathrm e^x-\eta}=\frac1{(m-1)!}\int_0^\infty\mathrm dx\,x^{m-1}\left(z\mathrm e^{-x}\right)\left(1-\eta z\mathrm e^{-x}\right)^{-1}\\
+&=\frac1{(m-1)!}\int_0^\infty\mathrm dx\,x^{m-1}\sum_{\alpha=1}^\infty\left(z\mathrm e^{-x}\right)^\alpha\eta^{\alpha+1}\\
+&=\sum_{\alpha=1}^\infty\eta^{\alpha+1}z^\alpha\frac1{(m-1)!}\int_0^\infty\mathrm dx\,x^{m-1}\mathrm e^{-\alpha x}\\
+&=\sum_{\alpha=1}^\infty\eta^{\alpha+1}\frac{z^\alpha}{\alpha^m}=z+\eta\frac{z^2}{2^m}+\frac{z^3}{3^m}+\eta\frac{z^4}{4^m}+\cdots.
+\end{aligned}
+\end{equation}
+于是我们发现（自洽地）当 $z\to0$ 时 $f_m^\eta(z)$、从而 $n_\eta(z)$ 与 $P_\eta(z)$ 确实很小。式 \eqref{eq:7.34} 在该极限下给出
+\begin{equation}\label{eq:7.36}
+\left\{\begin{aligned}
+\frac{n_\eta\lambda^3}g&=f_{3/2}^\eta(z)=z+\eta\frac{z^2}{2^{3/2}}+\frac{z^3}{3^{3/2}}+\eta\frac{z^4}{4^{3/2}}+\cdots,\\[1ex]
+\frac{\beta P_\eta\lambda^3}g&=f_{5/2}^\eta(z)=z+\eta\frac{z^2}{2^{5/2}}+\frac{z^3}{3^{5/2}}+\eta\frac{z^4}{4^{5/2}}+\cdots.
+\end{aligned}\right.
+\end{equation}
+上面第一个方程可以用微扰方法求解，即把低阶解代回的递推方法，得到
+\begin{equation}\label{eq:7.37}
+\begin{aligned}
+z&=\frac{n_\eta\lambda^3}g-\eta\frac{z^2}{2^{3/2}}-\frac{z^3}{3^{3/2}}-\cdots\\
+&=\left(\frac{n_\eta\lambda^3}g\right)-\frac\eta{2^{3/2}}\left(\frac{n_\eta\lambda^3}g\right)^2-\cdots\\
+&=\left(\frac{n_\eta\lambda^3}g\right)-\frac\eta{2^{3/2}}\left(\frac{n_\eta\lambda^3}g\right)^2+\left(\frac14-\frac1{3^{3/2}}\right)\left(\frac{n_\eta\lambda^3}g\right)^3-\cdots.
+\end{aligned}
+\end{equation}
+
+% p.190
+
+把这一解代入第二个方程得到
+\begin{equation*}
+\begin{aligned}
+\frac{\beta P_\eta\lambda^3}g=&\left(\frac{n_\eta\lambda^3}g\right)-\frac\eta{2^{5/2}}\left(\frac{n_\eta\lambda^3}g\right)^2+\left(\frac14-\frac1{3^{3/2}}\right)\left(\frac{n_\eta\lambda^3}g\right)^3\\
+&+\frac\eta{2^{5/2}}\left(\frac{n_\eta\lambda^3}g\right)^2-\frac18\left(\frac{n_\eta\lambda^3}g\right)^3+\frac1{3^{5/2}}\left(\frac{n_\eta\lambda^3}g\right)^3+\cdots.
+\end{aligned}
+\end{equation*}
+于是量子气体的压强可以写成维里展开的形式
+\begin{equation}\label{eq:7.38}
+P_\eta=n_\eta k_BT\left[1-\frac\eta{2^{5/2}}\left(\frac{n_\eta\lambda^3}g\right)+\left(\frac18-\frac2{3^{5/2}}\right)\left(\frac{n_\eta\lambda^3}g\right)^2+\cdots\right].
+\end{equation}
+二阶维里系数 $B_2=-\eta\lambda^3/(2^{5/2}g)$ 与在正则系综中取 $g=1$ 算出的式 \eqref{eq:7.21} 一致。自然的（无量纲）展开参数是 $n_\eta\lambda^3/g$，当 $n_\eta\lambda^3\gtrsim g$ 时量子力学效应变得重要：这就是所谓的\term{量子简并极限}{quantum degenerate limit}{7.quantum-degenerate-limit}。在低温、高密度的这一简并极限下，费米气体与玻色气体的行为非常不同，这两种情形将在随后各节中分别讨论。
+
+\bisection{简并费米气体}{The degenerate fermi gas}
+
+在零温下，\term{费米占有数}{fermi occupation number}{7.fermi-occ-number}
+\begin{equation}\label{eq:7.39}
+\langle n_{\vec k}\rangle_-=\frac1{\mathrm e^{\beta(\mathcal E(\vec k)-\mu)}+1},
+\end{equation}
+在 $\mathcal E(\vec k)<\mu$ 时等于 1，在其它情况下为零。$\mu$ 在零温下的极限值称为\term{费米能}{fermi energy}{7.fermi-energy}，记作 $\mathcal E_F$，所有能量小于 $\mathcal E_F$ 的单粒子态都被占据，形成一个\term{费米海}{fermi sea}{7.fermi-sea}。对于 $\mathcal E(\vec k)=\hbar^2k^2/(2m)$ 的理想气体，存在一个相应的\term{费米波数}{fermi wavenumber}{7.fermi-wavenumber} $k_F$，由下式计算
+\begin{equation}\label{eq:7.40}
+N=\sum_{|\vec k|\le k_F}(2s+1)=gV\int^{k<k_F}\frac{\mathrm d^3\vec k}{(2\pi)^3}=g\frac V{6\pi^2}k_F^3.
+\end{equation}
+用密度 $n=N/V$ 表示即
+\begin{equation}\label{eq:7.41}
+k_F=\left(\frac{6\pi^2n}g\right)^{1/3},\qquad\Longrightarrow\qquad\mathcal E_F(n)=\frac{\hbar^2k_F^2}{2m}=\frac{\hbar^2}{2m}\left(\frac{6\pi^2n}g\right)^{2/3}.
+\end{equation}
+注意，在经典处理中理想气体在 $T=0$ 时具有很大的态密度（由 $\Omega_{\text{Classical}}\propto V^N/N!$ 可得），而量子费米气体具有唯一的基态，其 $\Omega=1$。一旦单粒子动量被指定（所有 $|\vec k|<k_F$ 的 $\vec k$），就只有一个反对称化的态，即式 \eqref{eq:7.6} 中构造的那个态。
+
+% p.191
+
+\cnfigure{fig7-2}{费米占有数的分布：零温（虚线）与有限温度（实线）。}
+
+为看出费米海在低温下如何被修改，我们需要 $f_m^-(z)$ 在 $z$ 很大时的行为，它在分部积分后为
+\begin{equation*}
+f_m^-(z)=\frac1{m!}\int_0^\infty\mathrm dx\,x^m\frac{\mathrm d}{\mathrm dx}\left(\frac{-1}{z^{-1}\mathrm e^x+1}\right).
+\end{equation*}
+由于费米占有数从 1 突然变为零，上式中它的导数是一个尖锐的峰。我们可以通过令 $x=\ln z+t$、并把积分范围延伸到 $-\infty<t<+\infty$ 来围绕这个峰展开，即
+\begin{equation}\label{eq:7.42}
+\begin{aligned}
+f_m^-(z)&\approx\frac1{m!}\int_{-\infty}^\infty\mathrm dt\,(\ln z+t)^m\frac{\mathrm d}{\mathrm dt}\left(\frac{-1}{\mathrm e^t+1}\right)\\
+&=\frac1{m!}\int_{-\infty}^\infty\mathrm dt\sum_{\alpha=0}^\infty\binom m\alpha t^\alpha(\ln z)^{m-\alpha}\frac{\mathrm d}{\mathrm dt}\left(\frac{-1}{\mathrm e^t+1}\right)\\
+&=\frac{(\ln z)^m}{m!}\sum_{\alpha=0}^\infty\frac{m!}{\alpha!(m-\alpha)!}(\ln z)^{-\alpha}\int_{-\infty}^\infty\mathrm dt\,t^\alpha\frac{\mathrm d}{\mathrm dt}\left(\frac{-1}{\mathrm e^t+1}\right).
+\end{aligned}
+\end{equation}
+利用被积函数在 $t\to-t$ 下的（反）对称性，并逆转分部积分，得到
+\begin{equation*}
+\frac1{\alpha!}\int_{-\infty}^\infty\mathrm dt\,t^\alpha\frac{\mathrm d}{\mathrm dt}\left(\frac{-1}{\mathrm e^t+1}\right)=\begin{cases}0&\text{对奇数 }\alpha,\\[1ex] \dfrac2{(\alpha-1)!}\displaystyle\int_0^\infty\mathrm dt\,\frac{t^{\alpha-1}}{\mathrm e^t+1}=2f_\alpha^-(1)&\text{对偶数 }\alpha.\end{cases}
+\end{equation*}
+把上式代入式 \eqref{eq:7.42}，并利用积分 $f_\alpha^-(1)$ 的表格值，就得到 \term{Sommerfeld 展开}{Sommerfeld expansion}{7.sommerfeld-expansion}
+\begin{equation}\label{eq:7.43}
+\begin{aligned}
+\lim_{z\to\infty}f_m^-(z)&=\frac{(\ln z)^m}{m!}\sum_{\substack{\alpha=0\\\alpha\text{ 偶}}}^\infty2f_\alpha^-(1)\frac{m!}{(m-\alpha)!}(\ln z)^{-\alpha}\\
+&=\frac{(\ln z)^m}{m!}\left[1+\frac{\pi^2}6\frac{m(m-1)}{(\ln z)^2}+\frac{7\pi^4}{360}\frac{m(m-1)(m-2)(m-3)}{(\ln z)^4}+\cdots\right].
+\end{aligned}
+\end{equation}
+在简并极限下，密度与化学势由下式相联系
+\begin{equation}\label{eq:7.44}
+\frac{n\lambda^3}g=f_{3/2}^-(z)=\frac{(\ln z)^{3/2}}{(3/2)!}\left[1+\frac{\pi^2}6\frac32\frac12(\ln z)^{-2}+\cdots\right]\gg1.
+\end{equation}
+
+% p.192
+
+\cnfigure{fig7-3}{函数 $f_{3/2}(z)$ 决定了化学势 $\mu$。}
+
+最低阶的结果重现了式 \eqref{eq:7.40} 中费米能的表达式，
+\begin{equation*}
+\lim_{T\to0}\ln z=\left[\frac3{4\sqrt\pi}\frac{n\lambda^3}g\right]^{2/3}=\frac{\beta\hbar^2}{2m}\left(\frac{6\pi^2n}g\right)^{2/3}=\beta\mathcal E_F.
+\end{equation*}
+把零温极限代入式 \eqref{eq:7.44} 给出首阶修正，
+\begin{equation}\label{eq:7.45}
+\ln z=\beta\mathcal E_F\left[1+\frac{\pi^2}8\left(\frac{k_BT}{\mathcal E_F}\right)^2+\cdots\right]^{-2/3}=\beta\mathcal E_F\left[1-\frac{\pi^2}{12}\left(\frac{k_BT}{\mathcal E_F}\right)^2+\cdots\right].
+\end{equation}
+
+\cnfigure{fig7-4}{费米气体化学势的温度依赖关系。}
+
+合适的无量纲展开参数是 $(k_BT/\mathcal E_F)$。注意，费米子化学势 $\mu=k_BT\ln z$ 在低温下为正，在高温下为负（由式 \eqref{eq:7.37}）。它在与 $\mathcal E_F/k_B$ 同量级的温度处改变符号，该温度由费米能确定。
+
+压强的低温展开是
+\begin{equation}\label{eq:7.46}
+\begin{aligned}
+\beta P&=\frac g{\lambda^3}f_{5/2}(z)=\frac g{\lambda^3}\frac{(\ln z)^{5/2}}{(5/2)!}\left[1+\frac{\pi^2}6\frac52\frac32(\ln z)^{-2}+\cdots\right]\\
+&=\frac g{\lambda^3}\frac{8(\beta\mathcal E_F)^{5/2}}{15\sqrt\pi}\left[1-\frac52\frac{\pi^2}{12}\left(\frac{k_BT}{\mathcal E_F}\right)^2+\cdots\right]\left[1+\frac{5\pi^2}8\left(\frac{k_BT}{\mathcal E_F}\right)^2+\cdots\right]\\
+&=\beta P_F\left[1+\frac5{12}\pi^2\left(\frac{k_BT}{\mathcal E_F}\right)^2+\cdots\right],
+\end{aligned}
+\end{equation}
+其中 $P_F=(2/5)n\mathcal E_F$ 是\term{费米压强}{fermi pressure}{7.fermi-pressure}。与它的经典对应物不同，零温下的费米气体具有有限的压强与内能。
+
+% p.193
+
+\cnfigure{fig7-5}{费米气体压强的温度依赖关系。}
+
+利用式 \eqref{eq:7.46} 可以容易地得到内能的低温展开
+\begin{equation}\label{eq:7.47}
+\frac EV=\frac32P=\frac35nk_BT_F\left[1+\frac5{12}\pi^2\left(\frac T{T_F}\right)^2+\cdots\right],
+\end{equation}
+其中我们引入了\term{费米温度}{fermi temperature}{7.fermi-temperature} $T_F=\mathcal E_F/k_B$。式 \eqref{eq:7.47} 给出低温热容
+\begin{equation}\label{eq:7.48}
+C_V=\frac{\mathrm dE}{\mathrm dT}=\frac{\pi^2}2Nk_B\left(\frac T{T_F}\right)+\mathcal O\left(\frac T{T_F}\right)^3.
+\end{equation}
+
+\cnfigure{fig7-6}{费米气体热容的温度依赖关系。}
+
+热容在 $T\to0$ 时的线性标度是费米气体的一个普遍特征，它在任何维数下都成立。它有以下简单的物理解释：在小温度下，占据单粒子态的概率，即式 \eqref{eq:7.39}，非常接近于一个阶跃函数。只有能量在费米能附近约 $k_BT$ 范围内的粒子才能被热激发。这只占费米子总数的一小部分 $T/T_F$。每个被激发的粒子获得 $k_BT$ 量级的能量，导致内能变化约为 $k_BTN(T/T_F)$。因此热容由 $C_V=\mathrm dE/\mathrm dT\sim Nk_BT/T_F$ 给出。这一结论对存在相互作用的费米气体也成立。
+
+% p.194
+
+小温度下只有少数费米子（数目为 $N(T/T_F)$）被激发这一事实，解释了费米气体的许多有趣性质。例如，由 $N$ 个带磁矩 $\mu_B$ 的非相互作用粒子组成的经典气体的磁化率遵循 Curie 定律，$\chi\propto N\mu_B^2/(k_BT)$。由于在量子力学上低温下只有一部分自旋有贡献，低温磁化率饱和到一个（Pauli）值 $\chi\propto N\mu_B^2/(k_BT_F)$。（关于这一计算的细节见习题。）
+
+\bisection{简并玻色气体}{The degenerate bose gas}
+
+\term{平均玻色占有数}{average bose occupation number}{7.bose-occ-number}
+\begin{equation}\label{eq:7.49}
+\langle n_{\vec k}\rangle_+=\frac1{\exp\left[\beta\left(\mathcal E(\vec k)-\mu\right)\right]-1},
+\end{equation}
+当然必须为正。这要求 $\mathcal E(\vec k)-\mu$ 对所有 $\vec k$ 都为正，从而 $\mu<\min_{\vec k}\left[\mathcal E(\vec k)\right]=0$（对 $\mathcal E(\vec k)=\hbar^2k^2/2m$）。在高温（经典极限）下，$\mu$ 很大且为负，并且在温度降低时像 $k_BT\ln(n\lambda^3/g)$ 那样趋于零。在简并量子极限下，$\mu$ 趋近于它的极限值零。为看出这一极限是如何达到的，并了解简并玻色气体的行为，我们必须考察式 \eqref{eq:7.34} 中函数 $f_m^+(z)$ 在 $z=\exp(\beta\mu)$ 趋于 1 时的极限行为。
+
+函数 $f_m^+(z)$ 在区间 $0\le z\le1$ 上随 $z$ 单调增加。在 $z=1$ 处达到的最大值由下式给出
+\begin{equation}\label{eq:7.50}
+\zeta_m\equiv f_m^+(1)=\frac1{(m-1)!}\int_0^\infty\frac{\mathrm dx\,x^{m-1}}{\mathrm e^x-1}.
+\end{equation}
+被积函数在 $x\to0$ 处有一个极点，在那里它的行为如同 $\int\mathrm dx\,x^{m-2}$。因此，$\zeta_m$ 在 $m>1$ 时有限，在 $m\le1$ 时无穷大。这些函数有一个有用的递推性质（对 $m>1$）
+\begin{equation}\label{eq:7.51}
+\begin{aligned}
+\frac{\mathrm d}{\mathrm dz}f_m^+(z)&=\int_0^\infty\mathrm dx\,\frac{x^{m-1}}{(m-1)!}\frac{\mathrm d}{\mathrm dz}\left(\frac1{z^{-1}\mathrm e^x-1}\right)\\
+&\quad\left(\text{利用}\quad\frac{\mathrm d}{\mathrm dz}f(z^{-1}\mathrm e^x)=-\frac{\mathrm e^x}{z^2}f'=-\frac1z\frac{\mathrm d}{\mathrm dx}f(z^{-1}\mathrm e^x)\right)\\
+&=-\frac1z\int_0^\infty\mathrm dx\,\frac{x^{m-1}}{(m-1)!}\frac{\mathrm d}{\mathrm dx}\left(\frac1{z^{-1}\mathrm e^x-1}\right)\qquad\text{（分部积分）}\\
+&=\frac1z\int_0^\infty\mathrm dx\,\frac{x^{m-2}}{(m-2)!}\frac1{z^{-1}\mathrm e^x-1}=\frac1zf_{m-1}^+(z).
+\end{aligned}
+\end{equation}
+因此，对所有的 $m$，$f_m^+(z)$ 的足够高阶的导数在 $z=1$ 处都将发散。
+
+% p.195
+
+\cnfigure{fig7-7}{三维理想玻色气体逸度的图解计算。}
+
+因此，三维非相对论玻色气体的\term{激发态}{excited states}{7.excited-states}密度受下式限制
+\begin{equation}\label{eq:7.52}
+n_\ast=\frac g{\lambda^3}f_{3/2}^+(z)\le n^*=\frac g{\lambda^3}\zeta_{3/2}.
+\end{equation}
+在足够高的温度下，即当
+\begin{equation}\label{eq:7.53}
+\frac{n\lambda^3}g=\frac ng\left(\frac h{\sqrt{2\pi mk_BT}}\right)^3\le\zeta_{3/2}\approx2.612\cdots,
+\end{equation}
+时，这一限制并不起作用，且 $n_\ast=n$。然而，在降低温度时，激发态的极限密度在
+\begin{equation}\label{eq:7.54}
+T_c(n)=\frac{h^2}{2\pi mk_B}\left(\frac n{g\zeta_{3/2}}\right)^{2/3}
+\end{equation}
+处达到。
+
+对 $T\le T_c$，$z$ 被卡在 1 上（$\mu=0$）。此时激发态的极限密度 $n^*=g\zeta_{3/2}/\lambda^3\propto T^{3/2}$ 小于总粒子密度（并且与它无关）。剩余的 $n_0=n-n^*$ 个气体粒子占据 $\vec k=0$ 的最低能量态。单个单粒子态被\term{宏观占据}{macroscopic occupation}{7.macroscopic-occupation}这一现象是量子统计的结果，被称为\term{玻色--爱因斯坦凝聚}{Bose--Einstein condensation}{7.bose-einstein-condensation}。
+
+\cnfigure{fig7-8}{被热激发的玻色粒子密度的温度依赖关系（实线）。对 $T<T_c(n)$，剩余的密度占据基态（虚线）。}
+
+% p.196
+
+\cnfigure{fig7-9}{玻色气体压强的温度依赖关系，对应两个密度 $n_1<n_2$。}
+
+玻色凝聚体具有一些不寻常的性质。$T<T_c$ 时气体的压强
+\begin{equation}\label{eq:7.55}
+\beta P=\frac g{\lambda^3}f_{5/2}^+(1)=\frac g{\lambda^3}\zeta_{5/2}\approx1.341\frac g{\lambda^3},
+\end{equation}
+按 $T^{5/2}$ 趋于零，并且\emph{与密度无关}。这是因为只有具有有限动量的激发部分 $n^*$ 对压强有贡献。换个方式，玻色凝聚也可以在固定温度下通过增大密度（减小体积）来实现。由式 \eqref{eq:7.53}，转变发生在一个特定的体积处
+\begin{equation}\label{eq:7.56}
+v^*=\frac1{n^*}=\frac{\lambda^3}{g\zeta_{3/2}}.
+\end{equation}
+对 $v<v^*$，压强--体积等温线是平的，因为由式 \eqref{eq:7.55} 有 $\partial P/\partial v\propto\partial P/\partial n=0$。等温线的平坦部分使人想起液相与气相的共存。我们可以类似地把玻色凝聚看作比容为 $v^*$ 的「正常气体」与体积为 0 的「液体」的共存。「液体」体积为零是粒子之间不存在任何相互作用势所导致的不现实的特征。
+
+玻色凝聚兼具不连续（一阶）转变与连续（二阶）转变的特征；它有有限的潜热，同时压缩率发散。转变的潜热可由 \term{Clausius--Clapeyron 方程}{Clausius--Clapeyron equation}{7.clausius-clapeyron}得到，它给出转变温度随压强的变化为
+\begin{equation}\label{eq:7.57}
+\left.\frac{\mathrm dT}{\mathrm dP}\right|_{\text{共存}}=\frac{\Delta V}{\Delta S}=\frac{T_c\left(v^*-v_0\right)}L.
+\end{equation}
+由于式 \eqref{eq:7.55} 给出的气体压强一直适用到转变点，
+\begin{equation}\label{eq:7.58}
+\left.\frac{\mathrm dP}{\mathrm dT}\right|_{\text{共存}}=\frac52\frac PT.
+\end{equation}
+
+% p.197
+
+\cnfigure{fig7-10}{玻色气体在 $T_1<T_2$ 两个温度下的等温线。}
+
+利用上面的方程我们求得潜热
+\begin{equation}\label{eq:7.59}
+\begin{aligned}
+L&=T_cv^*\left.\frac{\mathrm dP}{\mathrm dT}\right|_{\text{共存}}=\frac52Pv^*=\frac52\frac g{\lambda^3}\zeta_{5/2}k_BT_c\left(\frac g{\lambda^3\zeta_{3/2}}\right)^{-1},\\
+\Longrightarrow\qquad L&=\frac52\frac{\zeta_{5/2}}{\zeta_{3/2}}k_BT_c\approx1.28k_BT_c.
+\end{aligned}
+\end{equation}
+
+为求压缩率 $\kappa_T=\left.\partial n/\partial P\right|_T/n$，对式 \eqref{eq:7.34} 求导，并利用式 \eqref{eq:7.51} 中的恒等式，得到
+\begin{equation}\label{eq:7.60}
+\left\{\begin{aligned}
+\frac{\mathrm dP}{\mathrm dz}&=\frac{gk_BT}{\lambda^3}\frac1zf_{3/2}^+(z),\\[1ex]
+\frac{\mathrm dn}{\mathrm dz}&=\frac g{\lambda^3}\frac1zf_{1/2}^+(z).
+\end{aligned}\right.
+\end{equation}
+这两个方程之比给出
+\begin{equation}\label{eq:7.61}
+\kappa_T=\frac{f_{1/2}^+(z)}{nk_BTf_{3/2}^+(z)},
+\end{equation}
+它在转变处发散，因为 $\lim_{z\to1}f_{1/2}^+(z)\to\infty$，也就是说，等温线与平坦的共存部分相切地相接。
+
+由巨正则系综中能量的表达式
+\begin{equation}\label{eq:7.62}
+E=\frac32PV=\frac32V\frac g{\lambda^3}k_BTf_{5/2}^+(z)\propto T^{5/2}f_{5/2}^+(z),
+\end{equation}
+并利用式 \eqref{eq:7.51}，热容可由下式得到
+\begin{equation}\label{eq:7.63}
+C_{V,N}=\left.\frac{\mathrm dE}{\mathrm dT}\right|_{V,N}=\frac32V\frac g{\lambda^3}k_BT\left[\frac5{2T}f_{5/2}^+(z)+\frac1zf_{3/2}^+(z)\left.\frac{\mathrm dz}{\mathrm dT}\right|_{V,N}\right].
+\end{equation}
+导数 $\left.\mathrm dz/\mathrm dT\right|_{V,N}$ 由粒子数固定的条件求出，即利用
+\begin{equation}\label{eq:7.64}
+\left.\frac{\mathrm dN}{\mathrm dT}\right|_V=0=\frac g{\lambda^3}V\left[\frac3{2T}f_{3/2}^+(z)+\frac1zf_{1/2}^+(z)\left.\frac{\mathrm dz}{\mathrm dT}\right|_{V,N}\right].
+\end{equation}
+代入解
+\begin{equation*}
+\frac Tz\left.\frac{\mathrm dz}{\mathrm dT}\right|_{V,N}=-\frac32\frac{f_{3/2}^+(z)}{f_{1/2}^+(z)}
+\end{equation*}
+
+% p.198
+
+\cnfigure{fig7-11}{玻色气体的热容在 $T_c$ 处有一个尖点。}
+
+代入式 \eqref{eq:7.63} 给出
+\begin{equation}\label{eq:7.65}
+\frac{C_V}{Vk_B}=\frac32\frac g{\lambda^3}\left[\frac52f_{5/2}^+(z)-\frac32\frac{f_{3/2}^+(z)^2}{f_{1/2}^+(z)}\right].
+\end{equation}
+把结果按 $z$ 的幂次展开表明，高温下热容大于经典值；$C_V/Nk_B=3/2[1+n\lambda^3/2^{7/2}+\cdots]$。在低温下 $z=1$，且
+\begin{equation}\label{eq:7.66}
+\frac{C_V}{Nk_B}=\frac{15}4\frac g{n\lambda^3}\zeta_{5/2}=\frac{15}4\frac{\zeta_{5/2}}{\zeta_{3/2}}\left(\frac T{T_c}\right)^{3/2}.
+\end{equation}
+低温下热容的 $T^{3/2}$ 行为很容易理解。在 $T=0$ 时所有粒子都占据 $\vec k=0$ 态。在小的但有限的温度下，动量直到大约 $k_m$（由 $\hbar^2k_m^2/2m=k_BT$ 确定）的态都会被占据。这些态的能量都正比于 $k_BT$。于是 $d$ 维下的激发能为 $E_\times\propto Vk_m^dk_BT$。由此得到的热容为 $C_V\propto Vk_BT^{d/2}$。这一推理与用来计算声子（或光子）气体热容的推理类似。幂律的差别仅仅来自低能激发能谱的差别（前者 $\mathcal E(k)\propto k^2$，后者 $\mathcal E(k)\propto k$）。在两种情形下激发的总数都不守恒，对应于 $\mu=0$。对玻色气体，这种不守恒只维持到转变温度，在转变温度处所有粒子都被从 $\vec k=0$ 的 $\mu=0$ 的储存库中激发出来。$C_V$ 在 $T_c$ 处连续，达到每个粒子约 $1.92k_B$ 的最大值，但在该点有导数的不连续。
+
+\bisection{超流 He\texorpdfstring{\textsuperscript{4}}{4}}{Superfluid He\texorpdfstring{\textsuperscript{4}}{4}}
+
+氦的同位素提供了量子流体的有趣例子。He 的两个电子以相反的自旋占据 1s 轨道。填满的轨道使这种惰性气体特别不活泼。两个 He 原子之间仍然存在 van der Waals 相互作用，但原子间势只有一个深度为 9 K 的浅极小值，出现在大约 3 \AA{} 的间距处。这种相互作用的微弱使 He 成为一种普适的\term{润湿剂}{wetting agent}{7.wetting-agent}。由于 He 原子对几乎所有其它分子都有更强的吸引，它们很容易铺展到任何物质的表面上。由于其质量轻，He 原子在 $T=0$ 时经历很大的零点涨落。这些涨落足以\emph{熔化}固相，因此 He 在常压下保持液态。要使 He 原子足够局域化从而在 $T=0$ 时得到固相，需要超过 25 个大气压的压强。零温下这种量子液体的一个显著性质是，与它的经典对应物不同，它具有零熵。
+
+% p.199
+
+\cnfigure{fig7-12}{He\textsuperscript{4} 的示意相图，其中在液体的正常形式与超流形式之间存在一个相变。}
+
+较轻的同位素 He\textsuperscript{3} 有三个核子，服从费米统计。其液相用 7.5 节中讨论的那类费米气体描述得很好。原子之间的相互作用不会显著改变前面描述的非相互作用图像。与此相对，较重的同位素 He\textsuperscript{4} 是玻色子。氦可以通过蒸发过程被冷却：把液氦放入一个孤立容器中，与具有有限蒸气密度的气相平衡。当氦气被抽走时，一部分液体蒸发以填补其位置。蒸发过程伴随着潜热的释放，从而使液体冷却。沸腾的液体相当活跃而湍动，就像一锅沸水一样。然而，当液体被冷却到 2.2 K 以下时，它突然变得平静，湍动消失。这一相变两侧的液体通常分别被称为 HeI 与 HeII。
+
+\cnfigure{fig7-13}{通过抽出蒸气对氦进行蒸发冷却。}
+
+% p.200
+
+\cnfigure{fig7-14}{当 $P_1\to P_2$ 时可以使超流氦通过一个（超）漏管，并导致进液腔的冷却。}
+
+HeII 具有不寻常的流体力学性质。它能毫无阻力地流过最细的毛细管。考虑一个把 HeII 从一个容器通过一根填满粉末的小管推到另一个容器的实验。对普通流体，为维持流动必须在两个容器之间维持正比于粘度的有限压强差。HeII 即使在零压强差的极限下也会流动，其行为如同粘度为零。由于这个原因，它被称为\term{超流体}{superfluid}{7.superfluid}。超流动伴随着失去 HeII 的容器的升温与接收 HeII 的容器的降温；这就是\term{机械热效应}{mechano-caloric effect}{7.mechano-caloric}。反过来，HeII 会通过从热的区域流向来消除温度差。这在\term{喷泉效应}{fountain effect}{7.fountain-effect}中得到了戏剧性的展示：超流体自发地从被加热的容器沿一根管子向上运动。
+
+\cnfigure{fig7-15}{在「喷泉效应」中氦从（电阻）加热腔中喷出。}
+
+在另一些情形下 HeII 表现得像粘性流体。测量液体粘度的经典方法是通过扭转振子：把一组间距很近的圆盘连到一根轴上，浸入流体中并使其振荡。振荡周期正比于转动惯量，而转动惯量会被被振子拖动的流体的量所改变。Andronikashvilli 对 HeII 做了这个实验，他确实发现了有限的粘性拖曳。此外，振子频率随温度的变化表明，被振子拖动的流体的量在转变温度以下开始减小。测得的\term{正常密度}{normal density}{7.normal-density}在 $T\to0$ 时趋于零，大致按 $T^4$ 变化。
+
+1938 年，Fritz London 提出，一个好的出发假设是：向超流态的转变与玻色--爱因斯坦凝聚有关。这一假设可以解释若干观测事实：
+
+% p.201
+
+\cnfigure{fig7-16}{可以用一个扭转振子来测量超流体中的「正常组分」。}
+
+（1）每个粒子体积为 $v=46.2$ \AA\textsuperscript{3} 的理想玻色气体的临界温度由式 \eqref{eq:7.54} 得到为
+\begin{equation}\label{eq:7.67}
+T_c=\frac{h^2}{2\pi m_{\text{He}}k_B}\left(v\zeta_{3/2}\right)^{-2/3}\approx3.14\ \text{K}.
+\end{equation}
+实际的转变温度 $T_c\approx2.18$ K 与这一数值相差不远。
+
+（2）转变的起源必须与量子统计有关，因为 He\textsuperscript{3} 在原子层次上与之相似，但它是费米子，没有类似的转变。（实际上 He\textsuperscript{3} 确实会变成超流，但温度只有几个毫开尔文。这源于 He\textsuperscript{3} 原子的配对，配对改变了它们的统计。）
+
+（3）玻色凝聚体可以解释观测到的 HeII 的热机械性质。式 \eqref{eq:7.55} 中的压强表达式只是温度的函数，而不是密度的函数。因此，压强的变化伴随着温度的变化。这也是 HeII 中没有沸腾活动的原因。气泡在沸腾液体中的局部热点处成核并长大。在普通流体中，温度的变化只能通过\term{热扩散}{heat diffusion}{7.heat-diffusion}这一缓慢过程弛豫到平衡。与此相对，如果局部压强只是温度的函数，那么在热点处压强就会升高。流体会响应压强梯度而流动，并非常迅速地（以介质中的声速）消除这些梯度。
+
+（4）HeII 的流体力学行为可以用 Tisza 的\term{二流体模型}{two-fluid model}{7.two-fluid-model}来解释，它假定在 $T<T_c$ 时存在两种成分的共存：
+
+（a）一个密度为 $\rho_n$、以速度 $\vec v_n$ 运动、并具有有限熵密度 $s_n$ 的\term{正常成分}{normal component}{7.normal-component}。
+
+（b）一个密度为 $\rho_s$、无粘性且无涡旋（$\nabla\times\vec u_s=0$）地流动、并具有零熵密度 $s_s=0$ 的\term{超流成分}{superfluid component}{7.superfluid-component}。
+
+在\term{超漏}{super-leak}{7.super-leak}实验中，通过的是超流成分，它降低了熵、从而降低了温度。在 Andronikashvilli 实验中，正常成分附着在扭转振子上并被它拖曳。于是这个实验给出了 $\rho_n$ 与 $\rho_s$ 之比。
+
+然而，超流氦与理想玻色凝聚体之间有许多重要的差别：
+
+% p.202
+
+（1）相互作用在液态中当然起着重要作用。玻色--爱因斯坦凝聚体的压缩率为无穷大，而 HeII 具有有限的密度（与原子体积有关），并且基本上是不可压缩的。
+
+（2）可以证明，即使在 $T=0$ 时，理想玻色凝聚体也不是超流的。这是因为低能谱 $\mathcal E(\vec k)=\hbar^2k^2/2m$ 容有太多的激发。任何在这样流体中运动的外部物体都可以很容易地通过激发这些模式而把能量损失给流体，导致有限的粘度。
+
+（3）热容与超流密度的具体函数形式与理想玻色凝聚体中的对应量非常不同。测得的热容在转变处发散，其特征形状与 $\lambda$ 类似，并在低温下按 $T^3$ 趋于零（理想玻色气体则是 $T^{3/2}$）。Andronikashvilli 实验中得到的超流密度在转变处按 $(T_c-T)^{2/3}$ 趋于零，而正常成分在 $T\to0$ 时大致按 $T^4$ 趋于零（式 \eqref{eq:7.52} 中的凝聚体密度则是 $T^{3/2}$）。理解 $T_c$ 附近奇异行为的本质超出了本次讨论的范围，将在配套卷中处理。不过，接近零温时的行为暗示着一种不同的低能激发谱。
+
+根据实验测得的热容的形状，Landau 提出低能激发的谱实际上与声子的谱相似。这是粒子之间相互作用的结果。经典液体的低能激发是纵声波。（作为比较，固体容许三种这样的激发，两个横波和一个纵波。）对应原理表明，这类模式的量子化版本也应存在于量子液体中。与声子的情形一样，激发的线性谱导致热容按 $T^3$ 趋于零。声波的速度可以由 $T^3$ 依赖关系的系数算出（见习题），为 $v\approx240\ \text{m}\,\text{s}^{-1}$。热容的进一步反常可以通过假定激发谱向下弯曲、并在波数 $k_0\approx2$ \AA\textsuperscript{-1} 附近有一个极小值来解释。该极小值附近的激发被称为\term{旋子}{rotons}{7.rotons}，其能量为
+\begin{equation}\label{eq:7.68}
+\mathcal E_{\text{roton}}(\vec k)=\Delta+\frac{\hbar^2}{2\mu}(k-k_0)^2,
+\end{equation}
+其中 $\Delta\approx8.6$ K，且 $\mu\approx0.16m_{\text{He}}$。Landau 所假设的这一谱在 1950 年代由中子散射测量直接证实。
+
+% =============================================================
+%  本章斜体术语清单（供用户圈定附录 B）
+% =============================================================
+% —— 附录 B 候选术语（原文中的斜体术语，本章内首次出现处已埋 \term 锚点，共 30 条）：
+%    p.181 任意子（anyons）—— 7.anyons
+%    p.182 奇偶性（parity）—— 7.parity
+%    p.182 表示（representation）—— 7.representation
+%    p.187 平均占有数（average occupation number）—— 7.avg-occ-number
+%    p.188 自旋（spin）—— 7.spin
+%    p.188 自旋简并度（spin degeneracy）—— 7.spin-degeneracy
+%    p.190 量子简并极限（quantum degenerate limit）—— 7.quantum-degenerate-limit
+%    p.190 费米占有数（fermi occupation number）—— 7.fermi-occ-number
+%    p.190 费米能（fermi energy）—— 7.fermi-energy
+%    p.190 费米海（fermi sea）—— 7.fermi-sea
+%    p.190 费米波数（fermi wavenumber）—— 7.fermi-wavenumber
+%    p.191 Sommerfeld 展开（Sommerfeld expansion）—— 7.sommerfeld-expansion
+%    p.192 费米压强（fermi pressure）—— 7.fermi-pressure
+%    p.193 费米温度（fermi temperature）—— 7.fermi-temperature
+%    p.194 平均玻色占有数（average bose occupation number）—— 7.bose-occ-number
+%    p.195 激发态（excited states）—— 7.excited-states
+%    p.195 宏观占据（macroscopic occupation）—— 7.macroscopic-occupation
+%    p.195 玻色--爱因斯坦凝聚（Bose--Einstein condensation）—— 7.bose-einstein-condensation
+%    p.196 Clausius--Clapeyron 方程（Clausius--Clapeyron equation）—— 7.clausius-clapeyron
+%    p.198 润湿剂（wetting agent）—— 7.wetting-agent
+%    p.200 超流体（superfluid）—— 7.superfluid
+%    p.200 机械热效应（mechano-caloric effect）—— 7.mechano-caloric
+%    p.200 喷泉效应（fountain effect）—— 7.fountain-effect
+%    p.200 正常密度（normal density）—— 7.normal-density
+%    p.201 热扩散（heat diffusion）—— 7.heat-diffusion
+%    p.201 二流体模型（two-fluid model）—— 7.two-fluid-model
+%    p.201 正常成分（normal component）—— 7.normal-component
+%    p.201 超流成分（superfluid component）—— 7.superfluid-component
+%    p.201 超漏（super-leak）—— 7.super-leak
+%    p.202 旋子（rotons）—— 7.rotons
+% —— 以下术语已在前面各章（或本章前面）首次标记，本章出现处不重复埋锚点；
+%    附录 B 的页码只取全书首次出现处（下列括号内为首次锚定处）：
+%    p.181、p.198、p.201 熵（entropy，第 1 章 p.14）
+%    p.182、p.184 波函数（wave function，第 6 章 p.170）
+%    p.182 本征态（eigenstates，第 6 章 p.171）
+%    p.183--184、p.187、p.190--191、p.194 占有数（occupation numbers，第 4 章 p.102）
+%    p.184 密度矩阵（density matrix，第 6 章 p.172）
+%    p.185 相空间（phase space，第 3 章 p.57）
+%    p.185、p.187 配分函数（partition function，第 4 章 p.111）
+%    p.186、p.190 维里系数（virial coefficients，第 5 章 p.130）
+%    p.186 热波长（thermal wavelength，第 6 章 p.175）
+%    p.187 巨正则系综（grand canonical ensemble，第 4 章 p.118）
+%    p.190 理想气体（ideal gas，第 1 章 p.4）
+%    p.191--192 化学势（chemical potential，第 1 章 p.18）
+%    p.195 逸度（fugacity，第 5 章 p.133）
+%    p.197 系综（ensemble，第 3 章 p.58）
+%    p.198、p.202 声子（phonons，第 6 章 p.166）
+% —— 原文中属于「强调」而非术语的斜体（讲义以 \emph{} 呈现，不收入附录 B）：
+%    p.182 积；p.183 子空间、费米、玻色、占有数；p.187 费米子、玻色子；
+%    p.196 与密度无关；p.198 熔化。
+%    另：p.182 的「偶数」（even）、「奇数」（odd）是原文行内数学注解用的斜体，
+%    讲义以 \textit{} 呈现，不作术语。
+% —— 用户拍板（第 5 章交付后）：原书小节标题与行内小标题一律为**粗体**、非斜体，
+%    标题里的词不属于「原文中的斜体术语」，不收录、不埋锚点。本章小节标题
+%    （7.1 Hilbert space of identical particles … 7.7 Superfluid He-4）同此处理
+%    （7.7 的标题词 superfluid 虽与本章 p.200 的术语同形，但标题本身不是术语出处）。
+% —— 习题（p.202 下半页起至 p.210「Problems for chapter 7」）按用户要求不译。

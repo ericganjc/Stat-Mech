@@ -1,0 +1,988 @@
+% =============================================================
+%  第 4 章 经典统计力学（Classical statistical mechanics）
+%  原文：Chapter 4, p.98--120   公式：4.1--4.112   图：4.1--4.11   表：4.1
+% =============================================================
+\bichapter{经典统计力学}{Classical Statistical Mechanics}
+
+% =============================================================
+\bisection{一般定义}{General definitions}
+% p.98
+
+\textbf{统计力学}\emph{是研究大量自由度的平衡宏观性质的、基于概率的方法。}
+
+正如第 1 章所讨论的，宏观物体的平衡性质由热力学定律唯象地描述。宏观态 $M$ 依赖于相对少数几个热力学坐标。为了给这些性质提供更为基本的推导，我们可以考察组成一个宏观物体的许多自由度所遵循的动力学。描述每一个微观态 $\mu$ 需要极大量的信息，而相应的时间演化（由第 3 章讨论的 Hamilton 方程支配）通常相当复杂。统计力学不去追随单个（\textit{pure}）微观态的演化，而是考察对应于一个给定（\textit{mixed}）宏观态的微观态系综。它的目标是给出平衡系综的概率 $p_M(\mu)$。Liouville 定理为「在平衡系综中所有可及微观态等概率」这一假设提供了理由。正如第 2 章所解释的，这样的概率指认是主观的。本章将给出若干不同平衡系综的 $p_M(\mu)$ 的无偏估计。一个核心结论是：在具有大量自由度的热力学极限下，所有这些系综实际上都等价。与动理论不同，平衡态统计力学不涉及各种系统\emph{如何}演化到平衡态这一问题。
+
+\bisection{微正则系综}{The microcanonical ensemble}
+% p.98
+
+我们在热力学中的出发点是力学上与绝热上孤立的系统。在没有热量或功输入系统的情况下，内能 $E$ 与广义坐标 $\mathbf x$ 都是固定的，它们指定了一个宏观态 $M\equiv(E,\mathbf x)$。相应的混合微观态集合构成\term{微正则系综}{microcanonical ensemble}{4.microcanonical}。在经典统计力学中，这些微观态
+
+% p.99
+由相空间中的点来定义，其时间演化由 Hamilton 量 $\mathscr H(\mu)$ 支配，如第 3 章所讨论的。由于 Hamilton 方程式 \eqref{eq:3.1} 守恒给定系统的总能量，所有微观态都被限制在相空间中 $\mathscr H(\mu)=E$ 的曲面上。我们假定不存在其它守恒量，因而这个曲面上的所有点都彼此可及。统计力学的中心假定是：平衡概率分布由下式给出
+
+\begin{equation}\label{eq:4.1}
+  p_{(E,\mathbf x)}(\mu)=\frac{1}{\Omega(E,\mathbf x)}\cdot
+  \begin{cases}1 & \text{对于 }\mathscr H(\mu)=E\\ 0 & \text{其它}\end{cases}.
+\end{equation}
+
+下面作一些评述与澄清：
+
+\begin{enumerate}[itemsep=0.35em,topsep=0.4em]
+  \item \emph{Boltzmann 的等先验平衡概率假设}所指的是上述假定，它实际上是在能量恒定的约束下相空间中的\emph{无偏}概率估计。这一指认与 Liouville 定理一致，但并不是由它要求的。注意，指定微观态 $\mu$ 的相空间必须由\term{正则共轭对}{canonically conjugate pairs}{4.canonical-pairs}组成。在\term{正则变量变换}{canonical change of variables}{4.canonical-change} $\mu\to\mu'$ 下，相空间中的体积保持不变。这类变换的 Jacobi 因子为 1，而变换后的概率 $p(\mu')=p(\mu)|\partial\mu/\partial\mu'|$ 在恒定能量曲面上仍然是均匀的。
+
+  \item \term{归一化因子}{normalization factor}{4.normalization-factor} $\Omega(E,\mathbf x)$ 就是相空间中恒定能量 $E$ 的曲面的面积。为了避免与只在曲面上非零的密度相联系的那些细微之处，有时更方便的做法是把微正则系综定义为要求 $E-\Delta\le\mathscr H(\mu)\le E+\Delta$，也就是说，把系综的能量约束到不确定度为 $\Delta$ 的范围内。在这种情况下，可及相空间构成围绕能量 $E$ 的曲面、厚度为 $2\Delta$ 的壳层。归一化因子现在是该壳层的体积 $\Omega'\approx2\Delta\Omega$。由于 $\Omega$ 通常指数式地依赖于 $E$，只要 $\Delta\sim\mathcal{O}(E^0)$（甚至 $\mathcal{O}(E^1)$），壳层的表面与体积之差在 $E\propto N\to\infty$ 极限下就可以忽略，于是我们可以互换地使用 $\Omega$ 与 $\Omega'$。
+
+  \item 这个均匀概率分布的熵由下式给出
+  \begin{equation}\label{eq:4.2}
+    S(E,\mathbf x)=k_B\ln\Omega(E,\mathbf x).
+  \end{equation}
+  与式 \eqref{eq:2.70} 的定义相比多了一个 $k_B$ 因子，使得熵具有热力学中所用的「每开尔文对应的能量」这一正确量纲。在相空间中的正则坐标变换下，$\Omega$ 与 $S$ 都不改变。对一组彼此独立的系统，总可及相空间是各个可及相空间之积，即 $\Omega_{\text{Total}}=\prod_i\Omega_i$。由此得到的熵因而是可加的，正如对一个广延量所预期的那样。
+\end{enumerate}
+
+热力学的各种结果现在都可以从式 \eqref{eq:4.1} 推出，只要我们考虑的是具有许多自由度的宏观系统。
+
+% p.100
+\cnfigure{fig4-1}{两个孤立系统之间的能量交换。}
+
+第零定律（\textit{zeroth law}）：热力学中讨论平衡性质的方式，是把两个原先孤立的系统接触起来，允许它们交换热量。我们同样可以把两个微正则系统放到一起，允许它们交换能量，但不交换功。如果原来两个系统的能量分别为 $E_1$ 与 $E_2$，则合并后的系统具有能量 $E=E_1+E_2$。假定两部分之间的相互作用很小，联合系统的每一个微观态对应于两个组分的微观态对，即 $\mu=\mu_1\otimes\mu_2$，且 $\mathscr H(\mu_1\otimes\mu_2)=\mathscr H_1(\mu_1)+\mathscr H_2(\mu_2)$。由于联合系统处于能量为 $E=E_1+E_2$ 的微正则系综之中，在平衡时
+
+\begin{equation}\label{eq:4.3}
+  p_E(\mu_1\otimes\mu_2)=\frac{1}{\Omega(E)}\cdot
+  \begin{cases}1 & \text{对于 }\mathscr H_1(\mu_1)+\mathscr H_2(\mu_2)=E\\ 0 & \text{其它}\end{cases}.
+\end{equation}
+
+由于只有总能量是固定的，总可及相空间由下式算出
+
+\begin{equation}\label{eq:4.4}
+  \Omega(E)=\int \mathrm{d}E_1\,\Omega_1(E_1)\Omega_2(E-E_1)=\int \mathrm{d}E_1\exp\left[\frac{S_1(E_1)+S_2(E-E_1)}{k_B}\right].
+\end{equation}
+
+\cnfigure{fig4-2}{处于接触中的两个系统的联合态数，在「平衡」能量 $E_1^*$ 与 $E_2^*$ 处压倒性地大。}
+
+两个系统在新的联合平衡态中的性质隐含在式 \eqref{eq:4.3} 之中。我们可以通过考察由式 \eqref{eq:4.4} 得出的熵，把它们显式地表达出来。熵的广延性提示 $S_1$ 与 $S_2$ 分别正比于各系统中粒子的数目，这使得式 \eqref{eq:4.4} 中的被积函数是一个指数式大的量。因此该积分可以用鞍点法等于被积函数的最大值，这个最大值在能量 $E_1^*$ 与 $E_2^*=E-E_1^*$ 处取得，也就是说
+
+\begin{equation}\label{eq:4.5}
+  S(E)=k_B\ln\Omega(E)\approx S_1(E_1^*)+S_2(E_2^*).
+\end{equation}
+
+% p.101
+最大值的位置由对式 \eqref{eq:4.4} 中的指数求极值得到，由此得到条件
+
+\begin{equation}\label{eq:4.6}
+  \left.\frac{\partial S_1}{\partial E_1}\right|_{\mathbf x_1}=\left.\frac{\partial S_2}{\partial E_2}\right|_{\mathbf x_2}.
+\end{equation}
+
+虽然所有联合微观态都同样可能，上述结果却表明在 $(E_1^*,E_2^*)$ 附近的态要指数式地多得多。最初，联合系统从某一点 $(E_1^0,E_2^0)$ 的近旁出发。在能量交换发生之后，合并后的系统会探索一整套新的微观态。这些概率论证没有提供关于这些微观态之间演化动力学、或者建立平衡所需时间的信息。然而，一旦经过足够长的时间使得等先验概率假设重新成立，系统就压倒性地极可能处于内能为 $(E_1^*,E_2^*)$ 的态上。在这个\emph{平衡}点上，条件 \eqref{eq:4.6} 得到满足，它给出了两个态函数之间的关系。这两个态函数因而等价于经验温度，并且确实与热力学的基本结果一致，我们有
+
+\begin{equation}\label{eq:4.7}
+  \left.\frac{\partial S}{\partial E}\right|_{\mathbf x}=\frac{1}{T}.
+\end{equation}
+
+第一定律（\textit{first law}）：接下来我们通过\emph{可逆地}改变坐标 $\delta\mathbf x$，来考察 $S(E,\mathbf x)$ 随 $\mathbf x$ 的变化。这给出对系统所做的功，数量为 $\inexd W=\mathbf J\cdot\delta\mathbf x$，它把内能变为 $E+\mathbf J\cdot\delta\mathbf x$。熵的一阶改变由下式给出
+
+\begin{equation}\label{eq:4.8}
+  \delta S=S(E+\mathbf J\cdot\delta\mathbf x,\mathbf x+\delta\mathbf x)-S(E,\mathbf x)=\left(\left.\frac{\partial S}{\partial E}\right|_{\mathbf x}\mathbf J+\left.\frac{\partial S}{\partial\mathbf x}\right|_E\right)\cdot\delta\mathbf x.
+\end{equation}
+
+这个改变会自发地发生，使系统进入更可能的态，除非括号中的量为零。利用式 \eqref{eq:4.7}，这让我们识别出这些偏导数
+
+\begin{equation}\label{eq:4.9}
+  \left.\frac{\partial S}{\partial x_i}\right|_{E,\mathbf x_{j\neq i}}=-\frac{J_i}{T}.
+\end{equation}
+
+这样我们就识别出了 $S$ 的所有变化，于是有
+
+\begin{equation}\label{eq:4.10}
+  \mathrm{d}S(E,\mathbf x)=\frac{\mathrm{d}E}{T}-\frac{\mathbf J\cdot\delta\mathbf x}{T},\qquad\Longrightarrow\qquad \mathrm{d}E=T\mathrm{d}S+\mathbf J\cdot\delta\mathbf x,
+\end{equation}
+
+这让我们识别出热量输入 $\inexd Q=T\mathrm{d}S$。
+
+第二定律（\textit{second law}）：显然，上述关于平衡的统计定义依赖于大量自由度 $N\gg1$ 的存在，这使得合并系统以在 $N$ 中指数式地小的概率被发现其组分能量不同于 $(E_1^*,E_2^*)$。由这一构造，平衡点比任何出发点都有更多的可及态，也就是说，
+
+\begin{equation}\label{eq:4.11}
+  \Omega_1(E_1^*,\mathbf x_1)\Omega_2(E_2^*,\mathbf x_2)\ge\Omega_1(E_1,\mathbf x_1)\Omega_2(E_2,\mathbf x_2).
+\end{equation}
+
+% p.102
+在向更可能（布居更密）的区域演化的过程中，存在不可逆的信息损失，并伴随熵的增加，
+
+\begin{equation}\label{eq:4.12}
+  \delta S=S_1(E_1^*)+S_2(E_2^*)-S_1(E_1)-S_2(E_2)\ge0,
+\end{equation}
+
+正如热力学第二定律所要求的那样。当两个物体初次接触时，式 \eqref{eq:4.6} 中的等号并不成立。熵的变化使得
+
+\begin{equation}\label{eq:4.13}
+  \delta S=\left(\left.\frac{\partial S_1}{\partial E_1}\right|_{\mathbf x_1}-\left.\frac{\partial S_2}{\partial E_2}\right|_{\mathbf x_2}\right)\delta E_1=\left(\frac{1}{T_1}-\frac{1}{T_2}\right)\delta E_1\ge0,
+\end{equation}
+
+也就是说，热量（能量）从较热的物体流向较冷的物体，就像 Clausius 对第二定律的表述那样。
+
+\emph{稳定性条件}：由于点 $(E_1^*,E_2^*)$ 是一个极大值点，$S_1(E_1)+S_2(E_2)$ 的二阶导数在该点必须为负，也就是说，
+
+\begin{equation}\label{eq:4.14}
+  \left.\frac{\partial^2 S_1}{\partial E_1^2}\right|_{\mathbf x_1}+\left.\frac{\partial^2 S_2}{\partial E_2^2}\right|_{\mathbf x_2}\le0.
+\end{equation}
+
+把上述条件应用于同一个系统的两部分，就重新得到第 1.9 节所讨论的\emph{热稳定性}条件 $C_V\ge0$。类似地，式 \eqref{eq:4.8} 中的二阶变化必须为负，这要求矩阵 $\partial^2S/\partial x_i\partial x_j|_E$ 正定。
+
+\bisection{二能级系统}{Two-level systems}
+% p.102
+
+考虑囚禁在固体基体中的 $N$ 个杂质原子。每个杂质可以处于两种状态之一，能量分别为 0 与 $\epsilon$。这个例子与迄今考虑的情形有些不同，其区别在于允许的微观态是离散的。Liouville 定理适用于连续相空间中的 Hamilton 演化。虽然在离散态的计数方面歧义更少，但保证所有允许微观态被同等访问的动力学此刻仍未被明确指定。（稍后将给出一个来自量子力学演化的例子。）
+
+二能级系统的微观态由\term{占有数}{occupation numbers}{4.occupation-numbers}集合 $\{n_i\}$ 指定，其中 $n_i=0$ 或 1，取决于第 $i$ 个杂质是处于基态还是处于激发态。总能量为
+
+\begin{equation}\label{eq:4.15}
+  \mathscr H(\{n_i\})=\epsilon\sum_{i=1}^N n_i\equiv\epsilon N_1,
+\end{equation}
+
+其中 $N_1$ 是激发杂质的总数。宏观态由总能量 $E$ 与杂质数目 $N$ 指定。微正则概率因而是
+
+\begin{equation}\label{eq:4.16}
+  p\left(\{n_i\}\right)=\frac{1}{\Omega(E,N)}\delta_{\epsilon\sum_i n_i,E}.
+\end{equation}
+
+% p.103
+由于有 $N_1=E/\epsilon$ 个激发杂质，归一化因子 $\Omega$ 就是从已有的 $N$ 个能级中选出 $N_1$ 个激发能级的方式数，由二项式系数给出
+
+\begin{equation}\label{eq:4.17}
+  \Omega(E,N)=\frac{N!}{N_1!(N-N_1)!}.
+\end{equation}
+
+熵
+
+\begin{equation}\label{eq:4.18}
+  S(E,N)=k_B\ln\frac{N!}{N_1!(N-N_1)!}
+\end{equation}
+
+可以在 $N_1,N\gg1$ 的极限下用 Stirling 公式化简为
+
+\begin{equation}\label{eq:4.19}
+  \begin{aligned}
+    S(E,N)&\approx-Nk_B\left[\frac{N_1}{N}\ln\frac{N_1}{N}+\frac{N-N_1}{N}\ln\frac{N-N_1}{N}\right]\\
+    &=-Nk_B\left[\left(\frac{E}{N\epsilon}\right)\ln\left(\frac{E}{N\epsilon}\right)+\left(1-\frac{E}{N\epsilon}\right)\ln\left(1-\frac{E}{N\epsilon}\right)\right].
+  \end{aligned}
+\end{equation}
+
+平衡温度现在可以由式 \eqref{eq:4.7} 算出，即
+
+\begin{equation}\label{eq:4.20}
+  \frac{1}{T}=\left.\frac{\partial S}{\partial E}\right|_N=-\frac{k_B}{\epsilon}\ln\left(\frac{E}{N\epsilon-E}\right).
+\end{equation}
+
+\cnfigure{fig4-3}{二能级系统的内能，作为其温度 $T$ 的函数。}
+
+另一种做法是，处在温度 $T$ 的内能由下式给出
+
+\begin{equation}\label{eq:4.21}
+  E(T)=\frac{N\epsilon}{\exp\left(\frac{\epsilon}{k_BT}\right)+1}.
+\end{equation}
+
+内能是温度的单调函数，从 $T=0$ 时的最小值 0 增大到无穷温度时的最大值 $N\epsilon/2$。然而，也完全可以以大于 $N\epsilon/2$ 的能量出发，由式 \eqref{eq:4.20}，这些能量对应于\term{负温度}{negative temperatures}{4.negative-temperatures}。负温度的起源在于微观态数目随能量增加而\emph{减少}，这与在大多数系统中发生的情形相反。二能级系统的能量有上界，而在这一最大能量附近微观态非常少。因此，能量增加会导致系统更加有序。然而，一旦一个负温度的系统与
+
+% p.104
+宇宙的其余部分（或其任何在能量上没有上界的部分）接触，它就会失去多余的能量，并在一个正温度上达到平衡。负温度的世界相当不寻常，其表现是：给系统加热可以使其冷却，而取走热量则可以使其升温。有一些物理例子，例如激光中以及磁性自旋中，系统被暂时制备在负温度的亚稳平衡态上。
+
+系统的热容由下式给出
+
+\begin{equation}\label{eq:4.22}
+  C=\frac{\mathrm{d}E}{\mathrm{d}T}=Nk_B\left(\frac{\epsilon}{k_BT}\right)^2\exp\left(\frac{\epsilon}{k_BT}\right)\left[\exp\left(\frac{\epsilon}{k_BT}\right)+1\right]^{-2},
+\end{equation}
+
+\cnfigure{fig4-4}{二能级系统的热容在高温与低温两端都趋于零。}
+
+它在低温与高温两端都趋于零。低温下 $C$ 以 $\exp(-\epsilon/k_BT)$ 的方式趋于零，这是所有基态与最低激发态之间存在\term{能隙}{energy gap}{4.energy-gap}的系统的特征。高温下 $C$ 趋于零则是一种\term{饱和}{saturation}{4.saturation}效应，对态数作为能量的函数存在极大值的系统是普遍的现象。在这两者之间，热容在特征温度 $T_\epsilon\propto\epsilon/k_B$ 处呈现一个峰。
+
+\cnfigure{fig4-5}{找到单个杂质处于其基态（上）或激发态（下）的概率，作为温度 $T$ 的函数。}
+
+统计力学所提供的远不止关于能量与热容这类量的宏观信息。式 \eqref{eq:4.16} 是一个完整的联合概率分布，其中含有关于微观态的大量信息。例如，激发某个特定杂质的无条件概率由下式得到
+
+\begin{equation}\label{eq:4.23}
+  p(n_1)=\sum_{\{n_2,\cdots,n_N\}}p\left(\{n_i\}\right)=\frac{\Omega(E-n_1\epsilon,N-1)}{\Omega(E,N)}.
+\end{equation}
+
+% p.105
+第二个等号的得到，是因为注意到一旦第一个杂质所占据的能量被指定，余下的能量就必须在另外 $N-1$ 个杂质之间分配。利用式 \eqref{eq:4.17}，
+
+\begin{equation}\label{eq:4.24}
+  p(n_1=0)=\frac{\Omega(E,N-1)}{\Omega(E,N)}=\frac{(N-1)!}{N_1!(N-1-N_1)!}\cdot\frac{N_1!(N-N_1)!}{N!}=1-\frac{N_1}{N},
+\end{equation}
+
+以及 $p(n_1=1)=1-p(n_1=0)=N_1/N$。利用 $N_1=E/\epsilon$ 与式 \eqref{eq:4.21}，处在温度 $T$ 的占据概率为
+
+\begin{equation}\label{eq:4.25}
+  p(0)=\frac{1}{1+\exp\left(-\frac{\epsilon}{k_BT}\right)},\qquad\text{以及}\qquad
+  p(1)=\frac{\exp\left(-\frac{\epsilon}{k_BT}\right)}{1+\exp\left(-\frac{\epsilon}{k_BT}\right)}.
+\end{equation}
+
+\bisection{理想气体}{The ideal gas}
+% p.105
+
+如第 3 章所讨论的，由 $N$ 个粒子组成的气体的微观态对应于 $6N$ 维相空间中的点 $\mu\equiv\{\vec p_i,\vec q_i\}$。忽略相互作用的势能，粒子服从 Hamilton 量
+
+\begin{equation}\label{eq:4.26}
+  \mathscr H=\sum_{i=1}^N\left[\frac{\vec p_i{}^2}{2m}+U(\vec q_i)\right],
+\end{equation}
+
+其中 $U(\vec q)$ 描述体积为 $V$ 的盒子所施加的势。一个微正则系综由它的能量、体积与粒子数指定，$M\equiv(E,V,N)$。一个微观态的联合 PDF 为
+
+\begin{equation}\label{eq:4.27}
+  p(\mu)=\frac{1}{\Omega(E,V,N)}\cdot
+  \begin{cases}1 & \text{对于 }\vec q_i\text{ 在盒内，且 }\sum_i\vec p_i{}^2/2m=E\ (\pm\Delta_E)\\ 0 & \text{其它}\end{cases}.
+\end{equation}
+
+在允许的微观态中，粒子的坐标必须位于盒内，而动量则被约束在（超）球面 $\sum_{i=1}^N\vec p_i{}^2=2mE$ 上。允许的相空间因而是两部分之积：来自坐标的贡献 $V^N$，以及来自动量的、半径为 $\sqrt{2mE}$ 的 $3N$ 维球面的面积。（如果微观态的能量被接受在能量区间 $E\pm\Delta_E$ 之内，则动量空间中相应的体积就是一个厚度为 $\Delta_R=\sqrt{2m/E}\Delta_E$ 的（超）球壳的体积。）一个 $d$ 维球的面积为 $\mathcal{A}_d=S_dR^{d-1}$，其中 $S_d$ 是广义立体角。
+
+计算 $d$ 维立体角的一个简单办法是考虑 $d$ 个 Gaussian 积分之积，
+
+\begin{equation}\label{eq:4.28}
+  I_d\equiv\left(\int_{-\infty}^{\infty}\mathrm{d}x\,\mathrm{e}^{-x^2}\right)^d=\pi^{d/2}.
+\end{equation}
+
+另一种做法是，我们可以把 $I_d$ 看成遍及整个 $d$ 维空间的积分，也就是说，
+
+\begin{equation}\label{eq:4.29}
+  I_d=\int\prod_{i=1}^d\mathrm{d}x_i\exp\left(-x_i^2\right).
+\end{equation}
+
+% p.106
+被积函数具有球对称性，我们可以变换到坐标 $R^2=\sum_ix_i^2$。注意到这些坐标中相应的体积元为 $\mathrm{d}V_d=S_dR^{d-1}\mathrm{d}R$，
+
+\begin{equation}\label{eq:4.30}
+  I_d=\int_0^\infty\mathrm{d}R\,S_dR^{d-1}\mathrm{e}^{-R^2}=\frac{S_d}{2}\int_0^\infty\mathrm{d}y\,y^{d/2-1}\mathrm{e}^{-y}=\frac{S_d}{2}(d/2-1)!,
+\end{equation}
+
+其中我们先把变量变换为 $y=R^2$，然后使用了式 \eqref{eq:2.63} 中 $n!$ 的积分表示。令 $I_d$ 的表达式 \eqref{eq:4.28} 与 \eqref{eq:4.30} 相等，就得到立体角的最终结果
+
+\begin{equation}\label{eq:4.31}
+  S_d=\frac{2\pi^{d/2}}{(d/2-1)!}.
+\end{equation}
+
+可及相空间的体积因而是
+
+\begin{equation}\label{eq:4.32}
+  \Omega(E,V,N)=V^N\frac{2\pi^{3N/2}}{(3N/2-1)!}(2mE)^{(3N-1)/2}\Delta_R.
+\end{equation}
+
+对上述表达式取对数就得到熵。利用 Stirling 公式，并在 $N$ 很大的极限下略去 1 阶的项或 $\ln E\sim\ln N$ 的项，结果为
+
+\begin{equation}\label{eq:4.33}
+  \begin{aligned}
+    S(E,V,N)&=k_B\left[N\ln V+\frac{3N}{2}\ln(2\pi mE)-\frac{3N}{2}\ln\frac{3N}{2}+\frac{3N}{2}\right]\\
+    &=Nk_B\ln\left[V\left(\frac{4\pi emE}{3N}\right)^{3/2}\right].
+  \end{aligned}
+\end{equation}
+
+理想气体的性质现在可以从 $T\mathrm{d}S=\mathrm{d}E+P\mathrm{d}V-\mu\mathrm{d}N$ 恢复出来，
+
+\begin{equation}\label{eq:4.34}
+  \frac{1}{T}=\left.\frac{\partial S}{\partial E}\right|_{N,V}=\frac{3}{2}\frac{Nk_B}{E}.
+\end{equation}
+
+内能 $E=3Nk_BT/2$ 只是 $T$ 的函数，而热容 $C_V=3Nk_B/2$ 是一个常数。物态方程由下式得到
+
+\begin{equation}\label{eq:4.35}
+  \frac{P}{T}=\left.\frac{\partial S}{\partial V}\right|_{N,E}=\frac{Nk_B}{V},\qquad\Longrightarrow\qquad PV=Nk_BT.
+\end{equation}
+
+在气体中找到动量为 $\vec p_1$ 的一个粒子的无条件概率，可以通过对其它所有变量积分，由式 \eqref{eq:4.27} 中的联合 PDF 算出，
+
+\begin{equation}\label{eq:4.36}
+  \begin{aligned}
+    p(\vec p_1)&=\int \mathrm{d}^3\vec q_1\prod_{i=2}^N\mathrm{d}^3\vec q_i\mathrm{d}^3\vec p_i\,p\left(\{\vec q_i,\vec p_i\}\right)\\
+    &=\frac{V\Omega(E-\vec p_1{}^2/2m,V,N-1)}{\Omega(E,V,N)}.
+  \end{aligned}
+\end{equation}
+
+% p.107
+最终表达式表明，一旦一个粒子的动能被指定，余下的能量就必须在其它 $N-1$ 个粒子之间分享。利用式 \eqref{eq:4.32}，
+
+\begin{equation}\label{eq:4.37}
+  \begin{aligned}
+    p(\vec p_1)&=\frac{V^N\pi^{3(N-1)/2}(2mE-\vec p_1{}^2)^{(3N-4)/2}}{(3(N-1)/2-1)!}\cdot\frac{(3N/2-1)!}{V^N\pi^{3N/2}(2mE)^{(3N-1)/2}}\\
+    &=\left(1-\frac{\vec p_1{}^2}{2mE}\right)^{3N/2-2}\frac{1}{(2\pi mE)^{3/2}}\frac{(3N/2-1)!}{(3(N-1)/2-1)!}.
+  \end{aligned}
+\end{equation}
+
+由 Stirling 公式，$(3N/2-1)!$ 与 $(3(N-1)/2-1)!$ 之比近似为 $(3N/2)^{3/2}$，于是在 $E$ 很大的极限下
+
+\begin{equation}\label{eq:4.38}
+  p(\vec p_1)=\left(\frac{3N}{4\pi mE}\right)^{3/2}\exp\left(-\frac{3N}{2}\frac{\vec p_1{}^2}{2mE}\right).
+\end{equation}
+
+这是一个正确归一化的 Maxwell--Boltzmann 分布，在作代换 $E=3Nk_BT/2$ 之后，它可以写成更熟悉的形式
+
+\begin{equation}\label{eq:4.39}
+  p(\vec p_1)=\frac{1}{(2\pi mk_BT)^{3/2}}\exp\left(-\frac{\vec p_1{}^2}{2mk_BT}\right).
+\end{equation}
+
+\bisection{混合熵与 Gibbs 佯谬}{Mixing entropy and the Gibbs paradox}
+% p.107
+
+式 \eqref{eq:4.33} 中理想气体熵的表达式有一个重大缺点，即它\emph{不是广延的}。在变换 $(E,V,N)\to(\lambda E,\lambda V,\lambda N)$ 之下，熵变为 $\lambda(S+Nk_B\ln\lambda)$。多出来的项来自坐标对可及相空间的贡献 $V^N$。这一困难与两种气体的混合熵（\textit{mixing entropy}）密切相关。考虑两种不同的气体，起初以相同的温度 $T$ 分别占据体积 $V_1$ 与 $V_2$。它们之间的隔板被移走，于是它们得以膨胀并占据总体积 $V=V_1+V_2$。混合过程显然是不可逆的，必定伴随熵的增加，其计算如下。根据式 \eqref{eq:4.33}，初始熵为
+
+\begin{equation}\label{eq:4.40}
+  S_i=S_1+S_2=N_1k_B(\ln V_1+\sigma_1)+N_2k_B(\ln V_2+\sigma_2),
+\end{equation}
+
+其中
+
+\begin{equation}\label{eq:4.41}
+  \sigma_\alpha=\ln\left(\frac{4\pi em_\alpha}{3}\cdot\frac{E_\alpha}{N_\alpha}\right)^{3/2}
+\end{equation}
+
+是第 $\alpha$ 种气体的动量对熵的贡献。由于对单原子气体有 $E_\alpha/N_\alpha=3k_BT/2$，
+
+\begin{equation}\label{eq:4.42}
+  \sigma_\alpha(T)=\frac{3}{2}\ln(2\pi em_\alpha k_BT).
+\end{equation}
+
+气体的温度不因混合而改变，因为
+
+\begin{equation}\label{eq:4.43}
+  \frac{3}{2}k_BT_f=\frac{E_1+E_2}{N_1+N_2}=\frac{E_1}{N_1}=\frac{E_2}{N_2}=\frac{3}{2}k_BT.
+\end{equation}
+
+% p.108
+混合后气体的最终熵为
+
+\begin{equation}\label{eq:4.44}
+  S_f=N_1k_B\ln(V_1+V_2)+N_2k_B\ln(V_1+V_2)+k_B(N_1\sigma_1+N_2\sigma_2).
+\end{equation}
+
+动量部分的贡献没有变化，因为它只依赖于温度。混合熵
+
+\begin{equation}\label{eq:4.45}
+  \Delta S_{\text{Mix}}=S_f-S_i=N_1k_B\ln\frac{V}{V_1}+N_2k_B\ln\frac{V}{V_2}=-Nk_B\left[\frac{N_1}{N}\ln\frac{V_1}{V}+\frac{N_2}{N}\ln\frac{V_2}{V}\right],
+\end{equation}
+
+完全来自坐标的贡献。上述表达式容易推广到多种组分的混合，此时
+
+\begin{equation*}
+  \Delta S_{\text{Mix}}=-Nk_B\sum_\alpha(N_\alpha/N)\ln(V_\alpha/V).
+\end{equation*}
+
+\cnfigure{fig4-6}{移走分隔两种气体的隔板所产生的混合熵。}
+
+\emph{Gibbs 佯谬}所涉及的是这样一种情形：起初位于隔板两侧的两种气体是相同的，具有相同的密度 $n=N_1/V_1=N_2/V_2$。由于移走或插入隔板并不改变系统的状态，就不应当有混合熵，而式 \eqref{eq:4.45} 却预言了这样一个变化。为了解开这个佯谬，注意：在移走又插回隔板之后，虽然宏观系统确实回到了它最初的构型，但占据两个腔室的那些实际粒子并不是同一批。然而，由于这些粒子按假设是全同（\term{全同}{identical}{4.identical}）的，这些构型是无法区分的。换句话说，交换不同（\term{不同}{distinct}{4.distinct}）的粒子会给出两种构型
+
+\begin{equation*}
+  \begin{array}{c|c}
+    \bullet & \circ\\ \hline
+    A & B
+  \end{array}
+  \qquad\text{与}\qquad
+  \begin{array}{c|c}
+    \circ & \bullet\\ \hline
+    A & B
+  \end{array},
+\end{equation*}
+
+而对相同的（\textit{identical}）粒子作类似的交换则不产生任何效果，例如
+
+\begin{equation*}
+  \begin{array}{c|c}
+    \bullet & \bullet\\ \hline
+    A & B
+  \end{array}
+  \qquad\text{与}\qquad
+  \begin{array}{c|c}
+    \bullet & \bullet\\ \hline
+    A & B
+  \end{array}.
+\end{equation*}
+
+因此，我们把与 $N$ 个相同粒子相联系的相空间多计了可能的置换数。由于有 $N!$ 种置换给出不可区分的微观态，式 \eqref{eq:4.32} 应当修正为
+
+\begin{equation}\label{eq:4.46}
+  \Omega(N,E,V)=\frac{V^N}{N!}\frac{2\pi^{3N/2}}{(3N/2-1)!}(2mE)^{(3N-1)/2}\Delta_R.
+\end{equation}
+
+% p.109
+由此得到一个修正后的熵，
+
+\begin{equation}\label{eq:4.47}
+  S=k_B\ln\Omega=k_B\left[N\ln V-N\ln N+N\ln \mathrm{e}\right]+Nk_B\sigma=Nk_B\left[\ln\frac{\mathrm{e}V}{N}+\sigma\right].
+\end{equation}
+
+由于对数的自变量从 $V$ 变为了 $V/N$，最终的表达式现在确实是广延的了。混合熵可以用式 \eqref{eq:4.47} 重新计算。对于不同气体的混合，
+
+\begin{equation}\label{eq:4.48}
+  \begin{aligned}
+    \Delta S_{\text{Mix}}&=S_f-S_i=N_1k_B\ln\frac{V}{N_1}+N_2k_B\ln\frac{V}{N_2}-N_1k_B\ln\frac{V_1}{N_1}-N_2k_B\ln\frac{V_2}{N_2}\\
+    &=N_1k_B\ln\left(\frac{V}{N_1}\cdot\frac{N_1}{V_1}\right)+N_2k_B\ln\left(\frac{V}{N_2}\cdot\frac{N_2}{V_2}\right)\\
+    &=-Nk_B\left[\frac{N_1}{N}\ln\frac{V_1}{V}+\frac{N_2}{N}\ln\frac{V_2}{V}\right],
+  \end{aligned}
+\end{equation}
+
+恰好与前面由式 \eqref{eq:4.45} 得到的结果相同。而对于两种相同气体的「混合」，由 $N_1/V_1=N_2/V_2=(N_1+N_2)/(V_1+V_2)$，
+
+\begin{equation}\label{eq:4.49}
+  \Delta S_{\text{Mix}}=S_f-S_i=(N_1+N_2)k_B\ln\frac{V_1+V_2}{N_1+N_2}-N_1k_B\ln\frac{V_1}{N_1}-N_2k_B\ln\frac{V_2}{N_2}=0.
+\end{equation}
+
+注意，在把相同粒子的置换考虑进来之后，最终态中的可及坐标体积为：对不同粒子是 $V^{N_1+N_2}/N_1!N_2!$，对相同粒子则是 $V^{N_1+N_2}/(N_1+N_2)!$。
+
+关于微正则熵的补充评论：
+
+\begin{enumerate}[itemsep=0.35em,topsep=0.4em]
+  \item 在固体基体中二能级杂质的例子（第 4.3 节）里，不需要额外的 $N!$ 因子，因为这些缺陷可以凭借它们的位置加以区分。
+
+  \item 式 \eqref{eq:4.47} 中修正后的理想气体熵公式并不影响式 \eqref{eq:4.34} 与 \eqref{eq:4.35} 中能量与压强的计算。它对于得到一个内禀的化学势则是必需的，
+  \begin{equation}\label{eq:4.50}
+    \frac{\mu}{T}=-\left.\frac{\partial S}{\partial N}\right|_{E,V}=-\frac{S}{N}+\frac{5}{2}k_B=k_B\ln\left[\frac{V}{N}\left(\frac{4\pi mE}{3N}\right)^{3/2}\right].
+  \end{equation}
+
+  \item 上述对相同粒子的处理有些人为。这是因为相同粒子的概念不太容易嵌入经典力学的框架之中。为了在计算机上实现 Hamilton 运动方程，人们必须追踪 $N$ 个粒子的坐标。计算机在区分交换过的粒子时不会有任何困难。它们的相空间不可区分性在某种意义上只是经典统计力学的一个附加假设。这个问题在量子统计力学的框架内得到了漂亮的解决。量子力学中相同粒子的描述要求对波函数作恰当的对称化。相应的量子微观态自然地给出 $N!$ 因子，这将在后面说明。
+
+  % p.110
+  \item 表达式 \eqref{eq:4.47} 还有另一个困难——在改变 $q$ 与 $p$ 的测量单位时会出现一个任意常数——它同样在量子统计力学中得到解决。相空间的体积涉及坐标与共轭动量的乘积 $pq$，因而具有 $(\text{作用量})^N$ 的量纲。量子力学给出了作用量的恰当度量，即 Planck 常数 $h$。为了提前照应这些量子结果，我们今后把相同粒子的相空间度量取为
+  \begin{equation}\label{eq:4.51}
+    \mathrm{d}\Gamma_N=\frac{1}{h^{3N}N!}\prod_{i=1}^N\mathrm{d}^3\vec q_i\,\mathrm{d}^3\vec p_i.
+  \end{equation}
+\end{enumerate}
+
+\bisection{正则系综}{The canonical ensemble}
+% p.110
+
+在微正则系综中，一个大宏观系统的能量 $E$ 被精确指定，而它的平衡温度 $T$ 则作为推论出现（式 \eqref{eq:4.7}）。然而从热力学的角度看，$E$ 与 $T$ 都是态函数，处于同等地位。我们可以构造一种统计力学表述，在其中系统的温度被指定、而内能则由此推出。这一点是在\term{正则系综}{canonical ensemble}{4.canonical-ensemble}中实现的：其中的宏观态由 $M\equiv(T,\mathbf x)$ 指定，允许向系统输入热量，但不允许外力做功。系统 S 通过与一个\term{热库}{reservoir}{4.reservoir} R 接触而维持在恒定温度上。这个 R 是另一个宏观系统，它足够大，以致其温度不因与 S 的相互作用而改变。为求出 S 的各种微观态的概率 $p_{(T,\mathbf x)}(\mu)$，注意到合并后的系统 R$\oplus$S 属于能量为 $E_{\text{Tot}}\gg E_{\text{S}}$ 的微正则系综。与式 \eqref{eq:4.3} 一样，微观态 $(\mu_{\text{S}}\otimes\mu_{\text{R}})$ 的联合概率为
+
+\begin{equation}\label{eq:4.52}
+  p(\mu_{\text{S}}\otimes\mu_{\text{R}})=\frac{1}{\Omega_{\text{S}\oplus\text{R}}(E_{\text{Tot}})}\cdot
+  \begin{cases}1 & \text{对于 }\mathscr H_{\text{S}}(\mu_{\text{S}})+\mathscr H_{\text{R}}(\mu_{\text{R}})=E_{\text{Tot}}\\ 0 & \text{其它}\end{cases}.
+\end{equation}
+
+\cnfigure{fig4-7}{系统 S 可以通过与热库 R 交换热量而维持在温度 $T$。}
+
+S 的微观态的无条件概率现在由下式得到
+
+\begin{equation}\label{eq:4.53}
+  p(\mu_{\text{S}})=\sum_{\{\mu_{\text{R}}\}}p(\mu_{\text{S}}\otimes\mu_{\text{R}}).
+\end{equation}
+
+% p.111
+一旦 $\mu_{\text{S}}$ 被指定，上述求和就只限于热库中能量为 $E_{\text{Tot}}-\mathscr H_{\text{S}}(\mu_{\text{S}})$ 的那些微观态。这类状态的数目与热库的熵有关，并给出
+
+\begin{equation}\label{eq:4.54}
+  p(\mu_{\text{S}})=\frac{\Omega_{\text{R}}(E_{\text{Tot}}-\mathscr H_{\text{S}}(\mu_{\text{S}}))}{\Omega_{\text{S}\oplus\text{R}}(E_{\text{Tot}})}\propto\exp\left[\frac{1}{k_B}S_{\text{R}}(E_{\text{Tot}}-\mathscr H_{\text{S}}(\mu_{\text{S}}))\right].
+\end{equation}
+
+由于按假设系统的能量与热库的能量相比微不足道，
+
+\begin{equation}\label{eq:4.55}
+  S_{\text{R}}(E_{\text{Tot}}-\mathscr H_{\text{S}}(\mu_{\text{S}}))\approx S_{\text{R}}(E_{\text{Tot}})-\mathscr H_{\text{S}}(\mu_{\text{S}})\frac{\partial S_{\text{R}}}{\partial E_{\text{R}}}=S_{\text{R}}(E_{\text{Tot}})-\frac{\mathscr H_{\text{S}}(\mu_{\text{S}})}{T}.
+\end{equation}
+
+略去下标 S，归一化后的概率由下式给出
+
+\begin{equation}\label{eq:4.56}
+  p_{(T,\mathbf x)}(\mu)=\frac{\mathrm{e}^{-\beta\mathscr H(\mu)}}{Z(T,\mathbf x)}.
+\end{equation}
+
+其中的归一化量
+
+\begin{equation}\label{eq:4.57}
+  Z(T,\mathbf x)=\sum_{\{\mu\}}\mathrm{e}^{-\beta\mathscr H(\mu)}
+\end{equation}
+
+被称为\term{配分函数}{partition function}{4.partition-function}，而 $\beta\equiv1/k_BT$。（注意，在考虑处于与其其余部分平衡的某一部分系统时，式 \eqref{eq:4.25} 与 \eqref{eq:4.39} 中已经得到过与式 \eqref{eq:4.56} 类似的概率。）
+
+系统 S 的内能 $E$ 是良定义的吗？与微正则系综中不同，一个与热库交换热量的系统的能量是一个随机变量。它的概率分布 $p(\mathcal{E})$ 可以由 $p(\mu)$ 中把变量从 $\mu$ 换为 $\mathscr H(\mu)$ 得到，结果为
+
+\begin{equation}\label{eq:4.58}
+  p(\mathcal{E})=\sum_{\{\mu\}}p(\mu)\delta\left(\mathscr H(\mu)-\mathcal{E}\right)=\frac{\mathrm{e}^{-\beta\mathcal{E}}}{Z}\sum_{\{\mu\}}\delta\left(\mathscr H(\mu)-\mathcal{E}\right).
+\end{equation}
+
+由于受限求和恰恰就是相应能量的微观态数目 $\Omega(\mathcal{E})$，
+
+\begin{equation}\label{eq:4.59}
+  p(\mathcal{E})=\frac{\Omega(\mathcal{E})\mathrm{e}^{-\beta\mathcal{E}}}{Z}=\frac{1}{Z}\exp\left[\frac{S(\mathcal{E})}{k_B}-\frac{\mathcal{E}}{k_BT}\right]=\frac{1}{Z}\exp\left[-\frac{F(\mathcal{E})}{k_BT}\right],
+\end{equation}
+
+其中我们令 $F=\mathcal{E}-TS(\mathcal{E})$，以提前照应它与 Helmholtz 自由能（\textit{Helmholtz free energy}）的关系。概率 $p(\mathcal{E})$ 在使 $F(\mathcal{E})$ 取极小值的\term{最可能能量}{most probable energy}{4.most-probable-energy} $E^*$ 处呈现尖锐的峰。利用第 3.6 节中关于指数函数之和的结果，
+
+\begin{equation}\label{eq:4.60}
+  Z=\sum_{\{\mu\}}\mathrm{e}^{-\beta\mathscr H(\mu)}=\sum_{\mathcal{E}}\mathrm{e}^{-\beta F(\mathcal{E})}\approx\mathrm{e}^{-\beta F(E^*)}.
+\end{equation}
+
+由式 \eqref{eq:4.59} 的分布算出的\emph{平均}能量为
+
+\begin{equation}\label{eq:4.61}
+  \langle\mathscr H\rangle=\sum_\mu\mathscr H(\mu)\frac{\mathrm{e}^{-\beta\mathscr H(\mu)}}{Z}=-\frac{1}{Z}\frac{\partial}{\partial\beta}\sum_\mu\mathrm{e}^{-\beta\mathscr H}=-\frac{\partial\ln Z}{\partial\beta}.
+\end{equation}
+
+% p.112
+\cnfigure{fig4-8}{处在温度 $T$ 的正则系综中，系统内能的概率分布。}
+
+在热力学中，我们曾遇到过能量的一个类似表达式（式 \eqref{eq:1.37}），
+
+\begin{equation}\label{eq:4.62}
+  E=F+TS=F-T\left.\frac{\partial F}{\partial T}\right|_{\mathbf x}=-T^2\frac{\partial}{\partial T}\left(\frac{F}{T}\right)=\frac{\partial(\beta F)}{\partial\beta}.
+\end{equation}
+
+式 \eqref{eq:4.60} 与 \eqref{eq:4.61} 都提示我们认定
+
+\begin{equation}\label{eq:4.63}
+  F(T,\mathbf x)=-k_BT\ln Z(T,\mathbf x).
+\end{equation}
+
+然而要注意，式 \eqref{eq:4.60} 涉及的是最可能的能量，而式 \eqref{eq:4.61} 中出现的是平均能量。能量的这两个值有多接近呢？通过计算方差 $\langle\mathscr H^2\rangle_c$，我们可以对概率分布 $p(\mathcal{E})$ 的宽度有一个了解。最容易的做法是注意到 $Z(\beta)$ 与 $\mathscr H$ 的特征函数有关（其中 $\beta$ 取代了 $\mathrm{i}k$），并且
+
+\begin{equation}\label{eq:4.64}
+  -\frac{\partial Z}{\partial\beta}=\sum_\mu\mathscr H\mathrm{e}^{-\beta\mathscr H},\qquad\text{以及}\qquad \frac{\partial^2Z}{\partial\beta^2}=\sum_\mu\mathscr H^2\mathrm{e}^{-\beta\mathscr H}.
+\end{equation}
+
+$\mathscr H$ 的各累积量由 $\ln Z(\beta)$ 生成，
+
+\begin{equation}\label{eq:4.65}
+  \langle\mathscr H\rangle_c=\frac{1}{Z}\sum_\mu\mathscr H\mathrm{e}^{-\beta\mathscr H}=-\frac{1}{Z}\frac{\partial Z}{\partial\beta}=-\frac{\partial\ln Z}{\partial\beta},
+\end{equation}
+
+以及
+
+\begin{equation}\label{eq:4.66}
+  \langle\mathscr H^2\rangle_c=\langle\mathscr H^2\rangle-\langle\mathscr H\rangle^2=\frac{1}{Z}\sum_\mu\mathscr H^2\mathrm{e}^{-\beta\mathscr H}-\frac{1}{Z^2}\left(\sum_\mu\mathscr H\mathrm{e}^{-\beta\mathscr H}\right)^2=\frac{\partial^2\ln Z}{\partial\beta^2}=-\frac{\partial\langle\mathscr H\rangle}{\partial\beta}.
+\end{equation}
+
+更一般地，$\mathscr H$ 的第 $n$ 阶累积量由下式给出
+
+\begin{equation}\label{eq:4.67}
+  \langle\mathscr H^n\rangle_c=(-1)^n\frac{\partial^n\ln Z}{\partial\beta^n}.
+\end{equation}
+
+由式 \eqref{eq:4.66}，
+
+\begin{equation}\label{eq:4.68}
+  \langle\mathscr H^2\rangle_c=-\frac{\partial\langle\mathscr H\rangle}{\partial(1/k_BT)}=k_BT^2\left.\frac{\partial\langle\mathscr H\rangle}{\partial T}\right|_{\mathbf x},\qquad\Longrightarrow\qquad \langle\mathscr H^2\rangle_c=k_BT^2C_{\mathbf x},
+\end{equation}
+
+其中我们把热容与平均能量 $\langle\mathscr H\rangle$ 的温度导数等同了起来。式 \eqref{eq:4.68} 表明，把平均能量与最可能能量互换看待是正当的，因为分布的宽度
+
+% p.113
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{正则系综与微正则系综的比较}
+  \label{tab:4.1}
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    系综 & 宏观态 & $p(\mu)$ & 归一化量\\
+    \midrule
+    微正则 & $(E,\mathbf x)$ & $\delta_\Delta\left(\mathscr H(\mu)-E\right)/\Omega$ & $S(E,\mathbf x)=k_B\ln\Omega$\\
+    正则 & $(T,\mathbf x)$ & $\exp\left(-\beta\mathscr H(\mu)\right)/Z$ & $F(T,\mathbf x)=-k_BT\ln Z$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+$p(\mathcal{E})$ 只以 $\sqrt{\langle\mathscr H^2\rangle_c}\propto N^{1/2}$ 的速度增长。相对误差 $\sqrt{\langle\mathscr H^2\rangle_c}/\langle\mathscr H\rangle_c$ 在热力学极限（\textit{thermodynamic limit}）下按 $1/\sqrt N$ 趋于零。（事实上，式 \eqref{eq:4.67} 表明 $\mathscr H$ 的所有累积量都正比于 $N$。）于是正则系综中能量的 PDF 可以近似为
+
+\begin{equation}\label{eq:4.69}
+  p(\mathcal{E})=\frac{1}{Z}\mathrm{e}^{-\beta\mathcal{E}}\approx\exp\left(-\frac{(\mathcal{E}-\langle\mathscr H\rangle)^2}{2k_BT^2C_{\mathbf x}}\right)\frac{1}{\sqrt{2\pi k_BT^2C_{\mathbf x}}}.
+\end{equation}
+
+上述分布足够尖锐，使得正则系综中的内能在 $N\to\infty$ 极限下是明确的。如果热容 $C_{\mathbf x}$ 发散，如某些连续相变中的情形，则需要多加小心。
+
+式 \eqref{eq:4.56} 中的正则概率是（如同第 2.7 节那样）通过约束\term{平均能量}{average energy}{4.average-energy}而得到的无偏估计。正则系综的熵也可以直接由式 \eqref{eq:4.56}（利用式 \eqref{eq:2.68}）算出，即
+
+\begin{equation}\label{eq:4.70}
+  S=-k_B\langle\ln p(\mu)\rangle=-k_B\langle\left(-\beta\mathscr H-\ln Z\right)\rangle=\frac{E-F}{T},
+\end{equation}
+
+这里再次使用了把 $\ln Z$ 与自由能等同起来的式 \eqref{eq:4.63}。对任何有限系统，正则与微正则的性质是不同的。然而，在 $N\to\infty$ 的所谓热力学极限（\textit{thermodynamic limit}）下，正则能量的概率在平均能量附近尖峰如此之陡，以致该系综与处在这一能量上的微正则系综实际上无法区分。表 4.1 比较了这两种系综所用的规则。
+
+\bisection{正则示例}{Canonical examples}
+% p.113
+
+现在我们在正则系综中重新考察第 4.3 节与第 4.4 节的两个例子。
+
+（1）\emph{二能级系统}：$N$ 个杂质由宏观态 $M\equiv(T,N,)$ 描述。在 Hamilton 量 $\mathscr H=\epsilon\sum_{i=1}^N n_i$ 之下，微观态 $\mu\equiv\{n_i\}$ 的正则概率由下式给出
+
+\begin{equation}\label{eq:4.71}
+  p(\{n_i\})=\frac{1}{Z}\exp\left[-\beta\epsilon\sum_{i=1}^N n_i\right].
+\end{equation}
+
+% p.114
+由配分函数
+
+\begin{equation}\label{eq:4.72}
+  \begin{aligned}
+    Z(T,N)&=\sum_{\{n_i\}}\exp\left[-\beta\epsilon\sum_{i=1}^N n_i\right]=\left(\sum_{n_1=0}^1\mathrm{e}^{-\beta\epsilon n_1}\right)\cdots\left(\sum_{n_N=0}^1\mathrm{e}^{-\beta\epsilon n_N}\right)\\
+    &=\left(1+\mathrm{e}^{-\beta\epsilon}\right)^N,
+  \end{aligned}
+\end{equation}
+
+我们得到自由能
+
+\begin{equation}\label{eq:4.73}
+  F(T,N)=-k_BT\ln Z=-Nk_BT\ln\left[1+\mathrm{e}^{-\epsilon/(k_BT)}\right].
+\end{equation}
+
+熵现在由下式给出
+
+\begin{equation}\label{eq:4.74}
+  S=\left.-\frac{\partial F}{\partial T}\right|_N=\underbrace{Nk_B\ln\left[1+\mathrm{e}^{-\epsilon/(k_BT)}\right]}_{-F/T}+Nk_BT\left(\frac{\epsilon}{k_BT^2}\right)\frac{\mathrm{e}^{-\epsilon/(k_BT)}}{1+\mathrm{e}^{-\epsilon/(k_BT)}}.
+\end{equation}
+
+内能
+
+\begin{equation}\label{eq:4.75}
+  E=F+TS=\frac{N\epsilon}{1+\mathrm{e}^{\epsilon/(k_BT)}},
+\end{equation}
+
+也可以由下式得到
+
+\begin{equation}\label{eq:4.76}
+  E=-\frac{\partial\ln Z}{\partial\beta}=\frac{N\epsilon\,\mathrm{e}^{-\beta\epsilon}}{1+\mathrm{e}^{-\beta\epsilon}}.
+\end{equation}
+
+由于式 \eqref{eq:4.71} 中的联合概率具有乘积的形式，$p=\prod_ip_i$，不同杂质的激发彼此是\emph{独立}的，其无条件概率为
+
+\begin{equation}\label{eq:4.77}
+  p_i(n_i)=\frac{\mathrm{e}^{-\beta\epsilon n_i}}{1+\mathrm{e}^{-\beta\epsilon}}.
+\end{equation}
+
+这一结果与式 \eqref{eq:4.25} 一致，那里是通过在微正则系综中作更为繁复的分析得到的。正如所预期的那样，在 $N$ 很大的极限下，正则系综与微正则系综在宏观层面与微观层面描述的完全是同一套物理。
+
+（2）\emph{理想气体}：对正则宏观态 $M\equiv(T,V,N)$，微观态 $\mu\equiv\{\vec p_i,\vec q_i\}$ 的联合 PDF 为
+
+\begin{equation}\label{eq:4.78}
+  p(\{\vec p_i,\vec q_i\})=\frac{1}{Z}\exp\left[-\beta\sum_{i=1}^N\frac{p_i^2}{2m}\right]\cdot
+  \begin{cases}1 & \text{对于 }\{\vec q_i\}\in\text{盒内}\\ 0 & \text{其它}\end{cases}.
+\end{equation}
+
+把式 \eqref{eq:4.51} 中相同粒子相空间的修正包括进来，无量纲配分函数算得为
+
+\begin{equation}\label{eq:4.79}
+  \begin{aligned}
+    Z(T,V,N)&=\int\frac{1}{N!}\prod_{i=1}^N\frac{\mathrm{d}^3\vec q_i\mathrm{d}^3\vec p_i}{h^3}\exp\left[-\beta\sum_{i=1}^N\frac{p_i^2}{2m}\right]\\
+    &=\frac{V^N}{N!}\left(\frac{2\pi mk_BT}{h^2}\right)^{3N/2}=\frac{1}{N!}\left(\frac{V}{\lambda(T)^3}\right)^N,
+  \end{aligned}
+\end{equation}
+
+其中
+
+\begin{equation}\label{eq:4.80}
+  \lambda(T)=\frac{h}{\sqrt{2\pi mk_BT}}
+\end{equation}
+
+% p.115
+是一个与作用量 $h$ 相联系的特征长度。后面将表明，这个长度尺度控制着理想气体中量子力学效应的出现。
+
+自由能由下式给出
+
+\begin{equation}\label{eq:4.81}
+  \begin{aligned}
+    F&=-k_BT\ln Z=-Nk_BT\ln V+Nk_BT\ln N-Nk_BT-\frac{3N}{2}k_BT\ln\left(\frac{2\pi mk_BT}{h^2}\right)\\
+    &=-Nk_BT\left[\ln\left(\frac{V\mathrm{e}}{N}\right)+\frac{3}{2}\ln\left(\frac{2\pi mk_BT}{h^2}\right)\right].
+  \end{aligned}
+\end{equation}
+
+理想气体的各种热力学性质现在可以从 $\mathrm{d}F=-S\mathrm{d}T-P\mathrm{d}V+\mu\mathrm{d}N$ 得到。例如，由熵
+
+\begin{equation}\label{eq:4.82}
+  -S=\left.\frac{\partial F}{\partial T}\right|_{V,N}=-Nk_B\left[\ln\frac{V\mathrm{e}}{N}+\frac{3}{2}\ln\left(\frac{2\pi mk_BT}{h^2}\right)\right]-Nk_BT\frac{3}{2T}=\frac{F-E}{T},
+\end{equation}
+
+我们得到内能 $E=3Nk_BT/2$。物态方程由下式得到
+
+\begin{equation}\label{eq:4.83}
+  P=-\left.\frac{\partial F}{\partial V}\right|_{T,N}=\frac{Nk_BT}{V},\qquad\Longrightarrow\qquad PV=Nk_BT,
+\end{equation}
+
+而化学势由下式给出
+
+\begin{equation}\label{eq:4.84}
+  \mu=\left.\frac{\partial F}{\partial N}\right|_{T,V}=\frac{F}{N}+k_BT=\frac{E-TS+PV}{N}=k_BT\ln\left(n\lambda^3\right).
+\end{equation}
+
+此外，根据式 \eqref{eq:4.78}，$N$ 个粒子的动量取自彼此独立的 Maxwell--Boltzmann 分布，与式 \eqref{eq:4.39} 一致。
+
+\bisection{Gibbs 正则系综}{The Gibbs canonical ensemble}
+% p.115
+
+我们还可以定义一个推广的正则系综，其中内能的变化同时来自热量与功的加入。宏观态 $M\equiv(T,\mathbf J)$ 由外部温度以及作用在系统上的力指定；热力学坐标 $\mathbf x$ 则作为额外的随机变量出现。系统通过外部元件（例如活塞或磁体）维持在恒力之下。把对抗这些力所做的功包括进来，包含这些元件的合并系统的能量为 $\mathscr H-\mathbf J\cdot\mathbf x$。注意，虽然\emph{对系统}所做的功是 $+\mathbf J\cdot\mathbf x$，但坐标为 $\mathbf x$ 的外部元件所联系的能量变化具有相反的符号。这个合并系统的微观态以（正则）概率出现
+
+\begin{equation}\label{eq:4.85}
+  p(\mu_{\text{S}},\mathbf x)=\exp\left[-\beta\mathscr H(\mu_{\text{S}})+\beta\mathbf J\cdot\mathbf x\right]/\mathcal{Z}(T,N,\mathbf J),
+\end{equation}
+
+其中 \term{Gibbs 配分函数}{Gibbs partition function}{4.gibbs-partition-function}为
+
+\begin{equation}\label{eq:4.86}
+  \mathcal{Z}(N,T,\mathbf J)=\sum_{\mu_{\text{S}},\mathbf x}\mathrm{e}^{\beta\mathbf J\cdot\mathbf x-\beta\mathscr H(\mu_{\text{S}})}.
+\end{equation}
+
+（注意，我们明确写出了粒子数 $N$，以强调这里没有化学功。化学功将在接下来讨论的巨正则系综中考虑。）
+
+% p.116
+\cnfigure{fig4-9}{一个与温度为 $T$ 的热库接触、并维持在恒定外力 $J$ 下的系统。}
+
+在这个系综中，坐标的期望值由下式得到
+
+\begin{equation}\label{eq:4.87}
+  \langle\mathbf x\rangle=k_BT\frac{\partial\ln\mathcal{Z}}{\partial\mathbf J},
+\end{equation}
+
+它与热力学关系式 $\mathbf x=-\partial G/\partial\mathbf J$ 一起，提示我们认定
+
+\begin{equation}\label{eq:4.88}
+  G(N,T,\mathbf J)=-k_BT\ln\mathcal{Z},
+\end{equation}
+
+其中 $G\equiv E-TS-\mathbf x\cdot\mathbf J$ 就是 Gibbs 自由能（\textit{Gibbs free energy}）。（同样的结论也可以通过把式 \eqref{eq:4.86} 中的 $\mathcal{Z}$ 与使概率关于 $\mathbf x$ 取极大的那一项等同起来而得到。）在这个系综中，\textit{enthalpy} $H\equiv E-\mathbf x\cdot\mathbf J$ 很容易由下式得到
+
+\begin{equation}\label{eq:4.89}
+  -\frac{\partial\ln\mathcal{Z}}{\partial\beta}=\langle\mathscr H-\mathbf x\cdot\mathbf J\rangle=H.
+\end{equation}
+
+注意，恒定外力下的热容（它包含对抗外力所做的功）由焓给出，为 $C_{\mathbf J}\equiv\partial H/\partial T$。
+
+下面的例子说明 Gibbs 正则系综的用法。
+
+（1）\term{等压系综}{isobaric ensemble}{4.isobaric}中的\emph{理想气体}由宏观态 $M\equiv(N,T,P)$ 描述。体积为 $V$ 的一个微观态 $\mu\equiv\{\vec p_i,\vec q_i\}$ 以下列概率出现
+
+\begin{equation}\label{eq:4.90}
+  p(\{\vec p_i,\vec q_i\},V)=\frac{1}{\mathcal{Z}}\exp\left[-\beta\sum_{i=1}^N\frac{p_i^2}{2m}-\beta PV\right]\cdot
+  \begin{cases}1 & \text{对于 }\{\vec q_i\}\in\text{体积为 }V\text{ 的盒内}\\ 0 & \text{其它}\end{cases}.
+\end{equation}
+
+归一化因子现在是
+
+\begin{equation}\label{eq:4.91}
+  \begin{aligned}
+    \mathcal{Z}(N,T,P)&=\int_0^\infty\mathrm{d}V\mathrm{e}^{-\beta PV}\int\frac{1}{N!}\prod_{i=1}^N\frac{\mathrm{d}^3\vec q_i\mathrm{d}^3\vec p_i}{h^3}\exp\left[-\beta\sum_{i=1}^N\frac{p_i^2}{2m}\right]\\
+    &=\int_0^\infty\mathrm{d}V\,V^N\mathrm{e}^{-\beta PV}\frac{1}{N!\lambda(T)^{3N}}=\frac{1}{(\beta P)^{N+1}\lambda(T)^{3N}}.
+  \end{aligned}
+\end{equation}
+
+略去非广延的贡献，Gibbs 自由能由下式给出
+
+\begin{equation}\label{eq:4.92}
+  G=-k_BT\ln\mathcal{Z}\approx Nk_BT\left[\ln P-\frac{5}{2}\ln(k_BT)+\frac{3}{2}\ln\left(\frac{h^2}{2\pi m}\right)\right].
+\end{equation}
+
+从 $\mathrm{d}G=-S\mathrm{d}T+V\mathrm{d}P+\mu\mathrm{d}N$ 出发，气体的体积由下式得到
+
+\begin{equation}\label{eq:4.93}
+  V=\left.\frac{\partial G}{\partial P}\right|_{T,N}=\frac{Nk_BT}{P},\qquad\Longrightarrow\qquad PV=Nk_BT.
+\end{equation}
+
+% p.117
+\cnfigure{fig4-10}{在等压系综中，活塞中的气体维持在压强 $P$。}
+
+\textit{enthalpy} $H=\langle E+PV\rangle$ 很容易由下式算出
+
+\begin{equation*}
+  H=-\frac{\partial\ln\mathcal{Z}}{\partial\beta}=\frac{5}{2}Nk_BT,
+\end{equation*}
+
+由此我们得到 $C_P=\mathrm{d}H/\mathrm{d}T=5/2Nk_B$。
+
+（2）外磁场 $\vec B$ 中的\emph{自旋}为 Gibbs 正则系综的用法提供了一个常见的例子。把对抗磁场所做的功加到内部 Hamilton 量 $\mathscr H$ 上，得到 Gibbs 配分函数
+
+\begin{equation*}
+  \mathcal{Z}(N,T,B)=\operatorname{tr}\left[\exp\left(-\beta\mathscr H+\beta\vec B\cdot\vec M\right)\right],
+\end{equation*}
+
+其中 $\vec M$ 是净\term{磁化强度}{magnetization}{4.magnetization}。符号「tr」用来表示对所有自旋自由度的求和，在量子力学的表述中这些自由度被限制为离散取值。最简单的情形是自旋 1/2，其自旋沿磁场方向有两种可能的投影。$N$ 个自旋的一个微观态现在由\term{Ising 变量}{Ising variables}{4.ising-variables}集合 $\{\sigma_i=\pm1\}$ 描述。沿磁场方向的相应磁化强度由 $M=\mu_0\sum_{i=1}^N\sigma_i$ 给出，其中 $\mu_0$ 是微观磁矩。假定自旋之间没有相互作用（$\mathscr H=0$），一个微观态的概率为
+
+\begin{equation}\label{eq:4.94}
+  p(\{\sigma_i\})=\frac{1}{\mathcal{Z}}\exp\left[\beta B\mu_0\sum_{i=1}^N\sigma_i\right].
+\end{equation}
+
+显然，这与正则系综中讨论过的二能级系统例子密切相关，我们可以容易地得到 Gibbs 配分函数
+
+\begin{equation}\label{eq:4.95}
+  \mathcal{Z}(N,T,B)=\left[2\cosh(\beta\mu_0B)\right]^N,
+\end{equation}
+
+以及 Gibbs 自由能
+
+\begin{equation}\label{eq:4.96}
+  G=-k_BT\ln\mathcal{Z}=-Nk_BT\ln\left[2\cosh(\beta\mu_0B)\right].
+\end{equation}
+
+平均磁化强度由下式给出
+
+\begin{equation}\label{eq:4.97}
+  M=-\frac{\partial G}{\partial B}=N\mu_0\tanh(\beta\mu_0B).
+\end{equation}
+
+% p.118
+把式 \eqref{eq:4.97} 就小 $B$ 展开，就得到关于非相互作用自旋的磁\textit{susceptibility}的著名 Curie 定律，
+
+\begin{equation}\label{eq:4.98}
+  \chi(T)=\left.\frac{\partial M}{\partial B}\right|_{B=0}=\frac{N\mu_0^2}{k_BT}.
+\end{equation}
+
+这里的\textit{enthalpy}很简单，$H=\langle\mathscr H-BM\rangle=-BM$，而 $C_B=-B\partial M/\partial T$。
+
+\bisection{巨正则系综}{The grand canonical ensemble}
+% p.118
+
+前面几节表明，虽然正则系综与微正则系综在热力学极限下完全等价，但在正则框架中进行统计力学计算往往更容易。有时更方便的做法是允许化学功（通过固定化学势 $\mu$，而不是固定在固定的粒子数上），但不允许机械功。这样得到的宏观态 $M\equiv(T,\mu,\mathbf x)$ 由\term{巨正则系综}{grand canonical ensemble}{4.grand-canonical}描述。相应的微观态 $\mu_{\text{S}}$ 含有不确定的粒子数 $N(\mu_{\text{S}})$。与正则系综的情形一样，系统 S 可以通过与一个温度为 $T$、化学势为 $\mu$ 的热库 R 接触而维持在恒定化学势上。S 的微观态的概率分布通过对热库的所有状态求和得到，如式 \eqref{eq:4.53} 那样，即
+
+\begin{equation}\label{eq:4.99}
+  p(\mu_{\text{S}})=\exp\left[\beta\mu N(\mu_{\text{S}})-\beta\mathscr H(\mu_{\text{S}})\right]/\mathcal{Q}.
+\end{equation}
+
+归一化因子是\term{巨配分函数}{grand partition function}{4.grand-partition}，
+
+\begin{equation}\label{eq:4.100}
+  \mathcal{Q}(T,\mu,\mathbf x)=\sum_{\mu_{\text{S}}}\mathrm{e}^{\beta\mu N(\mu_{\text{S}})-\beta\mathscr H(\mu_{\text{S}})}.
+\end{equation}
+
+\cnfigure{fig4-11}{一个与温度为 $T$、化学势为 $\mu$ 的热库 R 接触的系统 S。}
+
+我们可以把上面的求和重新组织，即把具有给定粒子数的所有微观态归为一组，
+
+\begin{equation}\label{eq:4.101}
+  \mathcal{Q}(T,\mu,\mathbf x)=\sum_{N=0}^\infty\mathrm{e}^{\beta\mu N}\sum_{\{\mu_{\text{S}}\}|N}\mathrm{e}^{-\beta\mathscr H_N(\mu_{\text{S}})}.
+\end{equation}
+
+% p.119
+式 \eqref{eq:4.101} 中的受限求和恰好就是 $N$ 粒子配分函数。由于 $\mathcal{Q}$ 中的每一项都是 $N$ 个粒子的所有微观态的总权重，在系统中找到 $N$ 个粒子的无条件概率为
+
+\begin{equation}\label{eq:4.102}
+  p(N)=\frac{\mathrm{e}^{\beta\mu N}Z(T,N,\mathbf x)}{\mathcal{Q}(T,\mu,\mathbf x)}.
+\end{equation}
+
+系统中粒子数的平均值为
+
+\begin{equation}\label{eq:4.103}
+  \langle N\rangle=\frac{1}{\mathcal{Q}}\frac{\partial}{\partial(\beta\mu)}\mathcal{Q}=\frac{\partial}{\partial(\beta\mu)}\ln\mathcal{Q},
+\end{equation}
+
+而粒子数涨落与方差有关
+
+\begin{equation}\label{eq:4.104}
+  \langle N^2\rangle_c=\langle N^2\rangle-\langle N\rangle^2=\frac{1}{\mathcal{Q}}\frac{\partial^2}{\partial(\beta\mu)^2}\ln\mathcal{Q}-\left(\frac{\partial}{\partial(\beta\mu)}\ln\mathcal{Q}\right)^2=\frac{\partial^2}{\partial(\beta\mu)^2}\ln\mathcal{Q}=\frac{\partial\langle N\rangle}{\partial(\beta\mu)}.
+\end{equation}
+
+于是方差正比于 $N$，而\term{相对粒子数涨落}{relative number fluctuations}{4.relative-fluctuations}在热力学极限下趋于零，这就确立了本系综与前面各系综的等价性。
+
+由于 $N$ 的分布具有尖锐性，式 \eqref{eq:4.101} 中的求和可以由它在 $N=N^*\approx\langle N\rangle$ 处的最大项来近似，也就是说，
+
+\begin{equation}\label{eq:4.105}
+  \begin{aligned}
+    \mathcal{Q}(T,\mu,\mathbf x)&=\lim_{N\to\infty}\sum_{N=0}^\infty\mathrm{e}^{\beta\mu N}Z(T,N,\mathbf x)=\mathrm{e}^{\beta\mu N^*}Z(T,N^*,\mathbf x)=\mathrm{e}^{\beta\mu N^*-\beta F}\\
+    &=\mathrm{e}^{-\beta(\mu N^*+E-TS)}=\mathrm{e}^{-\beta\mathcal{G}},
+  \end{aligned}
+\end{equation}
+
+其中
+
+\begin{equation}\label{eq:4.106}
+  \mathcal{G}(T,\mu,\mathbf x)=E-TS-\mu N=-k_BT\ln\mathcal{Q}
+\end{equation}
+
+就是巨势（\textit{grand potential}）。利用 $\mathrm{d}\mathcal{G}=-S\mathrm{d}T-N\mathrm{d}\mu+\mathbf J\cdot\mathrm{d}\mathbf x$ 可以得到热力学信息，即
+
+\begin{equation}\label{eq:4.107}
+  -S=\left.\frac{\partial\mathcal{G}}{\partial T}\right|_{\mu,\mathbf x},\qquad
+  N=-\left.\frac{\partial\mathcal{G}}{\partial\mu}\right|_{T,\mathbf x},\qquad
+  J_i=\left.\frac{\partial\mathcal{G}}{\partial x_i}\right|_{T,\mu}.
+\end{equation}
+
+作为最后一个例子，我们在巨正则系综中计算非相互作用粒子理想气体的性质。宏观态为 $M\equiv(T,\mu,V)$，相应的微观态 $\{\vec p_1,\vec q_1,\vec p_2,\vec q_2,\cdots\}$ 具有不确定的粒子数。巨配分函数由下式给出
+
+\begin{equation}\label{eq:4.108}
+  \begin{aligned}
+    \mathcal{Q}(T,\mu,V)&=\sum_{N=0}^\infty\mathrm{e}^{\beta\mu N}\frac{1}{N!}\int\left(\prod_{i=1}^N\frac{\mathrm{d}^3\vec q_i\mathrm{d}^3\vec p_i}{h^3}\right)\exp\left[-\beta\sum_i\frac{p_i^2}{2m}\right]\\
+    &=\sum_{N=0}^\infty\frac{\mathrm{e}^{\beta\mu N}}{N!}\left(\frac{V}{\lambda^3}\right)^N\qquad\left(\text{其中 }\lambda=\frac{h}{\sqrt{2\pi mk_BT}}\right)\\
+    &=\exp\left[\mathrm{e}^{\beta\mu}\frac{V}{\lambda^3}\right].
+  \end{aligned}
+\end{equation}
+
+% p.120
+而巨势为
+
+\begin{equation}\label{eq:4.109}
+  \mathcal{G}(T,\mu,V)=-k_BT\ln\mathcal{Q}=-k_BT\mathrm{e}^{\beta\mu}\frac{V}{\lambda^3}.
+\end{equation}
+
+但是，由于 $\mathcal{G}=E-TS-\mu N=-PV$，气体的压强可以直接得到为
+
+\begin{equation}\label{eq:4.110}
+  P=-\frac{\mathcal{G}}{V}=-\left.\frac{\partial\mathcal{G}}{\partial V}\right|_{\mu,T}=k_BT\frac{\mathrm{e}^{\beta\mu}}{\lambda^3}.
+\end{equation}
+
+粒子数与化学势由下式相联系
+
+\begin{equation}\label{eq:4.111}
+  N=-\left.\frac{\partial\mathcal{G}}{\partial\mu}\right|_{T,V}=\frac{\mathrm{e}^{\beta\mu}V}{\lambda^3}.
+\end{equation}
+
+物态方程可以通过比较式 \eqref{eq:4.110} 与 \eqref{eq:4.111} 得到，即 $P=k_BTN/V$。最后，化学势由下式给出
+
+\begin{equation}\label{eq:4.112}
+  \mu=k_BT\ln\left(\lambda^3\frac{N}{V}\right)=k_BT\ln\left(\frac{P\lambda^3}{k_BT}\right).
+\end{equation}
+
+% =============================================================
+% 【供用户圈定附录 B 收录范围】第 4 章原文中的意大利斜体（按首次出现页码排序）
+% 用户拍板：凡原文中第一次出现的术语一律收入附录 B，即下列「附录 B 候选」全部收录。
+% —— 已在正文中以 \term{中文}{English}{key} 形式标记的术语（附录 B 候选）：
+% p.98  microcanonical ensemble
+% p.99  canonically conjugate pairs, canonical change of variables, normalization factor
+% p.102 occupation numbers
+% p.103 negative temperatures
+% p.104 energy gap, saturation
+% p.108 identical（词条写作「全同」）、distinct（词条写作「不同」）
+% p.110 canonical ensemble, reservoir
+% p.111 partition function, most probable energy
+% p.113 average energy
+% p.115 Gibbs partition function
+% p.116 isobaric ensemble
+% p.117 magnetization, Ising variables
+% p.118 grand canonical ensemble, grand partition function
+% p.119 relative number fluctuations
+% —— 以下术语在第 1--3 章已首次标记，本章不再重复埋锚点（附录 B 只收首次出现处），
+%    正文中仍照原文保留其意大利斜体英文：
+%    p.99 The entropy（第 1 章 p.13）
+%    p.100 第零定律（第 1 章 p.2）
+%    p.101 第一定律（第 1 章 p.6）
+%    p.101 equilibrium（第 1 章 p.4）
+%    p.101 第二定律（第 1 章 p.9）
+%    p.107 mixing entropy（第 2 章 p.47，原文作 entropy of mixing）
+%    p.111 Helmholtz free energy（第 1 章 p.17）
+%    p.113 thermodynamic limit（第 2 章 p.47）
+%    p.114 The ideal gas（第 1 章 p.8）
+%    p.116 Gibbs free energy（第 1 章 p.18）、enthalpy（第 1 章 p.23）
+%    p.117 enthalpy（同上，重复出现）
+%    p.118 susceptibility（第 1 章 p.8）
+%    p.119 grand potential（第 1 章 p.18）
+% —— 原文中属于「强调」而非术语的斜体（讲义中以 \emph{} 或 \textit{} 呈现，不收入附录 B）：
+%    p.98 概率论方法（a probabilistic approach to…）、如何（how）；
+%    p.99 Boltzmann 的等先验平衡概率假设（Boltzmann's assumption of equal a priori
+%         equilibrium probabilities，与第 3 章 p.61 的 basic assumption of statistical
+%         mechanics 同义，按用户裁决不另立词条）、canonical（即 canonical change of
+%         variables，已作术语收录）；
+%    p.101 可逆地（reversibly）；
+%    p.102 稳定性条件（Stability conditions）；p.103 减小（decrease）；
+%    p.107 不是广延的（it is not extensive）；
+%    p.108 Gibbs 佯谬（The Gibbs paradox）；
+%    p.111 平均（average）；
+%    p.113 正则系综与微正则系综的比较（小节标题）、二能级系统（Two-level systems，
+%          小节标题）；
+%    p.114 独立的（independent）、理想气体（The ideal gas，小节标题）；
+%    p.115 对系统（on the system）；
+%    p.116 理想气体（The ideal gas，小节标题）；
+%    p.117 自旋（Spins，小节标题）；p.119 平均（average）；
+%    p.120 经典谐振子（Classical harmonic oscillators）、量子谐振子（Quantum harmonic
+%          oscillators）、提示（Hint）—— 属习题部分，不译、不收录。
+% —— 更正（第 5 章交付后，用户核原文）：上列条目中原书的小节标题（p.113 正则系综与微正则
+%    系综的比较、p.113 二能级系统、p.114/p.116 理想气体、p.117 自旋）原书为**粗体**标题而非
+%    斜体，列在「强调性斜体」栏下只是表示「不收入附录 B」；它们本来就不属于「原文中的斜体术语」。
+% —— 用户裁决（第 4 章交付后，见 errata.tex 的「非翻译性改动」表）：
+%    (1) 回第 1 章首次出现处补埋 Helmholtz free energy（p.17）、Gibbs free energy（p.18）、
+%        grand potential（p.18）的锚点，附录 B 页码记为第 1 章；第 4 章相应位置改为
+%        「中文（\textit{English}）」形式，不再埋锚点。
+%    (2) identical / distinct 收录，词条写作「全同」「不同」（正文措辞按此改写）。
+%    (3) average energy 收录（锚点在 p.113）。
+%    (4) 第零/第一/第二定律收录；锚点补在第 1 章 p.2 / p.6 / p.9（第 1 章原文即以
+%        斜体陈述定律内容处），第 4 章 p.100--101 改作「中文（\textit{English}）」。
+%    (5) Boltzmann 的等先验平衡概率假设不收录（仍以 \emph{}／\textit{} 呈现）。
+% —— 习题部分（p.120 下半页起至 p.125）不译。

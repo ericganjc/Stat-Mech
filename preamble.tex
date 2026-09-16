@@ -1,0 +1,114 @@
+% =============================================================
+%  preamble.tex —— 统计力学自学讲义 · 导言区
+%  编译方式：xelatex ×2（见 build.sh）
+% =============================================================
+
+% ---------------- 页面版式 ----------------
+\usepackage{geometry}
+\geometry{a4paper,left=2.6cm,right=2.6cm,top=2.8cm,bottom=2.8cm}
+
+% ---------------- 数学 ----------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathrsfs}
+
+% ---------------- 图、表 ----------------
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xltabular}   % 可跨页的 tabularx（附录 A、B 的长表用）
+\usepackage{multirow}
+
+% ---------------- 其他 ----------------
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[unicode]{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = blue!50!black,
+  urlcolor   = blue!50!black,
+  bookmarksnumbered = true
+}
+
+% ---------------- 编号：公式、图、表均按章编号 ----------------
+% 与原文一一对应：公式 (1.45)、图 1.1、表 1.1
+\numberwithin{equation}{chapter}
+
+% 章号用阿拉伯数字（ctex 默认中文数字，会使公式编号变成「(一.45)」）
+\ctexset{chapter/number = \arabic{chapter}}
+
+% ---------------- 双语标题 ----------------
+% 正文标题：中文一行、英文另起一行（字号略小）
+% 目录条目：中文（English），一行
+\newcommand{\bichapter}[2]{%
+  \chapter[#1（#2）]{\texorpdfstring{#1\\[0.5em]{\large\mdseries #2}}{#1（#2）}}%
+  \markboth{#1}{}%
+}
+\newcommand{\bisection}[2]{%
+  \section[#1（#2）]{\texorpdfstring{#1\\[0.25em]{\normalsize\mdseries #2}}{#1（#2）}}%
+}
+\newcommand{\bisubsection}[2]{%
+  \subsection[#1（#2）]{\texorpdfstring{#1\\[0.2em]{\small\mdseries #2}}{#1（#2）}}%
+}
+
+% ---------------- 术语 ----------------
+% 原文中意大利斜体的术语：首次出现处写成「中文（English）」，
+% 英文保持斜体，并埋下锚点供附录 B 用 \pageref 生成页码。
+% 用法：\term{广延量}{extensive}{1.extensive}
+\newcommand{\term}[3]{#1（\textit{#2}）\label{term:#3}}
+
+% ---------------- 附录 B 英文列字体 ----------------
+% 附录 B 的英文术语统一用 Times New Roman 正体（不用意大利斜体）。
+% 生成脚本 _extract/make_appendixB.sh 把每条英文术语包在 {\glossaryfont ...} 中。
+\newfontfamily\glossaryfont{Times New Roman}
+
+% ---------------- 非精确微分记号 ----------------
+% 原文中热量/功的微小量写作 đQ、đW（d 上加一横杠）。此处先试直接输入该字符；
+% 若所用字体缺字，则退回「d 上加斜杠」的画法。
+\newcommand{\inexd}{\text{đ}}
+% \newcommand{\inexd}{\not{\mathrm{d}}}   % 备用：字体缺 đ 时启用
+
+% ---------------- 页眉页脚 ----------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+
+% ---------------- 图注辅助 ----------------
+% 图片由用户自行截取后按 fig/README.md 的命名放入 fig/ 目录（fig<章>-<图>.png/jpg/pdf）。
+% 文件存在则自动插入图片；尚不存在时只显示占位框，保证任何时刻都能编译通过。
+\newcommand{\figfile}[1]{%
+  \IfFileExists{fig/#1.png}{\includegraphics[width=0.8\textwidth]{fig/#1.png}}{%
+  \IfFileExists{fig/#1.jpg}{\includegraphics[width=0.8\textwidth]{fig/#1.jpg}}{%
+  \IfFileExists{fig/#1.pdf}{\includegraphics[width=0.8\textwidth]{fig/#1.pdf}}{%
+  \fbox{\parbox[c][3.6cm][c]{0.8\textwidth}{\centering\small [ 图片占位：#1 ]}}}}}}
+% 用法：\cnfigure{fig1-1}{中文图注}
+\newcommand{\cnfigure}[2]{%
+  \begin{figure}[htbp]
+    \centering
+    \figfile{#1}%
+    \caption{#2}%
+    \label{fig:#1}%
+  \end{figure}%
+}
+
+% ---------------- 卷首摘要（内容留空，待用户最后撰写）----------------
+\newenvironment{cnabstract}{%
+  \clearpage
+  \chapter*{\texorpdfstring{摘要\\[0.5em]{\large\mdseries Abstract}}{摘要（Abstract）}}%
+  \phantomsection
+  \addcontentsline{toc}{chapter}{摘要（Abstract）}%
+  \markboth{摘要}{}%
+  \vspace{1em}%
+}{%
+  \clearpage
+}

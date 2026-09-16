@@ -1,0 +1,1246 @@
+% =============================================================
+%  第 3 章 气体动理论（Kinetic theory of gases）
+%  原文：Chapter 3, p.57--87   公式：3.1--3.130   图：3.1--3.8
+% =============================================================
+\bichapter{气体动理论}{Kinetic Theory of Gases}
+
+% =============================================================
+\bisection{一般定义}{General definitions}
+% p.57
+
+\textbf{动理论}\emph{研究大量粒子的宏观性质，从它们的（经典）运动方程出发。}
+
+热力学用功、热与熵等概念描述\emph{宏观对象}的平衡行为。热力学的唯象定律告诉我们，当系统趋近其平衡态时，这些量受到怎样的约束。在\emph{微观层面}，我们知道这些系统由粒子（原子、分子）组成，而粒子的相互作用与动力学可以依据更为基本的理论得到相当好的理解。如果这些微观描述是完备的，我们就应当能够说明宏观行为，也就是说，导出平衡态中支配宏观态函数的定律。动理论试图达成这一目标。特别地，我们将设法回答以下问题：
+
+\begin{enumerate}[itemsep=0.35em,topsep=0.4em]
+  \item 对一个由运动粒子组成的系统，我们如何定义「平衡」？
+  \item 是否所有系统都会自然地演化到一个平衡态？
+  \item 一个尚未完全处于平衡的系统，其时间演化是怎样的？
+\end{enumerate}
+
+最容易研究的系统、热力学名副其实的主力，是稀薄（近乎理想）气体。一典型体积的气体含有 $10^{23}$ 量级的粒子，而在动理论中，我们试图由这组原子坐标的时间演化推出气体的宏观性质。在任意时刻 $t$，由 $N$ 个粒子组成的系统的\term{微观态}{microstate}{3.microstate}是通过指定所有粒子的位置 $\vec q_i(t)$ 与动量 $\vec p_i(t)$ 来描述的。因此，微观态对应于 $6N$ 维\term{相空间}{phase space}{3.phase-space} $\Gamma=\prod_{i=1}^N\{\vec q_i,\vec p_i\}$ 中的一个点 $\mu(t)$。这个点的时间演化由正则方程支配：
+
+\begin{equation}\label{eq:3.1}
+  \left\{\begin{aligned}
+    \frac{\mathrm{d}\vec q_i}{\mathrm{d}t} &= \frac{\partial\mathscr H}{\partial\vec p_i},\\[4pt]
+    \frac{\mathrm{d}\vec p_i}{\mathrm{d}t} &= -\frac{\partial\mathscr H}{\partial\vec q_i}.
+  \end{aligned}\right.
+\end{equation}
+
+其中\term{哈密顿量}{Hamiltonian}{3.hamiltonian} $\mathscr H(\bm p,\bm q)$ 用坐标集合 $\bm q\equiv\{\vec q_1,\vec q_2,\cdots,\vec q_N\}$ 与动量集合 $\bm p\equiv\{\vec p_1,\vec p_2,\cdots,\vec p_N\}$ 描述系统的总能量。
+
+% p.58
+微观运动方程具有\term{时间反演对称性}{time reversal symmetry}{3.time-reversal}，也就是说，如果在 $t=0$ 时突然把所有动量反向，$\bm p\to-\bm p$，则粒子会重走它们先前的轨迹，$\bm q(t)=\bm q(-t)$。这来自 $\mathscr H$ 在变换 $T(\bm p,\bm q)\to(-\bm p,\bm q)$ 下的不变性。
+
+\cnfigure{fig3-1}{相空间密度正比于无穷小体积内代表点的数目。}
+
+在热力学内部的表述中，平衡态理想气体的\term{宏观态}{macrostate}{3.macrostate} $M$ 由少数几个态函数，例如 $E$、$T$、$P$ 与 $N$ 来描述。宏观态的空间比微观态所张成的相空间要小得多。因此，必定有非常大量的微观态 $\mu$ 对应着同一个宏观态 $M$。
+
+这种多对一的对应提示我们引入微观态的\term{统计系综}{statistical ensemble}{3.ensemble}。考虑某个特定宏观态的 $\mathcal{N}$ 个拷贝，每一个都由相空间 $\Gamma$ 中一个不同的\term{代表点}{representative point}{3.representative-point} $\mu(t)$ 描述。令 $\mathrm{d}\mathcal{N}(\bm p,\bm q,t)$ 等于点 $(\bm p,\bm q)$ 附近无穷小体积 $\mathrm{d}\Gamma=\prod_{i=1}^N \mathrm{d}^3\vec p_i\,\mathrm{d}^3\vec q_i$ 内代表点的数目。于是相空间密度 $\rho(\bm p,\bm q,t)$ 由下式定义：
+
+\begin{equation}\label{eq:3.2}
+  \rho(\bm p,\bm q,t)\,\mathrm{d}\Gamma=\lim_{\mathcal{N}\to\infty}\frac{\mathrm{d}\mathcal{N}(\bm p,\bm q,t)}{\mathcal{N}}.
+\end{equation}
+
+这个量可以与上一节引入的客观（\textit{objective}）概率相比较。显然，$\int \mathrm{d}\Gamma\,\rho=1$，而 $\rho$ 是相空间中一个适当归一化的概率密度函数（\textit{probability density function}）。为了计算各种函数 $\mathcal{O}(\bm p,\bm q)$ 的宏观取值，我们将使用\term{系综平均}{ensemble averages}{3.ensemble-avg}：
+
+\begin{equation}\label{eq:3.3}
+  \langle\mathcal{O}\rangle=\int \mathrm{d}\Gamma\,\rho(\bm p,\bm q,t)\mathcal{O}(\bm p,\bm q).
+\end{equation}
+
+当精确的微观态 $\mu$ 被指定时，我们说系统处于\term{纯态}{pure state}{3.pure-state}。另一方面，当我们关于系统的知识是概率性的，其意义是系统取自一个具有密度 $\rho(\Gamma)$ 的系综，则说它属于\term{混合态}{mixed state}{3.mixed-state}。在纯态的语境中很难描述平衡，因为 $\mu(t)$ 按照式 \eqref{eq:3.1} 不断地随时间变化。对混合态而言，更方便的做法是考察相空间密度 $\rho(t)$ 的时间演化来描述平衡，而它由下一节引入的 Liouville 方程支配。
+
+% =============================================================
+\bisection{Liouville 定理}{Liouville's theorem}
+% p.59
+
+\textbf{Liouville 定理}\emph{指出，相空间密度 $\rho(\Gamma,t)$ 的行为像一种不可压缩流体。}
+
+\cnfigure{fig3-2}{相空间中一个体积元的演化。}
+
+跟踪点 $(\bm p,\bm q)$ 附近无穷小体积 $\mathrm{d}\Gamma=\prod_{i=1}^N \mathrm{d}^3\vec p_i\,\mathrm{d}^3\vec q_i$ 内 $\mathrm{d}\mathcal{N}$ 个纯态的演化。根据式 \eqref{eq:3.1}，经过时间间隔 $\delta t$ 后，这些态已经移动到另一个点 $(\bm p',\bm q')$ 的近旁，其中
+
+\begin{equation}\label{eq:3.4}
+  q'_\alpha=q_\alpha+\dot q_\alpha\delta t+\mathcal{O}(\delta t^2),\qquad
+  p'_\alpha=p_\alpha+\dot p_\alpha\delta t+\mathcal{O}(\delta t^2).
+\end{equation}
+
+在上述表达式中，$q_\alpha$ 与 $p_\alpha$ 指 $6N$ 个坐标与动量中的任意一个，而 $\dot q_\alpha$ 与 $\dot p_\alpha$ 是相应的速度。原来的体积元 $\mathrm{d}\Gamma$ 的形状是边长为 $\mathrm{d}p_\alpha$ 与 $\mathrm{d}q_\alpha$ 的超立方体。在时间间隔 $\delta t$ 内它会发生畸变，新体积元的投影边长由下式给出：
+
+\begin{equation}\label{eq:3.5}
+  \left\{\begin{aligned}
+    \mathrm{d}q'_\alpha &= \mathrm{d}q_\alpha+\frac{\partial\dot q_\alpha}{\partial q_\alpha}\mathrm{d}q_\alpha\delta t+\mathcal{O}(\delta t^2),\\[4pt]
+    \mathrm{d}p'_\alpha &= \mathrm{d}p_\alpha+\frac{\partial\dot p_\alpha}{\partial p_\alpha}\mathrm{d}p_\alpha\delta t+\mathcal{O}(\delta t^2).
+  \end{aligned}\right.
+\end{equation}
+
+到 $\delta t^2$ 阶，新的体积元为 $\mathrm{d}\Gamma'=\prod_{i=1}^N \mathrm{d}^3\vec p_i'\,\mathrm{d}^3\vec q_i'$。由式 \eqref{eq:3.5} 可知，对每一对共轭坐标都有
+
+\begin{equation}\label{eq:3.6}
+  \mathrm{d}q'_\alpha\cdot\mathrm{d}p'_\alpha=\mathrm{d}q_\alpha\cdot\mathrm{d}p_\alpha\left[1+\left(\frac{\partial\dot q_\alpha}{\partial q_\alpha}+\frac{\partial\dot p_\alpha}{\partial p_\alpha}\right)\delta t+\mathcal{O}(\delta t^2)\right].
+\end{equation}
+
+% p.60
+但既然坐标与动量的时间演化由正则方程 \eqref{eq:3.1} 支配，我们有
+
+\begin{equation}\label{eq:3.7}
+  \frac{\partial\dot q_\alpha}{\partial q_\alpha}=\frac{\partial}{\partial q_\alpha}\frac{\partial\mathscr H}{\partial p_\alpha}=\frac{\partial^2\mathscr H}{\partial p_\alpha\partial q_\alpha},
+  \quad\text{以及}\quad
+  \frac{\partial\dot p_\alpha}{\partial p_\alpha}=\frac{\partial}{\partial p_\alpha}\left(-\frac{\partial\mathscr H}{\partial q_\alpha}\right)=-\frac{\partial^2\mathscr H}{\partial q_\alpha\partial p_\alpha}.
+\end{equation}
+
+因此式 \eqref{eq:3.6} 中的投影面积对任意一对坐标都不变，从而体积元不受影响，$\mathrm{d}\Gamma'=\mathrm{d}\Gamma$。最初位于 $(\bm p,\bm q)$ 邻域内的所有 $\mathrm{d}\mathcal{N}$ 个纯态都被输运到 $(\bm p',\bm q')$ 的邻域，但它们占据的体积完全相同。比值 $\mathrm{d}\mathcal{N}/\mathrm{d}\Gamma$ 保持不变，而 $\rho$ 的行为像不可压缩流体的密度。
+
+不可压缩性条件 $\rho(\bm p',\bm q',t+\delta t)=\rho(\bm p,\bm q,t)$ 可以写成微分形式
+
+\begin{equation}\label{eq:3.8}
+  \frac{\mathrm{d}\rho}{\mathrm{d}t}=\frac{\partial\rho}{\partial t}+\sum_{\alpha=1}^{3N}\left(\frac{\partial\rho}{\partial p_\alpha}\cdot\frac{\mathrm{d}p_\alpha}{\mathrm{d}t}+\frac{\partial\rho}{\partial q_\alpha}\cdot\frac{\mathrm{d}q_\alpha}{\mathrm{d}t}\right)=0.
+\end{equation}
+
+注意 $\partial\rho/\partial t$ 与 $\mathrm{d}\rho/\mathrm{d}t$ 的区别：前者是\emph{偏}导数，指相空间中某一固定位置处 $\rho$ 的变化，而后者是\emph{全}导数，跟随一块流体体积在相空间中移动时的演化。把式 \eqref{eq:3.1} 代入式 \eqref{eq:3.8} 得到
+
+\begin{equation}\label{eq:3.9}
+  \frac{\partial\rho}{\partial t}=\sum_{\alpha=1}^{3N}\left(\frac{\partial\rho}{\partial p_\alpha}\frac{\partial\mathscr H}{\partial q_\alpha}-\frac{\partial\rho}{\partial q_\alpha}\frac{\partial\mathscr H}{\partial p_\alpha}\right)=-\{\rho,\mathscr H\},
+\end{equation}
+
+其中我们引入了相空间中两个函数的\term{Poisson 括号}{Poisson bracket}{3.poisson-bracket}
+
+\begin{equation}\label{eq:3.10}
+  \{A,B\}\equiv\sum_{\alpha=1}^{3N}\left(\frac{\partial A}{\partial q_\alpha}\frac{\partial B}{\partial p_\alpha}-\frac{\partial A}{\partial p_\alpha}\frac{\partial B}{\partial q_\alpha}\right)=-\{B,A\}.
+\end{equation}
+
+\textbf{Liouville 定理的推论：}
+
+\begin{enumerate}[itemsep=0.5em,topsep=0.4em]
+  \item 在时间反演的作用 $(\bm p,\bm q,t)\to(-\bm p,\bm q,-t)$ 下，Poisson 括号 $\{\rho,\mathscr H\}$ 改变符号，而式 \eqref{eq:3.9} 意味着密度的演化反向，也就是说，$\rho(\bm p,\bm q,t)=\rho(-\bm p,\bm q,-t)$。
+
+  \item 式 \eqref{eq:3.3} 中系综平均的时间演化由下式给出（利用式 \eqref{eq:3.9}）
+  \begin{equation}\label{eq:3.11}
+    \frac{\mathrm{d}\langle\mathcal{O}\rangle}{\mathrm{d}t}=\int \mathrm{d}\Gamma\frac{\partial\rho(\bm p,\bm q,t)}{\partial t}\mathcal{O}(\bm p,\bm q)
+    =\sum_{\alpha=1}^{3N}\int \mathrm{d}\Gamma\,\mathcal{O}(\bm p,\bm q)\left(\frac{\partial\rho}{\partial p_\alpha}\frac{\partial\mathscr H}{\partial q_\alpha}-\frac{\partial\rho}{\partial q_\alpha}\frac{\partial\mathscr H}{\partial p_\alpha}\right).
+  \end{equation}
+
+  上式中的 $\rho$ 的偏导数可以借助分部积分法消去，即 $\int f\rho'=-\int f'\rho$，因为在积分区域的边界上 $\rho$ 为零，于是得到
+  \begin{equation}\label{eq:3.12}
+    \begin{aligned}
+      \frac{\mathrm{d}\langle\mathcal{O}\rangle}{\mathrm{d}t}
+      &=-\sum_{\alpha=1}^{3N}\int \mathrm{d}\Gamma\,\rho\left[\left(\frac{\partial\mathcal{O}}{\partial p_\alpha}\frac{\partial\mathscr H}{\partial q_\alpha}-\frac{\partial\mathcal{O}}{\partial q_\alpha}\frac{\partial\mathscr H}{\partial p_\alpha}\right)+\mathcal{O}\left(\frac{\partial^2\mathscr H}{\partial p_\alpha\partial q_\alpha}-\frac{\partial^2\mathscr H}{\partial q_\alpha\partial p_\alpha}\right)\right]\\[2pt]
+      &=-\int \mathrm{d}\Gamma\,\rho\{\mathscr H,\mathcal{O}\}=\langle\{\mathcal{O},\mathscr H\}\rangle.
+    \end{aligned}
+  \end{equation}
+\end{enumerate}
+
+% p.61
+注意，\emph{不能}把全导数拿到积分号内，也就是说
+
+\begin{equation}\label{eq:3.13}
+  \frac{\mathrm{d}\langle\mathcal{O}\rangle}{\mathrm{d}t}\ne\int \mathrm{d}\Gamma\,\frac{\mathrm{d}\rho(\bm p,\bm q,t)}{\mathrm{d}t}\mathcal{O}(\bm p,\bm q).
+\end{equation}
+
+这个常见的错误会给出 $\mathrm{d}\langle\mathcal{O}\rangle/\mathrm{d}t=0$。
+
+\begin{enumerate}[itemsep=0.5em,topsep=0.4em,start=3]
+  \item 若系综的成员对应于一个平衡的宏观态，则系综平均必须与时间无关。这可以通过一个定态密度 $\partial\rho_{\text{eq}}/\partial t=0$ 来实现，也就是要求
+  \begin{equation}\label{eq:3.14}
+    \{\rho_{\text{eq}},\mathscr H\}=0.
+  \end{equation}
+  上述方程的一个可能解是 $\rho_{\text{eq}}$ 为 $\mathscr H$ 的函数，即 $\rho_{\text{eq}}(\bm p,\bm q)=\rho(\mathscr H(\bm p,\bm q))$。于是容易验证 $\{\rho(\mathscr H),\mathscr H\}=\rho'(\mathscr H)\{\mathscr H,\mathscr H\}=0$。这个解意味着 $\rho$ 的值在相空间中的等能面 $\mathscr H$ 上为常数。这确实就是\term{统计力学的基本假设}{basic assumption of statistical mechanics}{3.basic-assumption}。例如，在微正则系综中，孤立系统的总能量 $E$ 是给定的。此时系综的所有成员都必须位于相空间中的曲面 $\mathscr H(\bm p,\bm q)=E$ 上。式 \eqref{eq:3.9} 意味着该曲面上均匀的点密度不随时间变化。统计力学的假设就是：宏观态确实由微观态的这种均匀密度来代表。这等价于把式 \eqref{eq:3.2} 中客观的概率度量换成一个主观的概率度量。
+
+  与哈密顿量相联系的还可能有附加的\term{守恒量}{conserved quantities}{3.conserved}，它们满足 $\{L_n,\mathscr H\}=0$。存在这类量时，对任何形如 $\rho_{\text{eq}}(\bm p,\bm q)=\rho(\mathscr H(\bm p,\bm q),L_1(\bm p,\bm q),L_2(\bm p,\bm q),\cdots)$ 的函数都存在定态密度。显然，在系统的演化过程中 $L_n$ 的值不变，因为
+  \begin{equation}\label{eq:3.15}
+    \begin{aligned}
+      \frac{\mathrm{d}L_n(\bm p,\bm q)}{\mathrm{d}t}
+      &\equiv\frac{L_n(\bm p(t+\mathrm{d}t),\bm q(t+\mathrm{d}t))-L_n(\bm p(t),\bm q(t))}{\mathrm{d}t}\\
+      &=\sum_{\alpha=1}^{3N}\left(\frac{\partial L_n}{\partial p_\alpha}\cdot\frac{\partial p_\alpha}{\partial t}+\frac{\partial L_n}{\partial q_\alpha}\cdot\frac{\partial q_\alpha}{\partial t}\right)\\
+      &=-\sum_{\alpha=1}^{3N}\left(\frac{\partial L_n}{\partial p_\alpha}\cdot\frac{\partial\mathscr H}{\partial q_\alpha}-\frac{\partial L_n}{\partial q_\alpha}\cdot\frac{\partial\mathscr H}{\partial p_\alpha}\right)=\{L_n,\mathscr H\}=0.
+    \end{aligned}
+  \end{equation}
+  因此，$\rho_{\text{eq}}$ 对这些量的函数依赖仅仅表明：所有\term{可及态}{accessible states}{3.accessible}，也就是说，那些在不违反任何守恒定律的前提下能够彼此连接起来的态，都是同样可能的。
+
+  \item 上述关于 $\rho_{\text{eq}}$ 的假设回答了本章开头提出的第一个问题。然而，为了回答第二个问题，并论证统计力学的基本假设，我们需要证明非定态密度会收敛到定态解 $\rho_{\text{eq}}$。这与上面第 (1) 点中提到的的时间反演对称性相矛盾：对任何一个收敛到 $\rho_{\text{eq}}$ 的解 $\rho(t)$，都存在一个与之相背而行的、时间反演的解。能期望的最好结果是证明解 $\rho(t)$ 在大部分时间里都处于 $\rho_{\text{eq}}$ 的邻域，从而\term{时间平均}{time averages}{3.time-avg}由定态解主导。这就把我们引向了\term{各态历经性}{ergodicity}{3.ergodicity}问题，即用系综平均代替时间平均是否正当。在测量任何系统的性质时，我们只与平衡系综的一个代表打交道。然而，大多数宏观性质并没有瞬时值，而需要某种形式的平均。
+\end{enumerate}
+
+% p.62
+例如，气体施加的压强 $P$ 来自粒子对容器壁的撞击。这些粒子的数目与动量在不同时刻、不同位置都会变化。测得的压强反映的是对许多特征微观时间的平均。如果在这个时间尺度上，系统的代表点在相空间中游走并均匀地访问可及点，我们就可以用系综平均代替时间平均。对少数系统可以证明一个\term{各态历经定理}{ergodic theorem}{3.ergodic-theorem}，它指出在足够长的时间之后，代表点会任意接近相空间中所有可及的点。然而，这类证明通常只对随粒子数 $N$ 指数增长的时间间隔成立，因而远远超过气体的压强通常被测量的任何合理时间尺度。就这一点而言，各态历经定理的证明迄今与宏观平衡的实际情形关系不大。
+
+% =============================================================
+\bisection{Bogoliubov--Born--Green--Kirkwood--Yvon 层级}{The Bogoliubov--Born--Green--Kirkwood--Yvon hierarchy}
+% p.62
+
+完整的相空间密度所包含的信息，比描述平衡性质所需的要多得多。例如，只要知道单粒子分布就足以计算气体的压强。一个单粒子密度指的是这样的期望值：在时刻 $t$ 于位置 $\vec q$、动量 $\vec p$ 处找到 $N$ 个粒子中的\emph{任意一个}。它由完整的密度 $\rho$ 计算得到，即
+
+\begin{equation}\label{eq:3.16}
+  \begin{aligned}
+    f_1(\vec p,\vec q,t)&=\left\langle\sum_{i=1}^N\delta^3(\vec p-\vec p_i)\delta^3(\vec q-\vec q_i)\right\rangle\\
+    &=N\int\prod_{i=2}^N \mathrm{d}^3\vec p_i\,\mathrm{d}^3\vec q_i\,\rho(\vec p_1=\vec p,\vec q_1=\vec q,\vec p_2,\vec q_2,\cdots,\vec p_N,\vec q_N,t).
+  \end{aligned}
+\end{equation}
+
+为得到上面的第二个等式，我们用第一对 delta 函数完成了一组积分，然后假定密度关于粒子置换是对称的。类似地，两粒子密度可以由下式计算：
+
+\begin{equation}\label{eq:3.17}
+  f_2(\vec p_1,\vec q_1,\vec p_2,\vec q_2,t)=N(N-1)\int\prod_{i=3}^N \mathrm{d}V_i\,\rho(\vec p_1,\vec q_1,\vec p_2,\vec q_2,\cdots,\vec p_N,\vec q_N,t),
+\end{equation}
+
+其中 $\mathrm{d}V_i=\mathrm{d}^3\vec p_i\,\mathrm{d}^3\vec q_i$ 是粒子 $i$ 对相空间体积的贡献。一般的 $s$ 粒子密度定义为
+
+\begin{equation}\label{eq:3.18}
+  f_s(\vec p_1,\cdots,\vec q_s,t)=\frac{N!}{(N-s)!}\int\prod_{i=s+1}^N \mathrm{d}V_i\,\rho(\bm p,\bm q,t)=\frac{N!}{(N-s)!}\rho_s(\vec p_1,\cdots,\vec q_s,t),
+\end{equation}
+
+其中 $\rho_s$ 是 $s$ 个粒子的坐标的标准\emph{无条件 PDF}，而 $\rho_N\equiv\rho$。$\rho_s$ 对其所有变量积分时正确地归一化为 1，而 $s$ 粒子密度的归一化因子是 $N!/(N-s)!$。我们将不加区分地使用这两个量。
+
+% p.63
+少体密度的演化由被称为 BBGKY 的方程组层级支配，它归功于 Bogoliubov、Born、Green、Kirkwood 与 Yvon。动理论中所研究的最简单的非平凡哈密顿量是
+
+\begin{equation}\label{eq:3.19}
+  \mathscr H(\bm p,\bm q)=\sum_{n=1}^N\left[\frac{\vec p_n{}^2}{2m}+U(\vec q_n)\right]+\frac12\sum_{(n,m)=1}^N\mathscr V(\vec q_n-\vec q_m).
+\end{equation}
+
+这个哈密顿量对弱相互作用气体给出了恰当的描述。除了质量为 $m$ 的粒子的经典动能之外，它还包含一个\emph{外势} $U$，以及粒子之间的一个\emph{两体相互作用} $\mathscr V$。原则上，为了得到完整的描述还应当计入三体及更高阶的相互作用，但它们在稀薄气体（近乎理想）极限下并不十分重要。
+
+为了计算 $f_s$ 的时间演化，方便的做法是把哈密顿量分为
+
+\begin{equation}\label{eq:3.20}
+  \mathscr H=\mathscr H_s+\mathscr H_{N-s}+\mathscr H'.
+\end{equation}
+
+其中 $\mathscr H_s$ 与 $\mathscr H_{N-s}$ 只包含各组粒子内部的相互作用，
+
+\begin{equation}\label{eq:3.21}
+  \begin{aligned}
+    \mathscr H_s&=\sum_{n=1}^s\left[\frac{\vec p_n{}^2}{2m}+U(\vec q_n)\right]+\frac12\sum_{(n,m)=1}^s\mathscr V(\vec q_n-\vec q_m),\\
+    \mathscr H_{N-s}&=\sum_{i=s+1}^N\left[\frac{\vec p_i{}^2}{2m}+U(\vec q_i)\right]+\frac12\sum_{(i,j)=s+1}^N\mathscr V(\vec q_i-\vec q_j),
+  \end{aligned}
+\end{equation}
+
+而粒子间的相互作用则包含在
+
+\begin{equation}\label{eq:3.22}
+  \mathscr H'=\sum_{n=1}^s\sum_{i=s+1}^N\mathscr V(\vec q_n-\vec q_i)
+\end{equation}
+
+中。由式 \eqref{eq:3.18}，$f_s$（或 $\rho_s$）的时间演化可写为
+
+\begin{equation}\label{eq:3.23}
+  \frac{\partial\rho_s}{\partial t}=\int\prod_{i=s+1}^N \mathrm{d}V_i\,\frac{\partial\rho}{\partial t}=-\int\prod_{i=s+1}^N \mathrm{d}V_i\,\{\rho,\mathscr H_s+\mathscr H_{N-s}+\mathscr H'\},
+\end{equation}
+
+其中用到了式 \eqref{eq:3.9} 来描述 $\rho$ 的演化。式 \eqref{eq:3.23} 中的三个 Poisson 括号将在下面逐一计算。由于前 $s$ 个坐标不被积分，第一项中 Poisson 括号的积分与微分的次序可以交换，并且
+
+\begin{equation}\label{eq:3.24}
+  \int\prod_{i=s+1}^N \mathrm{d}V_i\,\{\rho,\mathscr H_s\}=\left\{\left(\int\prod_{i=s+1}^N \mathrm{d}V_i\,\rho\right),\mathscr H_s\right\}=\{\rho_s,\mathscr H_s\}.
+\end{equation}
+
+把 Poisson 括号显式写出，式 \eqref{eq:3.23} 的第二项取形式
+
+\begin{equation*}
+  -\int\prod_{i=s+1}^N \mathrm{d}V_i\,\{\rho,\mathscr H_{N-s}\}=\int\prod_{i=s+1}^N \mathrm{d}V_i\sum_{j=1}^N\left[\frac{\partial\rho}{\partial\vec p_j}\cdot\frac{\partial\mathscr H_{N-s}}{\partial\vec q_j}-\frac{\partial\rho}{\partial\vec q_j}\cdot\frac{\partial\mathscr H_{N-s}}{\partial\vec p_j}\right]
+\end{equation*}
+
+% p.64
+（利用了式 \eqref{eq:3.21}）
+
+\begin{equation}\label{eq:3.25}
+  =\int\prod_{i=s+1}^N \mathrm{d}V_i\sum_{j=s+1}^N\left[\frac{\partial\rho}{\partial\vec p_j}\cdot\left(\frac{\partial U}{\partial\vec q_j}+\frac12\sum_{k=s+1}^N\frac{\partial\mathscr V(\vec q_j-\vec q_k)}{\partial\vec q_j}\right)-\frac{\partial\rho}{\partial\vec q_j}\cdot\frac{\vec p_j}{m}\right]=0.
+\end{equation}
+
+最后的等式是在分部积分之后得到的：乘以 $\partial\rho/\partial\vec p_j$ 的那一项不依赖于 $\vec p_j$，而 $\vec p_j/m$ 不依赖于 $\vec q_j$。式 \eqref{eq:3.23} 中涉及与 $\mathscr H'$ 的 Poisson 括号的最后一项是
+
+\begin{equation*}
+  \begin{aligned}
+    &\int\prod_{i=s+1}^N \mathrm{d}V_i\sum_{j=1}^N\left[\frac{\partial\rho}{\partial\vec p_j}\cdot\frac{\partial\mathscr H'}{\partial\vec q_j}-\frac{\partial\rho}{\partial\vec q_j}\cdot\frac{\partial\mathscr H'}{\partial\vec p_j}\right]\\
+    &=\int\prod_{i=s+1}^N \mathrm{d}V_i\left[\sum_{n=1}^s\frac{\partial\rho}{\partial\vec p_n}\cdot\sum_{j=s+1}^N\frac{\partial\mathscr V(\vec q_n-\vec q_j)}{\partial\vec q_n}+\sum_{j=s+1}^N\frac{\partial\rho}{\partial\vec p_j}\cdot\sum_{n=1}^s\frac{\partial\mathscr V(\vec q_j-\vec q_n)}{\partial\vec q_j}\right],
+  \end{aligned}
+\end{equation*}
+
+其中对全体粒子的求和被划分成了两组。（注意式 \eqref{eq:3.22} 中的 $\mathscr H'$ 不依赖于动量。）分部积分表明上式的第二项为零。第一项包含 $(N-s)$ 个由对称性彼此相等的表达式之和，并可化简为
+
+\begin{equation}\label{eq:3.26}
+  \begin{aligned}
+    &(N-s)\int\prod_{i=s+1}^N \mathrm{d}V_i\sum_{n=1}^s\frac{\partial\mathscr V(\vec q_n-\vec q_{s+1})}{\partial\vec q_n}\cdot\frac{\partial\rho}{\partial\vec p_n}\\
+    &=(N-s)\sum_{n=1}^s\int \mathrm{d}V_{s+1}\frac{\partial\mathscr V(\vec q_n-\vec q_{s+1})}{\partial\vec q_n}\cdot\frac{\partial}{\partial\vec p_n}\left[\int\prod_{i=s+2}^N \mathrm{d}V_i\,\rho\right].
+  \end{aligned}
+\end{equation}
+
+注意上面方括号中的量就是 $\rho_{s+1}$。于是，把式 \eqref{eq:3.24}、\eqref{eq:3.25} 与 \eqref{eq:3.26} 相加得到
+
+\begin{equation}\label{eq:3.27}
+  \frac{\partial\rho_s}{\partial t}-\{\mathscr H_s,\rho_s\}=(N-s)\sum_{n=1}^s\int \mathrm{d}V_{s+1}\frac{\partial\mathscr V(\vec q_n-\vec q_{s+1})}{\partial\vec q_n}\cdot\frac{\partial\rho_{s+1}}{\partial\vec p_n},
+\end{equation}
+
+或者用密度 $f_s$ 表示为
+
+\begin{equation}\label{eq:3.28}
+  \frac{\partial f_s}{\partial t}-\{\mathscr H_s,f_s\}=\sum_{n=1}^s\int \mathrm{d}V_{s+1}\frac{\partial\mathscr V(\vec q_n-\vec q_{s+1})}{\partial\vec q_n}\cdot\frac{\partial f_{s+1}}{\partial\vec p_n}.
+\end{equation}
+
+在与其它粒子没有相互作用时，$s$ 个粒子一组的密度 $\rho_s$ 的演化就像不可压缩流体的密度一样（这正是 Liouville 定理所要求的），并由式 \eqref{eq:3.27} 左端的\term{流项}{streaming terms}{3.streaming}描述。然而，由于与其余 $N-s$ 个粒子的相互作用，这一流动被右端的\term{碰撞项}{collision terms}{3.collision}所修正。碰撞积分是若干项之和，这些项对应该组 $s$ 个粒子中的任意一个与其余 $N-s$ 个粒子中任意一个发生潜在碰撞。为了描述找到与这组粒子中某个成员碰撞的那个附加粒子的概率，结果必须依赖于由 $\rho_{s+1}$ 描述的 $s+1$ 个粒子的联合 PDF。这导致一个方程层级，其中 $\partial\rho_1/\partial t$ 依赖于 $\rho_2$，$\partial\rho_2/\partial t$ 依赖于 $\rho_3$，等等；它至少与关于完整相空间密度的原方程一样复杂。
+
+% p.65
+为了继续往下走，需要一个有物理动机的近似来终止这一层级。
+
+% =============================================================
+\bisection{Boltzmann 方程}{The Boltzmann equation}
+% p.65
+
+为了估计式 \eqref{eq:3.28} 中出现的各项的相对重要性，我们来考察该层级中的前两个方程，
+
+\begin{equation}\label{eq:3.29}
+  \left[\frac{\partial}{\partial t}-\frac{\partial U}{\partial\vec q_1}\cdot\frac{\partial}{\partial\vec p_1}+\frac{\vec p_1}{m}\cdot\frac{\partial}{\partial\vec q_1}\right]f_1=\int \mathrm{d}V_2\,\frac{\partial\mathscr V(\vec q_1-\vec q_2)}{\partial\vec q_1}\cdot\frac{\partial f_2}{\partial\vec p_1},
+\end{equation}
+
+以及
+
+\begin{equation}\label{eq:3.30}
+  \begin{aligned}
+    &\left[\frac{\partial}{\partial t}-\frac{\partial U}{\partial\vec q_1}\cdot\frac{\partial}{\partial\vec p_1}-\frac{\partial U}{\partial\vec q_2}\cdot\frac{\partial}{\partial\vec p_2}+\frac{\vec p_1}{m}\cdot\frac{\partial}{\partial\vec q_1}+\frac{\vec p_2}{m}\cdot\frac{\partial}{\partial\vec q_2}-\frac{\partial\mathscr V(\vec q_1-\vec q_2)}{\partial\vec q_1}\cdot\left(\frac{\partial}{\partial\vec p_1}-\frac{\partial}{\partial\vec p_2}\right)\right]f_2\\
+    &\quad=\int \mathrm{d}V_3\left[\frac{\partial\mathscr V(\vec q_1-\vec q_3)}{\partial\vec q_1}\cdot\frac{\partial}{\partial\vec p_1}+\frac{\partial\mathscr V(\vec q_2-\vec q_3)}{\partial\vec q_2}\cdot\frac{\partial}{\partial\vec p_2}\right]f_3.
+  \end{aligned}
+\end{equation}
+
+注意，式 \eqref{eq:3.30} 中有两个流项已借助 $\partial\mathscr V(\vec q_1-\vec q_2)/\partial\vec q_1=-\partial\mathscr V(\vec q_2-\vec q_1)/\partial\vec q_2$ 合并，这对一个\emph{对称}势（满足 $\mathscr V(\vec q_1-\vec q_2)=\mathscr V(\vec q_2-\vec q_1)$）是成立的。
+
+\emph{时间尺度}：上式中方括号内的所有项都具有时间的倒数量纲，我们借助典型速度与长度尺度，用量纲分析估计它们的相对大小。室温下气体粒子的典型速率为 $v\approx10^2\,\mathrm{m\,s^{-1}}$。对涉及外势 $U$ 或原子间势 $\mathscr V$ 的项，可以从势的变化范围中提取出一个合适的长度尺度。
+
+\begin{enumerate}[label=(\alph*),itemsep=0.5em,topsep=0.4em]
+  \item 正比于
+  \begin{equation*}
+    \frac{1}{\tau_U}\sim\frac{\partial U}{\partial\vec q}\cdot\frac{\partial}{\partial\vec p}
+  \end{equation*}
+  的项涉及外势 $U(\vec q)$ 的空间变化，它们发生在宏观距离 $L$ 上。我们把与之联系的时间 $\tau_U$ 称为\term{外禀}{extrinsic}{3.extrinsic}时间尺度，因为它可以通过增大系统尺寸而被任意拉长。对典型的 $L\approx10^{-3}\,\mathrm{m}$，我们得到 $\tau_U\approx L/v\approx10^{-5}\,\mathrm{s}$。
+
+  \item 从涉及原子间势 $\mathscr V$ 的项中，可以提取出两个附加的时间尺度，它们对所研究的气体是\term{内禀}{intrinsic}{3.intrinsic}的。特别地，\term{碰撞持续时间}{collision duration}{3.collision-duration}
+  \begin{equation*}
+    \frac{1}{\tau_c}\sim\frac{\partial\mathscr V}{\partial\vec q}\cdot\frac{\partial}{\partial\vec p}
+  \end{equation*}
+  是两个粒子处于其相互作用的有效范围 $d$ 内的典型时间。对\emph{短程}相互作用（包括 van der Waals 与 Lennard-Jones 相互作用，尽管它们具有幂律衰减的尾巴），$d\approx10^{-10}\,\mathrm{m}$ 是典型原子尺寸的量级，由此得到 $\tau_c\approx10^{-12}\,\mathrm{s}$。这通常是问题中最短的时间尺度。对\emph{长程}相互作用，例如等离子体中的 Coulomb 气体，分析要复杂一些。对中性等离子体，Debye 屏蔽长度 $\lambda$ 在上述方程中取代 $d$，这在习题中有讨论。
+\end{enumerate}
+
+% p.66
+\begin{enumerate}[label=(\alph*),itemsep=0.5em,topsep=0.4em,start=3]
+  \item 式 \eqref{eq:3.28} 的右端还有碰撞项，它们依赖于 $f_{s+1}$，并导致一个倒数时间尺度
+  \begin{equation*}
+    \frac{1}{\tau_\times}\sim\int \mathrm{d}V\,\frac{\partial\mathscr V}{\partial\vec q}\cdot\frac{\partial}{\partial\vec p}\,\frac{f_{s+1}}{f_s}\sim\int \mathrm{d}V\,\frac{\partial\mathscr V}{\partial\vec q}\cdot\frac{\partial}{\partial\vec p}\,N\frac{\rho_{s+1}}{\rho_s}.
+  \end{equation*}
+  这些积分只在粒子间势的体积 $d^3$ 上才不为零。项 $f_{s+1}/f_s$ 与在单位体积内找到另一个粒子的概率有关，它大致就是粒子数密度 $n=N/V\approx10^{26}\,\mathrm{m^{-3}}$。由此我们得到\term{平均自由时间}{mean free time}{3.mean-free-time}
+  \begin{equation}\label{eq:3.31}
+    \tau_\times\approx\frac{\tau_c}{nd^3}\approx\frac{1}{nvd^2},
+  \end{equation}
+  也就是一个粒子在两次碰撞之间走过的典型距离。对短程相互作用，$\tau_\times\approx10^{-8}\,\mathrm{s}$，比 $\tau_c$ 长得多，而式 \eqref{eq:3.28} 右端的碰撞项要小一个因子 $nd^3\approx(10^{26}\,\mathrm{m^{-3}})(10^{-10}\,\mathrm{m})^3\approx10^{-4}$。
+\end{enumerate}
+
+\cnfigure{fig3-3}{两次碰撞之间的平均自由时间是通过要求在时间 $\tau_\times$ 内扫过的体积中只有一个其它粒子来估计的。}
+
+在稀薄区，利用 $\tau_c/\tau_\times\approx nd^3\ll1$ 对短程相互作用得到的是\term{Boltzmann 方程}{Boltzmann equation}{3.boltzmann-equation}。（相比之下，对满足 $nd^3\gg1$ 的长程相互作用，把碰撞项从方程左边略去就得到\term{Vlasov 方程}{Vlasov equation}{3.vlasov-equation}，这在习题中有讨论。）由上述讨论可见，式 \eqref{eq:3.29} 与层级中的其它方程不同：它是唯一一个碰撞项不出现在左端的方程。对其它所有方程，右端都要小一个因子 $nd^3$，而在式 \eqref{eq:3.29} 中右端甚至可能超过左端。因此一个可行的近似方案是在前两个方程之后截断，即令式 \eqref{eq:3.30} 的右端为零。
+
+令 $f_2$ 的方程右端为零，意味着两体密度的演化如同一个孤立的两粒子系统。支配这一演化的相对简单的力学过程给出 $f_2$ 的流项，它们正比于 $\tau_U^{-1}$ 与 $\tau_c^{-1}$ 两者。这两组项可以大致独立地处理：前者描述两个粒子的质心的演化，后者支配对相对坐标的依赖。
+
+密度 $f_2$ 正比于在同一时刻 $t$ 于 $(\vec p_1,\vec q_1)$ 找到一个粒子、又在 $(\vec p_2,\vec q_2)$ 找到另一个粒子的联合 PDF $\rho_2$。有理由预期，在远大于势 $\mathscr V$ 的作用范围的间距上，这两个粒子是相互独立的，也就是说
+
+\begin{equation}\label{eq:3.32}
+  \left\{\begin{aligned}
+    \rho_2(\vec p_1,\vec q_1,\vec p_2,\vec q_2,t)&\to\rho_1(\vec p_1,\vec q_1,t)\rho_1(\vec p_2,\vec q_2,t),\quad\text{或}\\
+    f_2(\vec p_1,\vec q_1,\vec p_2,\vec q_2,t)&\to f_1(\vec p_1,\vec q_1,t)f_1(\vec p_2,\vec q_2,t),
+  \end{aligned}\right.
+  \quad\text{当}\ |\vec q_2-\vec q_1|\gg d.
+\end{equation}
+
+% p.67
+上述论断即使在偏离平衡的情形下也应当成立。例如，设想在一道隔板被移走之后，腔室中的气体粒子突然被允许侵入一个空体积。密度 $f_1$ 将经历复杂的演化，其弛豫时间至少与 $\tau_U$ 相当。两粒子密度 $f_2$ 也会在一个相当的时间间隔内到达其最终值。然而，预期的情形是它会在一个短得多、量级为 $\tau_c$ 的时间内弛豫到与式 \eqref{eq:3.32} 类似的形式。
+
+\cnfigure{fig3-4}{粒子通过一个小孔逃逸到一个初始为空的容器中。}
+
+\cnfigure{fig3-5}{两体密度作为相对坐标的函数的示意行为。}
+
+对式 \eqref{eq:3.29} 右端的碰撞项，我们实际上需要 $f_2$ 在间距与 $d$ 可比时对相对坐标与动量的精确依赖。在长于 $\tau_c$（但可能短于 $\tau_U$）的时间间隔内，$f_2$ 在小相对距离处的「定态」行为可以通过令式 \eqref{eq:3.30} 中最大的流项相等来得到，也就是说
+
+\begin{equation}\label{eq:3.33}
+  \left[\frac{\vec p_1}{m}\frac{\partial}{\partial\vec q_1}+\frac{\vec p_2}{m}\frac{\partial}{\partial\vec q_2}-\frac{\partial\mathscr V(\vec q_1-\vec q_2)}{\partial\vec q_1}\cdot\left(\frac{\partial}{\partial\vec p_1}-\frac{\partial}{\partial\vec p_2}\right)\right]f_2=0.
+\end{equation}
+
+% p.68
+我们预期 $f_2(\vec q_1,\vec q_2)$ 在质心坐标 $\vec Q=(\vec q_1+\vec q_2)/2$ 上的变化缓慢，而在相对坐标 $\vec q=\vec q_2-\vec q_1$ 上的变化很大。因此 $\partial f_2/\partial\vec q\gg\partial f_2/\partial\vec Q$，且 $\partial f_2/\partial\vec q_2\approx-\partial f_2/\partial\vec q_1\approx\partial f_2/\partial\vec q$，于是得到
+
+\begin{equation}\label{eq:3.34}
+  \frac{\partial\mathscr V(\vec q_1-\vec q_2)}{\partial\vec q_1}\cdot\left(\frac{\partial}{\partial\vec p_1}-\frac{\partial}{\partial\vec p_2}\right)f_2=-\left(\frac{\vec p_1-\vec p_2}{m}\right)\cdot\frac{\partial}{\partial\vec q}f_2.
+\end{equation}
+
+上述方程为 $f_2$ 在描述两个粒子碰撞的轨迹上如何受到约束，提供了一个精确的数学表达。
+
+式 \eqref{eq:3.29} 右端的碰撞项现在可以写成
+
+\begin{equation}\label{eq:3.35}
+  \begin{aligned}
+    \left.\frac{\mathrm{d}f_1}{\mathrm{d}t}\right|_{\text{coll.}}&=\int \mathrm{d}^3\vec p_2\,\mathrm{d}^3\vec q_2\,\frac{\partial\mathscr V(\vec q_1-\vec q_2)}{\partial\vec q_1}\cdot\left(\frac{\partial}{\partial\vec p_1}-\frac{\partial}{\partial\vec p_2}\right)f_2\\
+    &\approx\int \mathrm{d}^3\vec p_2\,\mathrm{d}^3\vec q\left(\frac{\vec p_2-\vec p_1}{m}\right)\cdot\frac{\partial}{\partial\vec q}f_2(\vec p_1,\vec q_1,\vec p_2,\vec q;t).
+  \end{aligned}
+\end{equation}
+
+第一个等式由式 \eqref{eq:3.29} 得到，注意到所添加的正比于 $\partial f_2/\partial\vec p_2$ 的项是一个全导数、积分为零；第二个等式则来自式 \eqref{eq:3.34}，在把变量换成 $\vec q=\vec q_2-\vec q_1$ 之后。（由于它依赖于在相对坐标中建立起「定态」，这一近似只要我们考察的是时间分辨率长于 $\tau_c$ 的事件就成立。）
+
+\emph{碰撞与散射的运动学}：式 \eqref{eq:3.35} 中的被积函数是 $f_2$ 沿碰撞粒子的相对运动方向 $\vec p=\vec p_2-\vec p_1$ 对 $\vec q$ 的导数。为了完成这个积分，我们为 $\vec q$ 引入一个方便的坐标系，其做法参照用来描述粒子散射的形式体系。自然的选择是取一根轴平行于 $\vec p_2-\vec p_1$，相应的坐标 $a$ 在碰撞前为负、碰撞后为正。$\vec q$ 的另外两个坐标则由一个\term{碰撞参数向量}{impact vector}{3.impact-vector} $\vec b$ 给出，对于正碰（$|\vec p_1-\vec p_2|\parallel|\vec q_1-\vec q_2|$）它为零。现在我们可以对 $a$ 积分，得到
+
+\cnfigure{fig3-6}{用来描述两个粒子在其质心系（$a=0$ 处）中碰撞的参数，该系以守恒的动量 $\vec P=\vec p_1+\vec p_2=\vec p_1'+\vec p_2'$ 运动。在弹性碰撞中，相对动量 $\vec p$ 被转过立体角 $\hat\Omega$。}
+
+\begin{equation}\label{eq:3.36}
+  \left.\frac{\mathrm{d}f_1}{\mathrm{d}t}\right|_{\text{coll.}}=\int \mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\left[f_2(\vec p_1,\vec q_1,\vec p_2,\vec b,+;t)-f_2(\vec p_1,\vec q_1,\vec p_2,\vec b,-;t)\right],
+\end{equation}
+
+其中 $|\vec v_1-\vec v_2|=|\vec p_1-\vec p_2|/m$ 是两个粒子的相对速率，而 $(\vec b,-)$ 与 $(\vec b,+)$ 分别指碰撞前与碰撞后的相对坐标。注意 $\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|$ 正是撞击在面积元 $\mathrm{d}^2\vec b$ 上的粒子通量。
+
+原则上，对 $a$ 的积分是从 $-\infty$ 到 $+\infty$，但由于 $f_2$ 的变化只在相互作用程 $d$ 上才显著，我们可以在离碰撞点几个 $d$ 的间距处计算上述各量。这是一个很好的折中，它让我们能在远离碰撞处计算 $f_2$，而间距又小到足以忽略 $\vec q_1$ 与 $\vec q_2$ 之间的差别。这相当于在空间中作粗粒化，抹掉比 $d$ 更精细的尺度上的变化。有了这些前提，就很想利用式 \eqref{eq:3.32} 中粒子不相关的假设来封闭 $f_1$ 的方程。显然必须小心，因为天真地代入会给出零！关键的观察是：对应于碰撞之前与碰撞之后的情形，密度 $f_2$ 必须区别对待。例如，在隔开空容器与满容器的狭缝打开后不久，气体粒子的动量很可能都背离狭缝方向。碰撞会倾向于使动量随机化，给出更各向同性的分布。然而，碰撞之前与之后的密度 $f_2$ 由流项相联系，即 $f_2(\vec p_1,\vec q_1,\vec p_2,\vec b,+;t)=f_2(\vec p_1',\vec q_1,\vec p_2',\vec b,-;t)$，其中 $\vec p_1'$ 与 $\vec p_2'$ 是这样的动量：它们以碰撞参数向量 $\vec b$ 发生碰撞，会生成动量为 $\vec p_1$ 与 $\vec p_2$ 的出射粒子。它们可以用时间反演对称性得到，办法是对动量为 $-\vec p_1$ 与 $-\vec p_2$ 的入射碰撞粒子的运动方程积分。用这些动量，我们可以写出
+
+\begin{equation}\label{eq:3.37}
+  \left.\frac{\mathrm{d}f_1}{\mathrm{d}t}\right|_{\text{coll.}}=\int \mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\left[f_2(\vec p_1',\vec q_1,\vec p_2',\vec b,-;t)-f_2(\vec p_1,\vec q_1,\vec p_2,\vec b,-;t)\right].
+\end{equation}
+
+有时用碰撞前后的相对动量 $\vec p=\vec p_1-\vec p_2$ 与 $\vec p'=\vec p_1'-\vec p_2'$ 来描述两个粒子的散射更方便。给定 $\vec b$，初动量 $\vec p$ 被确定性地变换为末动量 $\vec p'$。要找到函数形式 $\vec p'(|\vec p|,\vec b)$，必须对运动方程积分。不过，根据守恒律可以作一些一般性的陈述：在弹性碰撞中，$\vec p$ 的大小保持不变，它只是被转向球坐标中由角度 $(\theta,\phi)\equiv\hat\Omega(\vec b)$（一个单位向量）所指出的末方向。由于碰撞参数向量 $\vec b$ 与立体角 $\Omega$ 之间存在一一对应，我们在这两者之间作变量代换，得到
+
+% p.70
+\begin{equation}\label{eq:3.38}
+  \begin{aligned}
+    \left.\frac{\mathrm{d}f_1}{\mathrm{d}t}\right|_{\text{coll.}}&=\int \mathrm{d}^3\vec p_2\,\mathrm{d}^2\Omega\,\left|\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}\right||\vec v_1-\vec v_2|\Big[f_2(\vec p_1',\vec q_1,\vec p_2',\vec b,-;t)\\
+    &\qquad-f_2(\vec p_1,\vec q_1,\vec p_2,\vec b,-;t)\Big].
+  \end{aligned}
+\end{equation}
+
+这一变换的 Jacobi 因子 $|\mathrm{d}\sigma/\mathrm{d}\Omega|$ 具有面积的量纲，被称为\term{微分截面}{differential cross-section}{3.differential-cross-section}。它等于面向入射束、并散射到立体角 $\Omega$ 内的那部分面积。式 \eqref{eq:3.38} 中的出射动量 $\vec p_1'$ 与 $\vec p_2'$ 现在由两个条件给出，即 $\vec p_1'+\vec p_2'=\vec p_1+\vec p_2$（动量守恒）与 $\vec p_1'-\vec p_2'=|\vec p_1-\vec p_2|\hat\Omega(\vec b)$（能量守恒），于是
+
+\begin{equation}\label{eq:3.39}
+  \begin{cases}
+    \vec p_1'=\left(\vec p_1+\vec p_2+|\vec p_1-\vec p_2|\hat\Omega(\vec b)\right)/2,\\[4pt]
+    \vec p_2'=\left(\vec p_1+\vec p_2-|\vec p_1-\vec p_2|\hat\Omega(\vec b)\right)/2.
+  \end{cases}
+\end{equation}
+
+对于直径为 $D$ 的两个\term{硬球}{hard spheres}{3.hard-spheres}的散射，不难证明散射角与碰撞参数 $b$ 的关系为 $\cos(\theta/2)=b/D$，且对所有 $\phi$ 都成立。微分截面于是由下式得到
+
+\begin{equation*}
+  \mathrm{d}^2\sigma=b\,\mathrm{d}b\,\mathrm{d}\phi=D\cos\left(\frac{\theta}{2}\right)D\sin\left(\frac{\theta}{2}\right)\frac{\mathrm{d}\theta}{2}\,\mathrm{d}\phi=\frac{D^2}{4}\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi=\frac{D^2}{4}\mathrm{d}^2\Omega .
+\end{equation*}
+
+（注意，三维中的\term{立体角}{solid angle}{3.solid-angle}由 $\mathrm{d}^2\Omega=\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi$ 给出。）对所有角度积分得到总截面 $\sigma=\pi D^2$，这显然是正确的。硬球的微分截面与 $\theta$ 和 $|\vec P|$ 都\emph{无关}。对于软势情况则不是这样。例如，Coulomb 势 $\mathscr V=e^2/|\vec Q|$ 给出
+
+\begin{equation*}
+  \left|\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}\right|=\left(\frac{me^2}{2|\vec P|^2\sin^2(\theta/2)}\right)^2 .
+\end{equation*}
+
+\cnfigure{fig3-7}{两个直径为 $D$ 的硬球的散射，碰撞参数为 $b=|\vec b|$。}
+
+% p.71
+（对 $|\vec P|$ 的依赖可以通过由 $|\vec P|^2/m+e^2/b\approx 0$ 求得最近接近距离而得到说明。）
+
+Boltzmann 方程是在式 \eqref{eq:3.38} 中作如下代换之后得到的
+
+\begin{equation}\label{eq:3.40}
+  f_2(\vec p_1,\vec q_1,\vec p_2,\vec b,-;t)=f_1(\vec p_1,\vec q_1,t)\cdot f_1(\vec p_2,\vec q_1,t),
+\end{equation}
+
+这一代换被称为\term{分子混沌假设}{assumption of molecular chaos}{3.molecular-chaos}。注意，即使从粒子初始概率分布不相关出发，也并不能保证碰撞不会产生关联。最终得到的是如下关于 $f_1$ 的封闭方程：
+
+\begin{equation}\label{eq:3.41}
+  \begin{aligned}
+    &\left[\frac{\partial}{\partial t}-\frac{\partial U}{\partial\vec q_1}\cdot\frac{\partial}{\partial\vec p_1}+\frac{\vec p_1}{m}\cdot\frac{\partial}{\partial\vec q_1}\right]f_1=\\
+    &\qquad-\int \mathrm{d}^3\vec p_2\,\mathrm{d}^2\Omega\,\left|\frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}\right||\vec v_1-\vec v_2|\left[f_1(\vec p_1,\vec q_1,t)f_1(\vec p_2,\vec q_1,t)-f_1(\vec p_1',\vec q_1,t)f_1(\vec p_2',\vec q_1,t)\right].
+  \end{aligned}
+\end{equation}
+
+鉴于上述对 Boltzmann 方程的「推导」相当复杂，有必要给出一个启发式的解释。方程左端的\emph{流项}描述单个粒子在外势 $U$ 中的运动。右端的\emph{碰撞项}有一个简单的物理诠释：找到位于 $\vec q_1$、动量为 $\vec p_1$ 的粒子的概率，会因它同另一个动量为 $\vec p_2$ 的粒子发生碰撞而突然改变。这种碰撞的概率是若干运动学因子的乘积：由微分截面 $|\mathrm{d}\sigma/\mathrm{d}\Omega|$ 描述的因子、与 $|\vec v_2-\vec v_1|$ 成正比的入射粒子「通量」，以及近似为 $f_1(\vec p_1)f_1(\vec p_2)$ 的找到这两个粒子的联合概率。式 \eqref{eq:3.41} 右端的第一项减去这一概率，并对所有可能的动量与立体角积分，这些动量与立体角描述着该碰撞。第二项代表由逆过程带给概率的一个\emph{增量}：由于两个初始动量为 $\vec p_1'$ 与 $\vec p_2'$ 的粒子之间的碰撞，一个坐标为 $(\vec p_1,\vec q_1)$ 的粒子可能突然出现。截面以及动量 $(\vec p_1',\vec p_2')$ 可能以复杂的方式依赖于 $(\vec p_1,\vec p_2)$ 与 $\Omega$，这由势 $\mathscr V$ 的具体形式决定。值得注意的是，气体的各种平衡性质与这个势相当无关。
+
+% =============================================================
+\bisection{H 定理与不可逆性}{The H-theorem and irreversibility}
+
+本章开头提出的第二个问题是：一集合粒子是否会自然地演化到平衡态。虽然对完整的相空间密度 $\rho_N$ 可以得到定态解，但由于时间反演对称性，这些解并不是一般非平衡密度的吸引子。无条件单粒子 PDF $\rho_1$ 是否也面临同样的问题？确切的密度 $\rho_1$ 必然反映 $\rho_N$ 的这一性质，而 H 定理则证明：由 Boltzmann 方程支配的近似 $\rho_1$，确实会不可逆地趋于一个平衡形式。该定理的表述是：
+
+\emph{若 $f_1(\vec p,\vec q,t)$ 满足 Boltzmann 方程，则 $\mathrm{d}\mathrm{H}/\mathrm{d}t\le 0$，其中}
+
+\begin{equation}\label{eq:3.42}
+  \mathrm{H}(t)=\int \mathrm{d}^3\vec p\,\mathrm{d}^3\vec q\,f_1(\vec p,\vec q,t)\ln f_1(\vec p,\vec q,t).
+\end{equation}
+
+% p.72
+函数 $\mathrm{H}(t)$ 与单粒子 PDF 的信息内容有关。在相差一个整体常数的意义下，$\rho_1=f_1/N$ 的信息内容由 $I[\rho_1]=\langle\ln\rho_1\rangle$ 给出，这显然与 $\mathrm{H}(t)$ 相似。
+
+\emph{证明。} $\mathrm{H}$ 的时间导数为
+
+\begin{equation}\label{eq:3.43}
+  \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}=\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,\frac{\partial f_1}{\partial t}(\ln f_1+1)=\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,\ln f_1\frac{\partial f_1}{\partial t},
+\end{equation}
+
+因为 $\int \mathrm{d}V_1f_1=N=\int \mathrm{d}\Gamma\,\rho=N$ 与时间无关。利用式 \eqref{eq:3.41}，我们得到
+
+\begin{equation}\label{eq:3.44}
+  \begin{aligned}
+    \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}&=\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,\ln f_1\left(\frac{\partial U}{\partial\vec q_1}\cdot\frac{\partial f_1}{\partial\vec p_1}-\frac{\vec p_1}{m}\cdot\frac{\partial f_1}{\partial\vec q_1}\right)\\
+    &\quad-\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\sigma|\vec v_1-\vec v_2|\Big[f_1(\vec p_1,\vec q_1)f_1(\vec p_2,\vec q_1)\\
+    &\qquad-f_1(\vec p_1',\vec q_1)f_1(\vec p_2',\vec q_1)\Big]\ln f_1(\vec p_1,\vec q_1),
+  \end{aligned}
+\end{equation}
+
+其中我们将交替使用 $\mathrm{d}^2\sigma$、$\mathrm{d}^2\vec b$ 或 $\mathrm{d}^2\Omega|\mathrm{d}\sigma/\mathrm{d}\Omega|$ 来表示微分截面。上述表达式中的流项为零，这可以通过连续分部积分看出，
+
+\begin{equation*}
+  \begin{aligned}
+    \int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,\ln f_1\,\frac{\partial U}{\partial\vec q_1}\cdot\frac{\partial f_1}{\partial\vec p_1}&=-\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,f_1\,\frac{\partial U}{\partial\vec q_1}\cdot\frac{1}{f_1}\frac{\partial f_1}{\partial\vec p_1}\\
+    &=\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,f_1\,\frac{\partial}{\partial\vec p_1}\cdot\frac{\partial U}{\partial\vec q_1}=0,
+  \end{aligned}
+\end{equation*}
+
+以及
+
+\begin{equation*}
+  \int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,\ln f_1\,\frac{\vec p_1}{m}\cdot\frac{\partial f_1}{\partial\vec q_1}=-\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,f_1\,\frac{\vec p_1}{m}\cdot\frac{1}{f_1}\frac{\partial f_1}{\partial\vec q_1}=\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec q_1\,f_1\,\frac{\partial}{\partial\vec q_1}\cdot\frac{\vec p_1}{m}=0.
+\end{equation*}
+
+式 \eqref{eq:3.44} 中的碰撞项涉及对哑变量 $\vec p_1$ 与 $\vec p_2$ 的积分。标号 (1) 与 (2) 可以互换而积分值不变。把由此得到的两个表达式取平均，给出
+
+\begin{equation}\label{eq:3.45}
+  \begin{aligned}
+    \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}=-\frac{1}{2}\int &\mathrm{d}^3\vec q\,\mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\Big[f_1(\vec p_1)f_1(\vec p_2)\\
+    &-f_1(\vec p_1')f_1(\vec p_2')\Big]\ln\big(f_1(\vec p_1)f_1(\vec p_2)\big).
+  \end{aligned}
+\end{equation}
+
+（为记号简便，$f_1$ 的自变量 $\vec q$ 与 $t$ 被略去。）我们接下来要把积分变量从描述碰撞发起者的坐标 $(\vec p_1,\vec p_2,\vec b)$ 换成描述其产物的坐标，
+
+% p.73
+即 $(\vec p_1',\vec p_2',\vec b')$。描述这一变换的显式函数形式很复杂，因为式 \eqref{eq:3.39} 中的立体角 $\hat\Omega$ 依赖于 $\vec b$ 与 $|\vec p_2-\vec p_1|$。不过，由于时间反演对称性，我们可以确信该变换的 Jacobi 因子为 1：因为对每一次碰撞都存在一次逆碰撞，它由反转产物的动量得到。用新的坐标表示，
+
+\begin{equation}\label{eq:3.46}
+  \begin{aligned}
+    \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}=-\frac{1}{2}\int &\mathrm{d}^3\vec q\,\mathrm{d}^3\vec p_1{}'\,\mathrm{d}^3\vec p_2{}'\,\mathrm{d}^2\vec b'\,|\vec v_1-\vec v_2|\Big[f_1(\vec p_1)f_1(\vec p_2)\\
+    &-f_1(\vec p_1{}')f_1(\vec p_2{}')\Big]\ln\left(f_1(\vec p_1)f_1(\vec p_2)\right),
+  \end{aligned}
+\end{equation}
+
+其中我们现在应当把上式中的 $(\vec p_1,\vec p_2)$ 视为积分变量 $(\vec p_1',\vec p_2',\vec b')$ 的函数，如式 \eqref{eq:3.39} 那样。正如先前所指出的，对任何弹性碰撞都有 $|\vec v_1-\vec v_2|=|\vec v_1'-\vec v_2'|$，因而我们可以互换地使用这两个量。最后，我们重新标记哑积分变量，把撇号去掉。注意到 $(\vec p_1,\vec p_2,\vec b)$ 对 $(\vec p_1',\vec p_2',\vec b')$ 的函数依赖关系与其逆完全相同，我们得到
+
+\begin{equation}\label{eq:3.47}
+  \begin{aligned}
+    \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}=-\frac{1}{2}\int &\mathrm{d}^3\vec q\,\mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\Big[f_1(\vec p_1{}')f_1(\vec p_2{}')\\
+    &-f_1(\vec p_1)f_1(\vec p_2)\Big]\ln\left(f_1(\vec p_1{}')f_1(\vec p_2{}')\right).
+  \end{aligned}
+\end{equation}
+
+把式 \eqref{eq:3.45} 与 \eqref{eq:3.47} 取平均，得到
+
+\begin{equation}\label{eq:3.48}
+  \begin{aligned}
+    \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}=-\frac{1}{4}\int &\mathrm{d}^3\vec q\,\mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\Big[f_1(\vec p_1)f_1(\vec p_2)-f_1(\vec p_1{}')f_1(\vec p_2{}')\Big]\\
+    &\Big[\ln\left(f_1(\vec p_1)f_1(\vec p_2)\right)-\ln\left(f_1(\vec p_1{}')f_1(\vec p_2{}')\right)\Big].
+  \end{aligned}
+\end{equation}
+
+上述表达式的被积函数总是正的。若 $f_1(\vec p_1)f_1(\vec p_2)>f_1(\vec p_1{}')f_1(\vec p_2{}')$，方括号中的两项都为正；而若 $f_1(\vec p_1)f_1(\vec p_2)<f_1(\vec p_1{}')f_1(\vec p_2{}')$，两项都为负。无论哪种情形，它们的乘积都为正。被积函数的正定性确立了 H 定理的成立，即
+
+\begin{equation}\label{eq:3.49}
+  \frac{\mathrm{d}\mathrm{H}}{\mathrm{d}t}\le 0.
+\end{equation}
+
+\emph{不可逆性}：第二定律是对大量日常观测的一个\emph{经验}表述，这些观测支持\emph{时间之箭}的存在。把支配微观领域的物理定律的可逆性，与宏观现象中观测到的不可逆性调和起来，是一个根本性的问题。当然，并非所有微观物理定律都可逆：弱核相互作用破坏时间反演对称性，而观测行为中量子波函数的坍缩是不可逆的。事实上，在导致第二定律的那些日常观测中，前一种相互作用并不起任何显著作用。波函数的不可逆坍缩或许
+
+% p.74
+本身只是把宏观观测者与微观可观测量区别对待所造成的一种假象。\footnote{含时 Schrödinger 方程是完全时间反演的。如果有可能写出一个包含观测装置（也许是整个宇宙）的复杂波函数，那就很难看出任何不可逆性如何能够发生。}有人主张，目前被接受的微观运动方程（无论经典的还是量子的）的可逆性正表明它们是不完备的。然而，强大计算机的出现使得人们可以模拟由\emph{经典、可逆}运动方程支配的大数量粒子集合的演化。虽然目前的模拟仅限于相对较少的粒子数（$10^6$），它们确实展现出与自然界中所观测到的（通常涉及 $10^{23}$ 个粒子）相似的不可逆宏观行为。例如，最初占据盒子一半的粒子会不可逆地、均匀地占满整个盒子。（这与计算精度的限制无关；在基于整数、完全可逆的模拟中，例如元胞自动机，也观测到同样的宏观不可逆性。）因此，所观测到的不可逆性的起源应当在大量粒子集合的经典演化中寻找。
+
+Boltzmann 方程是我们遇到的第一个明显不可逆的公式，如式 \eqref{eq:3.49} 所示。于是我们可以问：这一结果是如何从 Hamilton 运动方程得到的。当然，关键在于用来得到式 \eqref{eq:3.41} 的那些有物理动机的近似。近似的最初几步是丢掉式 \eqref{eq:3.30} 右端的三体碰撞项，以及对空间与时间尺度分辨率所作的隐含粗粒化。这两步都没有显式地违反时间反演对称性，式 \eqref{eq:3.37} 中的碰撞项也保持这一性质。得到式 \eqref{eq:3.41} 的下一步，是把\emph{在碰撞之前求解的}两体密度 $f_2(-)$，按式 \eqref{eq:3.32} 换成两个单体密度之积。这就把碰撞之前与碰撞之后的两体密度区别对待了。我们本来也可以把式 \eqref{eq:3.37} 用\emph{在碰撞之后求解的}两体密度 $f_2(+)$ 来表达。把 $f_2(+)$ 换成两个单粒子密度之积，则会得到相反的结论，即 $\mathrm{d}\mathrm{H}/\mathrm{d}t\ge 0$！对于处于平衡的系统，很难说哪一种选择比另一种更好。然而，一旦系统偏离平衡，例如像图 3.4 的情形那样，碰撞之后的坐标更可能是相关的，因此对 $f_2(+)$ 作式 \eqref{eq:3.32} 的代换就没有道理。时间反演对称性意味着 $f_2(-)$ 中也存在微妙的关联，而它们在所谓的\emph{分子混沌假设}中被忽略了。
+
+虽然在碰撞之前（而不是之后）采用分子混沌假设是 Boltzmann 方程不可逆性的关键，由此造成的信息丢失
+
+% p.75
+最好还是用空间与时间的粗粒化来论证：Liouville 方程以及由它派生出的方程，包含着关于纯态演化的精确信息。然而，这些信息不可避免地会被输运到更短的距离尺度上。一个有用的图像是两种不可混合流体的混合。虽然两种流体在每一点处仍可区分，但随着混合的进行，从一点到下一点的空间过渡出现在越来越精细的分辨率上。到某个时候，任何测量装置中的有限分辨率都会使我们无法跟踪这两种组分。在 Boltzmann 方程中，纯态的精确信息在碰撞的尺度上丢失了。由此得到的一体密度只描述比两体碰撞更长的时间与空间分辨率，并且随着更多信息的丢失而变得越来越具概率性。
+
+% =============================================================
+\bisection{平衡性质}{Equilibrium properties}
+
+对于一个均匀气体，$f_1$ 所描述的平衡态具有怎样的性质？
+
+（1）\emph{平衡分布}：气体达到平衡之后，函数 H 不应再随时间减小。既然式 \eqref{eq:3.48} 中的被积函数总是正的，$\mathrm{d}\mathrm{H}/\mathrm{d}t=0$ 的一个\emph{必要}条件就是
+
+\begin{equation}\label{eq:3.50}
+  f_1(\vec p_1,\vec q_1)f_1(\vec p_2,\vec q_2)-f_1(\vec p_1{}',\vec q_1)f_1(\vec p_2{}',\vec q_2)=0,
+\end{equation}
+
+也就是说，\emph{在每一点} $\vec q$ 处我们必须有
+
+\begin{equation}\label{eq:3.51}
+  \ln f_1(\vec p_1,\vec q)+\ln f_1(\vec p_2,\vec q)=\ln f_1(\vec p_1{}',\vec q)+\ln f_1(\vec p_2{}',\vec q).
+\end{equation}
+
+上述方程的左端指两体碰撞之前的动量，右端指碰撞之后的动量。因此，任何在碰撞中守恒的\emph{可加}量都使这个等式得到满足。对于弹性碰撞有五个守恒量：粒子数、净动量的三个分量、以及动能。因此，$f_1$ 的一般解是
+
+\begin{equation}\label{eq:3.52}
+  \ln f_1=a(\vec q)-\vec\alpha(\vec q)\cdot\vec p-\beta(\vec q)\left(\frac{\vec p\,^2}{2m}\right).
+\end{equation}
+
+我们可以很容易地把势能 $U(\vec q)$ 也纳入上面的形式，并令
+
+\begin{equation}\label{eq:3.53}
+  f_1(\vec p,\vec q)=\mathcal N(\vec q)\exp\left[-\vec\alpha(\vec q)\cdot\vec p-\beta(\vec q)\left(\frac{p^2}{2m}+U(\vec q)\right)\right].
+\end{equation}
+
+我们将把上面的分布说成是在描述\term{局域平衡}{local equilibrium}{3.local-equilibrium}。这一形式在\emph{碰撞期间}保持不变，但由于流项的存在，它会\emph{偏离碰撞}而随时间演化，除非 $\{\mathcal H_1,f_1\}=0$。只要任何函数 $f_1$ 只依赖于 $\mathcal H_1$，或者只依赖于任何由它守恒的量，后一个条件就得到满足。显然，只要 $\mathcal N$ 与 $\beta$ 不依赖于 $\vec q$，且 $\vec\alpha=0$，上述密度就满足这一要求。
+
+% p.76
+根据式 \eqref{eq:3.16}，$f_1$ 的适当归一化为
+
+\begin{equation}\label{eq:3.54}
+  \int \mathrm{d}^3\vec p\,\mathrm{d}^3\vec q\,f_1(\vec p,\vec q)=N.
+\end{equation}
+
+对于装在体积为 $V$ 的盒子中的粒子，势能 $U(\vec q)$ 在盒内为零、在盒外为无穷大。式 \eqref{eq:3.53} 中的归一化因子可以由式 \eqref{eq:3.54} 得到，即
+
+\begin{equation}\label{eq:3.55}
+  N=\mathcal N V\left[\int_{-\infty}^{\infty}\mathrm{d}p_i\exp\left(-\alpha_ip_i-\frac{\beta p_i^2}{2m}\right)\right]^3=\mathcal N V\left(\frac{2\pi m}{\beta}\right)^{3/2}\exp\left(\frac{m\alpha^2}{2\beta}\right).
+\end{equation}
+
+因此，动量的适当归一化的 Gauss 分布为
+
+\begin{equation}\label{eq:3.56}
+  f_1(\vec p,\vec q)=n\left(\frac{\beta}{2\pi m}\right)^{3/2}\exp\left[-\frac{\beta(\vec p-\vec p_0)^2}{2m}\right],
+\end{equation}
+
+其中 $\vec p_0=\langle\vec p\rangle=m\vec\alpha/\beta$ 是气体动量的平均值，对于静止的盒子它为零，而 $n=N/V$ 是粒子数密度。由分布的 Gauss 形式很容易得出，动量每个分量的方差为 $\langle p_i^2\rangle=m/\beta$，以及
+
+\begin{equation}\label{eq:3.57}
+  \langle p^2\rangle=\left\langle p_x^2+p_y^2+p_z^2\right\rangle=\frac{3m}{\beta}.
+\end{equation}
+
+（2）\emph{两种气体之间的平衡}：考虑两种不同的气体 (a) 与 (b)，它们在同一势 $U$ 中运动，并受两体相互作用 $\mathscr V_{ab}(\vec q\,^{(a)}-\vec q\,^{(b)})$ 的作用。我们可以分别为这两种气体定义单粒子密度 $f_1^{(a)}$ 与 $f_1^{(b)}$。用推广的碰撞积分
+
+\begin{equation}\label{eq:3.58}
+  \begin{aligned}
+    C_{\alpha,\beta}=-\int &\mathrm{d}^3\vec p_2\,\mathrm{d}^2\Omega\left|\frac{\mathrm{d}\sigma_{\alpha\beta}}{\mathrm{d}\Omega}\right||\vec v_1-\vec v_2|\Big[f_1^{(\alpha)}(\vec p_1,\vec q_1)f_1^{(\beta)}(\vec p_2,\vec q_1)\\
+    &-f_1^{(\alpha)}(\vec p_1{}',\vec q_1)f_1^{(\beta)}(\vec p_2{}',\vec q_1)\Big],
+  \end{aligned}
+\end{equation}
+
+这些密度的演化由 Boltzmann 方程的一个简单推广所支配，即
+
+\begin{equation}\label{eq:3.59}
+  \begin{cases}
+    \dfrac{\partial f_1^{(a)}}{\partial t}=-\left\{f_1^{(a)},\mathcal H_1^{(a)}\right\}+C_{a,a}+C_{a,b}\\[8pt]
+    \dfrac{\partial f_1^{(b)}}{\partial t}=-\left\{f_1^{(b)},\mathcal H_1^{(b)}\right\}+C_{b,a}+C_{b,b}
+  \end{cases}
+\end{equation}
+
+如果式 \eqref{eq:3.59} 右端的所有六项都为零，就可以得到定态分布。在不存在种间碰撞的情况下，即 $C_{a,b}=C_{b,a}=0$，我们可以得到彼此独立的定态分布 $f_1^{(a)}\propto\exp\left(-\beta_a\mathcal H_1^{(a)}\right)$ 与 $f_1^{(b)}\propto\exp\left(-\beta_b\mathcal H_1^{(b)}\right)$。要求 $C_{a,b}$ 为零会给出附加的约束
+
+\begin{equation}\label{eq:3.60}
+  \begin{aligned}
+    f_1^{(a)}(\vec p_1)f_1^{(b)}(\vec p_2)-f_1^{(a)}(\vec p_1{}')f_1^{(b)}(\vec p_2{}')&=0,\qquad\Longrightarrow\\
+    \beta_a\mathcal H_1^{(a)}(\vec p_1)+\beta_b\mathcal H_1^{(b)}(\vec p_2)&=\beta_a\mathcal H_1^{(a)}(\vec p_1{}')+\beta_b\mathcal H_1^{(b)}(\vec p_2{}').
+  \end{aligned}
+\end{equation}
+
+% p.77
+由于总能量 $\mathcal H_1^{(a)}+\mathcal H_1^{(b)}$ 在碰撞中守恒，只要 $\beta_a=\beta_b=\beta$，上面的方程就能得到满足。由式 \eqref{eq:3.57}，这一条件意味着两种组分的动能相等，
+
+\begin{equation}\label{eq:3.61}
+  \left\langle\frac{p_a^2}{2m_a}\right\rangle=\left\langle\frac{p_b^2}{2m_b}\right\rangle=\frac{3}{2\beta}.
+\end{equation}
+
+因此，参数 $\beta$ 扮演着描述气体平衡的\emph{经验温度}的角色。
+
+\cnfigure{fig3-8}{粒子撞击在壁上所施加的压力。}
+
+（3）\emph{状态方程}：为了完成把 $\beta$ 与温度 $T$ 等同起来，考虑 $N$ 个粒子被约束在体积为 $V$ 的盒子中的气体。气体的压力来自粒子与容器壁碰撞所施加的力。考虑一块垂直于 $x$ 方向、面积为 $A$ 的壁面。在时间间隔 $\delta t$ 内，动量处于区间 $[\vec p,\vec p+\mathrm{d}\vec p]$ 内、撞击这块面积的粒子数为
+
+\begin{equation}\label{eq:3.62}
+  \mathrm{d}\mathcal N(\vec p)=\left(f_1(\vec p)\mathrm{d}^3\vec p\right)\left(A\,v_x\,\delta t\right).
+\end{equation}
+
+上式中的最后一个因子是高度为 $v_x\delta t$、垂直于面积元 $A$ 的柱体体积。只有处在这个柱体内的粒子才足够接近，能够在 $\delta t$ 内撞到壁面。由于每次碰撞都给壁面传递动量 $2p_x$，所施加的净力为
+
+\begin{equation}\label{eq:3.63}
+  F=\frac{1}{\delta t}\int_{-\infty}^{0}\mathrm{d}p_x\int_{-\infty}^{\infty}\mathrm{d}p_y\int_{-\infty}^{\infty}\mathrm{d}p_z\,f_1(\vec p)\left(A\,\frac{p_x}{m}\,\delta t\right)\left(2p_x\right).
+\end{equation}
+
+由于只有速度指向壁面的粒子才会撞到它，第一个积分的范围只是 $p_x$ 的一半。既然被积函数关于 $p_x$ 为偶函数，这一限制可以通过把完整积分除以 2 来去掉。压力 $P$ 于是由单位面积上的力得到，即
+
+\begin{equation}\label{eq:3.64}
+  P=\frac{F}{A}=\int \mathrm{d}^3\vec p\,f_1(\vec p)\frac{p_x^2}{m}=\frac{1}{m}\int \mathrm{d}^3\vec p\,p_x^2\,n\left(\frac{\beta}{2\pi m}\right)^{3/2}\exp\left(-\frac{\beta p^2}{2m}\right)=\frac{n}{\beta}.
+\end{equation}
+
+% p.78
+其中用到了 $f_1$ 的平衡形式，即式 \eqref{eq:3.56}。与理想气体的标准状态方程 $PV=Nk_BT$ 比较，可以给出 $\beta=1/k_BT$。
+
+（4）\emph{熵}：正如先前所讨论的，Boltzmann H 函数与单粒子 PDF $\rho_1$ 的信息内容密切相关。我们也可以定义一个相应的 Boltzmann 熵，
+
+\begin{equation}\label{eq:3.65}
+  S_B(t)=-k_B\mathrm{H}(t),
+\end{equation}
+
+其中常数 $k_B$ 反映了熵的历史渊源。H 定理意味着 $S_B$ 只能随时间增加，趋近平衡。它还有一个好处是：由式 \eqref{eq:3.42} 定义，因而对明显偏离平衡的情形也适用。对于体积为 $V$ 的盒子中处于平衡的气体，由式 \eqref{eq:3.56} 我们算出
+
+\begin{equation}\label{eq:3.66}
+  \begin{aligned}
+    \mathrm{H}&=V\int \mathrm{d}^3\vec p\,f_1(\vec p)\ln f_1(\vec p)\\
+    &=V\int \mathrm{d}^3\vec p\,\frac{N}{V}\left(2\pi mk_BT\right)^{-3/2}\exp\left(-\frac{p^2}{2mk_BT}\right)\left[\ln\left(\frac{n}{\left(2\pi mk_BT\right)^{3/2}}\right)-\frac{p^2}{2mk_BT}\right]\\
+    &=N\left[\ln\left(\frac{n}{\left(2\pi mk_BT\right)^{3/2}}\right)-\frac{3}{2}\right].
+  \end{aligned}
+\end{equation}
+
+熵现在被确定为
+
+\begin{equation}\label{eq:3.67}
+  S_B=-k_B\mathrm{H}=Nk_B\left[\frac{3}{2}+\frac{3}{2}\ln\left(2\pi mk_BT\right)-\ln\left(\frac{N}{V}\right)\right].
+\end{equation}
+
+热力学关系 $T\mathrm{d}S_B=\mathrm{d}E+P\mathrm{d}V$ 意味着
+
+\begin{equation}\label{eq:3.68}
+  \begin{aligned}
+    \left.\frac{\partial E}{\partial T}\right|_V&=T\left.\frac{\partial S_B}{\partial T}\right|_V=\frac{3}{2}Nk_B,\\
+    P+\left.\frac{\partial E}{\partial V}\right|_T&=T\left.\frac{\partial S_B}{\partial V}\right|_T=\frac{Nk_BT}{V}.
+  \end{aligned}
+\end{equation}
+
+单原子理想气体的通常性质，$PV=Nk_BT$ 与 $E=3Nk_BT/2$，现在都可以由上述方程得到。还要注意，对这种经典气体，式 \eqref{eq:3.67} 中熵的零温极限\emph{并不}与密度 $n$ 无关，这违反热力学第三定律。
+
+% =============================================================
+\bisection{守恒律}{Conservation laws}
+
+\emph{趋近平衡}：我们现在来处理引言中提出的第三个问题，即气体\emph{如何}达到它最终的平衡态。考虑气体偏离式 \eqref{eq:3.56} 所描述的平衡形式的情形，并跟踪它向平衡的弛豫。存在一个机制层级，它们在不同的时间尺度上起作用。
+
+（i）最快的那些过程是紧邻粒子之间的两体碰撞。在量级为 $\tau_\times$ 的时间尺度上，当间距 $|\vec q_1-\vec q_2|\gg d$ 时，$f_2(\vec q_1,\vec q_2,t)$ 弛豫到 $f_1(\vec q_1,t)f_1(\vec q_2,t)$。对更高阶的密度 $f_s$ 也有类似的弛豫。
+
+% p.79
+（ii）在下一个阶段，$f_1$ 在\textit{mean free time} $\tau_\times$ 的量级上弛豫到一个\emph{局域平衡}形式，如式 \eqref{eq:3.53} 那样。后者是 Boltzmann 方程右端碰撞项所设定的内禀尺度。在这个时间间隔之后，碰撞中守恒的量达到一个局域平衡状态。我们可以通过对所有动量积分，在每一点定义一个（含时的）局域密度，即
+
+\begin{equation}\label{eq:3.69}
+  n(\vec q,t)=\int \mathrm{d}^3\vec p\,f_1(\vec p,\vec q,t),
+\end{equation}
+
+以及任意算符 $\mathcal O(\vec p,\vec q,t)$ 的局域期望值
+
+\begin{equation}\label{eq:3.70}
+  \langle\mathcal O(\vec q,t)\rangle=\frac{1}{n(\vec q,t)}\int \mathrm{d}^3\vec p\,f_1(\vec p,\vec q,t)\mathcal O(\vec p,\vec q,t).
+\end{equation}
+
+（iii）在密度与期望值按内禀时间尺度 $\tau_c$ 与 $\tau_\times$ 弛豫到它们的局域平衡形式之后，还有一次更缓慢的弛豫，它在\textit{extrinsic} 时间与长度尺度上朝向整体平衡。这最后一个阶段由 Boltzmann 方程左端较小的流项支配。它最方便地用守恒量随时间演化的方式来表达，依据的是\emph{流体力学方程}。
+
+\emph{守恒量}在两体碰撞中保持不变，也就是说，它们满足
+
+\begin{equation}\label{eq:3.71}
+  \chi(\vec p_1,\vec q,t)+\chi(\vec p_2,\vec q,t)=\chi(\vec p_1{}',\vec q,t)+\chi(\vec p_2{}',\vec q,t),
+\end{equation}
+
+其中 $(\vec p_1,\vec p_2)$ 与 $(\vec p_1',\vec p_2')$ 分别指碰撞之前与之后的动量。对这样的量，我们有
+
+\begin{equation}\label{eq:3.72}
+  J_\chi(\vec q,t)=\int \mathrm{d}^3\vec p\,\chi(\vec p,\vec q,t)\left.\frac{\mathrm{d}f_1}{\mathrm{d}t}\right|_{\text{coll.}}(\vec p,\vec q,t)=0.
+\end{equation}
+
+\emph{证明。} 利用碰撞积分的形式，我们有
+
+\begin{equation}\label{eq:3.73}
+  J_\chi=-\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\left[f_1(\vec p_1)f_1(\vec p_2)-f_1(\vec p_1{}')f_1(\vec p_2{}')\right]\chi(\vec p_1).
+\end{equation}
+
+（为记号简便，隐含的自变量 $(\vec q,t)$ 被略去。）我们现在施行与 H 定理证明中相同的一整套变量代换。第一步是在交换哑变量 $\vec p_1$ 与 $\vec p_2$ 之后取平均，给出
+
+\begin{equation}\label{eq:3.74}
+  J_\chi=-\frac{1}{2}\int \mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\left[f_1(\vec p_1)f_1(\vec p_2)-f_1(\vec p_1{}')f_1(\vec p_2{}')\right]\left[\chi(\vec p_1)+\chi(\vec p_2)\right].
+\end{equation}
+
+接下来，把变量从碰撞的发起者 $(\vec p_1,\vec p_2,\vec b)$ 换成产物 $(\vec p_1',\vec p_2',\vec b')$。重新标记积分变量之后，上面的方程变为
+
+\begin{equation}\label{eq:3.75}
+  \begin{aligned}
+    J_\chi=-\frac{1}{2}\int &\mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\Big[f_1(\vec p_1{}')f_1(\vec p_2{}')\\
+    &-f_1(\vec p_1)f_1(\vec p_2)\Big]\left[\chi(\vec p_1{}')+\chi(\vec p_2{}')\right].
+  \end{aligned}
+\end{equation}
+
+% p.80
+把最后两个方程取平均得到
+
+\begin{equation}\label{eq:3.76}
+  \begin{aligned}
+    J_\chi=-\frac{1}{4}\int &\mathrm{d}^3\vec p_1\,\mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|\left[f_1(\vec p_1)f_1(\vec p_2)-f_1(\vec p_1{}')f_1(\vec p_2{}')\right]\\
+    &\left[\chi(\vec p_1)+\chi(\vec p_2)-\chi(\vec p_1{}')-\chi(\vec p_2{}')\right],
+  \end{aligned}
+\end{equation}
+
+由式 \eqref{eq:3.71} 可知它为零。
+
+让我们探究这一结果对涉及 $\chi$ 的期望值演化的推论。把式 \eqref{eq:3.72} 中的碰撞项换成 Boltzmann 方程左端的流项，得到
+
+\begin{equation}\label{eq:3.77}
+  J_\chi(\vec q,t)=\int \mathrm{d}^3\vec p\,\chi(\vec p,\vec q,t)\left[\partial_t+\frac{p_\alpha}{m}\partial_{q_\alpha}+F_\alpha\frac{\partial}{\partial p_\alpha}\right]f_1(\vec p,\vec q,t)=0,
+\end{equation}
+
+其中我们引入了记号 $\partial_t\equiv\partial/\partial t$、$\partial_\alpha\equiv\partial/\partial q_\alpha$，以及 $F_\alpha=-\partial U/\partial q_\alpha$。我们可以把上面的方程整理成如下形式
+
+\begin{equation}\label{eq:3.78}
+  \int \mathrm{d}^3\vec p\left\{\left[\partial_t+\frac{p_\alpha}{m}\partial_{q_\alpha}+F_\alpha\frac{\partial}{\partial p_\alpha}\right](\chi f_1)-f_1\left[\partial_t+\frac{p_\alpha}{m}\partial_{q_\alpha}+F_\alpha\frac{\partial}{\partial p_\alpha}\right]\chi\right\}=0.
+\end{equation}
+
+第三项为零，因为它是一个全导数。利用式 \eqref{eq:3.70} 中期望值的定义，剩下的项可以整理为
+
+\begin{equation}\label{eq:3.79}
+  \partial_t\left(n\langle\chi\rangle\right)+\partial_\alpha\left(n\left\langle\frac{p_\alpha}{m}\chi\right\rangle\right)-n\langle\partial_t\chi\rangle-n\left\langle\frac{p_\alpha}{m}\partial_{q_\alpha}\chi\right\rangle-nF_\alpha\left\langle\frac{\partial\chi}{\partial p_\alpha}\right\rangle=0.
+\end{equation}
+
+正如先前所讨论的，对弹性碰撞存在五个守恒量：粒子数、动量的三个分量、以及动能。每一个都导致一个相应的流体力学方程，下面就来构造它们。
+
+（a）\emph{粒子数}：在式 \eqref{eq:3.79} 中令 $\chi=1$，得到
+
+\begin{equation}\label{eq:3.80}
+  \partial_t n+\partial_\alpha\left(nu_\alpha\right)=0,
+\end{equation}
+
+其中我们引入了局域速度
+
+\begin{equation}\label{eq:3.81}
+  \vec u\equiv\left\langle\frac{\vec p}{m}\right\rangle.
+\end{equation}
+
+这个方程只是说，局域粒子数密度随时间的变化来自粒子流 $\vec J_n=n\vec u$。
+
+（b）\emph{动量}：动量的任何线性函数都在碰撞中守恒，我们将探究守恒量
+
+\begin{equation}\label{eq:3.82}
+  \vec c\equiv\frac{\vec p}{m}-\vec u.
+\end{equation}
+
+把 $c_\alpha$ 代入式 \eqref{eq:3.79} 得到
+
+\begin{equation}\label{eq:3.83}
+  \partial_\beta\left(n\left\langle\left(u_\beta+c_\beta\right)c_\alpha\right\rangle\right)+n\partial_tu_\alpha+n\partial_\beta u_\alpha\left\langle u_\beta+c_\beta\right\rangle-n\frac{F_\alpha}{m}=0.
+\end{equation}
+
+利用 $\langle c_\alpha\rangle=0$，由式 \eqref{eq:3.81} 与 \eqref{eq:3.82} 得到
+
+\begin{equation}\label{eq:3.84}
+  \partial_tu_\alpha+u_\beta\partial_\beta u_\alpha=\frac{F_\alpha}{m}-\frac{1}{mn}\partial_\beta P_{\alpha\beta},
+\end{equation}
+
+% p.81
+其中我们引入了\term{压强张量}{pressure tensor}{3.pressure-tensor}
+
+\begin{equation}\label{eq:3.85}
+  P_{\alpha\beta}\equiv mn\left\langle c_\alpha c_\beta\right\rangle.
+\end{equation}
+
+这个方程的左端是流体元的加速度 $\mathrm{d}\vec u/\mathrm{d}t$，按照 Newton 方程它应当等于 $\vec F_{\text{net}}/m$。净力还包含一项由流体中压强张量的变化所带来的额外贡献。
+
+（c）\emph{动能}：我们首先引入一个平均局域动能
+
+\begin{equation}\label{eq:3.86}
+  \varepsilon\equiv\left\langle\frac{mc^2}{2}\right\rangle=\left\langle\frac{p^2}{2m}-\vec p\cdot\vec u+\frac{mu^2}{2}\right\rangle,
+\end{equation}
+
+然后考察在式 \eqref{eq:3.79} 中令 $\chi$ 等于 $mc^2/2$ 所得到的守恒律。由于空间与时间导数给出 $\partial\varepsilon=mc_\beta\partial c_\beta=-mc_\beta\partial u_\beta$，我们得到
+
+\begin{equation}\label{eq:3.87}
+  \begin{aligned}
+    \partial_t(n\varepsilon)&+\partial_\alpha\left(n\left\langle(u_\alpha+c_\alpha)\frac{mc^2}{2}\right\rangle\right)+nm\partial_tu_\beta\left\langle c_\beta\right\rangle+nm\partial_\alpha u_\beta\left\langle(u_\alpha+c_\alpha)c_\beta\right\rangle\\
+    &-nF_\alpha\left\langle c_\alpha\right\rangle=0.
+  \end{aligned}
+\end{equation}
+
+利用 $\langle c_\alpha\rangle=0$，上述方程简化为
+
+\begin{equation}\label{eq:3.88}
+  \partial_t(n\varepsilon)+\partial_\alpha(nu_\alpha\varepsilon)+\partial_\alpha\left(n\left\langle c_\alpha\frac{mc^2}{2}\right\rangle\right)+P_{\alpha\beta}\partial_\alpha u_\beta=0.
+\end{equation}
+
+我们接下来把上式前两项中对 $n$ 的依赖提出来，得到
+
+\begin{equation}\label{eq:3.89}
+  \varepsilon\partial_t n+n\partial_t\varepsilon+\varepsilon\partial_\alpha(nu_\alpha)+nu_\alpha\partial_\alpha\varepsilon+\partial_\alpha h_\alpha+P_{\alpha\beta}u_{\alpha\beta}=0,
+\end{equation}
+
+其中我们还引入了局域\term{热流}{heat flux}{3.heat-flux}
+
+\begin{equation}\label{eq:3.90}
+  \vec h\equiv\frac{nm}{2}\left\langle c_\alpha c^2\right\rangle,
+\end{equation}
+
+以及\term{应变率张量}{rate of strain tensor}{3.rate-of-strain}
+
+\begin{equation}\label{eq:3.91}
+  u_{\alpha\beta}=\frac{1}{2}\left(\partial_\alpha u_\beta+\partial_\beta u_\alpha\right).
+\end{equation}
+
+借助式 \eqref{eq:3.80} 消去式 \eqref{eq:3.89} 中的第一项与第三项，得到
+
+\begin{equation}\label{eq:3.92}
+  \partial_t\varepsilon+u_\alpha\partial_\alpha\varepsilon=-\frac{1}{n}\partial_\alpha h_\alpha-\frac{1}{n}P_{\alpha\beta}u_{\alpha\beta}.
+\end{equation}
+
+显然，为了求解 $n$、$\vec u$ 与 $\varepsilon$ 的流体力学方程，我们需要 $P_{\alpha\beta}$ 与 $\vec h$ 的表达式，它们要么唯象地给出，要么如下面几节那样由密度 $f_1$ 算出。
+
+% =============================================================
+\bisection{零阶流体力学}{Zeroth-order hydrodynamics}
+
+作为第一步近似，我们将假设在\emph{局域平衡}中，每一点处的密度 $f_1$ 都可以表示成式 \eqref{eq:3.56} 的形式，也就是说，
+
+\begin{equation}\label{eq:3.93}
+  f_1^0(\vec p,\vec q,t)=\frac{n(\vec q,t)}{\left(2\pi mk_BT(\vec q,t)\right)^{3/2}}\exp\left[-\frac{\left(\vec p-m\vec u(\vec q,t)\right)^2}{2mk_BT(\vec q,t)}\right].
+\end{equation}
+
+参数的选择显然保证了 $\int \mathrm{d}^3\vec p\,f_1^0=n$，以及 $\langle\vec p/m\rangle^0=\vec u$，正如所要求的那样。由这个 Gauss 权重很容易算出各种平均值；特别地，
+
+\begin{equation}\label{eq:3.94}
+  \left\langle c_\alpha c_\beta\right\rangle^0=\frac{k_BT}{m}\delta_{\alpha\beta},
+\end{equation}
+
+由此得到
+
+\begin{equation}\label{eq:3.95}
+  P_{\alpha\beta}^0=nk_BT\delta_{\alpha\beta},\qquad\text{以及}\qquad\varepsilon=\frac{3}{2}k_BT.
+\end{equation}
+
+由于密度 $f_1^0$ 关于 $\vec c$ 为偶函数，所有奇数阶的期望值都为零，特别是
+
+\begin{equation}\label{eq:3.96}
+  \vec h^0=0.
+\end{equation}
+
+在这一近似下，守恒律取如下简单形式
+
+\begin{equation}\label{eq:3.97}
+  \begin{cases}
+    D_tn=-n\partial_\alpha u_\alpha\\[4pt]
+    mD_tu_\alpha=F_\alpha-\dfrac{1}{n}\partial_\alpha\left(nk_BT\right)\\[4pt]
+    D_tT=-\dfrac{2}{3}T\partial_\alpha u_\alpha
+  \end{cases}
+\end{equation}
+
+在上面的表达式中，我们引入了\term{物质导数}{material derivative}{3.material-derivative}
+
+\begin{equation}\label{eq:3.98}
+  D_t\equiv\left[\partial_t+u_\beta\partial_\beta\right],
+\end{equation}
+
+它衡量任何量在沿着平均速度场 $\vec u$ 所建立的流线运动时的时间变化。把第一个与第三个方程结合起来，很容易得到
+
+\begin{equation}\label{eq:3.99}
+  D_t\ln\left(nT^{-3/2}\right)=0.
+\end{equation}
+
+量 $\ln\left(nT^{-3/2}\right)$ 就像是气体的一个局域熵（见式 \eqref{eq:3.67}），按照上面的方程，它沿流线不变。因此，零阶流体力学预言气体流动是\emph{绝热}的。这就使式 \eqref{eq:3.93} 的局域平衡解无法达到真正的整体平衡形式，而后者要求熵增加。
+
+为了说明式 \eqref{eq:3.97} 并没有描述一个令人满意的趋近平衡的过程，我们考察定态（$\vec u_0=0$）附近、均匀盒子（$\vec F=0$）中小扰动的演化，令
+
+\begin{equation}\label{eq:3.100}
+  \begin{cases}
+    n(\vec q,t)=\bar n+\nu(\vec q,t)\\[4pt]
+    T(\vec q,t)=\bar T+\theta(\vec q,t)
+  \end{cases}
+\end{equation}
+
+% p.83
+我们接下来把式 \eqref{eq:3.97} 对偏差 $(\nu,\theta,\vec u)$ 展开到\emph{一阶}。注意，在最低阶上 $D_t=\partial_t+O(u)$，由此得到线性化的零阶流体力学方程
+
+\begin{equation}\label{eq:3.101}
+  \begin{cases}
+    \partial_t\nu=-\bar n\partial_\alpha u_\alpha\\[4pt]
+    m\partial_tu_\alpha=-\dfrac{k_B\bar T}{\bar n}\partial_\alpha\nu-k_B\partial_\alpha\theta\\[4pt]
+    \partial_t\theta=-\dfrac{2}{3}\bar T\partial_\alpha u_\alpha
+  \end{cases}
+\end{equation}
+
+系统的\term{简正模}{normal modes}{3.normal-modes}通过 Fourier 变换得到，
+
+\begin{equation}\label{eq:3.102}
+  \tilde A\left(\vec k,\omega\right)=\int \mathrm{d}^3\vec q\,\mathrm{d}t\exp\left[\mathrm{i}\left(\vec k\cdot\vec q-\omega t\right)\right]A\left(\vec q,t\right),
+\end{equation}
+
+其中 $A$ 代表三个场 $(\nu,\theta,\vec u)$ 中的任何一个。固有振动频率是如下矩阵方程的解
+
+\begin{equation}\label{eq:3.103}
+  \omega\begin{pmatrix}\tilde\nu\\ \tilde u_\alpha\\ \tilde\theta\end{pmatrix}=
+  \begin{pmatrix}
+    0 & \bar nk_\beta & 0\\[4pt]
+    \dfrac{k_B\bar T}{m\bar n}\delta_{\alpha\beta}k_\beta & 0 & \dfrac{k_B}{m}\delta_{\alpha\beta}k_\beta\\[4pt]
+    0 & \dfrac{2}{3}\bar Tk_\beta & 0
+  \end{pmatrix}
+  \begin{pmatrix}\tilde\nu\\ \tilde u_\beta\\ \tilde\theta\end{pmatrix}.
+\end{equation}
+
+很容易验证，这个方程具有如下模式，其中前\emph{三个}的频率为零：
+
+（a）两个模式描述均匀（$n=\bar n$）且等温（$T=\bar T$）的流体中的剪切流，其中速度沿着与它自身取向垂直的方向变化（例如 $\vec u=f(x,t)\hat y$）。用 Fourier 模表示，$\vec k\cdot\vec u_{\vec k}=0$，表示\emph{横向}流动，它们在零阶近似中不发生弛豫。
+
+（b）第三个零频模式描述压强\emph{均匀} $P=nk_BT$ 的静止流体。虽然 $n$ 与 $T$ 可以逐点变化，它们的乘积却是常量，从而保证流体不会因压强的变化而开始运动。式 \eqref{eq:3.103} 对应的本征向量是
+
+\begin{equation}\label{eq:3.104}
+  \mathbf v_e=\begin{pmatrix}\bar n\\ 0\\ -\bar T\end{pmatrix}.
+\end{equation}
+
+（c）最后，\emph{纵向}速度（$\vec u_\ell\parallel\vec k$）与密度和温度的变化组合成如下形式的简正模
+
+\begin{equation}\label{eq:3.105}
+  \mathbf v_l=\begin{pmatrix}\bar n|\vec k|\\ \omega(\vec k)\\ \frac{2}{3}\bar T|\vec k|\end{pmatrix},\qquad\text{其中}\qquad\omega(\vec k)=\pm v_l|\vec k|,
+\end{equation}
+
+其中
+
+\begin{equation}\label{eq:3.106}
+  v_l=\sqrt{\frac{5}{3}\frac{k_B\bar T}{m}}
+\end{equation}
+
+是纵向声速。注意，这一模式中的密度与温度变化是\emph{绝热}的，也就是说，局域熵（正比于 $\ln(nT^{-3/2})$）保持不变。
+
+% p.84
+于是我们发现，在零阶近似中，没有任何守恒量会弛豫到平衡。剪切流与熵模式永远持续，而两个声模式则是无阻尼的振荡。这是零阶近似的一个缺陷，通过求得 Boltzmann 方程的更好解可以把它消除。
+
+% =============================================================
+\bisection{一阶流体力学}{First-order hydrodynamics}
+
+虽然式 \eqref{eq:3.93} 的 $f_1^0(\vec p,\vec q,t)$ 把 Boltzmann 方程右端化为零，但它并不是一个完整的解，因为左端会使它的形式发生变化。左端是一个\emph{线性}微分算符，利用前面几节引入的各种记号，它可以写成
+
+\begin{equation}\label{eq:3.107}
+  \mathscr L[f]\equiv\left[\partial_t+\frac{p_\alpha}{m}\partial_{q_\alpha}+F_\alpha\frac{\partial}{\partial p_\alpha}\right]f=\left[D_t+c_\alpha\partial_{q_\alpha}+\frac{F_\alpha}{m}\frac{\partial}{\partial c_\alpha}\right]f.
+\end{equation}
+
+考察 $\mathscr L$ 对 $f_1^0$ 的作用会更简单，后者可以写成
+
+\begin{equation}\label{eq:3.108}
+  \ln f_1^0=\ln\left(nT^{-3/2}\right)-\frac{mc^2}{2k_BT}-\frac{3}{2}\ln\left(2\pi mk_B\right).
+\end{equation}
+
+利用关系 $\partial(c^2/2)=c_\beta\partial c_\beta=-c_\beta\partial u_\beta$，得到
+
+\begin{equation}\label{eq:3.109}
+  \begin{aligned}
+    \mathscr L\left[\ln f_1^0\right]&=D_t\ln\left(nT^{-3/2}\right)+\frac{mc^2}{2k_BT^2}D_tT+\frac{m}{k_BT}c_\alpha D_tu_\alpha\\
+    &\quad+c_\alpha\left(\frac{\partial_\alpha n}{n}-\frac{3}{2}\frac{\partial_\alpha T}{T}\right)+\frac{mc^2}{2k_BT^2}c_\alpha\partial_\alpha T+\frac{m}{k_BT}c_\alpha c_\beta\partial_\alpha u_\beta-\frac{F_\alpha c_\alpha}{k_BT}.
+  \end{aligned}
+\end{equation}
+
+如果场 $n$、$T$ 与 $u_\alpha$ 满足零阶流体力学方程 \eqref{eq:3.97}，我们就可以把上面的方程简化为
+
+\begin{equation}\label{eq:3.110}
+  \begin{aligned}
+    \mathscr L\left[\ln f_1^0\right]&=0-\frac{mc^2}{3k_BT}\partial_\alpha u_\alpha+c_\alpha\left[\left(\frac{F_\alpha}{k_BT}-\frac{\partial_\alpha n}{n}-\frac{\partial_\alpha T}{T}\right)+\left(\frac{\partial_\alpha n}{n}-\frac{3}{2}\frac{\partial_\alpha T}{T}\right)-\frac{F_\alpha}{k_BT}\right]\\
+    &\quad+\frac{mc^2}{2k_BT^2}c_\alpha\partial_\alpha T+\frac{m}{k_BT}c_\alpha c_\beta u_{\alpha\beta}\\
+    &=\frac{m}{k_BT}\left(c_\alpha c_\beta-\frac{\delta_{\alpha\beta}}{3}c^2\right)u_{\alpha\beta}+\left(\frac{mc^2}{2k_BT}-\frac{5}{2}\right)\frac{c_\alpha}{T}\partial_\alpha T.
+  \end{aligned}
+\end{equation}
+
+$\mathscr L$ 的特征时间尺度 $\tau_U$ 是\textit{extrinsic} 的，可以取得比 $\tau_\times$ 大得多。因此，零阶结果在极限 $(\tau_\times/\tau_U)\to0$ 下是精确的；而修正项则可以按 $(\tau_\times/\tau_U)$ 的幂级数来构造。为此，我们令 $f_1=f_1^0(1+g)$，并把碰撞算符线性化为
+
+\begin{equation}\label{eq:3.111}
+  \begin{aligned}
+    C[f_1,f_1]&=-\int \mathrm{d}^3\vec p_2\,\mathrm{d}^2\vec b\,|\vec v_1-\vec v_2|f_1^0(\vec p_1)f_1^0(\vec p_2)\left[g(\vec p_1)+g(\vec p_2)-g(\vec p_1{}')-g(\vec p_2{}')\right]\\
+    &\equiv-f_1^0(\vec p_1)C_L[g].
+  \end{aligned}
+\end{equation}
+
+% p.85
+虽然上面的积分算符是线性的，但一般仍难以处理。作为第一步近似，并注意到它的特征量级，我们令
+
+\begin{equation}\label{eq:3.112}
+  C_L[g]\approx\frac{g}{\tau_\times}.
+\end{equation}
+
+这被称为\term{单碰撞时间}{single collision time}{3.single-collision-time}近似；由线性化的 Boltzmann 方程 $\mathscr L[f_1]=-f_1^0C_L[g]$，我们得到
+
+\begin{equation}\label{eq:3.113}
+  g=-\tau_\times\frac{1}{f_1^0}\mathscr L[f_1]\approx-\tau_\times\mathscr L\left[\ln f_1^0\right],
+\end{equation}
+
+其中我们只保留了领头项。于是，一阶解由下式给出（用式 \eqref{eq:3.110}）
+
+\begin{equation}\label{eq:3.114}
+  \begin{aligned}
+    f_1^1(\vec p,\vec q,t)=f_1^0(\vec p,\vec q,t)&\left[1-\frac{\tau_\mu m}{k_BT}\left(c_\alpha c_\beta-\frac{\delta_{\alpha\beta}}{3}c^2\right)u_{\alpha\beta}\right.\\
+    &\left.-\tau_K\left(\frac{mc^2}{2k_BT}-\frac{5}{2}\right)\frac{c_\alpha}{T}\partial_\alpha T\right],
+  \end{aligned}
+\end{equation}
+
+其中在单碰撞时间近似中 $\tau_\mu=\tau_K=\tau_\times$。然而，在写出上面的方程时，我们已经预见到 $\tau_\mu\ne\tau_K$ 的可能性，这会在更精细的处理中出现（尽管两个时间仍然都是 $\tau_\times$ 的量级）。
+
+很容易检验 $\int \mathrm{d}^3\vec p\,f_1^1=\int \mathrm{d}^3\vec p\,f_1^0=n$，于是各种局域期望值到一阶的计算为
+
+\begin{equation}\label{eq:3.115}
+  \langle\mathcal O\rangle^1=\frac{1}{n}\int \mathrm{d}^3\vec p\,\mathcal Of_1^0\left(1+g\right)=\langle\mathcal O\rangle^0+\langle g\mathcal O\rangle^0.
+\end{equation}
+
+对按 $f_1^0$ 的 Gauss 权重分布的 $c_\alpha$ 之乘积求平均，因使用 \textit{Wick's theorem} 而大大简化，该定理说：乘积的期望值是所有可能的配对期望值乘积之和，例如
+
+\begin{equation}\label{eq:3.116}
+  \left\langle c_\alpha c_\beta c_\gamma c_\delta\right\rangle_0=\left(\frac{k_BT}{m}\right)^2\left(\delta_{\alpha\beta}\delta_{\gamma\delta}+\delta_{\alpha\gamma}\delta_{\beta\delta}+\delta_{\alpha\delta}\delta_{\beta\gamma}\right).
+\end{equation}
+
+（包含奇数个 $c_\alpha$ 的乘积的期望值由对称性为零。）利用这一结果，很容易验证
+
+\begin{equation}\label{eq:3.117}
+  \left\langle\frac{p_\alpha}{m}\right\rangle^1=u_\alpha-\tau_K\frac{\partial_\beta T}{T}\left\langle\left(\frac{mc^2}{2k_BT}-\frac{5}{2}\right)c_\alpha c_\beta\right\rangle^0=u_\alpha.
+\end{equation}
+
+一阶的压强张量由下式给出
+
+\begin{equation}\label{eq:3.118}
+  \begin{aligned}
+    P_{\alpha\beta}^1=nm\left\langle c_\alpha c_\beta\right\rangle^1&=nm\left[\left\langle c_\alpha c_\beta\right\rangle^0-\frac{\tau_\mu m}{k_BT}\left\langle c_\alpha c_\beta\left(c_\mu c_\nu-\frac{\delta_{\mu\nu}}{3}c^2\right)\right\rangle^0u_{\mu\nu}\right]\\
+    &=nk_BT\delta_{\alpha\beta}-2nk_BT\tau_\mu\left(u_{\alpha\beta}-\frac{\delta_{\alpha\beta}}{3}u_{\gamma\gamma}\right).
+  \end{aligned}
+\end{equation}
+
+% p.86
+（利用上面的结果，我们可以进一步验证 $\varepsilon^1=\langle mc^2/2\rangle^1=3k_BT/2$，与先前一样。）最后，热流由下式给出
+
+\begin{equation}\label{eq:3.119}
+  \begin{aligned}
+    h_\alpha^1=n\left\langle c_\alpha\frac{mc^2}{2}\right\rangle^1&=-\frac{nm\tau_K}{2}\frac{\partial_\beta T}{T}\left\langle\left(\frac{mc^2}{2k_BT}-\frac{5}{2}\right)c_\alpha c_\beta c^2\right\rangle^0\\
+    &=-\frac{5}{2}\frac{nk_B^2T\tau_K}{m}\partial_\alpha T.
+  \end{aligned}
+\end{equation}
+
+在这一阶，我们发现温度的逐点变化会产生一股趋于把它们抹平的热流，而剪切流则受到压强张量中非对角项的抵抗。这些效应足以导致向平衡的弛豫，这可以通过考察前面讨论过的那些模式被修正后的行为看出。
+
+（a）压强张量现在有一个非对角项
+
+\begin{equation}\label{eq:3.120}
+  P_{\alpha\ne\beta}^1=-2nk_BT\tau_\mu u_{\alpha\beta}\equiv-\mu\left(\partial_\alpha u_\beta+\partial_\beta u_\alpha\right),
+\end{equation}
+
+其中 $\mu\equiv nk_BT\tau_\mu$ 是\term{粘滞系数}{viscosity coefficient}{3.viscosity}。流体的一个剪切（例如由速度 $u_y(x,t)$ 描述）会导致一个与它对抗的粘滞力（正比于 $\mu\partial_x^2u_y$），引起如下所述的扩散式弛豫。
+
+（b）类似地，温度梯度会导致一股热流
+
+\begin{equation}\label{eq:3.121}
+  \vec h=-K\nabla T,
+\end{equation}
+
+其中 $K=(5nk_B^2T\tau_K)/(2m)$ 是气体的\term{热导率}{thermal conductivity}{3.thermal-conductivity}。若气体处于静止（$\vec u=0$，且压强均匀 $P=nk_BT$），温度的变化现在满足
+
+\begin{equation}\label{eq:3.122}
+  n\partial_t\varepsilon=\frac{3}{2}nk_B\partial_tT=-\partial_\alpha\left(-K\partial_\alpha T\right),\qquad\Longrightarrow\qquad\partial_tT=\frac{2K}{3nk_B}\nabla^2T.
+\end{equation}
+
+这就是\term{Fourier 方程}{Fourier equation}{3.fourier-equation}，它表明温度的变化通过扩散而弛豫。
+
+我们可以通过把运动方程线性化来讨论所有模式的行为。对 $D_tu_\alpha\approx\partial_tu_\alpha$ 的一阶贡献是
+
+\begin{equation}\label{eq:3.123}
+  \delta^1\left(\partial_tu_\alpha\right)=\frac{1}{m\bar n}\partial_\beta\delta^1P_{\alpha\beta}\approx-\frac{\mu}{m\bar n}\left(\frac{1}{3}\partial_\alpha\partial_\beta+\delta_{\alpha\beta}\partial_\gamma\partial_\gamma\right)u_\beta,
+\end{equation}
+
+其中 $\mu\equiv\bar nk_B\bar T\tau_\mu$。类似地，对 $D_tT\approx\partial_t\theta$ 的修正是
+
+\begin{equation}\label{eq:3.124}
+  \delta^1\left(\partial_t\theta\right)\equiv-\frac{2}{3k_B\bar n}\partial_\alpha h_\alpha\approx-\frac{2K}{3k_B\bar n}\partial_\alpha\partial_\alpha\theta,
+\end{equation}
+
+其中 $K=(5\bar nk_B^2\bar T\tau_K)/(2m)$。经过 Fourier 变换之后，矩阵方程 \eqref{eq:3.103} 被修正为
+
+\begin{equation}\label{eq:3.125}
+  \omega\begin{pmatrix}\tilde\nu\\ \tilde u_\alpha\\ \tilde\theta\end{pmatrix}=
+  \begin{pmatrix}
+    0 & \bar n\delta_{\alpha\beta}k_\beta & 0\\[6pt]
+    \dfrac{k_B\bar T}{m\bar n}\delta_{\alpha\beta}k_\beta & -\mathrm{i}\dfrac{\mu}{m\bar n}\left(k^2\delta_{\alpha\beta}+\dfrac{k_\alpha k_\beta}{3}\right) & \dfrac{k_B}{m}\delta_{\alpha\beta}k_\beta\\[10pt]
+    0 & \dfrac{2}{3}\bar T\delta_{\alpha\beta}k_\beta & -\mathrm{i}\dfrac{2Kk^2}{3k_B\bar n}
+  \end{pmatrix}
+  \begin{pmatrix}\tilde\nu\\ \tilde u_\beta\\ \tilde\theta\end{pmatrix}.
+\end{equation}
+
+% p.87
+我们可以问：在零阶近似中算出的简正模频率，在这一阶会被怎样修正。很容易验证，横向（剪切）简正模（$\vec k\cdot\vec u_T=0$）现在有一个频率
+
+\begin{equation}\label{eq:3.126}
+  \omega_\tau=-\mathrm{i}\frac{\mu}{m\bar n}k^2.
+\end{equation}
+
+虚频意味着这些模式在一个特征时间 $\tau_\tau(k)\sim1/|\omega_\tau|\sim(\lambda)^2/(\tau_\mu\bar v^2)$ 上被阻尼，其中 $\lambda$ 是相应的波长，而 $\bar v\sim\sqrt{k_BT/m}$ 是气体粒子的典型速率。我们看到，特征时间尺度随波长的平方增长，这正是\emph{扩散}过程的标志。
+
+在其余的简正模中，速度平行于 $\vec k$，而式 \eqref{eq:3.125} 约化为
+
+\begin{equation}\label{eq:3.127}
+  \omega\begin{pmatrix}\tilde\nu\\ \tilde u_\ell\\ \tilde\theta\end{pmatrix}=
+  \begin{pmatrix}
+    0 & \bar nk & 0\\[6pt]
+    \dfrac{k_B\bar T}{m\bar n}k & -\mathrm{i}\dfrac{4\mu k^2}{3m\bar n} & \dfrac{k_B}{m}k\\[10pt]
+    0 & \dfrac{2}{3}\bar Tk & -\mathrm{i}\dfrac{2Kk^2}{3k_B\bar n}
+  \end{pmatrix}
+  \begin{pmatrix}\tilde\nu\\ \tilde u_\beta\\ \tilde\theta\end{pmatrix}.
+\end{equation}
+
+动力学矩阵的行列式等于三个本征频率之积，到最低阶它为
+
+\begin{equation}\label{eq:3.128}
+  \det(M)=\mathrm{i}\frac{2Kk^2}{3k_B\bar n}\cdot\bar nk\cdot\frac{k_B\bar Tk}{m\bar n}+O\left(\tau_\times^2\right).
+\end{equation}
+
+在零阶时，两个声模有 $\omega_\pm^0(k)=\pm v_\ell k$，因此等压模的频率为
+
+\begin{equation}\label{eq:3.129}
+  \omega_e^1(k)\approx\frac{\det(M)}{-v_\ell^2k^2}=-\mathrm{i}\frac{2Kk^2}{5k_B\bar n}+O\left(\tau_\times^2\right).
+\end{equation}
+
+在一阶，纵向声模也变成阻尼振荡，频率为 $\omega_\pm^1(k)=\pm v_\ell k-\mathrm{i}\gamma$。得到衰减率的最简单办法是注意：动力学矩阵的迹等于本征值之和，因此
+
+\begin{equation}\label{eq:3.130}
+  \omega_\pm^1(k)=\pm v_\ell k-\mathrm{i}k^2\left(\frac{2\mu}{3m\bar n}+\frac{2K}{15k_B\bar n}\right)+O\left(\tau_\times^2\right).
+\end{equation}
+
+所有简正模的阻尼保证了气体向其最终均匀且静止的平衡态趋近——尽管这一过程很慢。
+
+% =============================================================
+% 【供用户圈定附录 B 收录范围】第 3 章原文中的意大利斜体（按首次出现页码排序）
+% —— 已在正文中以 \term{中文}{English}{key} 形式标记的术语（附录 B 候选）：
+% p.57 microstate, phase space, Hamiltonian
+% p.58 time reversal symmetry, macrostate, statistical ensemble (原文为 ensemble),
+%      representative point, ensemble averages, pure state, mixed state
+% p.60 Poisson bracket
+% p.61 basic assumption of statistical mechanics, conserved quantities,
+%      accessible states, time averages, ergodicity
+% p.62 ergodic theorem
+% p.64 streaming terms, collision terms
+% p.65 extrinsic, intrinsic, collision duration
+% p.66 mean free time, Boltzmann equation, Vlasov equation
+% p.69 impact vector
+% p.70 differential cross-section, hard spheres, solid angle
+% p.71 assumption of molecular chaos
+% p.75 local equilibrium
+% p.81 pressure tensor, heat flux, rate of strain tensor
+% p.82 material derivative
+% p.83 normal modes
+% p.85 single collision time
+% p.86 viscosity coefficient, thermal conductivity, Fourier equation
+% —— 以下术语在第 1、2 章已首次标记，本章不再重复埋锚点（附录 B 只收首次出现处），
+%    正文中仍照原文保留其意大利斜体英文：
+%    p.58 objective（第 2 章 p.36）、probability density function（第 2 章 p.37）
+%    p.62 unconditional PDF（第 2 章 p.43）
+%    p.78 Entropy（第 1 章 p.13）
+%    p.85 Wick's theorem（第 2 章 p.45）
+% —— 同一章内重复出现的术语，只在首次出现处埋锚点，其后保留意大利斜体：
+%    p.74 assumption of molecular chaos（本章 p.71 已标记）
+%    p.79 mean free time（本章 p.66 已标记）、local equilibrium（本章 p.75 已标记）
+%    p.82 local equilibrium（同上）、p.84 extrinsic（本章 p.65 已标记）
+% —— 原文中属于「强调」而非术语的斜体（讲义中以 \emph{} 或 \textit{} 呈现，不收入附录 B）：
+%     p.57 研究…（studies the macroscopic properties of large numbers of particles,
+%     starting from their (classical) equations of motion）、宏观对象（macroscopic
+%     objects）、微观层面（microscopic level）；
+%     p.59 像不可压缩流体那样（behaves like an incompressible fluid）；
+%     p.60 偏（partial）、全（total）；
+%     p.61 不能（cannot）；p.62 任意（any）；p.63 外势与两体相互作用；
+%     p.65 对称（symmetric）、时间尺度（Time scales）、短程（short-range）、长程（long-range）；
+%     p.68 碰撞与散射的运动学（Kinematics of collision and scattering，小节首句的强调）；
+%     p.70 独立（independent）；p.71 附加（addition）；
+%     p.72、p.79 证明（Proof）；p.72 公式内文字（If f satisfies the Boltzmann equation, then…）；
+%     p.73 不可逆性与经验（Irreversibility、empirical）、时间之箭（arrow of time）；
+%     p.74 经典的（classical）、可逆的（reversible）、在碰撞之前求解的/在碰撞之后求解的
+%     （evaluated before/after the collision）；
+%     p.75 平衡分布（The equilibrium distribution）、必要的（necessary）、在每一点
+%     （at each point）、可加的（additive）、碰撞期间/远离碰撞（during/away from collisions）；
+%     p.76 两种气体之间的平衡（Equilibrium between two gases，小节标题）；
+%     p.77 经验温度（empirical temperature）、物态方程（The equation of state）；
+%     p.78 熵（Entropy）、不是（is not）、趋近平衡（Approach to equilibrium）；
+%     p.79 流体力学方程（hydrodynamic equations）、守恒量（Conserved quantities）；
+%     p.80 粒子数（Particle number）、动量（Momentum，小节标题）；
+%     p.81 动能（Kinetic energy）；
+%     p.83 一阶（first order）、三（three）、横向（transverse）、均匀压强（uniform pressure）、
+%     纵向（longitudinal）、绝热（adiabatic）；
+%     p.84 线性（linear）；p.85 Wick's theorem（第 2 章已标记，此处重复）；
+%     p.87 扩散型（diffusive）。
+% —— 更正（第 5 章交付后，用户核原文）：上列条目中的小节标题（p.76 两种气体之间的平衡、
+%    p.80 粒子数、动量）原书为**粗体**标题而非斜体；列在此处只表示「不收入附录 B」，
+%    它们本来就不属于「原文中的斜体术语」。
+% —— 习题部分（p.87 下半起）不译，其中出现的斜体（如 One-dimensional gas）不收入本清单。

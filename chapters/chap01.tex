@@ -1,0 +1,851 @@
+% =============================================================
+%  第 1 章 热力学（Thermodynamics）
+%  原文：Kardar, Statistical Physics of Particles, Chapter 1, p.1--28
+%  公式：1.1--1.83   图：1.1--1.23   表：1.1、1.2
+%  正文逐页照译；注释「% p.N」标记该段原文所在印刷页。
+% =============================================================
+\bichapter{热力学}{Thermodynamics}
+
+% =============================================================
+\bisection{引言}{Introduction}
+% p.1
+
+\textbf{热力学}是\emph{对处于热平衡的宏观系统之性质的唯象描述}。
+
+设想你是一位后牛顿时代的物理学家，一心想要理解像一容器气体这样简单系统的行为。你会如何着手？一个成功物理理论的范本是经典力学：它从简单的基本定律出发，运用微积分的数学工具，描述粒子纷繁复杂的运动。以此类推，你或许会按如下步骤进行：
+
+\begin{itemize}[itemsep=0.3em, topsep=0.3em]
+  \item 尽可能理想化所研究的\term{系统}{system}{1.system}（正如质点那样）。对系统施加机械功的概念当然是熟悉的，然而热量的交换似乎会带来麻烦。解决办法是先考察由\term{绝热壁}{adiabatic walls}{1.adiabatic-wall}隔热的\term{封闭系统}{closed systems}{1.closed}，绝热壁不允许与外界交换任何热量。当然，最终还必须研究\term{开放系统}{open systems}{1.open}，它们可以通过\term{透热壁}{diathermic walls}{1.diathermic}与外部世界交换热量。
+
+  \item 正如质点的状态由其坐标（以及动量）定量描述，宏观系统的性质也可以用若干\term{热力学坐标}{thermodynamic coordinates}{1.thermo-coord}或\term{态函数}{state functions}{1.state-fn}来描述。最熟悉的坐标是那些与机械功相关的量，例如压强与体积（对流体）、表面张力与面积（对薄膜）、张力与长度（对导线）、电场与极化（对电介质）等等。我们将会看到，还有一些与机械功无关的态函数。只有当系统处于\term{平衡态}{equilibrium}{1.equilibrium}时，态函数才有良好的定义，也就是说，在感兴趣的时段（观测时间）内其性质不随时间有明显变化。对观测时间的依赖使得平衡态的概念带有主观性。例如，窗玻璃在许多个十年里作为固体处于平衡，但在数千年的时间尺度上却像流体一样流动。在另一个极端，把早期宇宙在大爆炸最初几分钟里物质与辐射之间的平衡当作平衡态来处理，是完全合理的。
+% p.2
+  \item 最后，态函数之间的关系由热力学定律描述。作为一种\term{唯象的}{phenomenological}{1.phenomenological}描述，这些定律基于若干经验观测。然后在这些观测的基础上构建起连贯的逻辑与数学结构，由此得到各种有用的概念，以及各物理量之间可检验的关系。热力学定律只能由更基本的（微观）自然理论来加以论证。例如，统计力学试图从描述粒子集合演化的经典或量子力学方程出发导出这些定律。
+\end{itemize}
+
+% =============================================================
+\bisection{第零定律}{The zeroth law}
+% p.2
+
+\term{热力学第零定律}{zeroth law}{1.zeroth-law}描述了热平衡的传递性。它说：
+
+\emph{如果两个系统 A 与 B 分别与第三个系统 C 处于平衡，那么它们彼此也处于平衡。}
+
+尽管看似简单，第零定律的推论是存在一个重要的态函数，即\term{经验温度}{empirical temperature}{1.emp-temp} $\Theta$，使得处于平衡的系统具有相同的温度。
+
+\cnfigure{fig1-1}{第零定律的图示：系统 $A$ 与 $B$ 起初分别与 $C$ 处于平衡，随后把它们彼此接触。}
+
+设系统 $A$、$B$、$C$ 的平衡态分别由坐标 $\{A_1,A_2,\cdots\}$、$\{B_1,B_2,\cdots\}$ 和 $\{C_1,C_2,\cdots\}$ 描述。$A$ 与 $C$ 处于平衡这一假设意味着 $A$ 的坐标与 $C$ 的坐标之间存在一个约束，也就是说，$A_1$ 的变化必须伴随 $\{A_2,\cdots;C_1,C_2,\cdots\}$ 的某些变化，才能维持 $A$ 与 $C$ 的平衡。把这个约束记作
+\begin{equation}
+f_{AC}(A_1,A_2,\cdots;C_1,C_2,\cdots)=0.
+\label{eq:1.1}
+\end{equation}
+$B$ 与 $C$ 的平衡意味着一个类似的约束
+\begin{equation}
+f_{BC}(B_1,B_2,\cdots;C_1,C_2,\cdots)=0.
+\label{eq:1.2}
+\end{equation}
+注意，这里假定每个系统各自处于力学平衡。如果还允许它们彼此做功，则还需要附加条件（例如压强恒定）才能描述它们共同的力学平衡。
+
+% p.3
+显然，我们可以用许多不同的方式表述上述约束。例如，我们可以研究在其他所有参量都变化时 $C_1$ 的变化。这等价于从上述两个方程中各解出 $C_1$，得到\footnote{从纯数学的角度看，并不一定总能从任意约束条件中解出 $C_1$。不过，要求该约束所描述的是真实的物理参量，显然意味着我们可以把 $C_1$ 表示为其余参量的函数。}
+\begin{equation}
+\begin{aligned}
+C_1 &= F_{AC}(A_1,A_2,\cdots;C_2,\cdots),\\
+C_1 &= F_{BC}(B_1,B_2,\cdots;C_2,\cdots).
+\end{aligned}
+\label{eq:1.3}
+\end{equation}
+因此，如果 $C$ 分别与 $A$ 和 $B$ 处于平衡，我们必须有
+\begin{equation}
+F_{AC}(A_1,A_2,\cdots;C_2,\cdots)=F_{BC}(B_1,B_2,\cdots;C_2,\cdots).
+\label{eq:1.4}
+\end{equation}
+然而，根据第零定律，$A$ 与 $B$ 之间也存在平衡，这意味着约束
+\begin{equation}
+f_{AB}(A_1,A_2,\cdots;B_1,B_2,\cdots)=0.
+\label{eq:1.5}
+\end{equation}
+我们可以选取满足上式的任意一组参数 $\{A,B\}$，把它们代入式 \eqref{eq:1.4}。所得的等式必须完全独立于该方程中任意一组变量 $\{C\}$。于是我们可以改变这些参数，沿着式 \eqref{eq:1.5} 所约束的流形移动，而式 \eqref{eq:1.4} 无论 $C$ 处于什么状态都仍然成立。因此，必定可以通过消去 $C$ 的坐标来简化式 \eqref{eq:1.4}。或者，我们可以选定任意一组固定的参数 $C$，此后忽略它们，从而把 $A$ 与 $B$ 平衡的条件 \eqref{eq:1.5} 约化为
+\begin{equation}
+\Theta_A(A_1,A_2,\cdots)=\Theta_B(B_1,B_2,\cdots),
+\label{eq:1.6}
+\end{equation}
+也就是说，平衡由热力学坐标的一个函数 $\Theta$ 来刻画。这个函数确定了\term{状态方程}{equation of state}{1.eos}，而 $A$ 的\term{等温线}{isotherms}{1.isotherm}由条件 $\Theta_A(A_1,A_2,\cdots)=\Theta$ 描述。虽然此时 $\Theta$ 有许多可能的选择，但关键在于存在一个函数，它在热平衡时约束每个系统的参数。
+
+$\Theta$ 与力学系统中的力有相似之处。考虑两个可以彼此做功的一维系统，就像两个连在一起的弹簧。当每个物体施加在另一个物体上的力相等时，就达到了平衡。（当然，与标量温度不同，矢量力具有方向；这一复杂性我们已忽略。气体活塞的压强提供了更贴切的类比。）若干此类物体之间的力学平衡也具有传递性，而后者本来可以作为推导机械力存在的出发点。
+
+% =============================================================
+\bisection{第一定律}{The first law}
+% p.4
+
+作为一个例子，让我们考虑以下三个系统：(A) 长度为 $L$、张力为 $F$ 的导线，(B) 处于磁场 $B$ 中、磁化强度为 $M$ 的顺磁体，(C) 体积为 $V$、压强为 $P$ 的气体。
+
+\cnfigure{fig1-2}{气体 (A) 与磁体 (B) 的平衡，以及气体 (A) 与导线 (C) 的平衡。}
+
+观测表明，当这些系统处于平衡时，它们的坐标之间满足以下约束：
+\begin{equation}
+\begin{aligned}
+\left(P+\frac{a}{V^2}\right)(V-b)(L-L_0)-c\left[F-K(L-L_0)\right]&=0,\\
+\left(P+\frac{a}{V^2}\right)(V-b)M-dB&=0.
+\end{aligned}
+\label{eq:1.7}
+\end{equation}
+这两个条件可以整理成三个经验温度函数，即
+\begin{equation}
+\Theta\propto\left(P+\frac{a}{V^2}\right)(V-b)=c\left(\frac{F}{L-L_0}-K\right)=d\,\frac{B}{M}.
+\label{eq:1.8}
+\end{equation}
+注意，第零定律严重限制了描述两个物体之间平衡的约束方程的形式。任意的函数未必能整理成两个经验温度函数的相等关系。
+
+上面例子中所用的约束，实际上是挑选出来以重现三个众所周知的物态方程的，它们将在本书后面遇到并讨论。用更熟悉的形式写出，它们为
+\begin{equation}
+\left\{
+\begin{array}{ll}
+(P+a/V^2)(V-b)=Nk_BT & \text{（van der Waals 气体）}\\[2pt]
+M=(N\mu_B^2B)/(3k_BT) & \text{（Curie 顺磁体）}\\[2pt]
+F=(K+DT)(L-L_0) & \text{（橡胶的 Hooke 定律）}
+\end{array}
+\right.
+\label{eq:1.9}
+\end{equation}
+注意，我们已使用 Kelvin 温度 $T$ 的符号，取代了更一般的经验温度 $\Theta$。这个具体的温标可以利用理想气体的性质来构造。
+
+\emph{理想气体温标}：第零定律只是陈述了等温线的存在，而要在这一阶段建立起实用的温标，一个参考系统是必需的。\term{理想气体}{ideal gas}{1.ideal-gas}在热力学中占有重要地位，并提供了所需的参考。经验观测表明，对任何足够稀薄的气体，沿其等温线压强与体积的乘积都是常数。理想气体指的就是这个\term{稀薄}{dilute}{1.dilute}极限下的
+% p.5
+真实气体，而理想气体的温度正比于该乘积。比例常数通过参考冰–水–气系统的三相点温度来确定，1954 年第十届国际计量大会把该温度定为 273.16（度）Kelvin（K）。用稀薄气体（即 $P\to 0$）作温度计，一个系统的温度可以由下式得到
+\begin{equation}
+T(\mathrm{K})\equiv 273.16\times\left(\frac{\lim_{P\to 0}(PV)_{\text{system}}}{\lim_{P\to 0}(PV)_{\text{ice--water--gas}}}\right).
+\label{eq:1.10}
+\end{equation}
+
+\cnfigure{fig1-3}{冰、水和水蒸气的三相点在 $(P,T)$ 相图中出现在唯一的一个点上。}
+
+在处理简单的力学系统时，能量守恒是一条重要原理。例如，粒子在势场中的位置可以通过外力做功来改变，而外力做功又与粒子势能的变化相联系。观测表明，只要系统被适当地隔热，即当能量的来源只有机械来源时，类似的原理在宏观物体这一层次上也成立。我们将采用如下表述来概括这些观测：
+
+\emph{把一个在其它方面都绝热隔离的系统改变状态所需的功，只依赖于初态和末态，而与做功的方式、以及系统所经过的中间阶段无关。}
+
+\cnfigure{fig1-4}{改变宏观坐标的两条绝热路径，从初点到末点导致相同的内能变化。}
+
+对于在势场中运动的粒子，所需的功可以用来构造势能景观。类似地，对热力学系统我们可以构造另一个态函数，即内能 $E(\bm{X})$。在相差一个常数的意义下，
+% p.6
+$E(\bm{X})$ 可以由从初态 $\bm{X}_i$ 到末态 $\bm{X}_f$ 的一个\term{绝热的}{adiabatic}{1.adiabatic}变换所需的功 $\Delta W$ 得到，即
+\begin{equation}
+\Delta W=E(\bm{X}_f)-E(\bm{X}_i).
+\label{eq:1.11}
+\end{equation}
+另一组观测表明，一旦去掉绝热约束，功的大小就不再等于内能的变化。差值 $\Delta Q=\Delta E-\Delta W$ 定义为系统从其外界吸收的\term{热量}{heat}{1.heat}。显然，在这类变换中，$\Delta Q$ 与 $\Delta W$ 各自都不是态函数，因为它们依赖于外部因素，例如施加功的方式，而不只依赖于末态。为了强调这一点，对无限小变换我们写
+\begin{equation}
+\inexd Q=\mathrm{d}E-\inexd W,
+\label{eq:1.12}
+\end{equation}
+其中 $\mathrm{d}E=\sum_i\partial_iE\,\mathrm{d}X_i$ 可以通过微分得到，而 $\inexd Q$ 与 $\inexd W$ 一般不能。还要注意，我们的约定是：功和热的符号所表示的是\emph{加入}系统的能量，而不是相反。\term{热力学第一定律}{first law}{1.first-law}因而说的是，要改变一个系统的状态，我们需要一份固定数量的能量，它可以以机械功或热量的形式出现。这也可以看作是对所交换热量的一种定义和量化的方式。
+
+一个\term{准静态}{quasi-static}{1.quasistatic}变换，是指进行得足够缓慢、以致系统始终处于平衡的变换。因此，在过程的任何阶段，系统的热力学坐标都存在，并且原则上可以计算出来。对这类变换，对系统所做的功（大小等于系统所做的功，符号相反）可以与这些坐标的变化相联系。作为一个力学例子，考虑弹簧或橡皮筋的拉伸。要把系统的势能构造为长度 $L$ 的函数，我们可以足够缓慢地拉弹簧，使得在每一阶段外力都恰好由弹簧的内力 $F$ 平衡。对这样的准静态过程，弹簧势能的变化是 $\int F\,\mathrm{d}L$。如果突然拉弹簧，一部分外力功会转化为动能，并最终在弹簧停下来时损失掉。
+
+从上面的例子推广开来，人们通常可以把态函数 $\{\bm{X}\}$ 分成一组\term{广义位移}{generalized displacements}{1.gen-disp} $\{\mathbf{x}\}$，以及与之共轭的一组\term{广义力}{generalized forces}{1.gen-force} $\{\bm{J}\}$，使得对一个无限小准静态变换\footnote{我用符号 $\bm{J}$ 而不是 $\mathbf{F}$ 来表示力，以便把后者留给自由能。希望读者不要与电流混淆（电流有时也用 $\bm{J}$ 表示），电流在本书中很少出现。}
+\begin{equation}
+\inexd W=\sum_iJ_i\,\mathrm{d}x_i.
+\label{eq:1.13}
+\end{equation}
+
+% p.7
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{广义力与广义位移}
+  \label{tab:1.1}
+  \begin{tabular}{@{}lllll@{}}
+    \toprule
+    系统 & 力 & & 位移 & \\
+    \midrule
+    导线 & 张力 & $F$ & 长度 & $L$\\
+    薄膜 & 表面张力 & $S$ & 面积 & $A$\\
+    流体 & 压强 & $-P$ & 体积 & $V$\\
+    磁体 & 磁场 & $H$ & 磁化强度 & $M$\\
+    电介质 & 电场 & $E$ & 极化 & $P$\\
+    化学反应 & 化学势 & $\mu$ & 粒子数 & $N$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表 1.1 给出了这类共轭坐标的一些常见例子。注意，按照约定，压强 $P$ 是由系统施加在壁上的力来计算的，这与弹簧所受的力不同，后者是沿相反方向施加的。这就是静水力学功带有负号的来源。
+
+位移通常是\term{广延量}{extensive}{1.extensive}，即与系统的大小成正比，而力是\term{强度量}{intensive}{1.intensive}，与大小无关。后者是平衡的指示量；例如，处于平衡的气体中压强是均匀的（在没有外势的情况下），并且两个接触且已达平衡的气体的压强相等。正如在讨论第零定律时所指出的，当涉及热量交换时，温度起着类似的作用。是否存在与之对应的位移量，如果存在，它又是什么？这个问题将在随后的几节中回答。
+
+\emph{理想气体}：我们在讨论第零定律时曾指出，理想气体的状态方程具有特别简单的形式，$PV\propto T$。理想气体的内能也具有非常简单的形式，例如 Joule 的\emph{自由膨胀实验}所观察到的那样：测量表明，如果理想气体绝热地（但不一定是准静态地）从体积 $V_i$ 膨胀到 $V_f$，则初温和末温相同。由于该变换是绝热的（$\Delta Q=0$），并且外界没有对系统做功（$\Delta W=0$），气体的内能不变。由于在此过程中气体的压强和体积改变，而温度不变，我们得出结论：内能只依赖于温度，即 $E(V,T)=E(T)$。理想气体的这一性质实际上是其状态方程形式的一个推论，这一点将在本章末尾的某个习题中证明。
+
+\cnfigure{fig1-5}{起初被限制在左室的某种气体，被允许迅速膨胀到两个室中。}
+
+% p.8
+\term{响应函数}{response functions}{1.response}是刻画系统宏观行为的常用方法。它们是通过用外部探针使热力学坐标发生变化而实验测量得到的。一些常见的响应函数如下。
+
+\term{热容}{heat capacities}{1.heat-cap}由向系统加入热量时温度的变化得到。由于热量不是态函数，还必须指定供热所沿的路径。例如，对气体我们可以计算定容或定压热容，分别记作 $C_V=\left.\inexd Q/\mathrm{d}T\right|_V$ 和 $C_P=\left.\inexd Q/\mathrm{d}T\right|_P$。后者更大，因为一部分热量被体积变化所做的功消耗掉了：
+\begin{equation}
+\begin{aligned}
+C_V&=\left.\frac{\inexd Q}{\mathrm{d}T}\right|_V=\left.\frac{\mathrm{d}E-\inexd W}{\mathrm{d}T}\right|_V=\left.\frac{\mathrm{d}E+P\,\mathrm{d}V}{\mathrm{d}T}\right|_V=\left.\frac{\partial E}{\partial T}\right|_V,\\
+C_P&=\left.\frac{\inexd Q}{\mathrm{d}T}\right|_P=\left.\frac{\mathrm{d}E-\inexd W}{\mathrm{d}T}\right|_P=\left.\frac{\mathrm{d}E+P\,\mathrm{d}V}{\mathrm{d}T}\right|_P=\left.\frac{\partial E}{\partial T}\right|_P+P\left.\frac{\partial V}{\partial T}\right|_P.
+\end{aligned}
+\label{eq:1.14}
+\end{equation}
+
+\term{力常数}{force constants}{1.force-const}度量位移与力之比的（无限小）比值，是弹簧常数的推广。例子包括气体的\term{等温压缩率}{isothermal compressibility}{1.kappa} $\kappa_T=-\partial V/\partial P|_T/V$，以及磁体的\term{磁化率}{susceptibility}{1.chi} $\chi_T=\partial M/\partial B|_T/V$。由理想气体的状态方程 $PV\propto T$，我们得到 $\kappa_T=1/P$。
+
+\term{热响应}{thermal responses}{1.thermal-resp}探测热力学坐标随温度的变化。例如，气体的\term{膨胀系数}{expansivity}{1.alpha}由 $\alpha_P=\partial V/\partial T|_P/V$ 给出，对理想气体它等于 $1/T$。
+
+由于理想气体的内能只依赖于其温度，$\partial E/\partial T|_V=\partial E/\partial T|_P=\mathrm{d}E/\mathrm{d}T$，式 \eqref{eq:1.14} 于是简化为
+\begin{equation}
+C_P-C_V=P\left.\frac{\partial V}{\partial T}\right|_P=PV\alpha_P=\frac{PV}{T}\equiv Nk_B.
+\label{eq:1.15}
+\end{equation}
+最后一个等号来自广延性：对给定数量的理想气体，常数 $PV/T$ 正比于 $N$，即气体中粒子的数目；比例系数就是 Boltzmann 常数，其数值为 $k_B\approx1.4\times10^{-23}\,\mathrm{J\,K^{-1}}$。
+
+\bisection{第二定律}{The second law}
+
+十九世纪热力学这门科学发展的实际推动力是热机的出现。工业革命期间，人们越来越依赖机器做功，这就要求更好地理解热转化为功所依据的原理。看到诸如发动机效率这样的实际问题竟能引出像熵这样的抽象概念，是相当有趣的。
+
+一个理想化的\term{热机}{heat engine}{1.heat-engine}从热源（例如煤火）吸取一定数量的热量 $Q_H$，把其中一部分转化为功
+% p.9
+$W$，并把剩余的热量 $Q_C$ 排入热沉（例如大气）。热机的效率由下式计算
+\begin{equation}
+\eta=\frac{W}{Q_H}=\frac{Q_H-Q_C}{Q_H}\le1.
+\label{eq:1.16}
+\end{equation}
+一个理想化的\term{制冷机}{refrigerator}{1.refrigerator}就像反向运转的热机，即用功 $W$ 从低温系统抽取热量 $Q_C$，并在此较高温度处排放热量 $Q_H$。我们同样可以为制冷机的性能定义一个优值，即
+\begin{equation}
+\omega=\frac{Q_C}{W}=\frac{Q_C}{Q_H-Q_C}.
+\label{eq:1.17}
+\end{equation}
+
+\cnfigure{fig1-6}{理想化的热机与制冷机。}
+
+第一定律排除了所谓的“第一类永动机”，即不消耗任何能量就能产生功的热机。然而，一台通过把水变成冰来产生功的热机并不违反能量守恒。这样的“第二类永动机”当然会解决世界的能源问题，但它被\term{热力学第二定律}{second law}{1.second-law}排除了。热流的自然方向是从较热的物体到较冷的物体，这一观察正是热力学第二定律的精髓。第二定律有许多不同的表述，例如以下两条陈述：
+
+\textbf{Kelvin 表述。}\quad\emph{不可能存在这样的过程，其唯一结果是把热完全转化为功。}
+
+\textbf{Clausius 表述。}\quad\emph{不可能存在这样的过程，其唯一结果是把热从较冷的物体传到较热的物体。}
+
+第一句陈述排除了完善的热机，第二句排除了完善的制冷机。由于我们将同时使用这两句陈述，我们首先证明它们是等价的。证明 Kelvin 表述与 Clausius 表述等价的办法，是说明若其中之一被违反，则另一个也被违反。
+
+\begin{enumerate}[label=(\alph*), leftmargin=2.2em, itemsep=0.3em]
+  \item 让我们假定存在一台机器，它把热量 $Q$ 从较冷的区域搬到较热的区域，从而违反 Clausius 表述。现在考虑一台在这两个区域之间工作的热机，它从较热区域吸取热量 $Q_H$，并在较冷的冷沉处排放 $Q_C$。复合系统从热源吸取 $Q_H-Q$，产生等于 $Q_H-Q_C$ 的功，并在冷沉处排放 $Q_C-Q$。如果我们调节该热机的
+% p.10
+  输出，使 $Q_C=Q$，那么净结果就是一台效率为 100\% 的热机，这违反了 Kelvin 表述。
+\end{enumerate}
+
+\cnfigure{fig1-7}{违反 Clausius 表述的机器（$\bar{\mathrm{C}}$）可以与一台热机连接，结果得到一个违反 Kelvin 表述的复合装置（K）。}
+
+\begin{enumerate}[label=(\alph*), leftmargin=2.2em, start=2, itemsep=0.3em]
+  \item 或者，假定存在一台机器，它通过吸取热量 $Q$ 并把它完全转化为功，从而违反 Kelvin 表述。这台机器的功输出可以用来驱动一台制冷机，净结果是热从较冷的物体传到了较热的物体，这违反了 Clausius 表述。
+\end{enumerate}
+
+\cnfigure{fig1-8}{违反 Kelvin 表述的机器可以与一台制冷机连接，结果导致对 Clausius 表述的违反。}
+
+\bisection{Carnot 热机}{Carnot engines}
+
+\emph{一个 \term{Carnot 热机}{Carnot engine}{1.carnot} 是指任何可逆的、循环运转的、且其所有热交换都发生在热源温度 $T_H$ 与冷沉温度 $T_C$ 处的热机。}
+
+\cnfigure{fig1-9}{一台 Carnot 热机在温度 $T_H$ 与 $T_C$ 之间工作，没有其它的热交换。}
+
+一个\term{可逆}{reversible}{1.reversible}过程，是指只要把它的输入与输出反过来就能在时间上反向运行的过程。它是力学中无摩擦运动的等价物。由于时间反演性意味着平衡，一个可逆变换必定是准静态的，但反过来未必成立（例如存在由摩擦引起的能量耗散时）。一台循环运转的热机
+% p.11
+在过程结束时回到它原来的内部状态。Carnot 热机的显著特征是，与外界的热交换只在两个温度处进行。
+
+第零定律允许我们选取温度为 $T_H$ 和 $T_C$ 的两条等温线来进行这些热交换。要完成 Carnot 循环，我们还必须在坐标空间中用可逆的绝热路径把这两条等温线连接起来。由于热不是态函数，我们一般不知道如何构造这样的路径。幸运的是，在这一点上我们已有足够的信息，可以用理想气体作为内部工作物质来构造一台 Carnot 热机。为了演示，让我们计算一个单原子理想气体的绝热曲线，其内能为
+\begin{equation*}
+E=\frac{3}{2}Nk_BT=\frac{3}{2}PV.
+\end{equation*}
+沿一条准静态路径
+\begin{equation}
+\inexd Q=\mathrm{d}E-\inexd W=\mathrm{d}\!\left(\frac{3}{2}PV\right)+P\,\mathrm{d}V=\frac{5}{2}P\,\mathrm{d}V+\frac{3}{2}V\,\mathrm{d}P.
+\label{eq:1.18}
+\end{equation}
+绝热条件 $\inexd Q=0$ 于是意味着一条路径
+\begin{equation}
+\frac{\mathrm{d}P}{P}+\frac{5}{3}\frac{\mathrm{d}V}{V}=0,\qquad\Longrightarrow\qquad PV^{\gamma}=\text{常数},
+\label{eq:1.19}
+\end{equation}
+其中 $\gamma=5/3$。
+
+\cnfigure{fig1-10}{理想气体的 Carnot 循环，实线与虚线分别表示等温路径与绝热路径。}
+
+绝热曲线显然不同于等温线，我们可以选取两条这样的曲线与我们的等温线相交，从而完成一个 Carnot 循环。$E\propto T$ 这一假设并不是必需的，在本章末给出的某个习题中，你将构造任意 $E(T)$ 所对应的绝热线。事实上，对任何具有 $E(J,x)$ 的双参数系统都可以作类似的构造。
+
+\textbf{Carnot 定理}\quad\emph{没有任何在（温度为 $T_H$ 和 $T_C$ 的）两个热库之间工作的热机，比在它们之间工作的 Carnot 热机效率更高。}
+
+% p.12
+由于 Carnot 热机是可逆的，它可以反过来作为制冷机运行。用非 Carnot 热机去驱动反向运行的 Carnot 热机。让我们把非 Carnot 热机和 Carnot 热机的热交换分别记作 $Q_H$、$Q_C$ 和 $Q_H'$、$Q_C'$。这两台热机的净效果是把等于 $Q_H-Q_H'=Q_C-Q_C'$ 的热量从 $T_H$ 输运到 $T_C$。根据 Clausius 表述，被输运的热量不能是负的，即 $Q_H\ge Q_H'$。由于此过程中涉及的功 $W$ 相同，我们得出
+\begin{equation}
+\frac{W}{Q_H}\le\frac{W}{Q_H'},\qquad\Longrightarrow\qquad\eta_{\text{Carnot}}\ge\eta_{\text{non-Carnot}}.
+\label{eq:1.20}
+\end{equation}
+
+\cnfigure{fig1-11}{用一台普通热机来反向驱动一台 Carnot 热机。}
+
+\textbf{推论}\quad 所有可逆（Carnot）热机都具有相同的\term{普适}{universal}{1.universal}效率 $\eta(T_H,T_C)$，因为每一台都可以用来反向驱动任何另一台。
+
+\emph{热力学温标}：如前所示，至少在理论上可以用理想气体（或任何其它双参数系统）作为工作物质来构造 Carnot 热机。我们现在发现，与所用材料、设计与构造无关，所有这类循环可逆的热机都具有相同的最大理论效率。由于这一最大效率只依赖于两个温度，它可以用来构造一个温标。这样的温标具有一个吸引人的性质，
+
+\cnfigure{fig1-12}{两台串联的 Carnot 热机等价于第三台 Carnot 热机。}
+
+即它\emph{独立于任何材料的性质}（例如理想气体）。为了构造这样的温标，我们首先对 $\eta(T_H,T_C)$ 的形式得到一个约束。考虑两台串联运行的 Carnot 热机，一台在温度 $T_1$ 与 $T_2$ 之间，另一台在 $T_2$ 与 $T_3$ 之间（$T_1>T_2>T_3$）。把热量
+
+% p.13
+交换的热量和输出的功分别记作 $Q_1$、$Q_2$、$W_{12}$ 和 $Q_2$、$Q_3$、$W_{23}$。注意，第一台热机排出的热被第二台吸收了，因此复合的效果仍是另一台 Carnot 热机（因为每个部件都是可逆的），其热交换为 $Q_1$、$Q_3$，输出的功为 $W_{13}=W_{12}+W_{23}$。
+
+利用普适效率，三次热交换之间满足关系
+\begin{equation*}
+\left\{
+\begin{aligned}
+Q_2&=Q_1-W_{12}=Q_1[1-\eta(T_1,T_2)],\\
+Q_3&=Q_2-W_{23}=Q_2[1-\eta(T_2,T_3)]=Q_1[1-\eta(T_1,T_2)][1-\eta(T_2,T_3)],\\
+Q_3&=Q_1-W_{13}=Q_1[1-\eta(T_1,T_3)].
+\end{aligned}
+\right.
+\end{equation*}
+比较最后两个表达式，得到
+\begin{equation}
+[1-\eta(T_1,T_3)]=[1-\eta(T_1,T_2)][1-\eta(T_2,T_3)].
+\label{eq:1.21}
+\end{equation}
+这一性质意味着 $1-\eta(T_1,T_2)$ 可以写成 $f(T_2)/f(T_1)$ 形式的比值，按照约定取为 $T_2/T_1$，即
+\begin{equation}
+\begin{aligned}
+1-\eta(T_1,T_2)&=\frac{Q_2}{Q_1}\equiv\frac{T_2}{T_1},\\
+\Longrightarrow\quad\eta(T_H,T_C)&=\frac{T_H-T_C}{T_H}.
+\end{aligned}
+\label{eq:1.22}
+\end{equation}
+式 \eqref{eq:1.22} 把温度定义到相差一个比例常数，这个常数同样通过把水、冰和水蒸气的三相点取为 273.16 K 来确定。到目前为止，我们是把符号 $\Theta$ 与 $T$ 互换着使用的。事实上，通过让理想气体运行一个 Carnot 循环，可以证明（见习题）理想气体温标与热力学温标是等价的。显然，从实用的观点看，热力学温标并不好用；它的优点在于概念上，即它独立于任何物质的性质。所有热力学温度都是正的，因为根据式 \eqref{eq:1.22}，从温度 $T$ 处抽取的热量正比于 $T$。如果存在负温度，那么在它与某个正温度之间工作的热机就会从两个热库都抽取热量，并把总和转化为功，从而违反第二定律的 Kelvin 表述。
+
+\bisection{熵}{Entropy}
+
+为了最终构造出与温度共轭的态函数，我们求助于如下定理：
+
+\textbf{Clausius 定理}\quad\emph{对任意循环变换（无论可逆与否），$\oint\inexd Q/T\le0$，其中 $\inexd Q$ 是在温度 $T$ 处供给系统的热量增量。}
+
+把循环细分为一系列无限小变换，在这些变换中系统以热量 $\inexd Q$ 和功 $\inexd W$ 的形式接收能量。系统在每一小段中不必处于平衡。把系统的所有热交换
+% p.14
+流出的热交换都引向某台 Carnot 热机的一个端口，这台热机另有温度为 $T_0$ 的固定热库。（可以不止一台 Carnot 热机，只要它们都有一端连接到 $T_0$。）由于 $\inexd Q$ 的符号没有指定，Carnot 热机必须在任一方向上运行一系列无限小循环。为了在某一阶段向系统输送热量 $\inexd Q$，热机必须从固定热库中抽取热量 $\inexd Q_R$。如果热量是输送给系统中局部温度为 $T$ 的某个部分，那么根据式 \eqref{eq:1.22}，
+\begin{equation}
+\inexd Q_R=T_0\,\frac{\inexd Q}{T}.
+\label{eq:1.23}
+\end{equation}
+
+循环完成后，系统和 Carnot 热机都回到其原状态。复合过程的净效果是从热库抽取热量 $Q_R=\oint\inexd Q_R$ 并把它转化为外功 $W$。功 $W=Q_R$ 是 Carnot 热机所做的各功元之和，\emph{以及}系统在完整循环中所做的功。根据第二定律的 Kelvin 表述，$Q_R=W\le0$，即
+\begin{equation}
+T_0\oint\frac{\inexd Q}{T}\le0,\qquad\Longrightarrow\qquad\oint\frac{\inexd Q}{T}\le0,
+\label{eq:1.24}
+\end{equation}
+因为 $T_0>0$。注意，只有当整个过程是准静态的、从而 $T$ 能在整个循环中被唯一确定时，式 \eqref{eq:1.24} 中的 $T$ 才指整个系统的温度。否则，它只是一个局部的温度（比如系统的一个边界处），Carnot 热机就在那里存入热量元。
+
+\cnfigure{fig1-13}{系统的热交换被引向一台 Carnot 热机，该热机带有温度为 $T_0$ 的热库。}
+
+\textbf{Clausius 定理的推论}：
+
+\begin{enumerate}[leftmargin=2.2em, itemsep=0.4em]
+  \item 对一个\emph{可逆循环}，$\oint\inexd Q_{\text{rev}}/T=0$，因为把循环沿相反方向运行有 $\inexd Q_{\text{rev}}\to-\inexd Q_{\text{rev}}$，而由上述定理 $\oint\inexd Q_{\text{rev}}/T$ 既非负也非正，因而为零。这一结果意味着，$\inexd Q_{\text{rev}}/T$ 在任意两点 $A$ 与 $B$ 之间的积分与路径无关，因为对两条路径 (1) 和 (2) 有
+\begin{equation}
+\int_A^B\frac{\inexd Q_{\text{rev}}^{(1)}}{T_1}+\int_B^A\frac{\inexd Q_{\text{rev}}^{(2)}}{T_2}=0,\qquad\Longrightarrow\qquad\int_A^B\frac{\inexd Q_{\text{rev}}^{(1)}}{T_1}=\int_A^B\frac{\inexd Q_{\text{rev}}^{(2)}}{T_2}.
+\label{eq:1.25}
+\end{equation}
+
+\cnfigure{fig1-14}{(a) 一个可逆循环。(b) $A$ 与 $B$ 之间的两条可逆路径。(c) 由 $A$ 与 $B$ 之间的一条一般路径和一条可逆路径构成的循环。}
+
+  \item 利用式 \eqref{eq:1.25}，我们可以构造又一个态函数，即\term{熵}{entropy}{1.entropy} $S$。由于该积分与路径无关，只依赖于两个端点，我们可以令
+\begin{equation}
+S(B)-S(A)\equiv\int_A^B\frac{\inexd Q_{\text{rev}}}{T}.
+\label{eq:1.26}
+\end{equation}
+\end{enumerate}
+
+% p.15
+对可逆过程，我们现在可以由 $\inexd Q_{\text{rev}}=T\mathrm{d}S$ 计算热量。这使我们能够由一个一般（多变量）系统在 $S$ 为常数这一条件下构造其绝热曲线。注意，式 \eqref{eq:1.26} 只把熵定义到相差一个总体常数。
+
+\begin{enumerate}[leftmargin=2.2em, start=3, itemsep=0.4em]
+  \item 对一个可逆（因而准静态的）变换，$\inexd Q=T\mathrm{d}S$ 且 $\inexd W=\sum_iJ_i\,\mathrm{d}x_i$，第一定律给出
+\begin{equation}
+\mathrm{d}E=\inexd Q+\inexd W=T\mathrm{d}S+\sum_iJ_i\,\mathrm{d}x_i.
+\label{eq:1.27}
+\end{equation}
+我们可以看到，在这个方程中 $S$ 与 $T$ 表现为共轭变量，其中 $S$ 扮演位移的角色，而 $T$ 是对应的力。这一辨认使我们能够更精确地在机械交换与热交换之间建立对应关系，尽管我们应当记住：与其力学类比物不同，温度总是正的。虽然为了得到式 \eqref{eq:1.27} 我们不得不求助于可逆变换，但必须强调，它是态函数之间的一个关系。式 \eqref{eq:1.27} 很可能是热力学中最基本、最有用的恒等式。
+
+  \item 描述一个热力学系统所需的\term{独立变量}{independent variables}{1.indep-var}数目也可以由式 \eqref{eq:1.27} 得到。如果对一个系统做功有 $n$ 种方式，由 $n$ 对共轭量 $(J_i,x_i)$ 表示，那么描述该系统需要 $n+1$ 个独立坐标。（我们将忽略各力学坐标之间可能存在的约束。）例如，选取 $(E,\{x_i\})$ 为坐标，由式 \eqref{eq:1.27} 可得
+\begin{equation}
+\left.\frac{\partial S}{\partial E}\right|_{\bm{x}}=\frac{1}{T}\qquad\text{和}\qquad\left.\frac{\partial S}{\partial x_i}\right|_{E,x_{j\neq i}}=-\frac{J_i}{T}.
+\label{eq:1.28}
+\end{equation}
+（$\bm{x}$ 与 $\bm{J}$ 是参数集合 $\{x_i\}$ 与 $\{J_i\}$ 的简写记号。）
+\end{enumerate}
+
+\cnfigure{fig1-15}{起初彼此隔离的子系统被允许相互作用，结果导致熵增加。}
+
+\begin{enumerate}[leftmargin=2.2em, start=5, itemsep=0.4em]
+  \item 考虑从 $A$ 到 $B$ 的一个不可逆变化。沿一条可逆路径从 $B$ 返回 $A$，构成一个完整循环。于是
+\begin{equation}
+\int_A^B\frac{\inexd Q}{T}+\int_B^A\frac{\inexd Q_{\text{rev}}}{T}\le0,\qquad\Longrightarrow\qquad\int_A^B\frac{\inexd Q}{T}\le S(B)-S(A).
+\label{eq:1.29}
+\end{equation}
+写成微分形式，这意味着对任意变换都有 $\mathrm{d}S\ge\inexd Q/T$。特别地，考虑把若干子系统绝热隔离，每个子系统起初各自处于平
+\end{enumerate}
+
+% p.16
+衡。当它们达到共同平衡的状态时，由于净的 $\inexd Q=0$，我们必须有 $\delta S\ge0$。因此，一个绝热系统在平衡时达到熵的最大值，因为自发的内部变化只能使 $S$ 增大。于是，熵增加的方向既给出了时间之箭，也给出了通往平衡的路径。力学中的类比物是放在一个曲面上的质点，重力提供向下的力。当各种约束被去除时，质点会停在高度较低的位置上。因此，关于熵增加的陈述，并不比物体倾向于在重力作用下下落这一观察更神秘！
+
+\bisection{趋于平衡与热力学势}{Approach to equilibrium and thermodynamic potentials}
+
+系统趋于平衡的时间演化由热力学第二定律支配。例如，在上一节中我们证明，对于一个绝热隔离的系统，熵在任何自发变化中都必须增加，并在平衡时达到最大值。那么，对于不是绝热隔离、并且还可能受到外部机械功作用的非平衡系统，情况又如何？通常可以定义其它的热力学势，当系统处于平衡时它们取极值。
+
+\cnfigure{fig1-16}{拉伸弹簧的力学平衡。}
+
+\textbf{焓}是在没有热交换（$\inexd Q=0$）、并且系统在\emph{恒定外力}下达到力学平衡时合适的函数。最小焓原理只是把这样一个观察表述出来：稳定的力学平衡是通过使系统的净势能\emph{加上外部施力者}的势能取极小得到的。
+
+例如，考虑一个自然长度为 $L_0$、弹簧常数为 $K$ 的弹簧，它受到质量为 $m$ 的粒子所施加的力 $J=mg$。对伸长量 $x=L-L_0$，弹簧的内部势能为 $U(x)=Kx^2/2$，而粒子的势能变化为 $-mgx$。力学平衡通过在伸长量 $x_{\text{eq}}=mg/K$ 处使 $Kx^2/2-mgx$ 取极小得到。在其它任何位移值处，弹簧起初会振荡，最后由于摩擦而在 $x_{\text{eq}}$ 处停下来。对更一般的势能 $U(x)$，内部产生的力 $J_i=-\mathrm{d}U/\mathrm{d}x$ 必须在平衡点与外力 $J$ 相平衡。
+
+对任意一组位移 $\bm{x}$，在恒定（外加的）广义力 $\bm{J}$ 下，输入系统的功满足 $\inexd W\le\bm{J}\cdot\delta\bm{x}$。（对满足 $\bm{J}=\bm{J}_i$ 的准静态变化取等号，但一般总有一部分
+% p.17
+外功损失于耗散。）由于 $\inexd Q=0$，利用第一定律有 $\delta E\le\bm{J}\cdot\delta\bm{x}$，并且
+\begin{equation}
+\delta H\le0,\qquad\text{其中}\qquad H=E-\bm{J}\cdot\bm{x}
+\label{eq:1.30}
+\end{equation}
+就是焓。$H$ \emph{在平衡时}的变分由下式给出
+\begin{equation}
+\mathrm{d}H=\mathrm{d}E-\mathrm{d}(\bm{J}\cdot\bm{x})=T\mathrm{d}S+\bm{J}\cdot\mathrm{d}\bm{x}-\bm{x}\cdot\mathrm{d}\bm{J}-\bm{J}\cdot\mathrm{d}\bm{x}=T\mathrm{d}S-\bm{x}\cdot\mathrm{d}\bm{J}.
+\label{eq:1.31}
+\end{equation}
+式 \eqref{eq:1.31} 中的等号与式 \eqref{eq:1.30} 中的不等号可能引起混淆。式 \eqref{eq:1.30} 指的是在某个不是态函数的参量（例如上例中与弹簧相连的粒子的速度）被改变时，$H$ 在趋近平衡过程中的变分。与此相对，式 \eqref{eq:1.31} 描述的是平衡坐标之间的关系。为了区分这两种情况，我将把前者（非平衡的）变分记作 $\delta$。
+
+坐标集合 $(S,\bm{J})$ 是描述焓的自然选择，由式 \eqref{eq:1.31} 可得
+\begin{equation}
+x_i=-\left.\frac{\partial H}{\partial J_i}\right|_{S,J_{j\neq i}}.
+\label{eq:1.32}
+\end{equation}
+焓随温度的变化与恒定力下的热容相关，例如
+\begin{equation}
+C_P=\left.\frac{\inexd Q}{\mathrm{d}T}\right|_P=\left.\frac{\mathrm{d}E+P\,\mathrm{d}V}{\mathrm{d}T}\right|_P=\left.\frac{\mathrm{d}(E+PV)}{\mathrm{d}T}\right|_P=\left.\frac{\mathrm{d}H}{\mathrm{d}T}\right|_P.
+\label{eq:1.33}
+\end{equation}
+然而要注意，若要用 $T$ 而不是更自然的变量 $S$ 来表达 $H$，就必须作变量替换。
+
+\term{Helmholtz 自由能}{Helmholtz free energy}{1.helmholtz}在无机械功（$\inexd W=0$）的\emph{等温}变换中很有用。它与焓颇为相似，只是 $T$ 取代了 $J$ 的位置。由 Clausius 定理，一个处于恒定温度 $T$ 的系统所吸收的热量满足 $\inexd Q\le T\delta S$。因此 $\delta E=\inexd Q+\inexd W\le T\delta S$，并且
+\begin{equation}
+\delta F\le0,\qquad\text{其中}\qquad F=E-TS
+\label{eq:1.34}
+\end{equation}
+就是 Helmholtz 自由能。由于
+\begin{equation}
+\mathrm{d}F=\mathrm{d}E-\mathrm{d}(TS)=T\mathrm{d}S+\bm{J}\cdot\mathrm{d}\bm{x}-S\,\mathrm{d}T-T\mathrm{d}S=-S\,\mathrm{d}T+\bm{J}\cdot\mathrm{d}\bm{x},
+\label{eq:1.35}
+\end{equation}
+坐标集合 $(T,\bm{x})$（即在无机械功的等温变换中保持不变的量）最适合用来描述自由能。平衡时的力和熵可以由下式得到
+\begin{equation}
+J_i=\left.\frac{\partial F}{\partial x_i}\right|_{T,x_{j\neq i}},\qquad S=-\left.\frac{\partial F}{\partial T}\right|_{\bm{x}}.
+\label{eq:1.36}
+\end{equation}
+内能也可以由 $F$ 算出，即
+\begin{equation}
+E=F+TS=F-T\left.\frac{\partial F}{\partial T}\right|_{\bm{x}}=-T^2\left.\frac{\partial(F/T)}{\partial T}\right|_{\bm{x}}.
+\label{eq:1.37}
+\end{equation}
+
+% p.18
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{热力学势所满足的不等式}
+  \label{tab:1.2}
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+     & $\inexd Q=0$ & 常数 $T$\\
+    \midrule
+    $\inexd W=0$ & $\delta S\ge0$ & $\delta F\le0$\\
+    常数 $\bm{J}$ & $\delta H\le0$ & $\delta G\le0$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\term{Gibbs 自由能}{Gibbs free energy}{1.gibbs-free}适用于以恒外力做机械功的等温变换。对输入系统的功和热，自然的不等式由 $\inexd W\le\bm{J}\cdot\delta\bm{x}$ 和 $\inexd Q\le T\delta S$ 给出。因此 $\delta E\le T\delta S+\bm{J}\cdot\delta\bm{x}$，于是有
+\begin{equation}
+\delta G\le0,\qquad\text{其中}\qquad G=E-TS-\bm{J}\cdot\bm{x}
+\label{eq:1.38}
+\end{equation}
+就是 Gibbs 自由能。$G$ 的变分由下式给出
+\begin{equation}
+\begin{aligned}
+\mathrm{d}G&=\mathrm{d}E-\mathrm{d}(TS)-\mathrm{d}(\bm{J}\cdot\bm{x})=T\mathrm{d}S+\bm{J}\cdot\mathrm{d}\bm{x}-S\,\mathrm{d}T-T\mathrm{d}S-\bm{x}\cdot\mathrm{d}\bm{J}-\bm{J}\cdot\mathrm{d}\bm{x}\\
+&=-S\,\mathrm{d}T-\bm{x}\cdot\mathrm{d}\bm{J},
+\end{aligned}
+\label{eq:1.39}
+\end{equation}
+并且最容易用 $(T,\bm{J})$ 来表示。
+
+表 1.2 总结了上面关于热力学函数的各项结果。式 \eqref{eq:1.30}、\eqref{eq:1.34} 和 \eqref{eq:1.38} 是 Legendre 变换的例子，它用来把变量换成描述某一特定情形时最自然的那一组坐标。
+
+到目前为止，我们一直隐含地假定了系统中粒子数是恒定的。在化学反应中，以及在两相之间的平衡中，某一组分的粒子数可能会改变。粒子数的改变必然伴随着内能的改变，这可以用一个\term{化学功}{chemical work}{1.chem-work} $\inexd W=\bm{\mu}\cdot\mathrm{d}\bm{N}$ 来表示。这里 $\bm{N}=\{N_1,N_2,\cdots\}$ 列出各物种的粒子数，而 $\bm{\mu}=\{\mu_1,\mu_2,\cdots\}$ 是与之相关的\term{化学势}{chemical potentials}{1.chem-pot}，它们度量向系统中添加粒子所需的功。传统上，化学功与机械功的处理方式不同，并且不从式 \eqref{eq:1.38} 的 Gibbs 自由能中的 $E$ 里减去。对于不涉及机械功的情形中的化学平衡，合适的状态函数是由下式给出的\term{巨势}{grand potential}{1.grand-potential}
+\begin{equation}
+\mathcal{G}=E-TS-\bm{\mu}\cdot\bm{N}.
+\label{eq:1.40}
+\end{equation}
+$\mathcal{G}(T,\bm{\mu},\bm{x})$ 在化学平衡时取极小，其一般的变分满足
+\begin{equation}
+\mathrm{d}\mathcal{G}=-S\,\mathrm{d}T+\bm{J}\cdot\mathrm{d}\bm{x}-\bm{N}\cdot\mathrm{d}\bm{\mu}.
+\label{eq:1.41}
+\end{equation}
+
+\textbf{例．}\quad 为了说明本节的概念，考虑体积为 $V$、温度为 $T$ 的容器中 $N$ 个粒子的过饱和蒸汽。我们如何描述蒸汽趋近于与 $N_w$ 个粒子
+处于液态、$N_s$ 个粒子处于气相的平衡态的过程？描述该系统的固定坐标是 $V$、$T$ 与 $N$。由表 1.2，合适的热力学函数是 Helmholtz 自由能 $F(V,T,N)$，其变分满足
+\begin{equation}
+\mathrm{d}F=\mathrm{d}(E-TS)=-S\,\mathrm{d}T-P\,\mathrm{d}V+\mu\,\mathrm{d}N.
+\label{eq:1.42}
+\end{equation}
+
+\cnfigure{fig1-17}{过饱和蒸汽中水的凝结。}
+
+在系统于某个特定的 $N_w$ 值处达到平衡之前，它会经过一系列含水量较少的非平衡态。如果这个过程足够缓慢，我们可以构造出一个非平衡的 $F$ 值，即
+\begin{equation}
+F(V,T,N|N_w)=F_w(T,N_w)+F_s(V,T,N-N_w),
+\label{eq:1.43}
+\end{equation}
+它依赖于一个附加变量 $N_w$。（这里假定了水所占据的体积很小并且无关紧要。）由式 \eqref{eq:1.34}，平衡点通过让 $F$ 对这个变量取极小来得到。由于
+\begin{equation}
+\delta F=\left.\frac{\partial F_w}{\partial N_w}\right|_{T,V}\delta N_w-\left.\frac{\partial F_s}{\partial N_s}\right|_{T,V}\delta N_w,
+\label{eq:1.44}
+\end{equation}
+并且由式 \eqref{eq:1.42} 有 $\left.\partial F/\partial N\right|_{T,V}=\mu$，平衡条件可以通过让化学势相等来得到，也就是说，由 $\mu_w(V,T)=\mu_s(V,T)$ 得到。
+
+\cnfigure{fig1-18}{净自由能作为水量多少的函数有一个极小值。}
+
+化学势相同就是化学平衡的条件。自然，为了进一步推进，我们需要 $\mu_w$ 与 $\mu_s$ 的表达式。
+
+% =============================================================
+\bisection{有用的数学结果}{Useful mathematical results}
+% p.20
+
+在前面几节中我们引入了若干态函数。然而，如果对一个系统做功有 $n$ 种方式，那么 $n+1$ 个独立参数就足以刻画一个平衡态。因此，热力学参数之间必然存在各种约束与关系，本节将探讨其中的一部分。
+
+\textbf{(1) 广延性：}\quad 计入化学功后，系统的广延坐标的变分满足（它是式 \eqref{eq:1.27} 的推广）
+\begin{equation}
+\mathrm{d}E=T\mathrm{d}S+\bm{J}\cdot\mathrm{d}\bm{x}+\bm{\mu}\cdot\mathrm{d}\bm{N}.
+\label{eq:1.45}
+\end{equation}
+
+对固定的强度坐标，广延量正比于系统的大小或粒子数。这一正比关系在数学上表示为
+\begin{equation}
+E(\lambda S,\lambda\bm{x},\lambda\bm{N})=\lambda E(S,\bm{x},\bm{N}).
+\label{eq:1.46}
+\end{equation}
+
+对上述方程关于 $\lambda$ 求导并在 $\lambda=1$ 处取值，得到
+\begin{equation}
+\left.\frac{\partial E}{\partial S}\right|_{\bm{x},\bm{N}}S+\sum_i\left.\frac{\partial E}{\partial x_i}\right|_{S,x_{j\neq i},\bm{N}}x_i+\sum_\alpha\left.\frac{\partial E}{\partial N_\alpha}\right|_{S,\bm{x},N_{\beta\neq\alpha}}N_\alpha=E(S,\bm{x},\bm{N}).
+\label{eq:1.47}
+\end{equation}
+
+上式中的各个偏导数可以由式 \eqref{eq:1.45} 分别辨认出为 $T$、$J_i$ 和 $\mu_\alpha$。把这些值代入式 \eqref{eq:1.47} 就得到
+\begin{equation}
+E=TS+\bm{J}\cdot\bm{x}+\bm{\mu}\cdot\bm{N}.
+\label{eq:1.48}
+\end{equation}
+
+把式 \eqref{eq:1.48} 的变分与式 \eqref{eq:1.45} 结合起来，就得到强度坐标的变分之间的一个约束
+\begin{equation}
+S\,\mathrm{d}T+\bm{x}\cdot\mathrm{d}\bm{J}+\bm{N}\cdot\mathrm{d}\bm{\mu}=0,
+\label{eq:1.49}
+\end{equation}
+它被称为 \term{Gibbs--Duhem 关系}{Gibbs--Duhem relation}{1.gibbs-duhem}。虽然式 \eqref{eq:1.48} 有时被称为「热力学基本方程」，我却认为式 \eqref{eq:1.45} 更为基本。原因是广延性是一个附加的假设，并且实际上依赖于系统各组分之间的短程相互作用。对于一个由引力支配的大系统（例如星系），它会被违背，而式 \eqref{eq:1.45} 仍然成立。
+
+\textbf{例．}\quad 对固定数量的气体，化学势沿一条等温线的变化可以这样计算。由于 $\mathrm{d}T=0$，Gibbs--Duhem 关系给出 $-V\mathrm{d}P+N\mathrm{d}\mu=0$，于是
+\begin{equation}
+\mathrm{d}\mu=\frac{V}{N}\mathrm{d}P=k_BT\frac{\mathrm{d}P}{P},
+\label{eq:1.50}
+\end{equation}
+% p.21
+其中我们使用了理想气体的状态方程 $PV=Nk_BT$。对上式积分得到
+\begin{equation}
+\mu=\mu_0+k_BT\ln\frac{P}{P_0}=\mu_0-k_BT\ln\frac{V}{V_0},
+\label{eq:1.51}
+\end{equation}
+其中 $(P_0,V_0,\mu_0)$ 指某个参考点的坐标。
+
+\textbf{(2) Maxwell 关系．}\quad 把微分的数学法则与热力学关系结合起来，会得到若干有用的结果。其中最重要的是 Maxwell 关系，它们来自导数的可交换性 [$\partial_x\partial_y f(x,y)=\partial_y\partial_x f(x,y)$]。例如，由式 \eqref{eq:1.45} 可以得出
+\begin{equation}
+\left.\frac{\partial E}{\partial S}\right|_{\bm{x},\bm{N}}=T,\qquad\text{和}\qquad\left.\frac{\partial E}{\partial x_i}\right|_{S,x_{j\neq i},\bm{N}}=J_i.
+\label{eq:1.52}
+\end{equation}
+
+$E$ 的混合二阶导数于是由下式给出
+\begin{equation}
+\frac{\partial^2E}{\partial S\partial x_i}=\frac{\partial^2E}{\partial x_i\partial S}=\left.\frac{\partial T}{\partial x_i}\right|_S=\left.\frac{\partial J_i}{\partial S}\right|_{x_i}.
+\label{eq:1.53}
+\end{equation}
+
+由于 $(\partial y/\partial x)=(\partial x/\partial y)^{-1}$，上式可以反过来写成
+\begin{equation}
+\left.\frac{\partial S}{\partial J_i}\right|_{x_i}=\left.\frac{\partial x_i}{\partial T}\right|_S.
+\label{eq:1.54}
+\end{equation}
+
+由其它态函数的变分也可以得到类似的恒等式。假如我们想找出一个涉及 $\left.\partial S/\partial x\right|_T$ 的恒等式。我们愿意找一个态函数，使其变分中包含 $S\,\mathrm{d}T$ 与 $J\,\mathrm{d}x$。正确的选择是 $\mathrm{d}F=\mathrm{d}(E-TS)=-S\,\mathrm{d}T+J\,\mathrm{d}x$。考察 $F$ 的二阶导数就得到 Maxwell 关系
+\begin{equation}
+-\left.\frac{\partial S}{\partial x}\right|_T=\left.\frac{\partial J}{\partial T}\right|_x.
+\label{eq:1.55}
+\end{equation}
+
+为了计算 $\left.\partial S/\partial J\right|_T$，考虑 $\mathrm{d}(E-TS-Jx)=-S\,\mathrm{d}T-x\,\mathrm{d}J$，它给出恒等式
+\begin{equation}
+\left.\frac{\partial S}{\partial J}\right|_T=\left.\frac{\partial x}{\partial T}\right|_J.
+\label{eq:1.56}
+\end{equation}
+
+有各种各样的记忆口诀本应帮助你记住并构造 Maxwell 关系，例如幻方、Jacobi 行列式等等。我个人并不觉得这些方法中有哪一个值得学习。最合乎逻辑的办法是记住热力学定律从而记住式 \eqref{eq:1.27}，然后对它做各种操作，利用微分法则找出所需的导数。
+
+\textbf{例．}\quad 为了得到理想气体的 $\left.\partial\mu/\partial P\right|_{N,T}$，从 $\mathrm{d}(E-TS+PV)=-S\,\mathrm{d}T+V\mathrm{d}P+\mu\,\mathrm{d}N$ 出发。显然
+\begin{equation}
+\left.\frac{\partial\mu}{\partial P}\right|_{N,T}=\left.\frac{\partial V}{\partial N}\right|_{T,P}=\frac{V}{N}=\frac{k_BT}{P},
+\label{eq:1.57}
+\end{equation}
+% p.22
+与式 \eqref{eq:1.50} 中一样。由式 \eqref{eq:1.27} 还可以得出
+\begin{equation}
+\left.\frac{\partial S}{\partial V}\right|_{E,N}=\frac{P}{T}=-\frac{\left.\partial E/\partial V\right|_{S,N}}{\left.\partial E/\partial S\right|_{V,N}},
+\label{eq:1.58}
+\end{equation}
+其中我们用了式 \eqref{eq:1.45} 来得到最后那个恒等式。上式可以整理成
+\begin{equation}
+\left.\frac{\partial S}{\partial V}\right|_{E,N}\left.\frac{\partial E}{\partial S}\right|_{V,N}\left.\frac{\partial V}{\partial E}\right|_{S,N}=-1,
+\label{eq:1.59}
+\end{equation}
+它是微分\term{链式法则}{chain rule}{1.chain-rule}的一个例子。
+
+\textbf{(3) Gibbs 相律．}\quad 在建立温标时，我们以图 1.3 中蒸汽--水--冰的三相点作为参考标准。我们怎么能确定确实存在一个唯一的共存点，以及它有多稳健？图 1.3 中的相图用两个强度参数 $P$ 与 $T$ 来描绘系统的状态。非常一般地，如果对一个系统做功有 $n$ 种方式，而该系统的内能还可以通过 $c$ 种化学组分之间的转化而改变，那么独立的强度参数数目就是 $n+c$。当然，把热交换也算进来，式 \eqref{eq:1.45} 中有 $n+c+1$ 个类位移变量，但强度变量受到式 \eqref{eq:1.49} 的约束；刻画系统的参数中至少有一个必须是广延的。图 1.3 中所描绘的系统对应于一个单组分系统（水），只有一种做功方式（静水压强功），因此由两个独立的强度坐标，例如 $(P,T)$ 或 $(\mu,T)$，来描述。在图 1.17 所描绘的那种情形中，两相（液相与气相）共存，此时强度参数受到一个附加约束，因为两相中的化学势必须相等。这个约束把独立参数的数目减少了 1，而图 1.3 中相应的共存相流形是一维的。在三相点处三相共存，我们必须再施加一个约束，使得三个化学势都相等。Gibbs 相律指出，非常一般地，如果有 $p$ 个相共存，则相应的各点在强度参数空间中的维数（自由度数）为
+\begin{equation}
+f=n+c+1-p.
+\label{eq:1.60}
+\end{equation}
+
+纯水的三相点因此在强度参数空间中出现在单独一个点上（$f=1+1+1-3=0$）。如果还有额外的组分，例如溶液中溶解的盐，那么强度量的数目会增加，三相点可以沿相应的流形漂移。
+
+% =============================================================
+\bisection{稳定性条件}{Stability conditions}
+% p.23
+
+正如前面所指出的，1.7 节中导出的条件类似于众所周知的力学稳定性要求：一个在外部势 $U(x)$ 中自由运动的质点耗散能量，并最终停在 $U$ 的最小值处达到平衡。力 $J_i=-\mathrm{d}U/\mathrm{d}x$ 为零本身并不足以保证稳定性，因为我们还必须检查它出现在势能的\term{极小值}{minimum}{1.minimum}处，即 $\mathrm{d}^2U/\mathrm{d}x^2>0$。在有外力 $J$ 存在时，我们必须让「\term{焓}{enthalpy}{1.enthalpy}」$H=U-Jx$ 取极小，这相当于把势倾斜。在新的平衡点 $x_{\text{eq}}(J)$ 处，我们必须要求 $\mathrm{d}^2H/\mathrm{d}x^2=\mathrm{d}^2U/\mathrm{d}x^2>0$。因此，只有势 $U(x)$ 的\term{凸}{convex}{1.convex}的部分才是物理上可达的。
+
+\cnfigure{fig1-19}{一个质点在势场中可能出现的各种类型的力学平衡。势的凸部分（实线）可以用有限的力 $J$ 来探查，而不稳定点附近的凹部分（虚线）则是不可达的。}
+
+当有不止一个力学坐标时，任何改变 $\delta\bm{x}$ 都会导致能量（或焓）增加这一要求可以写成
+\begin{equation}
+\sum_{i,j}\frac{\partial^2U}{\partial x_i\partial x_j}\delta x_i\delta x_j>0.
+\label{eq:1.61}
+\end{equation}
+
+我们可以把上式写得更对称一些，办法是注意到力的相应变化由下式给出
+\begin{equation}
+\delta J_i=\delta\left(\frac{\partial U}{\partial x_i}\right)=\sum_j\frac{\partial^2U}{\partial x_i\partial x_j}\delta x_j.
+\label{eq:1.62}
+\end{equation}
+
+因此式 \eqref{eq:1.61} 等价于
+\begin{equation}
+\sum_i\delta J_i\delta x_i>0.
+\label{eq:1.63}
+\end{equation}
+
+在处理热力学系统时，我们应当允许系统的内能有热学输入与化学输入。把相应的共轭坐标对也包含进来，力学稳定性的条件应当推广为
+\begin{equation}
+\delta T\delta S+\sum_i\delta J_i\delta x_i+\sum_\alpha\delta\mu_\alpha\delta N_\alpha>0.
+\label{eq:1.64}
+\end{equation}
+
+在考察上述条件的后果之前，我将给出一个更标准的推导，它基于一个扩展的热力学物体的均匀性。考虑一个处于平衡的均匀系统，由强度态函数 $(T,\bm{J},\bm{\mu})$ 和广延变量 $(E,\bm{x},\bm{N})$ 来刻画。现在想象把系统任意地分成两等份，其中一份以功或热的形式自发地把一部分能量转移给另一份。两个子系统 $A$ 与 $B$ 起初对各强度变量具有相同的值，而它们的广延坐标满足 $E_A+E_B=E$、$\bm{x}_A+\bm{x}_B=\bm{x}$ 以及 $\bm{N}_A+\bm{N}_B=\bm{N}$。在两个子系统之间交换能量之后，$A$ 的坐标变为
+\begin{equation}
+(E_A+\delta E,\ \bm{x}_A+\delta\bm{x},\ \bm{N}_A+\delta\bm{N})\quad\text{和}\quad(T_A+\delta T_A,\ \bm{J}_A+\delta\bm{J}_A,\ \bm{\mu}_A+\delta\bm{\mu}_A),
+\label{eq:1.65}
+\end{equation}
+% p.24
+而 $B$ 的坐标变为
+\begin{equation}
+(E_B-\delta E,\ \bm{x}_B-\delta\bm{x},\ \bm{N}_B-\delta\bm{N})\quad\text{和}\quad(T_B+\delta T_B,\ \bm{J}_B+\delta\bm{J}_B,\ \bm{\mu}_B+\delta\bm{\mu}_B).
+\label{eq:1.66}
+\end{equation}
+
+\cnfigure{fig1-20}{均匀系统两半之间的自发变化。}
+
+注意，整个系统保持 $E$、$\bm{x}$ 与 $\bm{N}$ 不变。由于强度变量本身是广延坐标的函数，在 $(E,\bm{x},\bm{N})$ 的变分中，到\emph{一阶}我们有
+\begin{equation}
+\delta T_A=-\delta T_B\equiv\delta T,\qquad\delta\bm{J}_A=-\delta\bm{J}_B\equiv\delta\bm{J},\qquad\delta\bm{\mu}_A=-\delta\bm{\mu}_B\equiv\delta\bm{\mu}.
+\label{eq:1.67}
+\end{equation}
+
+利用式 \eqref{eq:1.48}，系统的熵可以写成
+\begin{equation}
+S=S_A+S_B=\left(\frac{E_A-\bm{J}_A\cdot\bm{x}_A-\bm{\mu}_A\cdot\bm{N}_A}{T_A}\right)+\left(\frac{E_B-\bm{J}_B\cdot\bm{x}_B-\bm{\mu}_B\cdot\bm{N}_B}{T_B}\right).
+\label{eq:1.68}
+\end{equation}
+
+由于按假定我们是在平衡点附近展开，一阶变化为零，而\emph{到二阶}
+\begin{equation}
+\delta S=\delta S_A+\delta S_B=2\left[\delta\left(\frac{1}{T_A}\right)\delta E_A-\delta\left(\frac{\bm{J}_A}{T_A}\right)\cdot\delta\bm{x}_A-\delta\left(\frac{\bm{\mu}_A}{T_A}\right)\cdot\delta\bm{N}_A\right].
+\label{eq:1.69}
+\end{equation}
+（我们用了式 \eqref{eq:1.67} 来指出 $B$ 的二阶贡献与 $A$ 的相同。）式 \eqref{eq:1.69} 可以整理为
+\begin{equation}
+\begin{aligned}
+\delta S&=-\frac{2}{T_A}\left[\delta T_A\left(\frac{\delta E_A-\bm{J}_A\cdot\delta\bm{x}_A-\bm{\mu}_A\cdot\delta\bm{N}_A}{T_A}\right)+\delta\bm{J}_A\cdot\delta\bm{x}_A+\delta\bm{\mu}_A\cdot\delta\bm{N}_A\right]\\
+&=-\frac{2}{T_A}\left[\delta T_A\,\delta S_A+\delta\bm{J}_A\cdot\delta\bm{x}_A+\delta\bm{\mu}_A\cdot\delta\bm{N}_A\right].
+\end{aligned}
+\label{eq:1.70}
+\end{equation}
+
+% p.25
+稳定平衡的条件是：任何变化都应当导致熵减少，因此我们必须有
+\begin{equation}
+\delta T\delta S+\delta\bm{J}\cdot\delta\bm{x}+\delta\bm{\mu}\cdot\delta\bm{N}\ge0.
+\label{eq:1.71}
+\end{equation}
+我们现在去掉了下标 $A$，因为式 \eqref{eq:1.71} 既适用于整个系统，也适用于它的任何一部分。
+
+上述条件是在假定整个系统保持 $E$、$\bm{x}$ 与 $\bm{N}$ 不变的情况下得到的。事实上，由于在这个表达式中所有坐标都以对称的方式出现，对任何其它约束集合同样会得到相同的结果。例如，当 $\delta\bm{N}=0$ 时，$\delta T$ 与 $\delta\bm{x}$ 的变分给出
+\begin{equation}
+\left\{
+\begin{aligned}
+\delta S&=\left.\frac{\partial S}{\partial T}\right|_{\bm{x}}\delta T+\left.\frac{\partial S}{\partial x_i}\right|_T\delta x_i\\
+\delta J_i&=\left.\frac{\partial J_i}{\partial T}\right|_{\bm{x}}\delta T+\left.\frac{\partial J_i}{\partial x_j}\right|_T\delta x_j
+\end{aligned}
+\right.\ .
+\label{eq:1.72}
+\end{equation}
+
+把这些变分代入式 \eqref{eq:1.71} 得到
+\begin{equation}
+\left.\frac{\partial S}{\partial T}\right|_{\bm{x}}(\delta T)^2+\left.\frac{\partial J_i}{\partial x_j}\right|_T\delta x_i\delta x_j\ge0.
+\label{eq:1.73}
+\end{equation}
+
+注意，正比于 $\delta T\delta x_i$ 的交叉项由于式 \eqref{eq:1.56} 中的 Maxwell 关系而抵消。式 \eqref{eq:1.73} 是一个\term{二次型}{quadratic form}{1.quadratic-form}，它对 $\delta T$ 与 $\delta\bm{x}$ 的\emph{所有选择}都必须为正。由此得到的对各系数的约束与系统最初如何被划分为子系统 $A$ 和 $B$ 无关，它们代表稳定平衡的条件。如果只有 $\delta T$ 不为零，式 \eqref{eq:1.71} 要求 $\left.\partial S/\partial T\right|_{\bm{x}}\ge0$，这意味着热容是正的，因为
+\begin{equation}
+C_{\bm{x}}=\left.\frac{\inexd Q}{\mathrm{d}T}\right|_{\bm{x}}=T\left.\frac{\partial S}{\partial T}\right|_{\bm{x}}\ge0.
+\label{eq:1.74}
+\end{equation}
+
+如果式 \eqref{eq:1.71} 中只有一个 $\delta x_i$ 不为零，那么相应的响应函数 $\left.\partial x_i/\partial J_i\right|_{T,x_{j\neq i}}$ 必须为正值。然而还存在更一般的要求，因为所有 $\delta\bm{x}$ 的值都可以取为非零。一般的要求是：系数矩阵 $\left.\partial J_i/\partial x_j\right|_T$ 必须是\term{正定的}{positive definite}{1.pos-def}。一个矩阵若其所有本征值都为正，则它是正定的。这样的矩阵（即逆响应函数）的所有对角元都为正，这是必要的，但并不充分，由此会得到响应函数之间更多的约束。对气体计入化学功后，相应的矩阵是
+\begin{equation}
+\begin{bmatrix}
+-\left.\dfrac{\partial P}{\partial V}\right|_{T,N} & -\left.\dfrac{\partial P}{\partial N}\right|_{T,V}\\[1.2em]
+\left.\dfrac{\partial\mu}{\partial V}\right|_{T,N} & \left.\dfrac{\partial\mu}{\partial N}\right|_{T,V}
+\end{bmatrix}.
+\label{eq:1.75}
+\end{equation}
+
+除了响应函数 $\kappa_{T,N}=-V^{-1}\left.\partial V/\partial P\right|_{T,N}$ 与 $\left.\partial N/\partial\mu\right|_{T,V}$ 的正性之外，该矩阵的行列式也必须为正，这要求
+\begin{equation}
+\left.\frac{\partial P}{\partial N}\right|_{T,V}\left.\frac{\partial\mu}{\partial V}\right|_{T,N}-\left.\frac{\partial P}{\partial V}\right|_{T,N}\left.\frac{\partial\mu}{\partial N}\right|_{T,V}\ge0.
+\label{eq:1.76}
+\end{equation}
+
+% p.26
+式 \eqref{eq:1.71} 的另一个有趣的推论与气体的\term{临界点}{critical point}{1.critical-point}有关。在该点 $\left.\partial P/\partial V\right|_{T_c,N}=0$。假定\term{临界等温线}{critical isotherm}{1.critical-isotherm}可以被解析地展开为
+\begin{equation}
+\delta P(T=T_c)=\left.\frac{\partial P}{\partial V}\right|_{T_c,N}\delta V+\frac{1}{2}\left.\frac{\partial^2P}{\partial V^2}\right|_{T_c,N}\delta V^2+\frac{1}{6}\left.\frac{\partial^3P}{\partial V^3}\right|_{T_c,N}\delta V^3+\cdots,
+\label{eq:1.77}
+\end{equation}
+那么稳定性条件 $-\delta P\delta V\ge0$ 意味着，如果一阶导数为零，则 $\left.\partial^2P/\partial V^2\right|_{T_c,N}$ 必须为零，而三阶导数必须为负。这个条件被用来从等温线的近似中得到气体的临界点（正如我们在后面一章中将对\term{范德瓦耳斯方程}{van der Waals equation}{1.van-der-waals-eq}所做的那样）。事实上，像式 \eqref{eq:1.77} 那样在临界点附近作 Taylor 展开通常是不合理的，尽管约束 $-\delta P\delta V\ge0$ 仍然适用。
+
+\cnfigure{fig1-21}{临界点处的稳定性条件，以 van der Waals 等温线为例说明。}
+
+% =============================================================
+\bisection{第三定律}{The third law}
+
+两个态之间的熵差可以用第二定律来计算，即由 $\Delta S=\int\inexd Q_{\text{rev}}/T$。低温实验表明，当 $T$ 趋于零时，对任何坐标集合 $\bm{X}$，$\Delta S(\bm{X},T)$ 都趋于零。这一观测与热力学的其它定律无关，由此导出了 Nernst 提出的\term{热力学第三定律}{third law}{1.third-law}，它说：
+
+\emph{所有系统在绝对零度下的熵是一个普适常数，可以取为零。}
+
+上述陈述实际上意味着
+\begin{equation}
+\lim_{T\to0}S(\bm{X},T)=0,
+\label{eq:1.78}
+\end{equation}
+它比熵差 $\Delta S(\bm{X},T)$ 趋于零是更强的要求。这一更强的条件已经在物质的亚稳相上得到了检验。某些材料，例如硫或膦，可以存在于若干彼此相当相似的晶体结构（\term{同素异形体}{allotropes}{1.allotrope}）之中。当然，在给定温度下这些结构中只有一个是真正稳定的。让我们设想：高温平衡相 $A$ 被缓慢冷却，在温度 $T^*$ 处转变为相 $B$，同时释放\term{潜热}{latent heat}{1.latent-heat} $L$。在更快的冷却条件下，相变被避开，相 $A$ 以亚稳平衡的形式继续存在。两相中的熵可以通过测量热容 $C_A(T)$ 与 $C_B(T)$ 来计算。从 $T=0$ 出发，略高于 $T^*$ 的温度处的熵可以沿两条可能的路径计算，
+\begin{equation}
+S(T^*+\epsilon)=S_A(0)+\int_0^{T^*}\mathrm{d}T'\frac{C_A(T')}{T'}=S_B(0)+\int_0^{T^*}\mathrm{d}T'\frac{C_B(T')}{T'}+\frac{L}{T^*}.
+\label{eq:1.79}
+\end{equation}
+
+通过这样的测量，我们确实可以验证 $S_A(0)=S_B(0)\equiv0$。
+
+\cnfigure{fig1-22}{对同一材料的各种同素异形体所作的热容测量。}
+
+\textbf{第三定律的推论}：
+
+\begin{enumerate}[leftmargin=2.2em, itemsep=0.4em]
+  \item 由于对所有的坐标 $\bm{X}$ 都有 $S(T=0,\bm{X})=0$，
+\begin{equation}
+\lim_{T\to0}\left.\frac{\partial S}{\partial\bm{X}}\right|_T=0.
+\label{eq:1.80}
+\end{equation}
+
+  \item 热容在 $T\to0$ 时必须趋于零，因为
+\begin{equation}
+S(T,\bm{X})-S(0,\bm{X})=\int_0^T\mathrm{d}T'\frac{C_{\bm{X}}(T')}{T'},
+\label{eq:1.81}
+\end{equation}
+而当 $T\to0$ 时该积分发散，除非
+\begin{equation}
+\lim_{T\to0}C_{\bm{X}}(T)=0.
+\label{eq:1.82}
+\end{equation}
+
+  \item 热膨胀系数在 $T\to0$ 时也趋于零，因为
+\begin{equation}
+\alpha_{\bm{J}}=\left.\frac{1}{x}\frac{\partial x}{\partial T}\right|_{\bm{J}}=\left.\frac{1}{x}\frac{\partial S}{\partial J}\right|_T.
+\label{eq:1.83}
+\end{equation}
+第二个等式来自式 \eqref{eq:1.56} 中的 Maxwell 关系。后者的消失由式 \eqref{eq:1.80} 保证。
+
+% p.28
+  \item 不可能通过有限步骤把任何系统冷却到绝对零度。例如，我们可以通过绝热降压来冷却气体。由于不同压强下 $S$ 随 $T$ 变化的曲线必须在 $T=0$ 处汇合，在趋近零温时相继的步骤涉及越来越小的变化，无论对 $S$ 还是对 $T$ 都是如此。换一种说法，零温的不可达到性意味着 $S(T=0,P)$ 与 $P$ 无关。这是第三定律的一个较弱的陈述，它也意味着不同物质的零温熵相等。
+\end{enumerate}
+
+\cnfigure{fig1-23}{要用一系列等温膨胀把气体冷却到 $T=0$，需要无限多步。}
+
+在接下来的各章中，我们将试图从微观的观点来论证热力学定律。第一定律显然是能量守恒的反映，而能量守恒在微观层面同样成立。第零定律与第二定律则提示存在一种不可逆地趋于平衡的过程，这个概念在单个粒子的层面上没有类比物。它被论证为大量自由度集体倾向的反映。在统计力学中，每个粒子的熵由 $S/N=k_B\ln(g_N)/N$ 计算，其中 $g_N$ 是 $N$ 个粒子系统的态的简并度（具有相同能量的组态数目）。因此第三定律要求，在 $T=0$ 时 $\lim_{N\to\infty}\ln(g_N)/N\to0$，这限制了多体系统可能的基态数目。
+
+上述条件在经典统计力学的框架内\emph{并不成立}，因为既有非相互作用系统（例如理想气体）、也有相互作用系统（例如三角反铁磁体中的受挫自旋）的例子，它们具有大量（简并的）基态，并且具有有限的零温熵。然而，在量子效应变得重要的极低温度与极低能量下，经典力学不再适用。于是第三定律等价于对量子力学系统基态简并度的一个限制。\footnote{对任何具有转动对称性的自旋系统，例如铁磁体，当然存在许多通过转动相互联系的基态。然而，这类态的数目并不随自旋数 $N$ 增长，因此这种简并并不影响零温下热力学熵的不存在。}虽然对于由全同粒子组成的非相互作用系统可以证明这一点（正如我们将在最后一章中论证的那样），但在有相互作用时并不存在关于其成立的一般证明。不幸的是，量子效应出现（以及经典简并度的破坏可能具有其它来源）的时机是依赖具体系统的。因此，在第三定律的预言能够被观察到之前温度必须低到什么程度，先验地并不清楚。这个定律的另一个不足之处是它不适用于玻璃相。玻璃是过冷液体冻结成动力学极其缓慢的组态的结果。虽然它们并不是真正的平衡相（因而服从热力学的所有定律），但由于其动力学非常缓慢，它们实际上是准平衡的。玻璃是否满足第三定律的一个可能的检验将在习题中讨论。
+
+% =============================================================
+% 【供用户圈定附录 B 收录范围】第 1 章原文中的意大利斜体（按首次出现页码排序）
+% —— 已在正文中以 \term{中文}{English}{key} 形式标记的术语（附录 B 候选）：
+% p.1  system, adiabatic walls, closed systems, open systems, diathermic walls,
+%      thermodynamic coordinates, state functions, equilibrium, phenomenological
+% p.2  empirical temperature、热力学第零定律（zeroth law）
+% p.3  equation of state, isotherms, ideal gas, dilute
+% p.4  adiabatic, heat, quasi-static
+% p.5  generalized displacements, generalized forces, extensive, intensive,
+%      response functions, heat capacities
+% p.6  force constants, isothermal compressibility, susceptibility,
+%      thermal responses, expansivity
+% p.9  heat engine, refrigerator
+% p.10 Carnot engine, reversible
+% p.12 universal
+% p.13 entropy
+% p.15 independent variables
+% p.17 chemical work, chemical potentials
+% p.20 Gibbs--Duhem relation
+% p.22 chain rule
+% p.23 minimum, enthalpy, convex
+% p.25 quadratic form, positive definite
+% p.26 allotropes
+% p.27 latent heat
+% —— 定律名称与热力学势（第 4 章交付后按用户裁决补埋锚点，页码取本章首次出现处）：
+% p.2  热力学第零定律（zeroth law）；p.6 热力学第一定律（first law）；
+% p.9  热力学第二定律（second law）；p.26 热力学第三定律（third law）；
+% p.17 Helmholtz 自由能（Helmholtz free energy）；
+% p.18 Gibbs 自由能（Gibbs free energy）、巨势（grand potential）。
+% —— 原文中属于「强调」而非术语的斜体（讲义中以 \emph{} 呈现，是否收录请用户圈定）：
+%   定律/定理的整句表述：第零定律、第一定律、第二定律（Kelvin 与 Clausius 表述）、
+%   Clausius 定理、第三定律（定律**名称**已如上埋锚点收录，整句**陈述**仍属强调）；
+%   段内强调词与短语：以及（p.14）、可逆循环（p.15）、一阶／到二阶（p.24）、
+%   所有选择（p.25）、解析地（p.26）、并不成立（p.28）、a priori（p.29），
+%   以及加入、加上外部施力者、恒定外力、在平衡时、热力学温标、自由膨胀实验、
+%   独立于任何材料的性质、理想气体、理想气体温标、等温。
+% —— 按用户决定：强调性斜体一律不收入附录 B，只在正文用 \emph{} 呈现，不再逐一列出。

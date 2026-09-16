@@ -1,0 +1,65 @@
+\contentsline {chapter}{摘要（Abstract）}{I}{section*.2}%
+\contentsline {chapter}{\numberline {第1章\hspace {.3em}}热力学（Thermodynamics）}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}引言（Introduction）}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}第零定律（The zeroth law）}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}第一定律（The first law）}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.4}第二定律（The second law）}{7}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Carnot 热机（Carnot engines）}{8}{section.1.5}%
+\contentsline {section}{\numberline {1.6}熵（Entropy）}{11}{section.1.6}%
+\contentsline {section}{\numberline {1.7}趋于平衡与热力学势（Approach to equilibrium and thermodynamic potentials）}{13}{section.1.7}%
+\contentsline {section}{\numberline {1.8}有用的数学结果（Useful mathematical results）}{17}{section.1.8}%
+\contentsline {section}{\numberline {1.9}稳定性条件（Stability conditions）}{19}{section.1.9}%
+\contentsline {section}{\numberline {1.10}第三定律（The third law）}{22}{section.1.10}%
+\contentsline {chapter}{\numberline {第2章\hspace {.3em}}概率论（Probability）}{25}{chapter.2}%
+\contentsline {section}{\numberline {2.1}一般定义（General definitions）}{25}{section.2.1}%
+\contentsline {section}{\numberline {2.2}一个随机变量（One random variable）}{26}{section.2.2}%
+\contentsline {section}{\numberline {2.3}若干重要的概率分布（Some important probability distributions）}{29}{section.2.3}%
+\contentsline {section}{\numberline {2.4}多个随机变量（Many random variables）}{32}{section.2.4}%
+\contentsline {section}{\numberline {2.5}随机变量之和与中心极限定理（Sums of random variables and the central limit theorem）}{34}{section.2.5}%
+\contentsline {section}{\numberline {2.6}大数法则（Rules for large numbers）}{35}{section.2.6}%
+\contentsline {section}{\numberline {2.7}信息、熵与估计（Information, entropy, and estimation）}{38}{section.2.7}%
+\contentsline {chapter}{\numberline {第3章\hspace {.3em}}气体动理论（Kinetic Theory of Gases）}{40}{chapter.3}%
+\contentsline {section}{\numberline {3.1}一般定义（General definitions）}{40}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Liouville 定理（Liouville's theorem）}{41}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Bogoliubov--Born--Green--Kirkwood--Yvon 层级（The Bogoliubov--Born--Green--Kirkwood--Yvon hierarchy）}{44}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Boltzmann 方程（The Boltzmann equation）}{46}{section.3.4}%
+\contentsline {section}{\numberline {3.5}H 定理与不可逆性（The H-theorem and irreversibility）}{52}{section.3.5}%
+\contentsline {section}{\numberline {3.6}平衡性质（Equilibrium properties）}{54}{section.3.6}%
+\contentsline {section}{\numberline {3.7}守恒律（Conservation laws）}{57}{section.3.7}%
+\contentsline {section}{\numberline {3.8}零阶流体力学（Zeroth-order hydrodynamics）}{60}{section.3.8}%
+\contentsline {section}{\numberline {3.9}一阶流体力学（First-order hydrodynamics）}{63}{section.3.9}%
+\contentsline {chapter}{\numberline {第4章\hspace {.3em}}经典统计力学（Classical Statistical Mechanics）}{67}{chapter.4}%
+\contentsline {section}{\numberline {4.1}一般定义（General definitions）}{67}{section.4.1}%
+\contentsline {section}{\numberline {4.2}微正则系综（The microcanonical ensemble）}{67}{section.4.2}%
+\contentsline {section}{\numberline {4.3}二能级系统（Two-level systems）}{70}{section.4.3}%
+\contentsline {section}{\numberline {4.4}理想气体（The ideal gas）}{73}{section.4.4}%
+\contentsline {section}{\numberline {4.5}混合熵与 Gibbs 佯谬（Mixing entropy and the Gibbs paradox）}{75}{section.4.5}%
+\contentsline {section}{\numberline {4.6}正则系综（The canonical ensemble）}{78}{section.4.6}%
+\contentsline {section}{\numberline {4.7}正则示例（Canonical examples）}{81}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Gibbs 正则系综（The Gibbs canonical ensemble）}{83}{section.4.8}%
+\contentsline {section}{\numberline {4.9}巨正则系综（The grand canonical ensemble）}{85}{section.4.9}%
+\contentsline {chapter}{\numberline {第5章\hspace {.3em}}相互作用粒子（Interacting Particles）}{88}{chapter.5}%
+\contentsline {section}{\numberline {5.1}累积量展开（The cumulant expansion）}{88}{section.5.1}%
+\contentsline {section}{\numberline {5.2}集团展开（The cluster expansion）}{91}{section.5.2}%
+\contentsline {section}{\numberline {5.3}第二维里系数与 van der Waals 方程（The second virial coefficient and van der Waals equation）}{96}{section.5.3}%
+\contentsline {section}{\numberline {5.4}范德瓦耳斯方程的失效（Breakdown of the van der Waals equation）}{99}{section.5.4}%
+\contentsline {section}{\numberline {5.5}凝聚的平均场理论（Mean-field theory of condensation）}{100}{section.5.5}%
+\contentsline {section}{\numberline {5.6}变分方法（Variational methods）}{102}{section.5.6}%
+\contentsline {section}{\numberline {5.7}对应态（Corresponding states）}{103}{section.5.7}%
+\contentsline {section}{\numberline {5.8}临界点行为（Critical point behavior）}{105}{section.5.8}%
+\contentsline {chapter}{\numberline {第6章\hspace {.3em}}量子统计力学（Quantum Statistical Mechanics）}{107}{chapter.6}%
+\contentsline {section}{\numberline {6.1}稀薄多原子气体（Dilute polyatomic gases）}{107}{section.6.1}%
+\contentsline {section}{\numberline {6.2}固体的振动（Vibrations of a solid）}{111}{section.6.2}%
+\contentsline {section}{\numberline {6.3}黑体辐射（Black-body radiation）}{116}{section.6.3}%
+\contentsline {section}{\numberline {6.4}量子微观态（Quantum microstates）}{118}{section.6.4}%
+\contentsline {section}{\numberline {6.5}量子宏观态（Quantum macrostates）}{120}{section.6.5}%
+\contentsline {chapter}{\numberline {第7章\hspace {.3em}}理想量子气体（Ideal Quantum Gases）}{124}{chapter.7}%
+\contentsline {section}{\numberline {7.1}全同粒子的 Hilbert 空间（Hilbert space of identical particles）}{124}{section.7.1}%
+\contentsline {section}{\numberline {7.2}正则表述（Canonical formulation）}{126}{section.7.2}%
+\contentsline {section}{\numberline {7.3}巨正则表述（Grand canonical formulation）}{129}{section.7.3}%
+\contentsline {section}{\numberline {7.4}非相对论气体（Non-relativistic gas）}{130}{section.7.4}%
+\contentsline {section}{\numberline {7.5}简并费米气体（The degenerate fermi gas）}{132}{section.7.5}%
+\contentsline {section}{\numberline {7.6}简并玻色气体（The degenerate bose gas）}{135}{section.7.6}%
+\contentsline {section}{\numberline {7.7}超流 He\textsuperscript {4}（Superfluid He\textsuperscript {4}）}{139}{section.7.7}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}物理量符号及含义（List of Symbols）}{143}{appendix.A}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}术语中英文对照表（Glossary）}{147}{appendix.B}%

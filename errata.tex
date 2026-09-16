@@ -1,0 +1,128 @@
+% =============================================================
+%  errata.tex —— 《Statistical Physics of Particles》正文疑似笔误清单
+%  独立文档，可单独编译：xelatex errata.tex（或 ./build-errata.sh）
+%  用途：逐页核对原文时发现的疑似笔误统一记录在此，正文照原文翻译、不作改动。
+% =============================================================
+\documentclass[11pt,a4paper,oneside,fontset=fandol]{ctexart}
+
+\usepackage{geometry}
+\geometry{a4paper,left=2.4cm,right=2.4cm,top=2.8cm,bottom=2.8cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,bookmarksnumbered=true}
+
+\title{\bfseries 正文疑似笔误清单}
+\author{Mehran Kardar,\ \emph{Statistical Physics of Particles}（Cambridge, 2007）}
+\date{\today}
+
+\newcommand{\pg}[1]{p.~#1}
+
+\begin{document}
+\maketitle
+
+\section*{说明}
+
+本清单独立于讲义正文存放。讲义正文严格照原文翻译，遇到疑似笔误也照译、不擅改；所有疑点集中记录在这里，供日后查证与批注。条目的判定标准是：与前后文、量纲、或书中其它地方的结论相矛盾，且不属于作者有意为之的近似或约定。
+
+新增条目的方式：在下面的表格中按印刷页码顺序插入一行即可。
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}c l X X l@{}}
+  \toprule
+  \textbf{印刷页} & \textbf{位置} & \textbf{原文表述} & \textbf{疑点} & \textbf{状态} \\
+  \midrule
+  \multicolumn{5}{@{}l@{}}{\itshape 第 1 章（p.1--29）未发现确凿的原文笔误；第 2 章见下。末行为记录格式示例。}\\
+  \midrule
+  p.~39 & 式 (2.11) 上方正文 & \itshape curtosis & 拼写有误，通常写作 \itshape kurtosis（原文随后已用括号给出这一形式）；讲义照原文译为「峰度」并保留括注 & 已确认，仅拼写 \\
+  \midrule
+  p.~66 & 式 (3.31) 下方正文 & \itshape which is the typical distance a particle travels between collisions & 式 (3.31) 定义的 $\tau_\times\approx1/(nvd^2)$ 是平均自由\emph{时间}，量纲为时间，而此处称它为粒子两次碰撞间走过的典型「距离」（\itshape distance）；按上下文，两次碰撞间走过的典型距离应是平均自由程 $\ell\approx v\tau_\times\approx1/(nd^2)$。讲义照原文译为「也就是一个粒子在两次碰撞之间走过的典型距离」 & 已确认，措辞/概念 \\
+  \midrule
+  p.~135 & 式 (5.39) 下方正文 & \itshape The second integrand can be approximated by $\beta u_0(r_0/r)^6$ in the high-temperature limit, $\beta u_0\gg1$ & 高温极限应对应 $\beta u_0\ll1$（$T\to\infty$ 时 $\beta\to0$）；而且由式 (5.40) 得到的 $B_2=\frac{2\pi r_0^3}{3}(1-\beta u_0)$ 只有在 $\beta u_0\ll1$ 时才成立。原文的「高温」与「$\gg1$」互相矛盾，疑为 $\ll1$ 之误。讲义照原文译为「在高温极限 $\beta u_0\gg1$ 下」 & 用户裁决（第 5 章交付后）：先不处理，讲义照原文保留 \\
+  \midrule
+  \multicolumn{5}{@{}l@{}}{\itshape 第 6 章（p.156--175）经逐页核对，未发现确凿的原文笔误。}\\
+  \midrule
+  \multicolumn{5}{@{}l@{}}{\itshape 第 7 章（p.181--202）经逐页核对，未发现确凿的原文笔误。}\\
+  \midrule
+  \itshape p.~NN & \itshape 式 (N.NN) & \itshape 原式照抄 & \itshape 疑点说明 & \itshape 待查证 \\
+  \midrule
+  \bottomrule
+\end{tabularx}
+\end{center}
+
+\section*{本讲义相对原文的非翻译性改动记录}
+
+这一节记录的是排版与编辑层面的改动，不是原文的笔误，列出以保证讲义与原文的任何差异都可追溯。
+
+\small
+\begin{longtable}{@{}p{3.4cm} p{3.4cm} p{7.4cm}@{}}
+  \toprule
+  \textbf{印刷页} & \textbf{内容} & \textbf{改动} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{印刷页} & \textbf{内容} & \textbf{改动} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+  p.15--16 & 图 1.14 与图 1.15 & 按原书出现次序调整了两张图的先后（原文 Fig.~1.14 为「可逆循环」三小图，Fig.~1.15 为「子系统相互作用导致熵增」），已核对编译后的图号与原文一致。\\
+  \midrule
+  p.1--29 & 习题（Problems） & 按用户要求不译，正文止于 p.29 顶部一段。\\
+  \midrule
+  p.35--52 & 习题（Problems for chapter 2） & 按用户要求不译，正文止于 p.52。\\
+  \midrule
+  p.57--87 & 第 3 章正文起止 & 正文自 p.57（3.1 一般定义）起，至 p.87 上半页（式 3.130 之后的收尾段）止；同页下半起为习题（Problems for chapter 3），按用户要求不译。\\
+  \midrule
+  p.59--87 & 图 3.1--3.8 & 图的占位框按原文出现次序排布（图 3.2 在 p.59 Liouville 定理陈述之后；图 3.6 在 p.68 碰撞与散射运动学一段之后，原文该图亦在 p.68），编译后图号与原文一致。\\
+  \midrule
+  p.98--120 & 第 4 章正文起止 & 正文自 p.98（4.1 一般定义，章首提要段）起，至 p.120 上半页（式 4.112 与化学势的收尾段）止；同页下半起为习题（Problems for chapter 4），按用户要求不译。\\
+  \midrule
+  p.98--120 & 图 4.1--4.11 & 图的占位框按原文出现次序排布，编译后图号 4.1--4.11 与原文逐一一致；表 4.1 亦按原文位置放置。\\
+  \midrule
+  p.107、p.113 & 混合熵、热力学极限 & 这两个术语的锚点已在第 2 章（2.mix-entropy、2.thermo-limit）埋设；第 4 章按「全书只在首次出现处埋锚点」的约定只保留意大利斜体英文，未重复埋锚点。\\
+  \midrule
+  p.2、p.6、p.9、p.26、p.17--18 & 第 1 章术语锚点回补 & 第 4 章交付后按用户裁决，回第 1 章首次出现处为「热力学第零/第一/第二/第三定律」「Helmholtz 自由能」「Gibbs 自由能」「巨势」补埋术语锚点（附录 B 页码因而记在第 1 章）。这是纯粹的锚点层面改动，第 1 章正文译文未变。\\
+  \midrule
+  p.100--101、p.108、p.113 & 第 4 章术语锚点与词条措辞 & 按用户裁决：identical / distinct 作为术语收录，正文相应措辞改写为「全同（\textit{identical}）」「不同（\textit{distinct}）」；average energy 收录并埋锚点（p.113）；第零/一/二定律因锚点已在第 1 章，本章改作「中文（\textit{English}）」形式，未重复埋锚点。\\
+  \midrule
+  p.126--148 & 第 5 章正文起止 & 正文自 p.126（5.1 累积量展开）起，至 p.148 上半页（式 5.90 与临界指数的收尾段）止；同页下半起为习题（Problems for chapter 5，p.148--155），按用户要求不译。小节起始页：5.1 p.126 / 5.2 p.130 / 5.3 p.134 / 5.4 p.138 / 5.5 p.140 / 5.6 p.143 / 5.7 p.145 / 5.8 p.146。\\
+  \midrule
+  p.126--148 & 图 5.1--5.6 & 图的占位框按原文出现次序排布，编译后图号 5.1--5.6 与原文逐一一致。\\
+  \midrule
+  p.26 & 第 1 章术语锚点回补（van der Waals 相关） & 第 5 章交付后按「凡原文中第一次出现的术语都加入」的裁定，回第 1 章首次出现处为 \textit{van der Waals equation}（1.van-der-waals-eq）、\textit{critical point}（1.critical-point）、\textit{critical isotherm}（1.critical-isotherm）补埋锚点（附录 B 页码因而记在第 1 章）；第 5 章相应位置改作「中文（\textit{English}）」形式，未重复埋锚点。第 1 章译文措辞未变，仅为排版略调一处断句（该处一度出现 6.4\,pt 的溢出行）。\\
+  \midrule
+  p.147 & 临界等容线（critical isochore） & 该词为原书首次出现且此前未埋锚点，按上述裁定在本章 p.147 处埋锚点 5.critical-isochore，词条写作「临界等容线」。\\
+  \midrule
+  全书 & 附录 A「物理量符号及含义」 & 按用户裁决（第 5 章交付后）：附录 A \emph{不记页码}，改为逐条给出每个物理量的\emph{量纲}；表头由「符号／含义／页码」改为「符号／含义／量纲」。\\
+  \midrule
+  p.126--148 等 & 小节标题的斜体归类的更正 & 用户核原文后指出：原书\emph{小节标题为粗体、行内小标题亦为粗体}，并非斜体；故第 3--5 章注释块中原先记作「强调性斜体（小节标题）」的条目只是「不收入附录 B」，它们本不属于「原文中的斜体术语」。相关表述已在 \texttt{chap03}/\texttt{chap04}/\texttt{chap05} 末尾注释块更正，正文译文未变。\\
+  \midrule
+  p.156--175 & 第 6 章正文起止 & 正文自 p.156（p.156 首行即章标题「6 Quantum statistical mechanics」）起，至 p.175 中部（式 6.93 与扩散方程的收尾段）止；同页「Problems for chapter 6」起为习题（p.175--180），按用户要求不译。小节起始页：6.1 p.156 / 6.2 p.161 / 6.3 p.167 / 6.4 p.170 / 6.5 p.172。\\
+  \midrule
+  p.156--175 & 图 6.1--6.7 & 图的占位框按原文出现次序排布（图 6.1、6.2、6.3 属 6.1 节，图 6.4 属 6.2 节，图 6.5、6.6 属 6.2 节，图 6.7 属 6.3 节），编译后图号 6.1--6.7 与原文逐一一致。本章无表格。\\
+  \midrule
+  p.157、p.167、p.168 & 第 6 章三处溢出行 & \texttt{chap06.tex} 初次编译时有三处 Overfull：17.3\,pt（p.157「这类变换也是正则的…」括注，行内积分测度式过宽）、17.5\,pt（p.167「在周期性边界条件下…」一段）、4.0\,pt（p.168「注意这里也存在一个无穷大的零点压力 $P_0$」一段）。三者均为段落内行内公式偏宽、该段可用断点不足所致；已在相应段落\emph{就地}加 \texttt{\textbackslash emergencystretch=2em}（只作用于该段，不改动其它章节与全篇排版）予以消除，译文措辞与全部公式均未改动。\\
+  \midrule
+  p.181 & 第 7 章起始页 & 核对第 6 章页码时顺带确认：第 7 章正文自 p.181 起（p.181 首行即章标题「7 Ideal quantum gases」），旧页码表所记 185 有误，已修正为 181。\\
+  \midrule
+  p.181--202 & 第 7 章正文起止 & 正文自 p.181（章标题「7 Ideal quantum gases」下方的提要段之前）起，至 p.202 上半页（式 7.68 的旋子谱与 Landau 谱的中子散射实验证实段）止；同页下半起为「Problems for chapter 7」（p.202--210），按用户要求不译。小节起始页：7.1 p.181 / 7.2 p.184 / 7.3 p.187 / 7.4 p.188 / 7.5 p.190 / 7.6 p.194 / 7.7 p.198。旧页码表所记「正文 181--201、习题 203--210」有误，已改为正文 181--202、习题 202--210。\\
+  \midrule
+  p.186--201 & 图 7.1--7.16 & 图的占位框按原文出现次序排布，编译后图号 7.1--7.16 与原文逐一一致，且各图所在页码与原文文本层给出的页码逐一吻合：图 7.1（p.186，属 7.2 节）、图 7.2--7.6（p.191--193，属 7.5 节）、图 7.7--7.10（p.195--197，属 7.6 节）、图 7.11--7.16（p.198--201，属 7.7 节）。（图 7.9 的图注在原文文本层中被逐字符拆散，用 \texttt{grep} 取不到；按版面次序其位置在 p.196、介于图 7.8 与图 7.10 之间，讲义即置于 p.196。）本章无表格。\\
+  \midrule
+  p.185、p.185、p.198 & 第 7 章三处行宽调整 & 为保证不出现溢出行，\texttt{chap07.tex} 做了三处就地处理（均为排版层面，译文措辞与全部公式未改动）：(1) p.185 一段（式 (7.22) 之后的有效经典势讨论）就地加 \texttt{\textbackslash emergencystretch=2em}；(2) 式 (7.22) 本身改为 \texttt{aligned} 两行排布（原文为单行，内容不变）；(3) 7.7 节标题中的 He\,4 用 \texttt{\textbackslash texorpdfstring} 包裹，以消除 PDF 书签的告警。\\
+  \midrule
+  全书 & 附录 B「术语中英文对照」的生成方式 & 附录 B 由 \texttt{\_extract/make\_appendixB.sh} 从 \texttt{chapters/chap01.tex}--\texttt{chap07.tex} 中的 \texttt{\textbackslash term\{中文\}\{English\}\{key\}} 锚点自动抽取生成（按全书首次出现排序、按 key 去重保序），共 262 条；页码由 \texttt{\textbackslash pageref\{term:key\}} 自动取，改动正文锚点后重跑该脚本即可同步。脚本头部注明「本文件自动生成，勿手工修改」。\\
+  \midrule
+  全书 & 附录 B 英文列的字体与大小写 & 按用户 2026-09-16 的裁定，附录 B 英文列不再用意大利斜体（原文正文里术语是斜体），统一改为 Times New Roman 正体（字体族在 \texttt{preamble.tex} 中定义为 \texttt{\textbackslash glossaryfont}），并把人名（Boltzmann、Gibbs、Stirling、Levy、Wick 等）与专有名词缩写（PDF）之外词条的首字母改为小写；该规则写在 \texttt{\_extract/make\_appendixB.sh} 中，重跑脚本即生效。这是附录版面层面的改动，各章正文译文与 \texttt{\textbackslash term} 的英语拼写均未改动。\\
+  \bottomrule
+\end{longtable}
+
+\end{document}
