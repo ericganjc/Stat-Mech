@@ -1,0 +1,48 @@
+% =============================================================
+%  main.tex —— 统计力学自学讲义 · 主文档
+%  基于 Mehran Kardar, Statistical Physics of Particles（第 1—7 章）
+%  编译：xelatex ×2
+% =============================================================
+\documentclass[11pt,a4paper,oneside,fontset=fandol]{ctexbook}
+\input{preamble}
+
+\begin{document}
+
+% ======================= 卷首 =======================
+\pagenumbering{Roman}
+
+\begin{titlepage}
+  \centering
+  \vspace*{4.5cm}
+  {\Huge\bfseries 统计力学自学讲义\par}
+  \vspace{1.5cm}
+  {\large 基于 Mehran Kardar《Statistical Physics of Particles》\par}
+  \vspace{3cm}
+  {\large \today\par}
+\end{titlepage}
+
+% ---- 摘要：位置先留空，内容由用户最后撰写 ----
+\begin{cnabstract}
+  \vspace{10\baselineskip}
+\end{cnabstract}
+
+\tableofcontents
+
+% ======================= 正文 =======================
+\clearpage
+\pagenumbering{arabic}
+
+\include{chapters/chap01}
+\include{chapters/chap02}
+\include{chapters/chap03}
+\include{chapters/chap04}
+\include{chapters/chap05}
+\include{chapters/chap06}
+\include{chapters/chap07}
+
+% ======================= 附录 =======================
+\appendix
+\include{appendices/appendixA}
+\include{appendices/appendixB}
+
+\end{document}
